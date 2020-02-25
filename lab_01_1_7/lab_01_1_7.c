@@ -14,7 +14,7 @@ int main()
 	{
 		float f, s = 0;
 		int i = 1;
-		float curr = pow(-1, i) * pow(x, 2 * i + 1) / fact(2 * i + 1);
+		float curr = x;
 		float next = pow(-1, 2 * i + 1) * pow(x, 2 * i + 2) / fact(2 * i + 2);
 		do
 		{
