@@ -13,12 +13,20 @@ int fnc(float x1, float y1, float x2, float y2, float x3, float y3)
 		return 1;
 	}
 	else if (a * a == b * b + c * c || b * b == a * a + c * c || c * c == b * b + a * a)
+	{
 		printf("1");
+		return 0;
+	}
 	else if (a * a > b * b + c * c || b * b > a * a + c * c || c * c > b * b + a * a)
+	{
 		printf("2");
+		return 0;
+	}
 	else
+	{
 		printf("0");
-	return 0;
+		return 0;
+	}
 }
 int main()
 {

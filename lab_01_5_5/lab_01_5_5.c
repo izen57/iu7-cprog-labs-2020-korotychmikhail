@@ -1,17 +1,17 @@
 #include <stdio.h>
-
+#include <string.h>
 void fnc(int i)
 {
-	int y = 0, num;
-	while (i)
+	int num, y = 0;
+	do
 	{
 		y = y * 10 + i % 10;
 		i /= 10;
-	}
+	} while (i > 0);
 	while (y != 0)
 	{
 		num = y % 10;
-		printf("%d ", num);
+		printf("%d", num);
 		y /= 10;
 	}
 }
