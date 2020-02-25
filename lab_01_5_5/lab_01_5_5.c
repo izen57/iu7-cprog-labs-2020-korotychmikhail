@@ -11,7 +11,7 @@ void fnc(int i)
 	while (y != 0)
 	{
 		int num = y % 10;
-		printf("%d ", num);
+		printf("%d", num);
 		y /= 10;
 	}
 }
@@ -27,7 +27,7 @@ int main()
 		}
 		else if (i >= 0 && i <= 9)
 			printf("%d", i);
-		else if (i > 9)
+		else if (i >= 10)
 			fnc(i);
 		return 0;
 	}
