@@ -9,12 +9,10 @@ void fnc(float x1, float y1, float x2, float y2, float x3, float y3)
 	
 	if (a >= b + c || b >= a + c || c >= a + b)
 		printf("Input error.");
-	else
-		if (a * a == b * b + c * c || b * b == a * a + c * c || c * c == b * b + a * a)
-			printf("1");
-	else
-		if (a * a > b * b + c * c || b * b > a * a + c * c || c * c > b * b + a * a)
-			printf("2");
+	else if (a * a == b * b + c * c || b * b == a * a + c * c || c * c == b * b + a * a)
+		printf("1");
+	else if (a * a > b * b + c * c || b * b > a * a + c * c || c * c > b * b + a * a)
+		printf("2");
 	else
 		printf("0");
 }
