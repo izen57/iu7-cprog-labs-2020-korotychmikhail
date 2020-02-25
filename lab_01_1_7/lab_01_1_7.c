@@ -24,7 +24,7 @@ int main()
 			i++;
 		} while (fabs(next - curr) > eps);
 		f = sin(x);
-		printf("%.6f %.6f %.6f %.6f", s, f, fabs(f - s), fabs((f - s) / f));
+		printf("%.6f", s);
 		return 0;
 	}
 	else
