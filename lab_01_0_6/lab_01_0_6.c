@@ -33,7 +33,8 @@ int main()
 	float x1, y1, x2, y2, x3, y3;
 	if (scanf("%f %f %f %f %f %f", &x1, &y1, &x2, &y2, &x3, &y3) == 6)
 	{
-		fnc(x1, y1, x2, y2, x3, y3);
+		int a = fnc(x1, y1, x2, y2, x3, y3);
+		return a;
 	}
 	else
 	{
