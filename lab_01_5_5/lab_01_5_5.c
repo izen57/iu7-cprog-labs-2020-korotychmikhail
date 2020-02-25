@@ -25,12 +25,10 @@ int main()
 			printf("Input error!");
 			return 1;
 		}
-		else
-			if (i >= 0 && i <= 9)
-				printf("%d", i);
-		else
-			if (i > 9)
-				fnc(i);
+		else if (i >= 0 && i <= 9)
+			printf("%d", i);
+		else if (i > 9)
+			fnc(i);
 		return 0;
 	}
 	else
