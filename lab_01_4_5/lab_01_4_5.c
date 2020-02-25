@@ -1,7 +1,20 @@
 #include <stdio.h>
+int mn(int n)
+{
+	int div = 2;
+	while (n > 1)
+	{
+		while (n % div == 0)
+		{
+				n /= div;
+				printf(" * %d", div);
+			}
+			div++;
+		}
+	}
 int main()
 {
-	int n, div = 2;
+	int n;
 	if (scanf("%d", &n) == 1)
 	{
 		if (n <= 0)
@@ -17,15 +30,7 @@ int main()
 		else
 		{
 			printf("Your integer is %d\n%d = 1", n, n);
-			while (n > 1)
-			{
-				while (n % div == 0)
-				{
-					n /= div;
-					printf(" * %d", div);
-				}
-				div++;
-			}
+			mn(n);
 			return 0;
 		}
 	}
