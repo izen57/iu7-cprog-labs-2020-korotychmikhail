@@ -1,12 +1,18 @@
 #include <stdio.h>
 
-int fnc(int i)
+void fnc(int i)
 {
-	while (i != 0)
+	int y = 0;
+	while (i)
 	{
-		int num = i % 10;
-		printf("%d", num);
+		y = y * 10 + i % 10;
 		i /= 10;
+	}
+	while (y != 0)
+	{
+		int num = y % 10;
+		printf("%d ", num);
+		y /= 10;
 	}
 }
 int main()
