@@ -2,7 +2,7 @@
 
 void fnc(int i)
 {
-	int y = 0;
+	int y = 0, num;
 	while (i)
 	{
 		y = y * 10 + i % 10;
@@ -10,8 +10,8 @@ void fnc(int i)
 	}
 	while (y != 0)
 	{
-		int num = y % 10;
-		printf("%d", num);
+		num = y % 10;
+		printf("%d ", num);
 		y /= 10;
 	}
 }
