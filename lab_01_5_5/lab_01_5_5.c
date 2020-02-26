@@ -16,7 +16,6 @@ void fnc(int x)
 int main()
 {
 	float i;
-	int x;
 	if (scanf("%f", &i) == 1)
 	{
 		int x = i;
