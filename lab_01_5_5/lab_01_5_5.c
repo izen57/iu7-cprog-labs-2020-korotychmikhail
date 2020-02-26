@@ -15,23 +15,22 @@ void fnc(int x)
 }
 int main()
 {
-	float i;
-	if (scanf("%f", &i) == 1)
+	int i;
+	if (scanf("%d", &i) == 1)
 	{
-		int x = i;
-		if (x < 0 || i - x != 0)
+		if (i < 0)
 		{
 			printf("Input error!");
 			return 1;
 		}
-		else if (x >= 0 && x <= 9)
+		else if (i >= 0 && i <= 9)
 		{
-			printf("%d", x);
+			printf("%d", i);
 			return 0;
 		}
-		else if (x >= 10)
+		else if (i >= 10)
 		{
-			fnc(x);
+			fnc(i);
 			return 0;
 		}
 	}
