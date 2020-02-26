@@ -20,19 +20,19 @@ int main()
 	if (scanf("%f", &i) == 1)
 	{
 		int x = i;
-		if (i < 0 || i - x != 0)
+		if (x < 0 || i - x != 0)
 		{
 			printf("Input error!");
 			return 1;
 		}
-		else if (i >= 0 && i <= 9)
+		else if (x >= 0 && x <= 9)
 		{
 			printf("%d", i);
 			return 0;
 		}
-		else if (i >= 10)
+		else if (x >= 10)
 		{
-			fnc(i);
+			fnc(x);
 			return 0;
 		}
 	}
