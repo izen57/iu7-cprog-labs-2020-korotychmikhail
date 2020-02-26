@@ -27,7 +27,7 @@ int main()
 		}
 		else if (x >= 0 && x <= 9)
 		{
-			printf("%d", i);
+			printf("%d", x);
 			return 0;
 		}
 		else if (x >= 10)
