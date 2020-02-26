@@ -18,7 +18,7 @@ int main()
 	int i;
 	if (scanf("%d", &i) == 1)
 	{
-		if (i < 0)
+		if (i <= 0)
 		{
 			printf("Input error!");
 			return 1;
