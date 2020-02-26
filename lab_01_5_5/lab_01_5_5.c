@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <ctype.h>
 void fnc(int x)
 {
 	char str[255];
@@ -17,7 +18,7 @@ int main()
 	int i;
 	if (scanf("%d", &i) == 1)
 	{
-		if (i < 0)
+		if (i < 0 || !isdigit(i))
 		{
 			printf("Input error!");
 			return 1;
