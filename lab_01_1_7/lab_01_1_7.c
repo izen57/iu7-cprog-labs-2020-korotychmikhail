@@ -12,6 +12,11 @@ int main()
 	float x, eps;
 	if (scanf("%f %e", &x, &eps) == 2)
 	{
+		if (eps <= 0 || eps > 1)
+		{
+			printf("Input error.");
+			return 1;
+		}
 		float f, s = 0;
 		int i = 1;
 		float curr = x;
@@ -27,7 +32,7 @@ int main()
 		printf("%.6f %.6f %.6f %.6f", s, f, fabs(f - s), fabs((f - s) / f));
 		return 0;
 	}
-	else if (eps < 0 || eps > 1)
+	else
 	{
 		printf("Input error.");
 		return 1;
