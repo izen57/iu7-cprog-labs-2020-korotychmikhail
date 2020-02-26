@@ -22,12 +22,12 @@ int main()
 			curr = next;
 			next = pow(-1, i + 2) * pow(x, 2 * i + 3) / fact(2 * i + 3);
 			i++;
-		} while (fabs(next - curr) > eps);
+		} while (fabs(curr) > eps);
 		f = sin(x);
 		printf("%.6f %.6f %.6f %.6f", s, f, fabs(f - s), fabs((f - s) / f));
 		return 0;
 	}
-	else
+	else if (eps > 0 && eps < 1)
 	{
 		printf("Input error.");
 		return 1;
