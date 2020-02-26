@@ -27,7 +27,7 @@ int main()
 		printf("%.6f %.6f %.6f %.6f", s, f, fabs(f - s), fabs((f - s) / f));
 		return 0;
 	}
-	else if (eps > 0 && eps < 1)
+	else if (eps < 0 || eps > 1)
 	{
 		printf("Input error.");
 		return 1;
