@@ -1,19 +1,16 @@
 #include <stdio.h>
-#include <string.h>
-void fnc(int i)
+void fnc(int x)
 {
-	int num, y = 0;
-	do
+	char str[11];
+	int i = 0, len = 0, temp = 0;
+	sprintf(str, "%d", x);
+	while (str[i] != 0)
 	{
-		y = y * 10 + i % 10;
-		i /= 10;
-	} while (i > 0);
-	while (y != 0)
-	{
-		num = y % 10;
-		printf("%d", num);
-		y /= 10;
+		len++;
+		i++;
 	}
+	for (i = 0; i <= len; i++)
+		printf("%c", str[i]);
 }
 int main()
 {
@@ -26,10 +23,15 @@ int main()
 			return 1;
 		}
 		else if (i >= 0 && i <= 9)
+		{
 			printf("%d", i);
+			return 0;
+		}
 		else if (i >= 10)
+		{
 			fnc(i);
-		return 0;
+			return 0;
+		}
 	}
 	else
 	{
