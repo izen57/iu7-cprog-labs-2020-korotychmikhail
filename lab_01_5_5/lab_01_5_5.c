@@ -1,8 +1,8 @@
 #include <stdio.h>
 void fnc(int x)
 {
-	char str[11];
-	int i = 0, len = 0, temp = 0;
+	char str[50];
+	int i = 0, len = 0;
 	sprintf(str, "%d", x);
 	while (str[i] != 0)
 	{
@@ -10,7 +10,7 @@ void fnc(int x)
 		i++;
 	}
 	for (i = 0; i <= len; i++)
-		printf("%c", str[i]);
+		printf("%c ", str[i]);
 }
 int main()
 {
