@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <ctype.h>
+
 void fnc(int x)
 {
 	char str[255];
@@ -15,10 +15,12 @@ void fnc(int x)
 }
 int main()
 {
-	int i;
-	if (scanf("%d", &i) == 1)
+	float i;
+	int x;
+	if (scanf("%f", &i) == 1)
 	{
-		if (i < 0 || !isdigit(i))
+		int x = i;
+		if (i < 0 || i - x != 0)
 		{
 			printf("Input error!");
 			return 1;
