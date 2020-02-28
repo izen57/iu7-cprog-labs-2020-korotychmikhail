@@ -18,16 +18,15 @@ int main()
 			return 1;
 		}
 		float s = 0, curr = x;
-		int i = 0, c1;
+		int i = 0;
 		float next = pow(-1, i + 1) * pow(x, 2 * (i + 1) + 1) / fact(2 * (i + 1) + 1);
 		do
 		{
 			s += curr;
-			c1 = curr;
 			curr = next;
 			i++;
-			next = pow(-1, i) * pow(x, 2 * i + 1) / fact(2 * i + 1);
-		} while (fabs(c1) > eps);
+			next = pow(-1, i + 1) * pow(x, 2 * (i + 1) + 1) / fact(2 * (i + 1) + 1);
+		} while (fabs(curr) > eps);
 		float f = sin(x);
 		printf("%.6f %.6f %.6f %.6f", s, f, fabs(f - s), fabs((f - s) / f));
 		return 0;
