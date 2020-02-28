@@ -17,18 +17,17 @@ int main()
 			printf("Input error.");
 			return 1;
 		}
-		float f, s = 0;
+		float s = 0, curr = x;
 		int i = 0;
-		float curr = x;
 		float next = pow(-1, i + 1) * pow(x, 2 * (i + 1) + 1) / fact(2 * (i + 1) + 1);
 		do
 		{
 			s += curr;
 			curr = next;
 			i++;
-			next = pow(-1, i + 1) * pow(x, 2 * i + 1) / fact(2 * i + 1);
+			next = pow(-1, i) * pow(x, 2 * i + 1) / fact(2 * i + 1);
 		} while (fabs(curr) > eps);
-		f = sin(x);
+		float f = sin(x);
 		printf("%.6f %.6f %.6f %.6f", s, f, fabs(f - s), fabs((f - s) / f));
 		return 0;
 	}
