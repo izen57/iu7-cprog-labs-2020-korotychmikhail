@@ -1,17 +1,23 @@
 #include <stdio.h>
 
-void fnc(int x)
+void fnc(int i)
 {
-	char str[255];
-	int i = 0, len = 0;
-	sprintf(str, "%d", x);
-	while (str[i] != 0)
+	int cnt = 0, ost, x = i;
+	while (i != 0)
 	{
-		len++;
-		i++;
+		cnt++;
+		i /= 10;
 	}
-	for (i = 0; i < len; i++)
-		printf("%d", str[i] - '0');
+	int nums[cnt], j = 0;
+	while (x != 0)
+	{
+		ost = x % 10;
+		nums[j] = ost;
+		j++;
+		x /= 10;
+	}
+	for (int i = 0; i < j; i++)
+		printf("%d", nums[i]);
 }
 int main()
 {

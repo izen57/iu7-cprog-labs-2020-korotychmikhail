@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-int fnc(float x1, float y1, float x2, float y2, float x3, float y3)
+int triangle(float x1, float y1, float x2, float y2, float x3, float y3)
 {
 	float a = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 	float b = sqrt((x3 - x2) * (x3 - x2) + (y3 - y2) * (y3 - y2));
@@ -33,7 +33,7 @@ int main()
 	float x1, y1, x2, y2, x3, y3;
 	if (scanf("%f %f %f %f %f %f", &x1, &y1, &x2, &y2, &x3, &y3) == 6)
 	{
-		int a = fnc(x1, y1, x2, y2, x3, y3);
+		int a = triangle(x1, y1, x2, y2, x3, y3);
 		return a;
 	}
 	else
