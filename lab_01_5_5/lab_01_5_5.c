@@ -16,7 +16,7 @@ void fnc(int i)
 		j++;
 		x /= 10;
 	}
-	for (int i = 0; i < j; i++)
+	for (int i = j - 1; i >= 0; i--)
 		printf("%d", nums[i]);
 }
 int main()
