@@ -51,5 +51,5 @@ int main()
 	}
 	else
 		printf("%f", geomean);
-	return success;
+	return error;
 }
