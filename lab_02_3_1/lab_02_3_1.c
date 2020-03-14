@@ -9,16 +9,20 @@ typedef enum
 } status_code;
 status_code read_array(int (*a)[ARRAY_LENGHT], int *n)
 {
-	int count = 0;
 	if (scanf("%d", n) != 1)
 		return incorrect_input;
 	if (*n < 1 || *n > ARRAY_LENGHT)
 		return incorrect_input;
+	int count = 0;
 	for (int i = 0; i < *n; i++)
 		count += scanf("%d", &(*a)[i]);
+	char tmp;
+	int rc = scanf("%c", &tmp);
+	if (count != *n || rc != EOF)
+		return incorrect_input;
 	return success;
 }
-status_code geometry_mean(int a[ARRAY_LENGHT], int n, double *geomean)
+status_code geometry_mean(int a[ARRAY_LENGHT], int n, float *geomean)
 {
 	*geomean = 1;
 	int count = 0;
@@ -45,7 +49,7 @@ int main()
 		printf("Input error.");
 		return error;
 	}
-	double geomean;
+	float geomean;
 	error = geometry_mean(a, n, &geomean);
 	if (error)
 		printf("Input error.");
