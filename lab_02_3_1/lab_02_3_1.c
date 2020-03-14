@@ -3,20 +3,20 @@
 #define ARRAY_LENGHT 10
 typedef enum
 {
-	SUCCESS = 0,
-	INCORRECT_INPUT,
-	UNSUITABLE_CONDITION
+	suсcess = 0,
+	incorrect_input,
+	unsiutable_condition
 } status_code;
 status_code read_array(int (*a)[ARRAY_LENGHT], int *n)
 {
 	int count = 0;
 	if (scanf("%d", n) != 1)
-		return INCORRECT_INPUT;
+		return incorrect_input;
 	if (*n <= 0 || *n > ARRAY_LENGHT)
-		return INCORRECT_INPUT;
+		return incorrect_input;
 	for (int i = 0; i < *n; i++)
 		count += scanf("%d", &(*a)[i]);
-	return SUCCESS;
+	return suсcess;
 }
 status_code geometry_mean(int a[ARRAY_LENGHT], int n, float *geomean)
 {
@@ -29,9 +29,9 @@ status_code geometry_mean(int a[ARRAY_LENGHT], int n, float *geomean)
 			*geomean *= a[i];
 		}
 	if (count == 0)
-		return UNSUITABLE_CONDITION;
+		return unsiutable_condition;
 	*geomean = sqrt(*geomean);
-	return SUCCESS;
+	return suсcess;
 }
 int main()
 {
@@ -50,5 +50,5 @@ int main()
 		return error;
 	}
 	printf("%d", geomean);
-	return SUCCESS;
+	return suсcess;
 }
