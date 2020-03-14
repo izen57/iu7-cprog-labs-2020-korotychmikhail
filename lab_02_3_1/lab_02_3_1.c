@@ -18,7 +18,7 @@ status_code read_array(int (*a)[ARRAY_LENGHT], int *n)
 		count += scanf("%d", &(*a)[i]);
 	return success;
 }
-status_code geometry_mean(int a[ARRAY_LENGHT], int n, float *geomean)
+status_code geometry_mean(int a[ARRAY_LENGHT], int n, int *geomean)
 {
 	*geomean = 1;
 	int count = 0;
@@ -45,11 +45,11 @@ int main()
 		printf("Input error.");
 		return error;
 	}
-	float geomean;
+	int geomean;
 	error = geometry_mean(a, n, &geomean);
 	if (error)
 		printf("Input error.");
 	else
-		printf("%f", geomean);
+		printf("%d", geomean);
 	return error;
 }
