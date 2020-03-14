@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #define N 10
-typedef enum {SUCCESS = 0, INCORRECT_INPUT} status_code;
+typedef enum {SUCCESS = 0, INCORRECT_INPUT, UNSUITABLE_CONDITION} status_code;
 status_code read_array(int (*a)[N], int *n)
 {
 	int count = 0;
@@ -21,7 +21,7 @@ status_code geometry_mean(int a[N], int n, float *geomean)
 		if (a[i] > 0)
 			*geomean *= a[i];
 	if (count == 0)
-		return INCORRECT_INPUT;
+		return UNSUITABLE_CONDITION;
 	*geomean = sqrt(*geomean);
 	return SUCCESS;
 }
