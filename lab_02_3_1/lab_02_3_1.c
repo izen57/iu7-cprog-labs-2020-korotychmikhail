@@ -2,7 +2,7 @@
 #include <math.h>
 #define ARRAY_LENGHT 10
 
-typedef enum {SUCCESS = 0, ER_INCORRECT_INPUT,ER_UNSUITABLE_CONDITION} status_code;
+typedef enum { SUCCESS = 0, ER_INCORRECT_INPUT,ER_UNSUITABLE_CONDITION } status_code;
 
 status_code read_array(int (*a)[ARRAY_LENGHT], int *n)
 {
