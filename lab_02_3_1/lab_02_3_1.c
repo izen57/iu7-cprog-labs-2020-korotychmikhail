@@ -49,6 +49,6 @@ int main()
 		printf("Input error.");
 		return error;
 	}
-	printf("%.2f", geomean);
+	printf("%.f", geomean);
 	return success;
 }
