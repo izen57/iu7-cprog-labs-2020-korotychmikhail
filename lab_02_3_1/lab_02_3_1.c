@@ -12,7 +12,7 @@ status_code read_array(int (*a)[ARRAY_LENGHT], int *n)
 	int count = 0;
 	if (scanf("%d", n) != 1)
 		return incorrect_input;
-	if (*n <= 0 || *n > ARRAY_LENGHT)
+	if (*n < 1 || *n > ARRAY_LENGHT)
 		return incorrect_input;
 	for (int i = 0; i < *n; i++)
 		count += scanf("%d", &(*a)[i]);
@@ -30,8 +30,11 @@ status_code geometry_mean(int a[ARRAY_LENGHT], int n, float *geomean)
 		}
 	if (count == 0)
 		return unsiutable_condition;
-	*geomean = pow(*geomean, 1 / count);
-	return success;
+	else
+	{
+		*geomean = pow(*geomean, 1 / count);
+		return success;
+	}
 }
 int main()
 {
