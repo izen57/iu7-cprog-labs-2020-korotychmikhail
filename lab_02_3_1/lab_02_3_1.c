@@ -1,16 +1,19 @@
 #include <stdio.h>
 #include <math.h>
 #define ARRAY_LENGHT 10
-
-typedef enum { SUCCESS = 0, ER_INCORRECT_INPUT,ER_UNSUITABLE_CONDITION } status_code;
-
+typedef enum
+{
+	SUCCESS = 0,
+	INCORRECT_INPUT,
+	UNSUITABLE_CONDITION
+} status_code;
 status_code read_array(int (*a)[ARRAY_LENGHT], int *n)
 {
 	int count = 0;
 	if (scanf("%d", n) != 1)
-		return ER_INCORRECT_INPUT;
+		return INCORRECT_INPUT;
 	if (*n <= 0 || *n > ARRAY_LENGHT)
-		return ER_INCORRECT_INPUT;
+		return INCORRECT_INPUT;
 	for (int i = 0; i < *n; i++)
 		count += scanf("%d", &(*a)[i]);
 	return SUCCESS;
@@ -26,7 +29,7 @@ status_code geometry_mean(int a[ARRAY_LENGHT], int n, float *geomean)
 			*geomean *= a[i];
 		}
 	if (count == 0)
-		return ER_UNSUITABLE_CONDITION;
+		return UNSUITABLE_CONDITION;
 	*geomean = sqrt(*geomean);
 	return SUCCESS;
 }
