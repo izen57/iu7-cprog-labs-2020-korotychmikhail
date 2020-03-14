@@ -30,7 +30,7 @@ status_code geometry_mean(int a[ARRAY_LENGHT], int n, float *geomean)
 		}
 	if (count == 0)
 		return unsiutable_condition;
-	*geomean = sqrt(*geomean);
+	*geomean = pow(*geomean, 1 / n);
 	return success;
 }
 int main()
