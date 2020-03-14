@@ -45,10 +45,7 @@ int main()
 	float geomean;
 	error = geometry_mean(a, n, &geomean);
 	if (error)
-	{
 		printf("Input error.");
-		return error;
-	}
 	else
 		printf("%f", geomean);
 	return error;
