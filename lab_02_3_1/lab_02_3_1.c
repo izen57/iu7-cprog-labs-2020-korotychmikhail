@@ -24,8 +24,8 @@ status_code read_array(int (*a)[ARRAY_LENGHT], int *n)
 }
 status_code geometry_mean(int a[ARRAY_LENGHT], int n, float *geomean)
 {
-	*geomean = 1;
 	int count = 0;
+	*geomean = 1;
 	for (int i = 0; i < n; i++)
 		if (a[i] > 0)
 		{
@@ -36,7 +36,7 @@ status_code geometry_mean(int a[ARRAY_LENGHT], int n, float *geomean)
 		return unsiutable_condition;
 	else
 	{
-		*geomean = pow(*geomean, 1 / count);
+		*geomean = pow(*geomean, 1.0 / count);
 		return success;
 	}
 }
