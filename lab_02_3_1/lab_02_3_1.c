@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include <math.h>
 #define N 10
-typedef enum = {SUCCESS = 0, INCORRECT_INPUT} status_code;
-status_code read_array(int a[N], int *n)
+typedef enum {SUCCESS = 0, INCORRECT_INPUT} status_code;
+status_code read_array(int (*a)[N], int *n)
 {
 	int count = 0;
 	if (scanf("%d", n) != 1)
@@ -9,13 +10,14 @@ status_code read_array(int a[N], int *n)
 	if (*n <= 0 || *n > N)
 		return INCORRECT_INPUT;
 	for (int i = 0; i < *n; i++)
-		count += scanf("%d", a[i]);
+		count += scanf("%d", &(*a)[i]);
 	return SUCCESS;
 }
-status_code geometry_mean(int a[N], int n, int *geomean)
+status_code geometry_mean(int a[N], int n, float *geomean)
 {
 	*geomean = 1;
-	for (int i = 0, int count = 0; i < n; i++, count++)
+	int count = 0;
+	for (int i = 0; i < n; i++, count++)
 		if (a[i] > 0)
 			*geomean *= a[i];
 	if (count == 0)
@@ -26,7 +28,7 @@ status_code geometry_mean(int a[N], int n, int *geomean)
 int main()
 {
 	int a[N], n;
-	status_code error = read_array(a, &n);
+	status_code error = read_array(&a, &n);
 	if (error)
 	{
 		printf("Input error.");
@@ -36,8 +38,9 @@ int main()
 	error = geometry_mean(a, n, &geomean);
 	if (error)
 	{
-		pritnf("Input error.");
-		return INCORRECT_INPUT;
+		printf("Input error.");
+		return error;
 	}
+	printf("%f", geomean);
 	return SUCCESS;
 }
