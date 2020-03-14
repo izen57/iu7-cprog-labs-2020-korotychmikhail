@@ -17,9 +17,12 @@ status_code geometry_mean(int a[N], int n, float *geomean)
 {
 	*geomean = 1;
 	int count = 0;
-	for (int i = 0; i < n; i++, count++)
+	for (int i = 0; i < n; i++)
 		if (a[i] > 0)
+		{
+			count++;
 			*geomean *= a[i];
+		}
 	if (count == 0)
 		return UNSUITABLE_CONDITION;
 	*geomean = sqrt(*geomean);
