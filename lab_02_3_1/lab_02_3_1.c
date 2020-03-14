@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #define N 10
-typedef enum {SUCCESS = 0, INCORRECT_INPUT, UNSUITABLE_CONDITION} status_code;
+typedef enum {SUCCESS, INCORRECT_INPUT, UNSUITABLE_CONDITION} status_code;
 status_code read_array(int (*a)[N], int *n)
 {
 	int count = 0;
