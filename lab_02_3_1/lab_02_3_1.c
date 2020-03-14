@@ -1,20 +1,19 @@
 #include <stdio.h>
 #include <math.h>
-#define N 10
-
-typedef enum {SUCCESS, INCORRECT_INPUT, UNSUITABLE_CONDITION} status_code;
-status_code read_array(int (*a)[N], int *n)
+#define ARRAY_LENGHT 10
+typedef enum {SUCCESS = 0, ER_INCORRECT_INPUT, ER_UNSUITABLE_CONDITION} status_code;
+status_code read_array(int (*a)[ARRAY_LENGHT], int *n)
 {
 	int count = 0;
 	if (scanf("%d", n) != 1)
-		return INCORRECT_INPUT;
-	if (*n <= 0 || *n > N)
-		return INCORRECT_INPUT;
+		return ER_INCORRECT_INPUT;
+	if (*n <= 0 || *n > ARRAY_LENGHT)
+		return ER_INCORRECT_INPUT;
 	for (int i = 0; i < *n; i++)
 		count += scanf("%d", &(*a)[i]);
 	return SUCCESS;
 }
-status_code geometry_mean(int a[N], int n, float *geomean)
+status_code geometry_mean(int a[ARRAY_LENGHT], int n, float *geomean)
 {
 	*geomean = 1;
 	int count = 0;
@@ -25,13 +24,13 @@ status_code geometry_mean(int a[N], int n, float *geomean)
 			*geomean *= a[i];
 		}
 	if (count == 0)
-		return UNSUITABLE_CONDITION;
+		return ER_UNSUITABLE_CONDITION;
 	*geomean = sqrt(*geomean);
 	return SUCCESS;
 }
 int main()
 {
-	int a[N], n;
+	int a[ARRAY_LENGHT], n;
 	status_code error = read_array(&a, &n);
 	if (error)
 	{
