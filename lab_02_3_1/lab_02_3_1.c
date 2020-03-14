@@ -50,6 +50,6 @@ int main()
 	if (error)
 		printf("Input error.");
 	else
-		printf("%.5f", geomean);
+		printf("%.6f", geomean);
 	return error;
 }
