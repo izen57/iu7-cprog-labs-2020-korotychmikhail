@@ -37,7 +37,7 @@ status_code samedig(int a[ARRAY_LENGHT], int (*b)[ARRAY_LENGHT], int n, int *cou
 	*count = 0;
 	int j = 0;
 	for (int i = 0; i < n; i++)
-		if (if_start_is_end(a[i]))
+		if (if_start_is_end(a[i]) == 1)
 		{
 			(*count)++;
 			(*b)[j] = a[i];
@@ -60,9 +60,9 @@ int main()
 	int b[ARRAY_LENGHT], count;
 	error = samedig(a, &b, n, &count);
 	if (error)
-		printf("There is no such digits.");
+		printf("There are no such digits.");
 	else
 		for (int i = 0; i < count; i++)
-			printf("%d", b[i]);
+			printf("%d ", b[i]);
 	return error;
 }
