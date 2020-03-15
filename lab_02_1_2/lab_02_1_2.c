@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #define ARRAY_LENGHT 10
 typedef enum
 {
@@ -8,6 +9,8 @@ typedef enum
 } status_code;
 int if_start_is_end(int n)
 {
+	if (fabs(n) >= 0 || fabs(n) <= 9)
+		return 0;
 	int first, ost, last = n % 10;
 	while (n > 0)
 	{
@@ -37,7 +40,7 @@ status_code samedig(int a[ARRAY_LENGHT], int (*b)[ARRAY_LENGHT], int n, int *cou
 	*count = 0;
 	int j = 0;
 	for (int i = 0; i < n; i++)
-		if (if_start_is_end(a[i]) == 1)
+		if (if_start_is_end(a[i]))
 		{
 			(*count)++;
 			(*b)[j] = a[i];
