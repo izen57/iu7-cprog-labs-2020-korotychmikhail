@@ -9,7 +9,7 @@ typedef enum
 int if_start_is_end(int n)
 {
 	int first, ost, last = n % 10;
-	while(n > 0)
+	while (n > 0)
 	{
 		ost = n % 10;
 		n /= 10;
@@ -63,6 +63,6 @@ int main()
 		printf("There is no such digits.");
 	else
 		for (int i = 0; i < count; i++)
-			printf("%d ", b[i]);
+			printf("%d", b[i]);
 	return error;
 }
