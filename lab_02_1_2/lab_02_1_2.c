@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <math.h>
 #define ARRAY_LENGHT 10
 typedef enum
 {
@@ -9,8 +8,6 @@ typedef enum
 } status_code;
 int if_start_is_end(int n)
 {
-	if (fabs(n) >= 0 || fabs(n) <= 9)
-		return 0;
 	int first, ost, last = n % 10;
 	while (n > 0)
 	{
