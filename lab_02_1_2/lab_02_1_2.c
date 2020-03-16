@@ -44,7 +44,7 @@ status_code calc(int a[ARRAY_LENGHT], int (*b)[ARRAY_LENGHT], int n, int *j)
 			(*b)[*j] = a[i];
 			(*j)++;
 		}
-	if (j == 0)
+	if ((*j) == 0)
 		return unsiutable_condition;
 	else
 		return success;
