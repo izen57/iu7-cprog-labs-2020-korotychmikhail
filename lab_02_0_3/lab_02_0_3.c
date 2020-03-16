@@ -14,14 +14,15 @@ int digit_is_palindrom(int n)
 	if (n >= 0 && n < ARRAY_LENGHT)
 		return 1;
 	int x = n, sum = 0;
-	while (x != 0)
+	while (n != 0)
 	{
-		sum = (sum * 10) + (x % 10);
-		x /= 10;
+		sum = (sum * 10) + (n % 10);
+		n /= 10;
 	}
-	if (sum == n)
+	if (sum == x)
 		return 1;
-	return 0;
+	else
+		return 0;
 }
 status_code read_array(int (*a)[ARRAY_LENGHT], int *n)
 {
