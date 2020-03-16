@@ -38,16 +38,16 @@ status_code read_array(int (*a)[ARRAY_LENGHT], int *n)
 		return incorrect_input;
 	return success;
 }
-status_code calc(int (*a)[ARRAY_LENGHT], int n, int *count)
+status_code calc(int a[ARRAY_LENGHT], int (*b)[ARRAY_LENGHT], int n, int *j)
 {
-	*count = 0;
+	*j = 0;
 	for (int i = 0; i < n; i++)
-		if (digit_is_palindrom((*a)[i]))
+		if (digit_is_palindrom(a[i]))
 		{
-			(*a)[i] = 0;
-			(*count)++;
+			(*b)[j] = a[i];
+			(*j)++;
 		}
-	if ((*count) == 0)
+	if ((*j) == 0)
 		return unsiutable_condition;
 	return success;
 }
@@ -60,13 +60,12 @@ int main()
 		printf("Input error.");
 		return error;
 	}
-	int count;
-	error = calc(&a, n, &count);
+	int b[ARRAY_LENGHT], j;
+	error = calc(&a, &b, n, &j);
 	if (error)
-		printf("There are not such digits.");
+		printf("There are no such digits.");
 	else
-		for (int i = 0; i < n; i++)
-			if (a[i] != 0)
-				printf("%d", a[i]);
+		for (int i = 0; i < j; i++)
+			printf("%d ", b[i]);
 	return error;
 }
