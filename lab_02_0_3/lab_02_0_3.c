@@ -42,7 +42,7 @@ status_code calc(int (*a)[ARRAY_LENGHT], int n, int *count)
 {
 	*count = 0;
 	for (int i = 0; i < n; i++)
-		if (digit_is_palindrom(a[i]))
+		if (digit_is_palindrom((*a)[i]))
 		{
 			(*a)[i] = 0;
 			(*count)++;
