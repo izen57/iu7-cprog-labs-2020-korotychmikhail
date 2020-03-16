@@ -9,16 +9,16 @@ typedef enum
 } status_code;
 int digit_is_simple(int n)
 {
-    int count = 1;
-    if (n < 2)
-        return 0;
-    for (int i = 1; i * i <= n; i++)
-        if (n % i == 0)
-            count++;
-    if (count == 2)
-        return 1;
-    else
-        return 0;
+	int count = 1;
+	if (n < 2)
+		return 0;
+	for (int i = 1; i * i <= n; i++)
+		if (n % i == 0)
+			count++;
+	if (count == 2)
+		return 1;
+	else
+		return 0;
 }
 status_code read_array(int (*a)[ARRAY_LENGHT], int *n)
 {
@@ -44,7 +44,7 @@ status_code calc(int a[ARRAY_LENGHT], int (*b)[ARRAY_LENGHT], int n, int *count)
 			(*b)[j] = a[i];
 			j++;
 		}
-	if (*count == 0)
+	if (count == 0)
 		return unsiutable_condition;
 	else
 		return success;
@@ -63,7 +63,7 @@ int main()
 	if (error)
 		printf("There are no such digits.");
 	else
-		for (int i = 0; i < count; i++)
+		for (int i = 0; i < j; i++)
 			printf("%d ", b[i]);
 	return error;
 }
