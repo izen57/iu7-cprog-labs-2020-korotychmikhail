@@ -7,14 +7,18 @@ typedef enum
 	incorrect_input,
 	unsiutable_condition
 } status_code;
-int dig_is_simple(int n)
+int digit_is_simple(int n)
 {
-	if (n < 2)
-		return 0;
-	for(int i = 2; i < n; i++)
-		if (n % i == 0)
-			return 0;
-	return 1;
+    int count = 1;
+    if (n < 2)
+        return 0;
+    for (int i = 1; i * i <= n; i++)
+        if (n % i == 0)
+            count++;
+    if (count == 2)
+        return 1;
+    else
+        return 0;
 }
 status_code read_array(int (*a)[ARRAY_LENGHT], int *n)
 {
@@ -33,12 +37,10 @@ status_code read_array(int (*a)[ARRAY_LENGHT], int *n)
 }
 status_code calc(int a[ARRAY_LENGHT], int (*b)[ARRAY_LENGHT], int n, int *count)
 {
-	*count = 0;
 	int j = 0;
 	for (int i = 0; i < n; i++)
-		if (dig_is_simple(a[i]))
+		if (digit_is_simple(a[i]))
 		{
-			(*count)++;
 			(*b)[j] = a[i];
 			j++;
 		}
@@ -56,8 +58,8 @@ int main()
 		printf("Input error.");
 		return error;
 	}
-	int b[ARRAY_LENGHT], count;
-	error = calc(a, &b, n, &count);
+	int b[ARRAY_LENGHT];
+	error = calc(a, &b, n);
 	if (error)
 		printf("There are no such digits.");
 	else
