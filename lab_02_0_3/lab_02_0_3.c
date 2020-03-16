@@ -16,7 +16,7 @@ int digit_is_palindrom(int n)
 	int x = n, sum = 0;
 	while (x != 0)
 	{
-		sum = (sum * 10) + (n % 10);
+		sum = (sum * 10) + (x % 10);
 		x /= 10;
 	}
 	if (sum == n)
