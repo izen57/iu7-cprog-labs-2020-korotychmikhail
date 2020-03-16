@@ -20,7 +20,7 @@ int digit_is_simple(int n)
 	else
 		return 0;
 }
-status_code read_array(int (*a)[ARRAY_LENGHT], int *n)
+status_code read_array(int a, int *n)
 {
 	if (scanf("%d", n) != 1)
 		return incorrect_input;
@@ -35,7 +35,7 @@ status_code read_array(int (*a)[ARRAY_LENGHT], int *n)
 		return incorrect_input;
 	return success;
 }
-status_code calc(int a[ARRAY_LENGHT], int (*b)[ARRAY_LENGHT], int n, int *j)
+status_code calc(int a, int b, int n, int *j)
 {
 	*j = 0;
 	for (int i = 0; i < n; i++)
