@@ -61,7 +61,7 @@ int main()
 		return error;
 	}
 	int b[ARRAY_LENGHT], j;
-	error = calc(&a, &b, n, &j);
+	error = calc(a, &b, n, &j);
 	if (error)
 		printf("There are no such digits.");
 	else
