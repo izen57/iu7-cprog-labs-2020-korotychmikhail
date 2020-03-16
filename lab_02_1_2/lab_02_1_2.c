@@ -35,7 +35,7 @@ status_code read_array(int (*a)[ARRAY_LENGHT], int *n)
 		return incorrect_input;
 	return success;
 }
-status_code calc(int a[ARRAY_LENGHT], int (*b)[ARRAY_LENGHT], int n, int *count)
+status_code calc(int a[ARRAY_LENGHT], int (*b)[ARRAY_LENGHT], int n)
 {
 	int j = 0;
 	for (int i = 0; i < n; i++)
@@ -44,7 +44,7 @@ status_code calc(int a[ARRAY_LENGHT], int (*b)[ARRAY_LENGHT], int n, int *count)
 			(*b)[j] = a[i];
 			j++;
 		}
-	if (count == 0)
+	if (j == 0)
 		return unsiutable_condition;
 	else
 		return success;
