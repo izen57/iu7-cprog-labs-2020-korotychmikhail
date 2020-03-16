@@ -35,14 +35,14 @@ status_code read_array(int (*a)[ARRAY_LENGHT], int *n)
 		return incorrect_input;
 	return success;
 }
-status_code calc(int a[ARRAY_LENGHT], int (*b)[ARRAY_LENGHT], int n)
+status_code calc(int a[ARRAY_LENGHT], int (*b)[ARRAY_LENGHT], int n, int *j)
 {
-	int j = 0;
+	*j = 0;
 	for (int i = 0; i < n; i++)
 		if (digit_is_simple(a[i]))
 		{
-			(*b)[j] = a[i];
-			j++;
+			(*b)[*j] = a[i];
+			(*j)++;
 		}
 	if (j == 0)
 		return unsiutable_condition;
@@ -58,8 +58,8 @@ int main()
 		printf("Input error.");
 		return error;
 	}
-	int b[ARRAY_LENGHT];
-	error = calc(a, &b, n);
+	int b[ARRAY_LENGHT], j;
+	error = calc(a, &b, n, &j);
 	if (error)
 		printf("There are no such digits.");
 	else
