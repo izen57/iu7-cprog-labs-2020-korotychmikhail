@@ -44,7 +44,7 @@ status_code calc(int a[ARRAY_LENGHT], int (*b)[ARRAY_LENGHT], int n, int *j)
 	for (int i = 0; i < n; i++)
 		if (digit_is_palindrom(a[i]))
 		{
-			(*b)[j] = a[i];
+			(*b)[*j] = a[i];
 			(*j)++;
 		}
 	if ((*j) == 0)
