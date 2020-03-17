@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <math.h>
 #define ARRAY_LENGHT 10
 typedef enum
 {
@@ -46,8 +45,7 @@ status_code calc(int a[ARRAY_LENGHT], int (*b)[ARRAY_LENGHT], int n, int *j)
 		}
 	if ((*j) == 0)
 		return unsiutable_condition;
-	else
-		return success;
+	return success;
 }
 int main()
 {

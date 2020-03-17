@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <math.h>
 #define ARRAY_LENGHT 10
 typedef enum
 {
