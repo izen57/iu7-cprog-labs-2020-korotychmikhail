@@ -20,7 +20,7 @@ status_code read_array(int (*a)[ARRAY_LENGHT], int *n)
 		return incorrect_input;
 	return success;
 }
-void sort((*a)[ARRAY_LENGHT], int n)
+void sort(int (*a)[ARRAY_LENGHT], int n)
 {
 	int j = 0, current = 0;
 	for (int i = 0; i < n; i++)
