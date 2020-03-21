@@ -24,11 +24,19 @@ status_code read_array(int **begin, int **end)
 }
 int check_array(int **begin, int **end)
 {
-	int count = 0;
+	int count = 0, flag = 0;
 	for (int *i = *begin; i < *end; i++)
+	{
 		for (int *j = i + 1; j < *end; j++)
 			if (*i == *j)
-				count++;
+			{
+				flag = 1;
+				break;
+			}
+		if (!flag)
+			count++;
+		flag = 0;
+	}
 	return count;
 }
 int main()
@@ -40,5 +48,6 @@ int main()
 		printf("Input error.");
 		return error;
 	}
-	printf("%d", check_array(&begin, &end));
+	int r = check_array(&begin, &end); 
+	printf("%d", r);
 }
