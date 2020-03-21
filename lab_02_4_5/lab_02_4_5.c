@@ -22,12 +22,14 @@ status_code read_array(int **begin, int **end)
 		return incorrect_input;
 	return success;
 }
-void check_array(int **begin, int **end)
+int check_array(int **begin, int **end)
 {
+	int count = 0;
 	for (int *i = *begin; i < *end; i++)
 		for (int *j = i + 1; j < *end; j++)
-		if (*i == *j)
-			*i = -1;
+			if (*i == *j)
+				count++;
+	return count;
 }
 int main()
 {
@@ -39,8 +41,5 @@ int main()
 		return error;
 	}
 	int *pa = begin;
-	check_array(&begin, &end);
-	for (int *i = pa; i < end; i++)
-		if (*i != -1)
-			printf("%d ", *i);
+	printf("%d", check_array(&begin, &end));
 }
