@@ -40,6 +40,5 @@ int main()
 		printf("Input error.");
 		return error;
 	}
-	int *pa = begin;
 	printf("%d", check_array(&begin, &end));
 }
