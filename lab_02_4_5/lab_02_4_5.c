@@ -4,7 +4,6 @@ typedef enum
 {
 	success,
 	incorrect_input,
-	unsiutable_condition
 } status_code;
 status_code read_array(int **begin, int **end)
 {
