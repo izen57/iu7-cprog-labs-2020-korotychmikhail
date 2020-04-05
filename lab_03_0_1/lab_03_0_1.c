@@ -9,7 +9,7 @@ status_code read_array(int (*a)[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m)
 {
 	if (scanf("%d %d", n, m) != 2)
 		return incorrect_input;
-	if ((*n <= 1 && *m <= 1) || (*n > ARRAY_LENGHT && *m > ARRAY_LENGHT))
+	if (*n <= 1 || *m <= 1 || *n > ARRAY_LENGHT || *m > ARRAY_LENGHT)
 		return incorrect_input;
 	int count = 0;
 	for (int i = 0; i < *n; i++)
@@ -26,8 +26,8 @@ void check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int (*b)[ARRAY_LENGHT], int 
 	for (int i = 0; i < m; i++)
 	{
 		int count = 0;
-		for (int k = 0; k < n - 1; k++)
-			if (a[k][i] > a[k + 1][i])
+		for (int j = 0; j < n - 1; j++)
+			if (a[j][i] > a[j + 1][i])
 				count++;
 		if (count == n - 1)
 			(*b)[i] = 1;
