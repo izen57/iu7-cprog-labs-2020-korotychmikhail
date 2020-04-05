@@ -6,7 +6,7 @@ typedef enum
 	incorrect_input,
 	unsuitable_condition
 } status_code;
-status_code read_array(int (*a)[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m, int *num)
+status_code read_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m, int *num)
 {
 	if (scanf("%d %d", n, m) != 2)
 		return incorrect_input;
@@ -15,7 +15,7 @@ status_code read_array(int (*a)[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m, int
 	int count = 0;
 	for (int i = 0; i < *n; i++)
 		for (int k = 0; k < *m; k++)
-			count += scanf("%d", &(*a)[i][k]);
+			count += scanf("%d", &a[i][k]);
 	if (scanf("%d", num) != 1)
 		return incorrect_input;
 	char tmp;
@@ -34,16 +34,16 @@ int first_num(int x)
 	}
 	return n;
 }
-void shift(int (*a)[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int op)
+void shift(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int op)
 {
 	(*n)++;
 	for (int i = *(n - 1); i > op; i--)
 		for (int j = 0; j < m; j++)
-			(*a)[i + 1][j] = (*a)[i][j];
+			a[i + 1][j] = a[i][j];
 	for (int j = 0; j < m; j++)
-		(*a)[op + 1][j] = 100;
+		a[op + 1][j] = 100;
 }
-status_code check_array(int (*a)[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int num)
+status_code check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int num)
 {
 	int countfn = -1, countln = -1;
 	for (int i = 0; i < *n; i++)
@@ -51,12 +51,9 @@ status_code check_array(int (*a)[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int
 		countfn = 0, countln = 0; 
 		for (int j = 0; j < m; j++)
 		{
-			if ((*a)[i][j] % 10 == num)
-			{
+			if (a[i][j] % 10 == num)
 				countln++;
-				continue;
-			}
-			int x = (*a)[i][j];
+			int x = a[i][j];
 			int first_number = first_num(x);
 			if (first_number == num)
 				countfn++;
@@ -67,10 +64,7 @@ status_code check_array(int (*a)[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int
 			i++;
 		}
 	}
-	if (countfn == -1 || countln == -1)
-		return unsuitable_condition;
-	else
-		return success;
+	return success;
 }
 void print_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int n, int m)
 {
@@ -81,13 +75,13 @@ void print_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int n, int m)
 int main(void)
 {
 	int a[ARRAY_LENGHT][ARRAY_LENGHT], n, m, num;
-	status_code error = read_array(&a, &n, &m, &num);
+	status_code error = read_array(a, &n, &m, &num);
 	if (error)
 	{
 		printf("Input error.");
 		return error;
 	}
-	error = check_array(&a, &n, m, num);
+	error = check_array(a, &n, m, num);
 	if (error)
 	{
 		printf("There are no such digits.");

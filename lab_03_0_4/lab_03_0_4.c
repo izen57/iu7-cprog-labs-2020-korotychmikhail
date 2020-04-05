@@ -6,16 +6,16 @@ typedef enum
 	incorrect_input,
 	unsuitable_condition
 } status_code;
-status_code read_array(int (*a)[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m)
+status_code read_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m)
 {
-	if (scanf("%d", n, m) != 2)
+	if (scanf("%d %d", n, m) != 2)
 		return incorrect_input;
 	if (*n != *m || *n < 1 || *n > ARRAY_LENGHT)
 		return incorrect_input;
 	int count = 0;
 	for (int i = 0; i < *n; i++)
 		for (int j = 0; j < *m; j++)
-			count += scanf("%d", &(*a)[i][j]);
+			count += scanf("%d", &a[i][j]);
 	char tmp;
 	int rc = scanf("%c", &tmp);
 	if (count != *n * *m || rc != EOF)
@@ -40,7 +40,7 @@ status_code min_odd(int a[ARRAY_LENGHT][ARRAY_LENGHT], int n)
 int main(void)
 {
 	int a[ARRAY_LENGHT][ARRAY_LENGHT], n, m;
-	status_code error = read_array(&a, &n, &m);
+	status_code error = read_array(a, &n, &m);
 	if (error)
 	{
 		printf("Input error.");
