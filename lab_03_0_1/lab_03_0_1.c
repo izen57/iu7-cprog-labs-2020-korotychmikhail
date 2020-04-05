@@ -13,15 +13,15 @@ status_code read_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m)
 		return incorrect_input;
 	int count = 0;
 	for (int i = 0; i < *n; i++)
-		for (int k = 0; k < *m; k++)
-			count += scanf("%d", &(*a)[i][k]);
+		for (int j = 0; j < *m; j++)
+			count += scanf("%d", &a[i][j]);
 	char tmp;
 	int rc = scanf("%c", &tmp);
 	if (count != *n * *m || rc != EOF)
 		return incorrect_input;
 	return success;
 }
-void check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int (*b)[ARRAY_LENGHT], int n, int m)
+void check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int b[ARRAY_LENGHT], int n, int m)
 {
 	for (int i = 0; i < m; i++)
 	{
@@ -30,9 +30,9 @@ void check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int (*b)[ARRAY_LENGHT], int 
 			if (a[j][i] >= a[j + 1][i])
 				count++;
 		if (count == n - 1)
-			(*b)[i] = 1;
+			b[i] = 1;
 		else
-			(*b)[i] = 0;
+			b[i] = 0;
 	}
 }
 void print_array(int b[ARRAY_LENGHT], int m)
@@ -43,14 +43,14 @@ void print_array(int b[ARRAY_LENGHT], int m)
 int main(void)
 {
 	int a[ARRAY_LENGHT][ARRAY_LENGHT], n, m;
-	status_code error = read_array(&a, &n, &m);
+	status_code error = read_array(a, &n, &m);
 	if (error)
 	{
 		printf("Input error.");
 		return error;
 	}
 	int b[ARRAY_LENGHT];
-	check_array(a, &b, n, m);
+	check_array(a, b, n, m);
 	print_array(b, m);
 	return success;
 }
