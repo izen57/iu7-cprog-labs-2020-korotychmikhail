@@ -29,7 +29,7 @@ void check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int (*b)[ARRAY_LENGHT], int 
 		for (int k = 0; k < n - 2; k++)
 			if (a[k][i] > a[k + 1][i])
 				count++;
-		if (count == n - 1)
+		if (count == n - 2)
 			(*b)[i] = 1;
 		else
 			(*b)[i] = 0;
