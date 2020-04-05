@@ -15,7 +15,7 @@ status_code read_array(int (*a)[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m, int
 	int count = 0;
 	for (int i = 0; i < *n; i++)
 		for (int k = 0; k < *m; k++)
-			count += scanf("%d",&(*a)[i][k]);
+			count += scanf("%d", &(*a)[i][k]);
 	if (scanf("%d", num) != 1)
 		return incorrect_input;
 	char tmp;
@@ -75,7 +75,7 @@ status_code check_array(int (*a)[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int
 void print_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int n, int m)
 {
 	for (int i = 0; i < n; i++)
-		for(int j = 0; j < m; j++)
+		for (int j = 0; j < m; j++)
 			printf("%d ", a[i][j]);
 }
 int main(void)

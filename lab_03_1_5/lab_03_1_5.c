@@ -16,10 +16,10 @@ status_code read_array(int (*a)[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m)
 	for (int i = 0; i < *n; i++)
 		for (int j = 0; j < *m; j++)
 			count += scanf("%d", &(*a)[i][j]);
-	/*char tmp;
+	char tmp;
 	int rc = scanf("%c", &tmp);
 	if (count != *n * *m || rc != EOF)
-		return incorrect_input;*/
+		return incorrect_input;
 	return success;
 }
 int sum_of_digits(int n)
@@ -50,7 +50,7 @@ status_code check_array(int (*a)[ARRAY_LENGHT][ARRAY_LENGHT], int n, int m)
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			int temp =b[0];
+			int temp = b[0];
 			for (int j = 1; j < count; j++)
 				b[j - 1] = b[j];
 			b[count - 1] = temp;
