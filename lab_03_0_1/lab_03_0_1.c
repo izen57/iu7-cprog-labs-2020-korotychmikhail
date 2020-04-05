@@ -26,10 +26,10 @@ void check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int (*b)[ARRAY_LENGHT], int 
 	for (int i = 0; i < m; i++)
 	{
 		int count = 0;
-		for (int k = 0; k < n - 2; k++)
+		for (int k = 0; k < n - 1; k++)
 			if (a[k][i] > a[k + 1][i])
 				count++;
-		if (count == n - 2)
+		if (count == n - 1)
 			(*b)[i] = 1;
 		else
 			(*b)[i] = 0;
