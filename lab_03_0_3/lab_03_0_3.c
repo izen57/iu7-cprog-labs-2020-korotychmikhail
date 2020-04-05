@@ -42,7 +42,7 @@ void print_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int n, int m)
 {
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < m; j++)
-			printf("%d ", a[i][j]);
+			printf("%d\n", a[i][j]);
 }
 int main(void)
 {
