@@ -36,7 +36,7 @@ void check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int b[ARRAY_LENGHT], int n, 
 void print_array(int b[ARRAY_LENGHT], int m)
 {
 	for (int i = 0; i < m; i++)
-		printf("%d", b[i]);
+		printf("%d\n", b[i]);
 }
 int main()
 {
