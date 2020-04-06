@@ -13,17 +13,13 @@ status_code read_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m)
 		for (int j = 0; j < *m; j++)
 			if (scanf("%d", &a[i][j]) != 1)
 				return incorrect_input;
-	/*char tmp;
-	//int rc = scanf("%c", &tmp);
-	if (count != *n * *m || rc != EOF)
-		return incorrect_input;*/
 	return success;
 }
 void check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int b[ARRAY_LENGHT], int n, int m)
 {
 	if (n == 1)
 		for (int i = 0; i < m; i++)
-			b[i] = 1;
+			b[i] = 0;
 	else
 		for (int i = 0; i < m; i++)
 		{
