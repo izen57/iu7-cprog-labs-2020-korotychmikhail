@@ -14,7 +14,7 @@ status_code read_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m, int *n
 		for (int j = 0; j < *m; j++)
 			if (scanf("%d", &a[i][j]) != 1)
 				return incorrect_input;
-	if (scanf("%d", num) != 1)
+	if (scanf("%d", num) != 1 || num > 9)
 		return incorrect_input;
 	return success;
 }
