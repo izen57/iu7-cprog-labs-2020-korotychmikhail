@@ -22,7 +22,7 @@ status_code read_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m)
 void check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int b[ARRAY_LENGHT], int n, int m)
 {
 	if (n == 1)
-		for (int i = 0; i < m, i++)
+		for (int i = 0; i < m; i++)
 			b[i] = 1;
 	else
 		for (int i = 0; i < m; i++)
