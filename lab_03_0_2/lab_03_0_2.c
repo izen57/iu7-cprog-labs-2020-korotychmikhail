@@ -21,7 +21,7 @@ status_code read_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m, int *n
 int first_num(int x)
 {
 	int n;
-	while (x > 0)
+	while (x)
 	{
 		n = x % 10;
 		x /= 10;
@@ -39,18 +39,24 @@ void shift(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int op)
 }
 status_code check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int num)
 {
-	int countfn = -1, countln = -1;
+	int flagln = 0, flagfn = 0;
 	for (int i = 0; i < *n; i++)
 	{
-		countfn = 0, countln = 0; 
+		int countfn = 0, countln = 0; 
 		for (int j = 0; j < m; j++)
 		{
 			if (a[i][j] % 10 == num)
+			{
+				flagln = 1;
 				countln++;
+			}
 			int x = a[i][j];
 			int first_number = first_num(x);
 			if (first_number == num)
+			{
+				flagfn = 1;
 				countfn++;
+			}
 		}
 		if (countfn == countln && countfn > 0 && countln > 0)
 		{
@@ -58,6 +64,8 @@ status_code check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int nu
 			i++;
 		}
 	}
+	if (flagfn == 1 || flagln == 1)
+		return unsuitable_condition;
 	return success;
 }
 void print_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int n, int m)
