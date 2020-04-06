@@ -7,7 +7,7 @@ typedef enum
 } status_code;
 status_code read_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m)
 {
-	if (scanf("%d %d", n, m) != 2 || *n < 2 || *m < 2 || *n > ARRAY_LENGHT || *m > ARRAY_LENGHT)
+	if (scanf("%d %d", n, m) != 2 || *n < 1 || *m < 1 || *n > ARRAY_LENGHT || *m > ARRAY_LENGHT)
 		return incorrect_input;
 	for (int i = 0; i < *n; i++)
 		for (int j = 0; j < *m; j++)
@@ -21,17 +21,21 @@ status_code read_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m)
 }
 void check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int b[ARRAY_LENGHT], int n, int m)
 {
-	for (int i = 0; i < m; i++)
-	{
-		int count = 1;
-		for (int j = 0; j < n - 1; j++)
-			if (a[j][i] > a[j + 1][i])
-				count++;
-		if (count == n)
+	if (n == 1)
+		for (int i = 0; i < m, i++)
 			b[i] = 1;
-		else
-			b[i] = 0;
-	}
+	else
+		for (int i = 0; i < m; i++)
+		{
+			int count = 1;
+			for (int j = 0; j < n - 1; j++)
+				if (a[j][i] > a[j + 1][i])
+					count++;
+			if (count == n)
+				b[i] = 1;
+			else
+				b[i] = 0;
+		}
 }
 void print_array(int b[ARRAY_LENGHT], int m)
 {
