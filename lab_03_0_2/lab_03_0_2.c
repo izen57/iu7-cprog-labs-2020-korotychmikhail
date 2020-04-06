@@ -8,19 +8,13 @@ typedef enum
 } status_code;
 status_code read_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m, int *num)
 {
-	if (scanf("%d %d", n, m) != 2)
+	if (scanf("%d %d", n, m) != 2 || *n < 1 || *m < 1 || *n > ARRAY_LENGHT || *m > ARRAY_LENGHT)
 		return incorrect_input;
-	if ((*n < 1 && *m < 1) || (*n > ARRAY_LENGHT && *m > ARRAY_LENGHT))
-		return incorrect_input;
-	int count = 0;
 	for (int i = 0; i < *n; i++)
-		for (int k = 0; k < *m; k++)
-			count += scanf("%d", &a[i][k]);
+		for (int j = 0; j < *m; j++)
+			if (scanf("%d", &a[i][j]) != 1)
+				return incorrect_input;
 	if (scanf("%d", num) != 1)
-		return incorrect_input;
-	char tmp;
-	int rc = scanf("%c", &tmp);
-	if (count != *n * *m || rc != EOF)
 		return incorrect_input;
 	return success;
 }
