@@ -9,7 +9,6 @@ status_code read_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m)
 {
 	if (scanf("%d %d", n, m) != 2 || *n < 2 || *m < 1 || *n > ARRAY_LENGHT || *m > ARRAY_LENGHT)
 		return incorrect_input;
-	int count = 0;
 	for (int i = 0; i < *n; i++)
 		for (int j = 0; j < *m; j++)
 			if (scanf("%d", &a[i][j]) != 1)
@@ -17,8 +16,8 @@ status_code read_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m)
 	/*char tmp;
 	//int rc = scanf("%c", &tmp);
 	if (count != *n * *m || rc != EOF)
-		return incorrect_input;
-	return success;*/
+		return incorrect_input;*/
+	return success;
 }
 void check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int b[ARRAY_LENGHT], int n, int m)
 {
