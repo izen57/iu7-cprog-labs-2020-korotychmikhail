@@ -48,9 +48,17 @@ int main(void)
 		return error;
 	}
 	for (int i = 0; i < n; i++)
+	{
+		int flag = 0;
 		for (int j = 0; j < n - i - 1; j++)
 			if (sum(a, i, m) > sum(a, i + 1, m))
+			{
+				flag = 1;
 				change_places(a, i, i + 1, m);
+			}
+		if (flag == 0)
+			break;
+	}
 	print_array(a, n, m);
 	return success;
 }
