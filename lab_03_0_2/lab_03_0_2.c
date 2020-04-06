@@ -23,7 +23,7 @@ int first_num(int x)
 	int n = 0;
 	while (x)
 	{
-		n = x % 10;
+		n += x % 10;
 		x /= 10;
 	}
 	return n;

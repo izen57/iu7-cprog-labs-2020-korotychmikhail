@@ -38,7 +38,7 @@ void print_array(int b[ARRAY_LENGHT], int m)
 	for (int i = 0; i < m; i++)
 		printf("%d\n", b[i]);
 }
-int main()
+int main(void)
 {
 	int a[ARRAY_LENGHT][ARRAY_LENGHT], n, m;
 	status_code error = read_array(a, &n, &m);
