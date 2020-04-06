@@ -64,7 +64,7 @@ status_code check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int nu
 			i++;
 		}
 	}
-	if (flagfn == 1 || flagln == 1)
+	if (flagfn == 0 || flagln == 0)
 		return unsuitable_condition;
 	return success;
 }
