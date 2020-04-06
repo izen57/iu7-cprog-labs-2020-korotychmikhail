@@ -23,7 +23,7 @@ int first_num(int x)
 	int n = 0;
 	while (x)
 	{
-		n += x % 10;
+		n = x % 10;
 		x /= 10;
 	}
 	return n;
@@ -64,7 +64,7 @@ status_code check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int nu
 			i++;
 		}
 	}
-	if (flagfn == 0 || flagln == 0)
+	if (flagfn == 0 && flagln == 0)
 		return unsuitable_condition;
 	return success;
 }
