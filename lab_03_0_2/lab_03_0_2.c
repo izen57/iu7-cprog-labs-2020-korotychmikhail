@@ -21,6 +21,8 @@ status_code read_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m, int *n
 int first_num(int x)
 {
 	int n = 0;
+	if (x < 0)
+		x *= -1;
 	while (x)
 	{
 		n = x % 10;
