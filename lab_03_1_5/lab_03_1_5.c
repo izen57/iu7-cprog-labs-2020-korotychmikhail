@@ -19,7 +19,7 @@ status_code read_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m)
 int sum_of_digits(int n)
 {
 	int x = n, sum = 0;
-	while (x > 0)
+	while (x)
 	{
 		sum += x % 10;
 		x /= 10;
@@ -31,7 +31,7 @@ status_code check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int n, int m)
 	int b[ARRAY_LENGHT*ARRAY_LENGHT], k = 0, count = 0;
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < m; j++)
-			if (sum_of_digits(a[i][j]) >= 10)
+			if (sum_of_digits(a[i][j]) > 10)
 			{
 				count++;
 				b[k] = a[i][j];
@@ -42,7 +42,7 @@ status_code check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int n, int m)
 		return unsuitable_condition;
 	else
 	{
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < 4; i++)
 		{
 			int temp = b[0];
 			for (int j = 1; j < count; j++)
