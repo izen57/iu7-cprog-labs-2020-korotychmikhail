@@ -71,10 +71,7 @@ int main()
 	int a[ARRAY_LENGHT][ARRAY_LENGHT], n, m;
 	status_code error = read_array(a, &n, &m);
 	if (error)
-	{
-		printf("Input error.");
 		return error;
-	}
 	error = check_array(a, n, m);
 	if (error)
 		return error;
