@@ -46,7 +46,7 @@ status_code check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int nu
 		int countfn = 0, countln = 0; 
 		for (int j = 0; j < m; j++)
 		{
-			if (a[i][j] % 10 == num)
+			if (a[i][j] % 10 == num || -a[i][j] % 10 == num)
 				countln++;
 			int x = a[i][j];
 			int first_number = first_num(x);
