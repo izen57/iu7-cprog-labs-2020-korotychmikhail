@@ -31,7 +31,7 @@ int first_num(int x)
 void shift(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int op)
 {
 	(*n)++;
-	for (int i = *n + 1; i > op; i--)
+	for (int i = *n - 1; i > op; i--)
 		for (int j = 0; j < m; j++)
 			a[i + 1][j] = a[i][j];
 	for (int j = 0; j < m; j++)
