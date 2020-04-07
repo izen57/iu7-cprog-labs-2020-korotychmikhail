@@ -31,7 +31,7 @@ status_code check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int n, int m)
 	int b[ARRAY_LENGHT*ARRAY_LENGHT], k = 0, count = 0;
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < m; j++)
-			if (sum_of_digits(a[i][j]) > 10)
+			if (sum_of_digits(a[i][j]) >= 10)
 			{
 				count++;
 				b[k] = a[i][j];
