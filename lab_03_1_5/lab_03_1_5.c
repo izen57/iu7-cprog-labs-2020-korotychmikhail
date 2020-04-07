@@ -42,7 +42,7 @@ status_code check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int n, int m)
 		return unsuitable_condition;
 	else
 	{
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < 2; i++)
 		{
 			int temp = b[0];
 			for (int j = 1; j < count; j++)
