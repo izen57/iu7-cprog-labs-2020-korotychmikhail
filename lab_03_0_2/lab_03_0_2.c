@@ -33,7 +33,7 @@ void shift(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int op)
 	(*n)++;
 	for (int i = *n - 1; i > op; i--)
 		for (int j = 0; j < m; j++)
-			a[i + 1][j] = a[i][j];
+			a[i][j] = a[i - 1][j];
 	for (int j = 0; j < m; j++)
 		a[op + 1][j] = 100;
 }
