@@ -8,7 +8,7 @@ typedef enum
 } status_code;
 status_code read_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m)
 {
-	if (scanf("%d %d", n, m) != 2 || *n < 2 || *m < 2 || *n > ARRAY_LENGHT || *m > ARRAY_LENGHT)
+	if (scanf("%d %d", n, m) != 2 || *n < 1 || *m < 1 || *n > ARRAY_LENGHT || *m > ARRAY_LENGHT)
 		return incorrect_input;
 	for (int i = 0; i < *n; i++)
 		for (int j = 0; j < *m; j++)
@@ -42,7 +42,7 @@ status_code check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int n, int m)
 		return unsuitable_condition;
 	else
 	{
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < 3; i++)
 		{
 			int temp = b[0];
 			for (int j = 1; j < count; j++)
