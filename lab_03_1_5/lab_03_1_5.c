@@ -28,14 +28,14 @@ int sum_of_digits(int n)
 }
 status_code check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int n, int m)
 {
-	int b[ARRAY_LENGHT], k = 0, count = 0;
+	int b[ARRAY_LENGHT*ARRAY_LENGHT], k = 0, count = 0;
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < m; j++)
 			if (sum_of_digits(a[i][j]) > 10)
 			{
 				count++;
 				b[k] = a[i][j];
-				a[i][j] = -1;
+				a[i][j] = -1000;
 				k++;
 			}
 	if (count == 0)
@@ -52,7 +52,7 @@ status_code check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int n, int m)
 		k = 0;
 		for (int i = 0; i < n; i++)
 			for (int j = 0; j < m; j++)
-				if (a[i][j] == -1)
+				if (a[i][j] == -1000)
 				{
 					a[i][j] = b[k];
 					k++;
@@ -71,7 +71,10 @@ int main()
 	int a[ARRAY_LENGHT][ARRAY_LENGHT], n, m;
 	status_code error = read_array(a, &n, &m);
 	if (error)
+	{
+		printf("Input error.");
 		return error;
+	}
 	error = check_array(a, n, m);
 	if (error)
 		return error;
