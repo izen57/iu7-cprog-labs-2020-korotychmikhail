@@ -39,7 +39,6 @@ void shift(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int op)
 }
 status_code check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int num)
 {
-	int flagln = 0, flagfn = 0;
 	for (int i = 0; i < *n; i++)
 	{
 		int countfn = 0, countln = 0; 
@@ -64,8 +63,6 @@ status_code check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int nu
 			i++;
 		}
 	}
-	if (flagfn == 0 && flagln == 0)
-		return unsuitable_condition;
 	return success;
 }
 void print_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int n, int m)
