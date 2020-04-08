@@ -18,7 +18,11 @@ status_code read_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int *m)
 }
 int sum_of_digits(int n)
 {
-	int x = n, sum = 0;
+	int x, sum = 0;
+	if (n < 0)
+		x = -n;
+	else
+		x = n;
 	while (x)
 	{
 		sum += x % 10;
@@ -66,7 +70,7 @@ void print_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int n, int m)
 		for (int j = 0; j < m; j++)
 			printf("%d\n", a[i][j]);
 }
-int main()
+int main(void)
 {
 	int a[ARRAY_LENGHT][ARRAY_LENGHT], n, m;
 	status_code error = read_array(a, &n, &m);
