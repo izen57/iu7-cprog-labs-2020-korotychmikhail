@@ -39,7 +39,7 @@ void shift(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int op)
 	for (int j = 0; j < m; j++)
 		a[op + 1][j] = 100;
 }
-status_code check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int num)
+void check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int num)
 {
 	for (int i = 0; i < *n; i++)
 	{
@@ -59,7 +59,6 @@ status_code check_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int *n, int m, int nu
 			i++;
 		}
 	}
-	return success;
 }
 void print_array(int a[ARRAY_LENGHT][ARRAY_LENGHT], int n, int m)
 {
@@ -76,15 +75,7 @@ int main(void)
 		printf("Input error.");
 		return error;
 	}
-	error = check_array(a, &n, m, num);
-	if (error)
-	{
-		printf("There are no such digits.");
-		return error;
-	}
-	else
-	{
-		print_array(a, n, m);
-		return success;
-	}
+	check_array(a, &n, m, num);
+	print_array(a, n, m);
+	return success;
 }
