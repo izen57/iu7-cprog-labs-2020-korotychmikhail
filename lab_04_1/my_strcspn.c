@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include <string.h>
 #include "my_strcspn.h"
-void my_strcspn(char a[LINE_LENGHT + 1], char b[LINE_LENGHT + 1], int n)
+void my_strcspn(char a[LINE_LENGHT + 1], char b[LINE_LENGHT + 1])
 {
 	int flag = 0;
 	for (int i = 0; a[i] != '\0'; i++)
@@ -12,5 +13,5 @@ void my_strcspn(char a[LINE_LENGHT + 1], char b[LINE_LENGHT + 1], int n)
 				break;
 			}
 	if (!flag)
-		printf("%d", n - 1);
+		printf("%ld", strlen(a));
 }
