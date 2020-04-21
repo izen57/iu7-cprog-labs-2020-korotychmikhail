@@ -12,7 +12,7 @@ void my_strcspn(char a[LINE_LENGHT + 1], char b[LINE_LENGHT + 1])
 			{
 				flag = 1;
 				printf("%d", i);
-				break;
+				EXIT_SUCCESS;
 			}
 	if (!flag)
 	{
