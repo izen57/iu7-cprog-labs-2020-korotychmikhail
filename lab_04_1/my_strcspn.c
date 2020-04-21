@@ -17,7 +17,7 @@ void my_strcspn(char a[LINE_LENGHT + 1], char b[LINE_LENGHT + 1])
 	if (!flag)
 	{
 		int count = 0;
-		for (int i = 0; a[i] != '\0'; i++)
+		for (int i = 0; b[i] != '\0'; i++)
 			count++;
 		printf("%d", count);
 	}
