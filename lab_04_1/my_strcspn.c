@@ -3,7 +3,7 @@
 #include "my_strcspn.h"
 status_code my_strcspn(char a[LINE_LENGHT + 1], char b[LINE_LENGHT + 1])
 {
-	if (a[0] == '\0' || b[0] == 0)
+	if (a[0] == '\0' || b[0] == '\0')
 		return incorrect_input;
 	int flag = 0;
 	for (int i = 0; a[i] != '\0'; i++)
@@ -15,8 +15,5 @@ status_code my_strcspn(char a[LINE_LENGHT + 1], char b[LINE_LENGHT + 1])
 				return success;
 			}
 	if (!flag)
-	{
-		printf("%ld", strlen(a));
-		return success;
-	}
+		return incorrect_input;
 }
