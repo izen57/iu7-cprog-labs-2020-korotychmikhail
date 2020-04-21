@@ -12,5 +12,5 @@ void my_strcspn(char a[LINE_LENGHT + 1], char b[LINE_LENGHT + 1])
 				printf("%d", i);
 			}
 	if (!flag)
-		printf("%ld", strlen(a));
+		printf("%ld", strlen(*a));
 }
