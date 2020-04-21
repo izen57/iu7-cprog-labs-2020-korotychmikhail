@@ -3,6 +3,9 @@
 #include "my_strcspn.h"
 void my_strcspn(char a[LINE_LENGHT + 1], char b[LINE_LENGHT + 1])
 {
+	int count = 0;
+	for (int i = 0; a[i] != 0; i++)
+		count++;
 	int flag = 0;
 	for (int i = 0; a[i] != '\0'; i++)
 		for (int j = 0; b[j] != '\0'; j++)
@@ -10,7 +13,8 @@ void my_strcspn(char a[LINE_LENGHT + 1], char b[LINE_LENGHT + 1])
 			{
 				flag = 1;
 				printf("%d", i);
+				break;
 			}
 	if (!flag)
-		printf("%ld", strlen(*a));
+		printf("%d", count);
 }
