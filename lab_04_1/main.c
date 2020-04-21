@@ -6,9 +6,7 @@ int main(void)
 {
 	char a[LINE_LENGHT + 1];
 	char b[LINE_LENGHT + 1];
-	if (a[0] == '\0' || b[0] == '\0')
-		return incorrect_input;
 	printf("%ld\n", strcspn(a, b));
-	my_strcspn(a, b);
-	return success;
+	status_code error = my_strcspn(a, b);
+	return error;
 }
