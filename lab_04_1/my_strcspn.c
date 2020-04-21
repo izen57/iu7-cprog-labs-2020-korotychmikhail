@@ -3,7 +3,7 @@
 #include "my_strcspn.h"
 void my_strcspn(char a[LINE_LENGHT + 1], char b[LINE_LENGHT + 1])
 {
-	if (a[0] == '\0' || b[0] == '\0')
+	if (a[0] == '\0' || b[0] == '\0' || a[0] == '\n' || b[0] == '\n')
 		EXIT_FAILURE;
 	int flag = 0;
 	for (int i = 0; a[i] != '\0'; i++)
