@@ -50,7 +50,7 @@ int main(void)
 	}
 	int res = strcspn(a, b);
 	printf("%d\n", res);
-	my_strcspn(a, b, n, m);
+	my_strcspn(a, b, n);
 	//printf("3");
 	return success;
 }
