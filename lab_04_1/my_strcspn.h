@@ -1,5 +1,5 @@
 #ifndef __MY__STRCSPN__H__
 #define __MY__STRCSPN__H__
-#define LINE_LENGHT 256
+#define LINE_LENGHT 255
 void my_strcspn(char a[LINE_LENGHT + 1], char b[LINE_LENGHT + 1]);
 #endif
