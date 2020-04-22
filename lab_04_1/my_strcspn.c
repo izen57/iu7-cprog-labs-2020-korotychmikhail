@@ -6,8 +6,8 @@ int my_strcspn(char *a, char *b)
 	if (a[0] == '\0' || b[0] == '\n')
 		res = 0;
 	int flag = 0;
-	for (int i = 0; i < strlen(a) + 2; i++)
-		for (int j = 0; j < strlen(b) + 2; j++)
+	for (int i = 0; i < strlen(a) + 1; i++)
+		for (int j = 0; j < strlen(b) + 1; j++)
 			if (a[i] == b[j])
 			{
 				flag = 1;
