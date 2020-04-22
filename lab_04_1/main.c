@@ -14,9 +14,9 @@ int main(void)
 		EXIT_FAILURE;
 	if (my_strcspn("aaa\0bbb", "") != 3)
 		return EXIT_FAILURE;
-	/*if (my_strcspn("\0", "sddddddv") != 0)
+	if (my_strcspn("sss\0frr", "rff") != 3)
 		return EXIT_FAILURE;
-	if (my_strcspn("abcde f", " gfr") != 5)
+	/*if (my_strcspn("abcde f", " gfr") != 5)
 		return EXIT_FAILURE;
 	if (my_strcspn("1736", "0000") != 4)
 		return EXIT_FAILURE;*/
