@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "my_strcspn.h"
-int main()
+int main(void)
 {
 	if (my_strcspn("", "") != 0)
 		return EXIT_FAILURE;
@@ -18,5 +18,5 @@ int main()
 		return EXIT_FAILURE;
 	if (my_strcspn("1736", "0000") != 4)
 		return EXIT_FAILURE;*/
-	//return EXIT_SUCCESS;
+	return EXIT_SUCCESS;
 }
