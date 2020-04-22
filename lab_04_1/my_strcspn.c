@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <string.h>
 #include "my_strcspn.h"
 int my_strcspn(char *a, char *b)
