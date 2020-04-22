@@ -5,8 +5,17 @@
 #include "my_strcspn.h"
 int main(void)
 {
-	char a[LINE_LENGHT + 1], b[LINE_LENGHT + 1];
-	printf("%ld\n", strcspn(a, b));
-	my_strcspn(a, b);
+	if (my_strcspn("", "") != 0)
+		return EXIT_FAILURE;
+	if (my_strcspn(" ", " ") != 0)
+		return EXIT_FAILURE;
+	if (my_strcspn("\n", "scsdcds") != 0)
+		return EXIT_FAILURE;
+	if (my_strcspn("\0", "sddddddv") != 0)
+		return EXIT_FAILURE;
+	if (my_strcspn("abcdef", "gfr") != 5)
+		return EXIT_FAILURE;
+	if (my_strcspn("1736", "0000") != 4)
+		return EXIT_FAILURE;
 	EXIT_SUCCESS;
 }
