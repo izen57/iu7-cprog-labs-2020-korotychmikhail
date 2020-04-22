@@ -4,7 +4,7 @@ int my_strcspn(char *a, char *b)
 {
 	int count = 0;
 	if (a[0] == '\0' || b[0] == '\0' || a[0] == '\n' || b[0] == '\n')
-		count = 0;
+		return count;
 	int flag = 0;
 	for (int i = 0; a[i] != '\0'; i++)
 		for (int j = 0; b[j] != '\0'; j++)
@@ -12,13 +12,13 @@ int my_strcspn(char *a, char *b)
 			{
 				flag = 1;
 				count = i;
-				break;
+				return count;
 			}
 	if (!flag)
 	{
 		count = 0;
 		for (int i = 0; a[i] != '\0'; i++)
 			count++;
+		return count;
 	}
-	return count;
 }
