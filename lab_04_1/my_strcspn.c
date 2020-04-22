@@ -2,7 +2,7 @@
 #include "my_strcspn.h"
 int my_strcspn(char *a, char *b)
 {
-	if (a[0] == '\0' || b[0] == '\n')
+	if (a[0] == '\0')
 		return 0;
 	int res = 0;
 	for (int i = 0; i < strlen(a) + 1; i++)
