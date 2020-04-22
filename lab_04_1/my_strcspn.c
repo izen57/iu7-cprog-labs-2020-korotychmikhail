@@ -3,7 +3,7 @@
 int my_strcspn(char *a, char *b)
 {
 	int res;
-	if (a[0] == '\0' || a[0] == '\n' || b[0] == '\n')
+	if (a[0] == '\0' || b[0] == '\n')
 		res = 0;
 	int flag = 0;
 	for (int i = 0; i < strlen(a) + 1; i++)

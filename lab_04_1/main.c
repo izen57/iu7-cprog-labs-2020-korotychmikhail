@@ -10,6 +10,8 @@ int main(void)
 		return EXIT_FAILURE;
 	if (my_strcspn("p", "\0") != 1)
 		return EXIT_FAILURE;
+	if (my_strcspn("\nffw", "frvr") != 1)
+		EXIT_FAILURE;
 	if (my_strcspn("\n", "scsdcds") != 0)
 		return EXIT_FAILURE;
 	if (my_strcspn("\0", "sddddddv") != 0)
