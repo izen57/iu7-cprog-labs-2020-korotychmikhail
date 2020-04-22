@@ -6,9 +6,9 @@ int main(void)
 {
 	if (my_strcspn("", "") != 0)
 		return EXIT_FAILURE;
-	if (my_strcspn("\n", "\n") != 0)
+	/*if (my_strcspn("\n", "\n") != 0)
 		return EXIT_FAILURE;
-	/*if (my_strcspn("dep", "\0") != 3)
+	if (my_strcspn("dep", "\0") != 3)
 		return EXIT_FAILURE;
 	if (my_strcspn("\nffw", "frvr") != 1)
 		EXIT_FAILURE;
