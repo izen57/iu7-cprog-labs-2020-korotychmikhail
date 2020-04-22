@@ -15,7 +15,10 @@ int my_strcspn(char *a, char *b)
 				break;
 			}
 	if (!flag)
+	{
+		count = 0;
 		for (int i = 0; a[i] != '\0'; i++)
 			count++;
+	}
 	return count;
 }
