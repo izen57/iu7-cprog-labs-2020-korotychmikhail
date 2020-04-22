@@ -12,9 +12,9 @@ int main(void)
 		return EXIT_FAILURE;
 	if (my_strcspn("aaa\nffw", "frvr") != 4)
 		EXIT_FAILURE;
-	/*if (my_strcspn("\n", "scsdcds") != 1)
+	if (my_strcspn("aaa\0bbb", "") != 3)
 		return EXIT_FAILURE;
-	if (my_strcspn("\0", "sddddddv") != 0)
+	/*if (my_strcspn("\0", "sddddddv") != 0)
 		return EXIT_FAILURE;
 	if (my_strcspn("abcde f", " gfr") != 5)
 		return EXIT_FAILURE;
