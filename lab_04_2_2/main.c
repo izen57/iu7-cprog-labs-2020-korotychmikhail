@@ -30,40 +30,31 @@ status_code check_line(char *line)
 			return success;
 	}
 }
-int compare(char *a, char *b)
-{
-	int res = 0;
-	for (int i = 0; a[i] != '\0' || b[i] != '\0'; i++)
-		if (a[i] != b[i])
-		{
-			res = 1;
-			break;
-		}
-	return res;
-}
 void print_yes(char *a)
 {
+	printf("Result: ");
 	for (int i = 0; a[i] != '\0'; i++)
 		printf("%c", a[i]);
 	printf(" yes\n");
 }
 void print_no(char *a)
 {
+	printf("Result: ");
 	for (int i = 0; a[i] != '\0'; i++)
 		printf("%c", a[i]);
 	printf(" no\n");
 }
 int main(void)
 {
-	char first_line[LINE_LENGHT + 1];
+	char first_line[LINE_LENGHT + 2];
 	for (int i = 0; i < LINE_LENGHT; i++)
-		first_line[i] = '0';
+		first_line[i] = '\0';
 	fgets(first_line, LINE_LENGHT + 2, stdin);
 	if (check_line(first_line))
 		return check_line(first_line);
-	char second_line[LINE_LENGHT + 1];
+	char second_line[LINE_LENGHT + 2];
 	for (int i = 0; i < LINE_LENGHT; i++)
-		second_line[i] = '0';
+		second_line[i] = '\0';
 	fgets(second_line, LINE_LENGHT + 2, stdin);
 	if (check_line(second_line))
 		return check_line(second_line);
@@ -74,10 +65,9 @@ int main(void)
 		{
 			if (first_splited_line[i][0] == '*')
 				continue;
-			if (!compare(first_splited_line[i], first_splited_line[j]))
+			if (!strcmp(first_splited_line[i], first_splited_line[j]))
 				first_splited_line[j][0] = '*';
 		}
-	printf("Result:\n");
 	for (int i = 0; i < count_of_words1; i++)
 	{
 		if (first_splited_line[i][0] == '*')
@@ -87,7 +77,7 @@ int main(void)
 			int count = 0;
 			for (int j = 0; j < count_of_words2; j++)
 			{
-				if (!compare(first_splited_line[i], second_splited_line[j]))
+				if (!strcmp(first_splited_line[i], second_splited_line[j]))
 				{
 					print_yes(first_splited_line[i]);
 					break;
