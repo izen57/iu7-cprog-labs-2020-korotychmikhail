@@ -11,9 +11,7 @@ status_code check_line(char *line)
 		int count_of_letters = 0, count_of_symbols = 0, flag = 0;
 		for (int i = 0; line[i] != '\0'; i++)
 		{
-			if (line[i] == '\n' || line[i] == '\0' || line[i] == '\t' || line[i] == '\r' || line[i] == ',' || line[i] == ';' || line[i] == ':' || line[i] == '-' || line[i] == '.' || line[i] == '!' || line[i] == '?' || line[i] == ' ')
-				count_of_letters = 0;
-			else
+			if (line[i] != '\n' && line[i] != '\0' && line[i] != '\t' && line[i] != '\r' && line[i] != ',' && line[i] != ';' && line[i] != ':' && line[i] != '-' && line[i] != '.' && line[i] != '!' && line[i] != '?' && line[i] != ' ')
 			{
 				count_of_symbols++;
 				count_of_letters++;
@@ -23,6 +21,8 @@ status_code check_line(char *line)
 					break;
 				}
 			}
+			else
+				count_of_letters = 0;
 		}
 		if (count_of_symbols == 0 || flag)
 			return incorrect_input;
@@ -56,16 +56,19 @@ void print_no(char *a)
 int main(void)
 {
 	char first_line[LINE_LENGHT + 1];
+	for (int i = 0; i < LINE_LENGHT; i++)
+		first_line[i] = '0';
 	fgets(first_line, LINE_LENGHT + 2, stdin);
 	if (check_line(first_line))
 		return check_line(first_line);
 	char second_line[LINE_LENGHT + 1];
+	for (int i = 0; i < LINE_LENGHT; i++)
+		second_line[i] = '0';
 	fgets(second_line, LINE_LENGHT + 2, stdin);
 	if (check_line(second_line))
 		return check_line(second_line);
 	char first_splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT], second_splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT];
-	int count_of_words1 = split_line(first_line, first_splited_line);
-	int count_of_words2 = split_line(second_line, second_splited_line);
+	int count_of_words1 = split_line(first_line, first_splited_line), count_of_words2 = split_line(second_line, second_splited_line);
 	for (int i = 0; i < count_of_words1; i++)
 		for (int j = i + 1; j < count_of_words1; j++)
 		{

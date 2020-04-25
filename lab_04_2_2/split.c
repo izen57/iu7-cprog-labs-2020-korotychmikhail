@@ -5,8 +5,13 @@ int split_line(char *line, char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT])
 	char word[WORD_LENGHT];
 	for (int i = 0; line[i] != '\0'; i++)
 	{
-		if (line[i] == '\n' || line[i] == '\0' || line[i] == '\t' || line[i] == ',' || line[i] == ';' || line[i] == ':' || line[i] == '-' || line[i] == '.' || line[i] == '!' || line[i] == '?' || line[i] == ' ')
+		if (line[i] != '\n' && line[i] != '\0' && line[i] != '\t' && line[i] != ',' && line[i] != ';' && line[i] != ':' && line[i] != '-' && line[i] != '.' && line[i] != '!' && line[i] != '?' && line[i] != ' ')
 		{
+			word[count_of_letters] = line[i];
+			count_of_splits = 0;
+			count_of_letters++;
+		}
+		else
 			if (count_of_splits == 0)
 			{
 				count_of_splits++;
@@ -20,13 +25,6 @@ int split_line(char *line, char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT])
 				result++;
 				count_of_letters = 0;
 			}
-		}
-		else
-		{
-			word[count_of_letters] = line[i];
-			count_of_splits = 0;
-			count_of_letters++;
-		}
 	}
 	if (count_of_letters > 0)
 	{
