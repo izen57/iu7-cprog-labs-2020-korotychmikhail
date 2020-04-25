@@ -47,13 +47,13 @@ void print_no(char *a)
 int main(void)
 {
 	char first_line[LINE_LENGHT + 2];
-	for (int i = 0; i < LINE_LENGHT; i++)
+	for (int i = 0; i < LINE_LENGHT + 2; i++)
 		first_line[i] = '\0';
 	fgets(first_line, LINE_LENGHT + 2, stdin);
 	if (check_line(first_line))
 		return check_line(first_line);
 	char second_line[LINE_LENGHT + 2];
-	for (int i = 0; i < LINE_LENGHT; i++)
+	for (int i = 0; i < LINE_LENGHT + 2; i++)
 		second_line[i] = '\0';
 	fgets(second_line, LINE_LENGHT + 2, stdin);
 	if (check_line(second_line))
