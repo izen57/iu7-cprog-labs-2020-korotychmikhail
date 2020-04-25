@@ -12,6 +12,7 @@ int split_line(char *line, char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT])
 			count_of_letters++;
 		}
 		else
+		{
 			if (count_of_splits == 0)
 			{
 				count_of_splits++;
@@ -25,6 +26,7 @@ int split_line(char *line, char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT])
 				result++;
 				count_of_letters = 0;
 			}
+		}
 	}
 	if (count_of_letters > 0)
 	{
