@@ -3,7 +3,7 @@
 #include "split.h"
 status_code check_line(char *line)
 {
-	if (line[LINE_LENGHT] != '\0' || line[LINE_LENGHT] != '\n' || line[LINE_LENGHT] != '\r')
+	if (line[LINE_LENGHT] != '\0' && line[LINE_LENGHT] != '\n' && line[LINE_LENGHT] != '\r')
 		return incorrect_input;
 	else
 	{
@@ -11,7 +11,7 @@ status_code check_line(char *line)
 		int count_of_letters = 0, count_of_symbols = 0, flag = 0;
 		for (int i = 0; line[i] != '\0'; i++)
 		{
-			if (line[i] == '\n' || line[i] == '\0' || line[i] == '\t' || line[i] == ',' || line[i] == ';' || line[i] == ':' || line[i] == '-' || line[i] == '.' || line[i] == '!' || line[i] == '?' || line[i] == ' ')
+			if (line[i] == '\n' || line[i] == '\0' || line[i] == '\t' || line[i] == '\r' || line[i] == ',' || line[i] == ';' || line[i] == ':' || line[i] == '-' || line[i] == '.' || line[i] == '!' || line[i] == '?' || line[i] == ' ')
 				count_of_letters = 0;
 			else
 			{
@@ -43,13 +43,13 @@ int compare(char *a, char *b)
 }
 void print_yes(char *a)
 {
-	for (int i = 0; a[i]  != '\0'; i++)
+	for (int i = 0; a[i] != '\0'; i++)
 		printf("%c", a[i]);
 	printf(" yes\n");
 }
 void print_no(char *a)
 {
-	for (int i = 0; a[i]  != '\0'; i++)
+	for (int i = 0; a[i] != '\0'; i++)
 		printf("%c", a[i]);
 	printf(" no\n");
 }
