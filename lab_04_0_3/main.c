@@ -3,12 +3,15 @@
 #include "split.h"
 void del_not_first(char line[WORD_LENGHT])
 {
-	for (int i = 1; i < strlen(line); i++)
+	int count = 0;
+	for (int i = 0; i <= strlen(line); i++)
+		count++;
+	for (int i = 1; i < count; i++)
 		if (line[i] == line[0])
 		{
-			for (int j = i; j < strlen(line) - 1; j++)
+			for (int j = i; j < count; j++)
 				line[j] = line[j + 1];
-			line[strlen(line) - 1] = '\0';
+			count--;
 		}
 }
 void line_processing(char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT], int count_of_words)
