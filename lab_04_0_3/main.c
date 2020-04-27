@@ -18,21 +18,20 @@ void line_processing(char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT], int co
 {
 	char new_str[LINE_LENGHT / 2 + 1][WORD_LENGHT];
 	for (int i = count_of_words - 2; i >= 0; i--)
-	if (!strcmp(splited_line[i], splited_line[count_of_words - 1]))
-		splited_line[i][0] = '*';
+		if (!strcmp(splited_line[i], splited_line[count_of_words - 1]))
+			splited_line[i][0] = '*';
 	int j = 0, count_of_words2 = 0;
-	for (int i = count_of_words - 1; i >= 0; i--)
+	for (int i = count_of_words - 2; i >= 0; i--)
 	{
 		if (splited_line[i][0] == '*')
 			continue;
 		del_not_first(splited_line[i]);
-		count_of_words2++;
 		strcpy(new_str[j++], splited_line[i]);
+		count_of_words2++;
 	}
-	/*for (int i = 0; i < count_of_words2 - 2; i++)
+	for (int i = 0; i < count_of_words2 - 1; i++)
 		printf("%s\n", new_str[i]);
-	printf("%s", new_str[count_of_words2 - 1]);*/
-
+	printf("%s", new_str[count_of_words2 - 1]);
 }
 status_code check_line(char *line)
 {
