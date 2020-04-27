@@ -5,7 +5,7 @@
 typedef enum
 {
 	success,
-	incorrect_input,
+	incorrect_input
 } status_code;
 int split_line(char *line, char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT]);
 #endif
