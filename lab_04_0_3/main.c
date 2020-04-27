@@ -29,9 +29,9 @@ void line_processing(char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT], int co
 		count_of_words2++;
 		//strcpy(new_str[j++], splited_line[i]);
 	}
-	for (int i = 0; i < count_of_words2; i++)
+	for (int i = 0; i < count_of_words2 - 2; i++)
 		printf("%s\n", new_str[i]);
-	printf("%s", new_str[count_of_words2]);
+	printf("%s", new_str[count_of_words2 - 1]);
 }
 status_code check_line(char *line)
 {
