@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "split.h"
-#define LINE_LENGHT 256
-#define WORD_LENGHT 16
 void del_not_first(char line[WORD_LENGHT])
 {
 	for (int i = 1; i < strlen(line); i++)
