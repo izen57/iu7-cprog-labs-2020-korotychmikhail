@@ -17,11 +17,11 @@
 void line_processing(char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT], int count_of_words)
 {
 	char new_str[LINE_LENGHT / 2 + 1][WORD_LENGHT];
-	for (int i = count_of_words - 2; i >= 1; i--)
+	for (int i = count_of_words - 2; i >= 0; i--)
 		if (!strcmp(splited_line[i], splited_line[count_of_words - 1]))
 			splited_line[i][0] = '*';
 	int /*j = 0,*/count_of_words2 = 0;
-	for (int i = count_of_words - 1; i >= 1; i--)
+	for (int i = count_of_words - 1; i >= 0; i--)
 	{
 		if (splited_line[i][0] == '*')
 			continue;
