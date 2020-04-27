@@ -16,7 +16,7 @@ void del_not_first(char line[WORD_LENGHT])
 }
 status_code check_line(char *line)
 {
-	if (line[LINE_LENGHT] != '\0' && line[LINE_LENGHT] != '\n' && line[LINE_LENGHT] != '\r')
+	if (line[LINE_LENGHT - 1] != '\0' && line[LINE_LENGHT - 1] != '\n' && line[LINE_LENGHT - 1] != '\r')
 		return incorrect_input;
 	else
 	{
@@ -45,10 +45,10 @@ status_code check_line(char *line)
 }
 int main(void)
 {
-	char line[LINE_LENGHT + 2];
-	for (int i = 0; i < LINE_LENGHT + 2; i++)
+	char line[LINE_LENGHT + 1];
+	for (int i = 0; i < LINE_LENGHT + 1; i++)
 		line[i] = '\0';
-	fgets(line, LINE_LENGHT + 2, stdin);
+	fgets(line, LINE_LENGHT + 1, stdin);
 	if (check_line(line))
 		return check_line(line);
 	char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT];
@@ -57,7 +57,7 @@ int main(void)
 	for (int i = count_of_words - 2; i >= 0; i--)
 		if (!strcmp(splited_line[i], splited_line[count_of_words - 1]))
 			splited_line[i][0] = '*';
-	int j = 0,count_of_words2 = 0;
+	int j = 0, count_of_words2 = 0;
 	for (int i = count_of_words - 1; i >= 0; i--)
 	{
 		if (splited_line[i][0] == '*')
