@@ -5,8 +5,11 @@ void del_not_first(char line[WORD_LENGHT])
 {
 	for (int i = 1; i < strlen(line); i++)
 		if (line[i] == line[0])
-			for (int j = i; j < strlen(line); j++)
+		{
+			for (int j = i; j < strlen(line) - 1; j++)
 				line[j] = line[j + 1];
+			line[strlen(line)] = '\0';
+		}
 }
 void line_processing(char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT], int count_of_words)
 {
