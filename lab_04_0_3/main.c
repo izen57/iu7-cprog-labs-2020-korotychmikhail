@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-//#include "split.h"
+#include "split.h"
 #define LINE_LENGHT 256
 #define WORD_LENGHT 16
 void del_not_first(char line[WORD_LENGHT])
@@ -29,52 +29,10 @@ void line_processing(char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT], int co
 		printf("%s\n", new_str[i]);
 	printf("%s", new_str[count_of_words2]);
 }
-int split_line(char *line, char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT])
-{
-	int count_of_letters = 0, count_of_splits = 1, result = 0;
-	char word[WORD_LENGHT];
-	for (int i = 0; line[i] != '\0'; i++)
-	{
-		if (line[i] != '\n' && line[i] != '\0' && line[i] != '\t' && line[i] != ',' && line[i] != ';' && line[i] != ':' && line[i] != '-' && line[i] != '.' && line[i] != '!' && line[i] != '?' && line[i] != ' ')
-		{
-			word[count_of_letters] = line[i];
-			count_of_splits = 0;
-			count_of_letters++;
-		}
-		else
-		{
-			if (count_of_splits == 0)
-			{
-				count_of_splits++;
-				for (int j = 0; j < count_of_letters; j++)
-				{
-					splited_line[result][j] = word[j];
-					word[j] = '\0';
-				}
-				for (int j = count_of_letters; j < WORD_LENGHT; j++)
-					splited_line[result][j] = '\0';
-				result++;
-				count_of_letters = 0;
-			}
-		}
-	}
-	if (count_of_letters > 0)
-	{
-		for (int j = 0; j < count_of_letters; j++)
-		{
-			splited_line[result][j] = word[j];
-			word[j] = '\0';
-		}
-		for (int j = count_of_letters; j < WORD_LENGHT; j++)
-			splited_line[result][j] = '\0';
-		result++;
-	}
-	return result;
-}
-/*status_code*/int check_line(char *line)
+status_code check_line(char *line)
 {
 	if (line[LINE_LENGHT] != '\0' && line[LINE_LENGHT] != '\n' && line[LINE_LENGHT] != '\r')
-		return 1/*incorrect_input*/;
+		return incorrect_input;
 	else
 	{
 		line[strlen(line) - 1] = '\0';
@@ -95,12 +53,11 @@ int split_line(char *line, char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT])
 				count_of_letters = 0;
 		}
 		if (count_of_symbols == 0 || flag)
-			return 1/*incorrect_input*/;
+			return incorrect_input;
 		else
-			return 0/*success*/;
+			return success;
 	}
 }
-
 int main(void)
 {
 	char line[LINE_LENGHT + 2];
@@ -112,5 +69,5 @@ int main(void)
 	char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT];
 	int count_of_words = split_line(line, splited_line);
 	line_processing(splited_line, count_of_words);
-	return 0/*success*/;
+	return success;
 }
