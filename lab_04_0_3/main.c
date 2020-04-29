@@ -30,7 +30,7 @@ void line_processing(char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT], int co
 		count_of_words2++;
 	}
 	for (int i = 0; i < count_of_words2 - 1; i++)
-		printf("%s\n", new_str[i]);
+		printf("%s ", new_str[i]);
 	printf("%s", new_str[count_of_words2 - 1]);
 }
 status_code check_line(char *line)
@@ -56,7 +56,7 @@ status_code check_line(char *line)
 			else
 				count_of_letters = 0;
 		}
-		if (count_of_symbols == 0 || flag ||)
+		if (count_of_symbols == 0 || flag)
 			return incorrect_input;
 		else
 			return success;
@@ -72,7 +72,7 @@ int main(void)
 		return check_line(line);
 	char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT];
 	int count_of_words = split_line(line, splited_line);
-	if (count_of_words < 1)
+	if (!count_of_words)
 		return incorrect_input;
 	line_processing(splited_line, count_of_words);
 	return success;
