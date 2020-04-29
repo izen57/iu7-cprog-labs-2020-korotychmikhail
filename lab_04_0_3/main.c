@@ -72,7 +72,7 @@ int main(void)
 		return check_line(line);
 	char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT];
 	int count_of_words = split_line(line, splited_line);
-	if (!count_of_words || count_of_words < 3)
+	if (!count_of_words || count_of_words < 2)
 		return incorrect_input;
 	line_processing(splited_line, count_of_words);
 	return success;
