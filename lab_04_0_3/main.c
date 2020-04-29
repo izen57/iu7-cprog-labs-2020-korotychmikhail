@@ -14,7 +14,7 @@ void del_not_first(char line[WORD_LENGHT])
 			count--;
 		}
 }
-int line_processing(char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT], int count_of_words)
+status_code line_processing(char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT], int count_of_words)
 {
 	char new_str[LINE_LENGHT / 2 + 1][WORD_LENGHT];
 	int count_of_words3 = 1;
@@ -79,9 +79,9 @@ int main(void)
 		return check_line(line);
 	char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT];
 	int count_of_words = split_line(line, splited_line);
-	if (count_of_words < 2)
+	if (count_of_words <= 1)
 		return incorrect_input;
 	if (line_processing(splited_line, count_of_words))
-		return line_processing(splited_line, count_of_words);
+		return incorrect_input;
 	return success;
 }
