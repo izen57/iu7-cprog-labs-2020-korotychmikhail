@@ -35,6 +35,7 @@ status_code line_processing(char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT],
 		strcpy(new_str[j++], splited_line[i]);
 		count_of_words2++;
 	}
+	printf("Result: ");
 	for (int i = 0; i < count_of_words2 - 1; i++)
 		printf("%s ", new_str[i]);
 	printf("%s", new_str[count_of_words2 - 1]);
