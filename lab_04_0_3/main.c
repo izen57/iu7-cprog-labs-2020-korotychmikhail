@@ -39,7 +39,7 @@ status_code line_processing(char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT],
 	printf("Result: ");
 	for (int i = 0; i < count_of_words2 - 1; i++)
 		printf("%s ", new_str[i]);
-	printf("%s", new_str[count_of_words2 - 1]);
+	printf("%s\n", new_str[count_of_words2 - 1]);
 	return success;
 }
 status_code check_line(char *line)
@@ -79,22 +79,12 @@ int main(void)
 		line[i] = '\0';
 	fgets(line, LINE_LENGHT + 2, stdin);
 	if (check_line(line))
-	{
-		printf("not check");
 		return check_line(line);
-	}
 	char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT];
 	int count_of_words = split_line(line, splited_line);
 	if (count_of_words <= 1)
-	{
-		printf("count of words");
 		return incorrect_input;
-	}
-	//line_processing(splited_line, count_of_words);
 	if (line_processing(splited_line, count_of_words))
-	{
-		printf("line processing");
 		return incorrect_input;
-	}
 	return success;
 }
