@@ -14,18 +14,18 @@ void del_not_first(char line[WORD_LENGHT])
 			count--;
 		}
 }
-status_code line_processing(char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT], int count_of_words)
+/*status_code*/void line_processing(char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT], int count_of_words)
 {
 	char new_str[LINE_LENGHT / 2 + 1][WORD_LENGHT];
-	int count_of_words3 = 1;
+	//int count_of_words3 = 1;
 	for (int i = count_of_words - 2; i >= 0; i--)
 		if (!strcmp(splited_line[i], splited_line[count_of_words - 1]))
 		{
-			count_of_words3++;
+			//count_of_words3++;
 			splited_line[i][0] = '*';
 		}
-	if (count_of_words3 == count_of_words)
-		return incorrect_input;
+	/*if (count_of_words3 == count_of_words)
+		return incorrect_input;*/
 	int j = 0, count_of_words2 = 0;
 	for (int i = count_of_words - 2; i >= 0; i--)
 	{
@@ -39,7 +39,7 @@ status_code line_processing(char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT],
 	for (int i = 0; i < count_of_words2 - 1; i++)
 		printf("%s ", new_str[i]);
 	printf("%s\n", new_str[count_of_words2 - 1]);
-	return success;
+	//return success;
 }
 status_code check_line(char *line)
 {
@@ -77,12 +77,22 @@ int main(void)
 		line[i] = '\0';
 	fgets(line, LINE_LENGHT + 2, stdin);
 	if (check_line(line))
+	{
+		printf("not check");
 		return check_line(line);
+	}
 	char splited_line[LINE_LENGHT / 2 + 1][WORD_LENGHT];
 	int count_of_words = split_line(line, splited_line);
 	if (count_of_words <= 1)
+	{
+		printf("count of words"); 
 		return incorrect_input;
-	if (line_processing(splited_line, count_of_words))
+	}
+	line_processing(splited_line, count_of_words);
+	/*if (line_processing(splited_line, count_of_words))
+	{
+		printf("line processing");
 		return incorrect_input;
+	}*/
 	return success;
 }
