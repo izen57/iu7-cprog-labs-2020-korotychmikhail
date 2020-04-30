@@ -43,11 +43,11 @@ void del_not_first(char line[WORD_LENGHT])
 }
 status_code check_line(char *line)
 {
-	if (line[LINE_LENGHT + 1] != '\0' && line[LINE_LENGHT + 1] != '\n' && line[LINE_LENGHT + 1] != '\r')
+	if (line[LINE_LENGHT + 1] != '\0' && line[LINE_LENGHT + 1] != '\n' && line[LINE_LENGHT + 1] != EOF)
 		return incorrect_input;
 	else
 	{
-		if (line[LINE_LENGHT + 1] == '\n' || line[LINE_LENGHT + 1] == EOF)
+		if (line[LINE_LENGHT + 1] == '\n')
 			line[strlen(line) - 1] = '\0';
 		int count_of_letters = 0, count_of_symbols = 0, flag = 0;
 		for (int i = 0; line[i] != '\0'; i++)
