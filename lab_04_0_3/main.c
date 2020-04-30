@@ -47,8 +47,8 @@ status_code check_line(char *line)
 		return incorrect_input;
 	else
 	{
-		if (line[LINE_LENGHT + 1] == '\n' || line[LINE_LENGHT + 1] == EOF)
-			line[strlen(line) - 1] = '\0';
+		if (line[LINE_LENGHT] == '\n' || line[LINE_LENGHT] == EOF)
+			line[strlen(line) + 1] = '\0';
 		int count_of_letters = 0, count_of_symbols = 0, flag = 0;
 		for (int i = 0; line[i] != '\0'; i++)
 		{
