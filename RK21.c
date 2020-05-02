@@ -16,10 +16,6 @@ status_code input(int a[ARRAY_LENGHT], int *n, int *k)
 		return incorrect_input;
 	return success;
 }
-void del(int a[ARRAY_LENGHT], int *n, int h)
-{
-	
-}
 void checking(int a[ARRAY_LENGHT], int *n, int k)
 {
 	for (int i = 0; i < *n; i += 3)
