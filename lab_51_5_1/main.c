@@ -10,7 +10,6 @@ int process(FILE *file, int *max)
 		int flag = 0;
 		while (fscanf(file, "%d", &curr) == 1)
 		{
-			flag = 1;
 			if (curr == prev)
 			{
 				count++;
