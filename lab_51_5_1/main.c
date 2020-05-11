@@ -23,9 +23,9 @@ int process(FILE *file, int *max)
 			prev = curr;
 		}
 		if (!flag1)
-			return INCORECT_INPUT;
+			*max = 0;
 		if (!flag2)
-			return IMPOSSIBLE_CONDITION;
+			*max = 0;
 		return SUCCESS;
 	}
 	else
