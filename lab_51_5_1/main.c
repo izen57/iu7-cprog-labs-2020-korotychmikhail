@@ -19,10 +19,8 @@ int process(FILE *file, int *max)
 				*max = count;
 			prev = curr;
 		}
-		if (!flag)
-			return IMPOSSIBLE_CONDITION;
 		if (*max == 1)
-			*max = 0;
+			return IMPOSSIBLE_CONDITION;
 		return SUCCESS;
 	}
 	else
