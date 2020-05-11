@@ -1,29 +1,5 @@
 #include <stdio.h>
-#define SUCCESS 0
-#define INCORECT_INPUT -1
-#define IMPOSSIBLE_CONDITION -2
-int process(FILE *file, int *max)
-{
-	int count = 1, prev, curr;
-	if (fscanf(file, "%d", &prev) == 1)
-	{
-		//int flag = 0;
-		while (fscanf(file, "%d", &curr) == 1)
-		{
-			//flag = 1;
-			if (curr == prev)
-				count++;
-			else
-				count = 1;
-			if (count > *max)
-				*max = count;
-			prev = curr;
-		}
-		return SUCCESS;
-	}
-	else
-		return INCORECT_INPUT;
-}
+#include "process.h"
 int main(void)
 {
 	int max = 1, error = process(stdin, &max);
