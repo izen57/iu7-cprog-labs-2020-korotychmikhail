@@ -35,6 +35,6 @@ int main(void)
 {
 	int max = 0, error = process(stdin, &max);
 	if (!error)
-		printf("%d", max);
+		fprintf(stdout, "%d", max);
 	return error;
 }
