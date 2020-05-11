@@ -1,6 +1,6 @@
 #include <stdio.h>
-#define success 0
-#define incorrect_input -1
+#define SUCCESS 0
+#define INCORECT_INPUT -1
 int process(FILE *file, int *max)
 {
 	int count = 1, prev, curr;
@@ -19,16 +19,16 @@ int process(FILE *file, int *max)
 			prev = curr;
 		}
 		if (!flag || *max == 1)
-			*max = 0;
-		return success;
+			return INCORECT_INPUT;
+		if (*max > 1)
+			return SUCCESS;
 	}
 	else
-		return incorrect_input;
+		return INCORECT_INPUT;
 }
 int main(void)
 {
-	int max = 0;
-	int error = process(stdin, &max);
+	int max = 0, error = process(stdin, &max);
 	if (!error)
 		printf("%d", max);
 	return error;
