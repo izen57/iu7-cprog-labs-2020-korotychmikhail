@@ -10,11 +10,9 @@ int process(FILE *file, int *max)
 		int flag = 0;
 		while (fscanf(file, "%d", &curr) == 1)
 		{
+			flag = 1;
 			if (curr == prev)
-			{
 				count++;
-				flag = 1;
-			}
 			else
 				count = 1;
 			if (count > *max)
@@ -23,6 +21,8 @@ int process(FILE *file, int *max)
 		}
 		if (!flag)
 			return IMPOSSIBLE_CONDITION;
+		if (*max == 1)
+			*max = 0;
 		return SUCCESS;
 	}
 	else
