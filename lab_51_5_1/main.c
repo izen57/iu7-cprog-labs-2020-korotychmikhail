@@ -26,7 +26,7 @@ int process(FILE *file, int *max)
 }
 int main(void)
 {
-	int max = 0, error = process(stdin, &max);
+	int max = 1, error = process(stdin, &max);
 	if (!error)
 		fprintf(stdout, "%d", max);
 	return error;
