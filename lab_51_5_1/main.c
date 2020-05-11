@@ -9,18 +9,20 @@ int process(FILE *file, int *max)
 		int flag = 0;
 		while (fscanf(file, "%d", &curr) == 1)
 		{
-			flag = 1;
 			if (curr == prev)
+			{
 				count++;
+				flag = 1;
+			}
 			else
 				count = 1;
 			if (count > *max)
 				*max = count;
 			prev = curr;
 		}
-		if (!flag || *max == 1)
+		if (!flag)
 			return INCORECT_INPUT;
-		if (*max > 1)
+		else
 			return SUCCESS;
 	}
 	else
