@@ -7,14 +7,14 @@ int process(FILE *file, int *max)
 	int count = 1, prev, curr;
 	if (fscanf(file, "%d", &prev) == 1)
 	{
-		int flag1 = 0, flag2 = 0;
+		int flag = 0;
 		while (fscanf(file, "%d", &curr) == 1)
 		{
-			flag1 = 1;
+			flag = 1;
 			if (curr == prev)
 			{
 				count++;
-				flag2 = 1;
+				flag = 1;
 			}
 			else
 				count = 1;
@@ -22,10 +22,8 @@ int process(FILE *file, int *max)
 				*max = count;
 			prev = curr;
 		}
-		if (!flag1)
-			*max = 0;
-		if (!flag2)
-			*max = 0;
+		if (!flag)
+			return IMPOSSIBLE_CONDITION;
 		return SUCCESS;
 	}
 	else
