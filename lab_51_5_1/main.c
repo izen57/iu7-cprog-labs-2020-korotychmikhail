@@ -20,7 +20,7 @@ int process(FILE *file, int *max)
 				*max = count;
 			prev = curr;
 		}
-		if (!flag)
+		if (flag)
 			return INCORECT_INPUT;
 		else
 			return SUCCESS;
