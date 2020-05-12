@@ -31,7 +31,7 @@ void disp_function(FILE *file, float *disp, float avg, int count)
 }
 int main(int argc, char **argv)
 {
-	if (argc != 2)
+	if (argc != 3)
 	{
 		fprintf(stderr, "Not enough options: %s", strerror(errno));
 		return INCORRECT_INPUT;
