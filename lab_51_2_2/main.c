@@ -11,7 +11,7 @@ int avg_function(FILE *file, float *avg, int *count)
 		sum += num;
 		(*count)++;
 	}
-	if (*count == 0)
+	if (!*count)
 		return INCORRECT_INPUT;
 	else
 	{
@@ -33,25 +33,26 @@ int main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		//fprintf(stderr, "Not enough options: %s", strerror(errno));
+		fprintf(stderr, "Not enough options: %s", strerror(errno));
 		return INCORRECT_INPUT;
 	}
 	FILE *file;
 	file = fopen(argv[1], "r");
 	if (!file)
 	{
-		//fprintf(stderr, "Unable to open file: %s", strerror(errno));
+		fprintf(stderr, "Unable to open file: %s", strerror(errno));
 		return INCORRECT_INPUT;
 	}
 	float avg;
 	int count = 0, error = avg_function(file, &avg, &count);
 	if (error)
 	{
-		//fprintf(stderr, "Incorrect input: %s", strerror(errno));
+		fprintf(stderr, "Incorrect input: %s", strerror(errno));
 		return error;
 	}
 	float disp;
 	disp_function(file, &disp, avg, count);
+	fclose(file);
 	fprintf(stdout, "%f", disp);
 	return SUCCESS;
 }
