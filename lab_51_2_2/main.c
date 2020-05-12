@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <errno.h>
 #define SUCCESS 0
 #define INCORRECT_INPUT -1
@@ -43,14 +44,14 @@ int main(int argc, char **argv)
 		return INCORRECT_INPUT;
 	}
 	float avg;
-	int count = 0, error = avg_function(argv[1], &avg, &count);
+	int count = 0, error = avg_function(file, &avg, &count);
 	if (error)
 	{
 		fprintf(stderr, "Incorrect input: %s", strerror(errno));
 		return error;
 	}
 	float disp;
-	disp_function(argv[1], &disp, avg, count);
+	disp_function(file, &disp, avg, count);
 	fprintf(stdout, "%f", disp);
 	return SUCCESS;
 }
