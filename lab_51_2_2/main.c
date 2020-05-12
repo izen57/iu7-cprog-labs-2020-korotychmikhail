@@ -33,21 +33,21 @@ int main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		fprintf(stderr, "Not enough options: %s", strerror(errno));
+		//fprintf(stderr, "Not enough options: %s", strerror(errno));
 		return INCORRECT_INPUT;
 	}
 	FILE *file;
 	file = fopen(argv[1], "r");
 	if (!file)
 	{
-		fprintf(stderr, "Unable to open file: %s", strerror(errno));
+		//fprintf(stderr, "Unable to open file: %s", strerror(errno));
 		return INCORRECT_INPUT;
 	}
 	float avg;
 	int count = 0, error = avg_function(file, &avg, &count);
 	if (error)
 	{
-		fprintf(stderr, "Incorrect input: %s", strerror(errno));
+		//fprintf(stderr, "Incorrect input: %s", strerror(errno));
 		return error;
 	}
 	float disp;
