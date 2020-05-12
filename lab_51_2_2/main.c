@@ -2,7 +2,7 @@
 #include <string.h>
 #include <errno.h>
 #define SUCCESS 0
-#define INCORRECT_INPUT -1
+#define INCORRECT_INPUT 1
 int avg_function(FILE *file, float *avg, int *count)
 {
 	float num, sum = 0;
