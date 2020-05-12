@@ -11,7 +11,7 @@ int avg_function(FILE *file, float *avg, int *count)
 		sum += num;
 		(*count)++;
 	}
-	if (!*count)
+	if (count == 1)
 		return INCORRECT_INPUT;
 	else
 	{
@@ -54,5 +54,5 @@ int main(int argc, char **argv)
 	disp_function(file, &disp, avg, count);
 	fclose(file);
 	fprintf(stdout, "%f", disp);
-	return SUCCESS;
+	return error;
 }
