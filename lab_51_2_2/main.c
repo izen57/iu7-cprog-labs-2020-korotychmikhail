@@ -53,6 +53,6 @@ int main(int argc, char **argv)
 	float disp;
 	disp_function(file, &disp, avg, count);
 	fclose(file);
-	fprintf(stdout, "%.5f", disp);
+	fprintf(stdout, "%f\n", disp);
 	return error;
 }
