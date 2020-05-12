@@ -11,7 +11,7 @@ int avg_function(FILE *file, float *avg, int *count)
 		sum += num;
 		(*count)++;
 	}
-	if (*count <= 1)
+	if (*count == 0)
 		return INCORRECT_INPUT;
 	else
 	{
