@@ -51,6 +51,7 @@ int main(int argc, char **argv)
 		return error;
 	}
 	float disp;
+	rewind(file);
 	disp_function(file, &disp, avg, count);
 	fclose(file);
 	fprintf(stdout, "%f", disp);
