@@ -43,16 +43,16 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Unable to open file: %s", strerror(errno));
 		return INCORRECT_INPUT;
 	}
-	float avg = 0.0;
+	float avg;
 	int count = 0, error = avg_function(file, &avg, &count);
 	if (error)
 	{
 		fprintf(stderr, "Incorrect input: %s", strerror(errno));
 		return error;
 	}
-	float disp = 0.0;
+	float disp;
 	disp_function(file, &disp, avg, count);
 	fclose(file);
 	fprintf(stdout, "%f", disp);
-	return error;
+	return SUCCESS;
 }
