@@ -11,7 +11,7 @@ int avg_function(FILE *file, float *avg, int *count)
 		sum += num;
 		(*count)++;
 	}
-	if (*count == 0)
+	if (!*count)
 		return INCORRECT_INPUT;
 	else
 	{
@@ -31,13 +31,13 @@ void disp_function(FILE *file, float *disp, float avg, int count)
 }
 int main(int argc, char **argv)
 {
-	if (argc != 3)
+	if (argc != 2)
 	{
 		fprintf(stderr, "Not enough options: %s", strerror(errno));
 		return INCORRECT_INPUT;
 	}
 	FILE *file;
-	file = fopen(argv[2], "r");
+	file = fopen(argv[1], "r");
 	if (!file)
 	{
 		fprintf(stderr, "Unable to open file: %s", strerror(errno));
