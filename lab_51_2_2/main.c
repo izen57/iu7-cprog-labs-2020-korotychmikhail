@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 		return INCORRECT_INPUT;
 	}*/
 	FILE *file;
-	file = fopen(argv[2], "r");
+	file = fopen(argv[1], "r");
 	if (!file)
 	{
 		fprintf(stderr, "Unable to open file: %s", strerror(errno));
