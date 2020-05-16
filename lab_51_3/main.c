@@ -5,8 +5,12 @@
 #define INCORRECT_INPUT -1
 int creat_numbers(char *path, int number)
 {
+	if (number < 1)
+		return INCORRECT_INPUT;
 	FILE *file;
 	file = fopen(path, "wb");
+	if (!file)
+		return INCORRECT_INPUT;
 	for (int i = 0; i < number; i++)
 	{
 		int val = rand() % (number * 2);
@@ -61,20 +65,22 @@ int sort_numbers(char *path, size_t *size)
 	int flag, temp, num;
 	file = fopen(path, "rb+");
 	if (!file_size(file, size))
+	{
 		do
 		{
 			flag = 0;
-			for (size_t i = 1; i < *size / sizeof(int); i++)
-				if (get_number_by_pos(file, i) < get_number_by_pos(file, i - 1))
+			for (int i = 1, byte = 4; i < *size / sizeof(int); i++, byte += 4)
+				if (get_number_by_pos(file, byte) < get_number_by_pos(file, byte - 4))
 				{
-					temp = get_number_by_pos(file, i);
-					num = get_number_by_pos(file, i - 1);
-					put_number_by_pos(file, &num, i);
-					put_number_by_pos(file, &temp, i - 1);
+					temp = get_number_by_pos(file, byte);
+					num = get_number_by_pos(file, byte - 4);
+					put_number_by_pos(file, &num, byte);
+					put_number_by_pos(file, &temp, byte - 4);
 					flag = 1;
 				}
 		}
 		while (flag);
+	}
 	else
 	{
 		printf("!file_size");
