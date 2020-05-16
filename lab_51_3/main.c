@@ -2,13 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #define SUCCESS 0
-#define INCORRECT_INPUT 1
+#define INCORRECT_INPUT -1
 int creat_numbers(char *path, int number)
 {
 	FILE *file;
 	file = fopen(path, "wb");
-	if (!file)
-		return INCORRECT_INPUT;
 	for (int i = 0; i < number; i++)
 	{
 		int val = rand() % (number * 2);
@@ -75,7 +73,8 @@ int sort_numbers(char *path, size_t *size)
 					put_number_by_pos(file, &temp, i - 1);
 					flag = 1;
 				}
-		} while (flag);
+		}
+		while (flag);
 	else
 	{
 		printf("!file_size");
