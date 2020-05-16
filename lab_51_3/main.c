@@ -46,20 +46,20 @@ int print_numbers(char *path, size_t *size)
 int get_number_by_pos(FILE *file, int pos)
 {
 	int num;
-	fseek(file, pos, SEEK_END);
+	fseek(file, pos, SEEK_SET);
 	fread(&num, sizeof(int), 1, file);
 	return num;
 }
 void put_number_by_pos(FILE *file, int *num, int pos)
 {
-	fseek(file, pos, SEEK_END);
+	fseek(file, pos, SEEK_SET);
 	fwrite(num, sizeof(int), 1, file);
 }
 int sort_numbers(char *path, size_t *size)
 {
 	FILE *file;
 	int flag, temp, num;
-	file = fopen(path, "ab");
+	file = fopen(path, "rb+");
 	if (!file_size(file, size))
 		do
 		{
