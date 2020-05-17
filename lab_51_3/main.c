@@ -92,4 +92,6 @@ int main(int argc, char **argv)
 		return print_numbers(argv[2], &size);
 	else if (!strcmp(argv[1], "s"))
 		return sort_numbers(argv[2], &size);
+	else
+		return INCORRECT_INPUT;
 }
