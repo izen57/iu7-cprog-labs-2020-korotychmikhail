@@ -9,6 +9,8 @@ int creat_numbers(char *path, int number)
 		return INCORRECT_INPUT;
 	FILE *file;
 	file = fopen(path, "wb");
+	if (!file)
+		return INCORRECT_INPUT;
 	for (int i = 0; i < number; i++)
 	{
 		int val = rand() % (number * 2);
@@ -31,6 +33,8 @@ int print_numbers(char *path, size_t *size)
 {
 	FILE *file;
 	file = fopen(path, "rb");
+	if (!file)
+		return INCORRECT_INPUT;
 	int val;
 	if (!file_size(file, size))
 		for (size_t i = 0; i < *size / sizeof(int); i++)
@@ -62,6 +66,8 @@ int sort_numbers(char *path, size_t *size)
 	FILE *file;
 	int flag, temp, num;
 	file = fopen(path, "rb+");
+	if (!file)
+		return INCORRECT_INPUT;
 	if (!file_size(file, size))
 	{
 		do
