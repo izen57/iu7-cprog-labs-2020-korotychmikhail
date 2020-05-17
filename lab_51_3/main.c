@@ -9,8 +9,8 @@ int creat_numbers(char *path, int number)
 		return INCORRECT_INPUT;
 	FILE *file;
 	file = fopen(path, "wb");
-	if (!file)
-		return INCORRECT_INPUT;
+	/*if (!file)
+		return INCORRECT_INPUT;*/
 	for (int i = 0; i < number; i++)
 	{
 		int val = rand() % (number * 2);
@@ -82,10 +82,7 @@ int sort_numbers(char *path, size_t *size)
 		while (flag);
 	}
 	else
-	{
-		printf("!file_size");
 		return INCORRECT_INPUT;
-	}
 	return SUCCESS;
 }
 int main(int argc, char **argv)
