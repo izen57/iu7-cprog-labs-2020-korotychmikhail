@@ -85,17 +85,11 @@ int sort_numbers(char *path, size_t *size)
 }
 int main(int argc, char **argv)
 {
+	size_t size;
 	if (!strcmp(argv[1], "c"))
 		return creat_numbers(argv[3], *argv[2] - '0');
-	else
-		return INCORRECT_INPUT;
-	size_t size;
-	if (!strcmp(argv[1], "p"))
+	else if (!strcmp(argv[1], "p"))
 		return print_numbers(argv[2], &size);
-	else
-		return INCORRECT_INPUT;
-	if (!strcmp(argv[1], "s"))
+	else if (!strcmp(argv[1], "s"))
 		return sort_numbers(argv[2], &size);
-	else
-		return INCORRECT_INPUT;
 }
