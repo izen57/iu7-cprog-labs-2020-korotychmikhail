@@ -38,7 +38,7 @@ int print_numbers(char *path)
 	size_t size;
 	if (!file_size(file, &size))
 	{
-		if (size / sizeof(int))
+		if (size / sizeof(int) == 0)
 			return INCORRECT_INPUT;
 		for (int i = 0; i < size / sizeof(int); i++)
 		{
