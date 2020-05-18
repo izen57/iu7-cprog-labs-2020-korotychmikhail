@@ -17,10 +17,9 @@ int creat_numbers(char *path, int number)
 		if (fwrite(&val, sizeof(int), 1, file) != 1)
 			return INCORRECT_INPUT;
 	}
-	fclose(file);
 	return SUCCESS;
 }
-int file_size(FILE *file, long *size)
+int file_size(FILE *file, size_t *size)
 {
 	if (fseek(file, 0L, SEEK_END))
 		return INCORRECT_INPUT;
@@ -30,7 +29,7 @@ int file_size(FILE *file, long *size)
 	fseek(file, 0L, SEEK_SET);
 	return SUCCESS;
 }
-int print_numbers(char *path, long *size)
+int print_numbers(char *path, size_t *size)
 {
 	FILE *file;
 	file = fopen(path, "rb");
@@ -47,7 +46,6 @@ int print_numbers(char *path, long *size)
 		}
 	else
 		return INCORRECT_INPUT;
-	fclose(file);
 	return SUCCESS;
 }
 int get_number_by_pos(FILE *file, int pos)
@@ -62,7 +60,7 @@ void put_number_by_pos(FILE *file, int *num, int pos)
 	fseek(file, pos, SEEK_SET);
 	fwrite(num, sizeof(int), 1, file);
 }
-int sort_numbers(char *path, long *size)
+int sort_numbers(char *path, size_t *size)
 {
 	FILE *file;
 	int flag, temp, num;
@@ -92,7 +90,7 @@ int sort_numbers(char *path, long *size)
 }
 int main(int argc, char **argv)
 {
-	long size;
+	size_t size;
 	if (!strcmp(argv[1], "c"))
 		return creat_numbers(argv[3], *argv[2] - '0');
 	else if (!strcmp(argv[1], "p"))
