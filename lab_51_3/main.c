@@ -79,13 +79,13 @@ int sort_numbers(char *path)
 		do
 		{
 			flag = 0;
-			for (int i = 1, byte = 4; i < size / sizeof(int); i++, byte += 4)
-				if (get_number_by_pos(file, byte) < get_number_by_pos(file, byte - 4))
+			for (int i = 1, byte = 4; i < size / sizeof(int); i++, byte += sizeof(int))
+				if (get_number_by_pos(file, byte) < get_number_by_pos(file, byte - sizeof(int)))
 				{
 					temp = get_number_by_pos(file, byte);
-					num = get_number_by_pos(file, byte - 4);
+					num = get_number_by_pos(file, byte - sizeof(int));
 					put_number_by_pos(file, &num, byte);
-					put_number_by_pos(file, &temp, byte - 4);
+					put_number_by_pos(file, &temp, byte - sizeof(int));
 					flag = 1;
 				}
 		}
