@@ -37,6 +37,9 @@ int print_numbers(char *path)
 	int val;
 	size_t size;
 	if (!file_size(file, &size))
+	{
+		if (size / sizeof(int))
+			return INCORRECT_INPUT;
 		for (int i = 0; i < size / sizeof(int); i++)
 		{
 			if (fread(&val, sizeof(int), 1, file) == 1)
@@ -44,6 +47,7 @@ int print_numbers(char *path)
 			else
 				break;
 		}
+	}
 	else
 		return INCORRECT_INPUT;
 	return SUCCESS;
