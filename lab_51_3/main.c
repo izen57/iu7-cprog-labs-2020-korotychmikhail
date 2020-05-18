@@ -27,7 +27,8 @@ int file_size(FILE *file, size_t *size)
 	if (ftell(file) < 0)
 		return INCORRECT_INPUT;
 	*size = ftell(file);
-	return fseek(file, 0L, SEEK_SET);
+	fseek(file, 0L, SEEK_SET);
+	return SUCCESS;
 }
 int print_numbers(char *path, size_t *size)
 {
