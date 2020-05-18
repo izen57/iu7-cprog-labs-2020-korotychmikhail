@@ -74,6 +74,8 @@ int sort_numbers(char *path)
 	size_t size;
 	if (!file_size(file, &size))
 	{
+		if (size % sizeof(int))
+			return INCORRECT_INPUT;
 		do
 		{
 			flag = 0;
