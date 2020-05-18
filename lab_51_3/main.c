@@ -20,7 +20,7 @@ int creat_numbers(char *path, int number)
 	fclose(file);
 	return SUCCESS;
 }
-int file_size(FILE *file, size_t *size)
+int file_size(FILE *file, long *size)
 {
 	if (fseek(file, 0L, SEEK_END))
 		return INCORRECT_INPUT;
@@ -30,7 +30,7 @@ int file_size(FILE *file, size_t *size)
 	fseek(file, 0L, SEEK_SET);
 	return SUCCESS;
 }
-int print_numbers(char *path, size_t *size)
+int print_numbers(char *path, long *size)
 {
 	FILE *file;
 	file = fopen(path, "rb");
@@ -38,7 +38,7 @@ int print_numbers(char *path, size_t *size)
 		return INCORRECT_INPUT;
 	int val;
 	if (!file_size(file, size))
-		for (size_t i = 0; i < *size / sizeof(int); i++)
+		for (int i = 0; i < *size / sizeof(int); i++)
 		{
 			if (fread(&val, sizeof(int), 1, file))
 				printf("%d ", val);
@@ -62,7 +62,7 @@ void put_number_by_pos(FILE *file, int *num, int pos)
 	fseek(file, pos, SEEK_SET);
 	fwrite(num, sizeof(int), 1, file);
 }
-int sort_numbers(char *path, size_t *size)
+int sort_numbers(char *path, long *size)
 {
 	FILE *file;
 	int flag, temp, num;
@@ -92,7 +92,7 @@ int sort_numbers(char *path, size_t *size)
 }
 int main(int argc, char **argv)
 {
-	size_t size;
+	long size;
 	if (!strcmp(argv[1], "c"))
 		return creat_numbers(argv[3], *argv[2] - '0');
 	else if (!strcmp(argv[1], "p"))
