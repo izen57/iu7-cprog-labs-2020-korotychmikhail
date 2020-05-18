@@ -22,12 +22,12 @@ int creat_numbers(char *path, int number)
 }
 int file_size(FILE *file, size_t *size)
 {
-	if (fseek(file, 0, SEEK_END))
+	if (fseek(file, 0L, SEEK_END))
 		return INCORRECT_INPUT;
 	if (ftell(file) < 0)
 		return INCORRECT_INPUT;
 	*size = ftell(file);
-	return fseek(file, 0, SEEK_SET);
+	return fseek(file, 0L, SEEK_SET);
 }
 int print_numbers(char *path, size_t *size)
 {
