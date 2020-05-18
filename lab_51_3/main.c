@@ -40,7 +40,7 @@ int print_numbers(char *path, long *size)
 	if (!file_size(file, size))
 		for (int i = 0; i < *size / sizeof(int); i++)
 		{
-			if (fread(&val, sizeof(int), 1, file))
+			if (fread(&val, sizeof(int), 1, file) == 1)
 				printf("%d ", val);
 			else
 				break;
