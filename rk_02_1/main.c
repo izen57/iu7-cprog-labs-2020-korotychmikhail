@@ -67,8 +67,6 @@ int main(void)
 	if (!fin)
 		return 1;
 	FILE *fout = fopen("out.txt", "w");
-	/*if (!fout)
-		return 1;*/
 	int error =  process(fin, fout);
 	fclose(fin);
 	fclose(fout);
