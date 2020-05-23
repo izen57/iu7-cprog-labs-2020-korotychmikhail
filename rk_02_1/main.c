@@ -61,7 +61,7 @@ int process(FILE *fin, FILE *fout)
 	print_file(fout, fin, cities);
 	return 0;
 }
-int main(void)
+int main()
 {
 	FILE *fin = fopen("in.txt", "r");
 	if (!fin)
