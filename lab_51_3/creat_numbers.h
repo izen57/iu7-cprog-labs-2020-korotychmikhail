@@ -1,4 +1,4 @@
-#ifndef __CREAT_NUMBERS_H__
+﻿#ifndef __CREAT_NUMBERS_H__
 #define __CREAT_NUMBERS_H__
 #define SUCCESS 0
 #define INCORRECT_INPUT 1

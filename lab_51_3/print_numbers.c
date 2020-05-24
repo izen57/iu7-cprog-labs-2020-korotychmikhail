@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include "print_numbers.h"
 #include "file_size.h"
 int print_numbers(char *path)

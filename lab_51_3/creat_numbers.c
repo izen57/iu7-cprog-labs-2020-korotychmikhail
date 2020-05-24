@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
 #include "creat_numbers.h"
 int creat_numbers(char *path, int number)

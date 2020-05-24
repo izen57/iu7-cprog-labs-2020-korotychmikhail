@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include "sort_numbers.h"
 #include "file_size.h"
 int get_number_by_pos(FILE *file, int pos)

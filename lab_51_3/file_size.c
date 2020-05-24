@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include "file_size.h"
 int file_size(FILE *file, size_t *size)
 {
