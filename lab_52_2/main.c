@@ -54,11 +54,6 @@ int read_goods(FILE *file, information goods[LEN_STRUCT], int *n)
 	*n /= 4;
 	return SUCCESS;
 }
-void print_goods(FILE *file, information goods[LEN_STRUCT], int n)
-{
-	for (int i = 0; i < n; i++)
-		fprintf(file, "%s %s %u %u\n", goods[i].name, goods[i].manufacturer, goods[i].cost, goods[i].amount);
-}
 int sorting_goods(char *input_path, char *output_path, information goods[LEN_STRUCT], int *n)
 {
 	FILE *input_file = fopen(input_path, "r");
@@ -83,32 +78,41 @@ int sorting_goods(char *input_path, char *output_path, information goods[LEN_STR
 				goods[i - 1] = temp;
 				flag = 1;
 			}
-			if (goods[i].cost == goods[i - 1].cost)
-				if (goods[i].amount > goods[i - 1].amount)
-				{
-					temp = goods[i];
-					goods[i] = goods[i - 1];
-					goods[i - 1] = temp;
-					flag = 1;
-				}
+			if (goods[i].cost == goods[i - 1].cost && goods[i].amount > goods[i - 1].amount)
+			{
+				temp = goods[i];
+				goods[i] = goods[i - 1];
+				goods[i - 1] = temp;
+				flag = 1;
+			}
 		}
 	}
 	while (flag);
-	print_goods(output_file, goods, *n);
+	for (int i = 0; i < *n; i++)
+		fprintf(output_file, "%s %s %u %u\n", goods[i].name, goods[i].manufacturer, goods[i].cost, goods[i].amount);
 	rewind(input_file);
 	fclose(input_file);
 	fclose(output_file);
 	return SUCCESS;
 }
-int find_goods(char *input_path, information goods[LEN_STRUCT], int *n)
+int find_goods(char *input_path, char *substr, information goods[LEN_STRUCT], int *n)
 {
 	FILE *input_file = fopen(input_path, "r");
 	if (!input_file)
 		return INCORRECT_INPUT;
 	if (read_goods(input_file, goods, n))
 		return INCORRECT_INPUT;
+	int count = 0;
 	for (int i = 0; i < *n; i++)
-		
+		for (char *p_str = goods[i].name; *p_str != '\0'; p_str++)
+			if (!memcmp(p_str, substr, sizeof(*substr)))
+			{
+				count++;
+				printf("%s %s %u %u\n", goods[i].name, goods[i].manufacturer, goods[i].cost, goods[i].amount);
+			}
+	if (!count)
+		return INCORRECT_INPUT;
+	return SUCCESS;
 }
 int main(int argc, char **argv)
 {
@@ -117,7 +121,7 @@ int main(int argc, char **argv)
 	/*if (!strcmp(argv[1], "st") && argc == 4)
 		return sorting_goods(argv[2], argv[3], goods, &n);*/
 	//if (!strcmp(argv[1], "ft") && argc == 4)
-		return find_goods(/*argv[2]*/"D:\\in.txt", /*argv[3]*/"D:\\out.txt");
+		return find_goods(argv[2], argv[3], goods, &n);
 	/*if (!strcmp(argv[1], "at") && argc == 3)
 		return add_good(argv[2]);*/
 	return UNKNOWN_PARAMETERS;
