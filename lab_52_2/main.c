@@ -131,13 +131,13 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 	information new_good;
 	int count = 0;
 	for (int i = 0; i <= LEN_NAME + 2; i++)
-			new_good.name[i] = '\0';
+		new_good.name[i] = '\0';
 	if (!fgets(new_good.name, LEN_NAME + 2, stdin))
-			return INCORRECT_INPUT;
+		return INCORRECT_INPUT;
 	if (new_good.name[strlen(new_good.name) - 1] != '\n')
 		return INCORRECT_INPUT;
 	for (int i = 0; i <= LEN_MANUFACTURER + 2; i++)
-			new_good.manufacturer[i] = '\0';
+		new_good.manufacturer[i] = '\0';
 	count++;
 	for (int i = 0; new_good.name[i] != '\0'; i++)
 		if (new_good.name[i] == '\n')
@@ -177,11 +177,11 @@ int main(int argc, char **argv)
 {
 	information goods[LEN_STRUCT];
 	int n = 0;
-	/*if (!strcmp(argv[1], "st") && argc == 4)
-		return sorting_goods(argv[2], argv[3], goods, &n);*/
-	/*if (!strcmp(argv[1], "ft") && argc == 4)
-		return find_goods(argv[2], argv[3], goods, &n);*/
-	//if (!strcmp(argv[1], "at") && argc == 3)
-		return add_good(argv[2]/*"D:\\in.txt"*/, goods, &n);
+	if (!strcmp(argv[1], "st") && argc == 4)
+		return sorting_goods(argv[2], argv[3], goods, &n);
+	if (!strcmp(argv[1], "ft") && argc == 4)
+		return find_goods(argv[2], argv[3], goods, &n);
+	if (!strcmp(argv[1], "at") && argc == 3)
+		return add_good(argv[2], goods, &n);
 	return UNKNOWN_PARAMETERS;
 }
