@@ -7,6 +7,7 @@
 #define LEN_NAME 30
 #define LEN_MANUFACTURER 15
 #define LEN_STRUCT 100
+#pragma pack(push, 1)
 typedef struct
 {
 	char name[LEN_NAME + 1];
@@ -14,6 +15,7 @@ typedef struct
 	uint32_t cost;
 	uint32_t amount;
 } information;
+#pragma pack(pop)
 int read_goods(FILE *file, information goods[LEN_STRUCT], int *n)
 {
 	for (int i = 0; i < LEN_STRUCT; i++)
