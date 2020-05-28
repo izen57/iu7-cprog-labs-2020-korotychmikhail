@@ -155,7 +155,7 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 	if (fscanf(stdin, "%u\n", &new_good.cost) != 1)
 		return INCORRECT_INPUT;
 	count++;
-	if (fscanf(stdin, "%u", &new_good.amount) != 1)
+	if (fscanf(stdin, "%u\n", &new_good.amount) != 1)
 		return INCORRECT_INPUT;
 	count++;
 	if (count / 4 != 1)
