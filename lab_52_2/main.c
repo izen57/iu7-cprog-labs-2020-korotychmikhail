@@ -150,7 +150,7 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 		return INCORRECT_INPUT;
 	int flag = 0;
 	for (int i = 0; i < *n - 1; i++)
-		if ((new_good.cost < goods[i].cost && new_good.cost > goods[i + 1].cost) || (new_good.cost == goods[i].cost && new_good.amount <= goods[i].amount && new_good.cost == goods[i + 1].cost && new_good.amount >= goods[i + 1].amount))
+		if ((new_good.cost < goods[i].cost && new_good.cost > goods[i + 1].cost) || (new_good.cost == goods[i].cost && new_good.amount <= goods[i].amount) || (new_good.cost == goods[i + 1].cost && new_good.amount >= goods[i + 1].amount))
 		{
 			shift(goods, i + 1, n);
 			goods[i + 1] = new_good;
