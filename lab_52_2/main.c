@@ -30,17 +30,17 @@ int read_goods(FILE *file, information goods[LEN_STRUCT], int *n)
 		if (goods[i].name[LEN_NAME + 1] != '\0')
 			return INCORRECT_INPUT;
 		(*n)++;
-		for (int j = 0; goods[i].name[j] != '\0'; j++)
+		/*for (int j = 0; goods[i].name[j] != '\0'; j++)
 			if (goods[i].name[j] == '\n')
-				goods[i].name[j] = '\0';
+				goods[i].name[j] = '\0';*/
 		if (!fgets(goods[i].manufacturer, LEN_MANUFACTURER + 2, file))
 			return INCORRECT_INPUT;
 		if (goods[i].manufacturer[LEN_MANUFACTURER + 1] != '\0')
 			return INCORRECT_INPUT;
 		(*n)++;
-		for (int j = 0; goods[i].manufacturer[j] != '\0'; j++)
+		/*for (int j = 0; goods[i].manufacturer[j] != '\0'; j++)
 			if (goods[i].manufacturer[j] == '\n')
-				goods[i].manufacturer[j] = '\0';
+				goods[i].manufacturer[j] = '\0';*/
 		if (fscanf(file, "%u\n", &goods[i].cost) != 1)
 			return INCORRECT_INPUT;
 		(*n)++;
@@ -89,7 +89,7 @@ int sorting_goods(char *input_path, char *output_path, information goods[LEN_STR
 	}
 	while (flag);
 	for (int i = 0; i < *n; i++)
-		fprintf(output_file, "%s\n%s\n%u\n%u\n", goods[i].name, goods[i].manufacturer, goods[i].cost, goods[i].amount);
+		fprintf(output_file, "%s%s%u\n%u\n", goods[i].name, goods[i].manufacturer, goods[i].cost, goods[i].amount);
 	fclose(input_file);
 	fclose(output_file);
 	return SUCCESS;
@@ -107,7 +107,7 @@ int find_goods(char *input_path, char *substr, information goods[LEN_STRUCT], in
 			if (!memcmp(p_str, substr, sizeof(*substr)))
 			{
 				count++;
-				printf("%s\n%s\n%u\n%u\n", goods[i].name, goods[i].manufacturer, goods[i].cost, goods[i].amount);
+				printf("%s%s%u\n%u\n", goods[i].name, goods[i].manufacturer, goods[i].cost, goods[i].amount);
 				break;
 			}
 	fclose(input_file);
@@ -168,7 +168,7 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 			break;
 		}
 	for (int i = 0; i < *n; i++)
-		fprintf(inout_file, "%s\n%s\n%u\n%u\n", goods[i].name, goods[i].manufacturer, goods[i].cost, goods[i].amount);
+		fprintf(inout_file, "%s%s%u\n%u\n", goods[i].name, goods[i].manufacturer, goods[i].cost, goods[i].amount);
 	fclose(inout_file);
 	return SUCCESS;
 }
