@@ -27,7 +27,7 @@ int read_goods(FILE *file, information goods[LEN_STRUCT], int *n)
 	{
 		if (!fgets(goods[i].name, LEN_NAME + 2, file))
 			return INCORRECT_INPUT;
-		if (goods[i].name[strlen(goods[i].name) - 1] != '\n')
+		if (goods[i].name[LEN_NAME + 1] != '\0')
 			return INCORRECT_INPUT;
 		(*n)++;
 		for (int j = 0; goods[i].name[j] != '\0'; j++)
@@ -35,7 +35,7 @@ int read_goods(FILE *file, information goods[LEN_STRUCT], int *n)
 				goods[i].name[j] = '\0';
 		if (!fgets(goods[i].manufacturer, LEN_MANUFACTURER + 2, file))
 			return INCORRECT_INPUT;
-		if (goods[i].manufacturer[strlen(goods[i].manufacturer) - 1] != '\n')
+		if (goods[i].manufacturer[LEN_MANUFACTURER + 1] != '\0')
 			return INCORRECT_INPUT;
 		(*n)++;
 		for (int j = 0; goods[i].manufacturer[j] != '\0'; j++)
@@ -136,7 +136,7 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 		new_good.name[i] = '\0';
 	if (!fgets(new_good.name, LEN_NAME + 2, stdin))
 		return INCORRECT_INPUT;
-	if (new_good.name[strlen(new_good.name) - 1] != '\n')
+	if (new_good.name[LEN_NAME + 1] != '\0')
 		return INCORRECT_INPUT;
 	for (int i = 0; i <= LEN_MANUFACTURER + 2; i++)
 		new_good.manufacturer[i] = '\0';
@@ -146,7 +146,7 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 			new_good.name[i] = '\0';
 	if (!fgets(new_good.manufacturer, LEN_MANUFACTURER + 2, stdin))
 		return INCORRECT_INPUT;
-	if (new_good.manufacturer[strlen(new_good.manufacturer) - 1] != '\n')
+	if (new_good.manufacturer[LEN_MANUFACTURER + 1] != '\0')
 		return INCORRECT_INPUT;
 	count++;
 	for (int i = 0; new_good.manufacturer[i] != '\0'; i++)
