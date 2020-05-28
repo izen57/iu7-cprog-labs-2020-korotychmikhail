@@ -108,6 +108,7 @@ int find_goods(char *input_path, char *substr, information goods[LEN_STRUCT], in
 			{
 				count++;
 				printf("%s\n%s\n%u\n%u\n", goods[i].name, goods[i].manufacturer, goods[i].cost, goods[i].amount);
+				break;
 			}
 	fclose(input_file);
 	if (!count)
@@ -127,6 +128,7 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 		return INCORRECT_INPUT;
 	if (read_goods(inout_file, goods, n))
 		return INCORRECT_INPUT;
+	fclose(inout_file);
 	inout_file = fopen(input_output_file, "w");
 	information new_good;
 	int count = 0;
@@ -159,17 +161,14 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 	if (count / 4 != 1)
 		return INCORRECT_INPUT;
 	for (int i = 0; i < *n - 1; i++)
-	{
 		if (new_good.cost < goods[i].cost && new_good.cost > goods[i + 1].cost)
 		{
 			shift(goods, i + 1, n);
 			goods[i + 1] = new_good;
 			break;
 		}
-	}
 	for (int i = 0; i < *n; i++)
 		fprintf(inout_file, "%s\n%s\n%u\n%u\n", goods[i].name, goods[i].manufacturer, goods[i].cost, goods[i].amount);
-	rewind(inout_file);
 	fclose(inout_file);
 	return SUCCESS;
 }
