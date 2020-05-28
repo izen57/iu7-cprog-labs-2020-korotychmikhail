@@ -7,7 +7,6 @@
 #define LEN_NAME 30
 #define LEN_MANUFACTURER 15
 #define LEN_STRUCT 100
-#pragma pack(push, 1)
 typedef struct
 {
 	char name[LEN_NAME + 1];
@@ -15,7 +14,6 @@ typedef struct
 	uint32_t cost;
 	uint32_t amount;
 } information;
-#pragma pack(pop)
 int read_goods(FILE *file, information goods[LEN_STRUCT], int *n)
 {
 	for (int i = 0; i < LEN_STRUCT; i++)
@@ -134,9 +132,9 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 		return INCORRECT_INPUT;
 	if (new_good.name[LEN_NAME + 1] != '\0')
 		return INCORRECT_INPUT;
+	count++;
 	for (int i = 0; i <= LEN_MANUFACTURER + 2; i++)
 		new_good.manufacturer[i] = '\0';
-	count++;
 	if (!fgets(new_good.manufacturer, LEN_MANUFACTURER + 2, stdin))
 		return INCORRECT_INPUT;
 	if (new_good.manufacturer[LEN_MANUFACTURER + 1] != '\0')
@@ -175,6 +173,8 @@ int main(int argc, char **argv)
 {
 	information goods[LEN_STRUCT];
 	int n = 0;
+	if (!argv[1])
+		return UNKNOWN_PARAMETERS;
 	if (!strcmp(argv[1], "st") && argc == 4)
 		return sorting_goods(argv[2], argv[3], goods, &n);
 	if (!strcmp(argv[1], "ft") && argc == 4)
