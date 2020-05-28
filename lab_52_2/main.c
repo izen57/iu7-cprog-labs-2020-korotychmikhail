@@ -6,7 +6,7 @@
 #define UNKNOWN_PARAMETERS 53
 #define LEN_NAME 30
 #define LEN_MANUFACTURER 15
-#define LEN_STRUCT 2
+#define LEN_STRUCT 100
 typedef struct
 {
 	char name[LEN_NAME + 1];
