@@ -141,17 +141,17 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 	for (int i = 0; i <= LEN_MANUFACTURER + 2; i++)
 		new_good.manufacturer[i] = '\0';
 	count++;
-	for (int i = 0; new_good.name[i] != '\0'; i++)
+	/*for (int i = 0; new_good.name[i] != '\0'; i++)
 		if (new_good.name[i] == '\n')
-			new_good.name[i] = '\0';
+			new_good.name[i] = '\0';*/
 	if (!fgets(new_good.manufacturer, LEN_MANUFACTURER + 2, stdin))
 		return INCORRECT_INPUT;
 	if (new_good.manufacturer[LEN_MANUFACTURER + 1] != '\0')
 		return INCORRECT_INPUT;
 	count++;
-	for (int i = 0; new_good.manufacturer[i] != '\0'; i++)
+	/*for (int i = 0; new_good.manufacturer[i] != '\0'; i++)
 		if (new_good.manufacturer[i] == '\n')
-			new_good.manufacturer[i] = '\0';
+			new_good.manufacturer[i] = '\0';*/
 	if (fscanf(stdin, "%u\n", &new_good.cost) != 1)
 		return INCORRECT_INPUT;
 	count++;
