@@ -148,8 +148,6 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 	count++;
 	if (count / 4 != 1)
 		return INCORRECT_INPUT;
-	if (new_good.cost < goods[*n - 1].cost)
-		goods[(*n)++] = new_good;
 	for (int i = 0; i < *n - 1; i++)
 	{
 		if ((new_good.cost < goods[i].cost && new_good.cost > goods[i + 1].cost) || (new_good.cost > goods[i].cost && i == 0))
@@ -159,6 +157,8 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 		}
 		break;
 	}
+	if (new_good.cost < goods[*n - 1].cost)
+		goods[(*n)++] = new_good;
 	for (int i = 0; i < *n; i++)
 		fprintf(inout_file, "%s%s%u\n%u\n", goods[i].name, goods[i].manufacturer, goods[i].cost, goods[i].amount);
 	fclose(inout_file);
