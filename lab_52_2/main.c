@@ -30,17 +30,11 @@ int read_goods(FILE *file, information goods[LEN_STRUCT], int *n)
 		if (goods[i].name[LEN_NAME + 1] != '\0')
 			return INCORRECT_INPUT;
 		(*n)++;
-		/*for (int j = 0; goods[i].name[j] != '\0'; j++)
-			if (goods[i].name[j] == '\n')
-				goods[i].name[j] = '\0';*/
 		if (!fgets(goods[i].manufacturer, LEN_MANUFACTURER + 2, file))
 			return INCORRECT_INPUT;
 		if (goods[i].manufacturer[LEN_MANUFACTURER + 1] != '\0')
 			return INCORRECT_INPUT;
 		(*n)++;
-		/*for (int j = 0; goods[i].manufacturer[j] != '\0'; j++)
-			if (goods[i].manufacturer[j] == '\n')
-				goods[i].manufacturer[j] = '\0';*/
 		if (fscanf(file, "%u\n", &goods[i].cost) != 1)
 			return INCORRECT_INPUT;
 		(*n)++;
@@ -104,7 +98,7 @@ int find_goods(char *input_path, char *substr, information goods[LEN_STRUCT], in
 	int count = 0;
 	for (int i = 0; i < *n; i++)
 		for (char *p_str = goods[i].name; *p_str != '\0'; p_str++)
-			if (!memcmp(p_str, substr, sizeof(*substr)))
+			if (!strcmp(p_str, substr))
 			{
 				count++;
 				printf("%s%s%u\n%u\n", goods[i].name, goods[i].manufacturer, goods[i].cost, goods[i].amount);
@@ -141,21 +135,15 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 	for (int i = 0; i <= LEN_MANUFACTURER + 2; i++)
 		new_good.manufacturer[i] = '\0';
 	count++;
-	/*for (int i = 0; new_good.name[i] != '\0'; i++)
-		if (new_good.name[i] == '\n')
-			new_good.name[i] = '\0';*/
 	if (!fgets(new_good.manufacturer, LEN_MANUFACTURER + 2, stdin))
 		return INCORRECT_INPUT;
 	if (new_good.manufacturer[LEN_MANUFACTURER + 1] != '\0')
 		return INCORRECT_INPUT;
 	count++;
-	/*for (int i = 0; new_good.manufacturer[i] != '\0'; i++)
-		if (new_good.manufacturer[i] == '\n')
-			new_good.manufacturer[i] = '\0';*/
 	if (fscanf(stdin, "%u\n", &new_good.cost) != 1)
 		return INCORRECT_INPUT;
 	count++;
-	if (fscanf(stdin, "%u\n", &new_good.amount) != 1)
+	if (fscanf(stdin, "%u", &new_good.amount) != 1)
 		return INCORRECT_INPUT;
 	count++;
 	if (count / 4 != 1)
