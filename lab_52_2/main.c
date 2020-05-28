@@ -156,7 +156,7 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 			goods[i + 1] = new_good;
 		}
 		else if (new_good.cost < goods[i].cost && i == *n - 1)
-			goods[++(*n)] = new_good;
+			goods[(*n)++] = new_good;
 		break;
 	}
 	for (int i = 0; i < *n; i++)
