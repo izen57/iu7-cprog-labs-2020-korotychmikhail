@@ -148,15 +148,15 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 	count++;
 	if (count / 4 != 1)
 		return INCORRECT_INPUT;
+	if (new_good.cost <= goods[*n - 1].cost)
+		goods[(*n)++] = new_good;
 	for (int i = 0; i < *n - 1; i++)
 	{
-		if ((new_good.cost < goods[i].cost && new_good.cost > goods[i + 1].cost) || (new_good.cost > goods[i].cost && i == 0))
+		if ((new_good.cost <= goods[i].cost && new_good.cost > goods[i + 1].cost) || (new_good.cost >= goods[i].cost && i == 0))
 		{
 			shift(goods, i + 1, n);
 			goods[i + 1] = new_good;
 		}
-		else if (new_good.cost < goods[i].cost && i == *n - 1)
-			goods[(*n)++] = new_good;
 		break;
 	}
 	for (int i = 0; i < *n; i++)
