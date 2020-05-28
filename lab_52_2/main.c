@@ -98,7 +98,7 @@ int find_goods(char *input_path, char *substr, information goods[LEN_STRUCT], in
 	int count = 0;
 	for (int i = 0; i < *n; i++)
 		for (char *p_str = goods[i].name; *p_str != '\0'; p_str++)
-			if (!strcmp(p_str, substr))
+			if (!memcmp(p_str, substr, sizeof(*substr)))
 			{
 				count++;
 				printf("%s%s%u\n%u\n", goods[i].name, goods[i].manufacturer, goods[i].cost, goods[i].amount);
