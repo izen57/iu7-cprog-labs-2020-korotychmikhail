@@ -9,8 +9,8 @@
 #define LEN_STRUCT 100
 typedef struct
 {
-	char name[LEN_NAME + 2];
-	char manufacturer[LEN_MANUFACTURER + 2];
+	char name[LEN_NAME];
+	char manufacturer[LEN_MANUFACTURER];
 	uint32_t cost;
 	uint32_t amount;
 } information;
