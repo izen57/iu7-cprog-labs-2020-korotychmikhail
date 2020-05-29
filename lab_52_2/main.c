@@ -44,7 +44,8 @@ int read_goods(FILE *file, information goods[LEN_STRUCT], int *n)
 	}
 	if (*n % 4)
 		return INCORRECT_INPUT;
-	if (*n / 4 > LEN_STRUCT)
+	*n /= 4;
+	if (*n > LEN_STRUCT)
 		return INCORRECT_INPUT;
 	rewind(file);
 	return SUCCESS;
