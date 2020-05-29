@@ -128,7 +128,7 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 	fclose(inout_file);
 	inout_file = fopen(input_output_file, "w");
 	information new_good;
-	int count = 0;
+	/*int count = 0;
 	for (int i = 0; i <= LEN_NAME + 3; i++)
 		new_good.name[i] = '\0';
 	if (!fgets(new_good.name, LEN_NAME + 3, stdin))
@@ -150,6 +150,8 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 		return INCORRECT_INPUT;
 	count++;
 	if (count / 4 != 1)
+		return INCORRECT_INPUT;*/
+	if (scanf("%s %s %u %u", new_good.name, new_good.manufacturer, &new_good.cost, &new_good.amount) != 4)
 		return INCORRECT_INPUT;
 	int flag = 0;
 	for (int i = 0; i < *n - 1; i++)
