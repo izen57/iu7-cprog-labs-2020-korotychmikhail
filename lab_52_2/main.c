@@ -14,17 +14,19 @@ typedef struct
 	uint32_t cost;
 	uint32_t amount;
 } information;
-int read_goods(FILE *file, information goods[LEN_STRUCT], int *n)
+int read_goods(FILE *file, information goods[LEN_STRUCT], int *n, int k)
 {
 	for (int i = 0; i < LEN_STRUCT; i++)
 	{
-		for (int j = 0; j <= LEN_NAME + 3; j++)
+		for (int j = 0; j <= LEN_NAME + 2; j++)
 			goods[i].name[j] = '\0';
-		for (int j = 0; j <= LEN_MANUFACTURER + 3; j++)
+		for (int j = 0; j <= LEN_MANUFACTURER + 2; j++)
 			goods[i].manufacturer[j] = '\0';
 	}
 	for (int i = 0; !feof(file); i++)
 	{
+		/*if (!k)
+		{*/
 		if (!fgets(goods[i].name, LEN_NAME + 3, file))
 			return INCORRECT_INPUT;
 		if (goods[i].name[LEN_NAME + 2] != '\0')
@@ -42,6 +44,21 @@ int read_goods(FILE *file, information goods[LEN_STRUCT], int *n)
 			return INCORRECT_INPUT;
 		(*n)++;
 	}
+	/*else
+	{
+		fgets(goods[i].name, LEN_NAME + 3, file);
+		if (goods[i].name[LEN_NAME + 2] != '\0')
+			return INCORRECT_INPUT;
+		(*n)++;
+		fgets(goods[i].manufacturer, LEN_MANUFACTURER + 3, file);
+		if (goods[i].manufacturer[LEN_MANUFACTURER + 2] != '\0')
+			return INCORRECT_INPUT;
+		(*n)++;
+		fscanf(file, "%u\n", &goods[i].cost);
+		(*n)++;
+		fscanf(file, "%u\n", &goods[i].amount);
+		(*n)++;
+	}*/
 	if (*n % 4)
 		return INCORRECT_INPUT;
 	*n /= 4;
@@ -58,7 +75,7 @@ int sorting_goods(char *input_path, char *output_path, information goods[LEN_STR
 	FILE *output_file = fopen(output_path, "w");
 	if (!output_file)
 		return INCORRECT_INPUT;
-	if (read_goods(input_file, goods, n))
+	if (read_goods(input_file, goods, n, 0))
 		return INCORRECT_INPUT;
 	int flag;
 	information temp;
@@ -96,7 +113,7 @@ int find_goods(char *input_path, char *substr, information goods[LEN_STRUCT], in
 	FILE *input_file = fopen(input_path, "r");
 	if (!input_file)
 		return INCORRECT_INPUT;
-	if (read_goods(input_file, goods, n))
+	if (read_goods(input_file, goods, n, 0))
 		return INCORRECT_INPUT;
 	int count = 0;
 	for (int i = 0; i < *n; i++)
@@ -123,20 +140,20 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 	FILE *inout_file = fopen(input_output_file, "r");
 	if (!inout_file)
 		return INCORRECT_INPUT;
-	if (read_goods(inout_file, goods, n))
+	if (read_goods(inout_file, goods, n, 1))
 		return INCORRECT_INPUT;
 	fclose(inout_file);
 	inout_file = fopen(input_output_file, "w");
 	information new_good;
 	int count = 0;
-	for (int i = 0; i <= LEN_NAME + 3; i++)
+	for (int i = 0; i <= LEN_NAME + 2; i++)
 		new_good.name[i] = '\0';
 	if (!fgets(new_good.name, LEN_NAME + 3, stdin))
 		return INCORRECT_INPUT;
 	if (new_good.name[LEN_NAME + 2] != '\0')
 		return INCORRECT_INPUT;
 	count++;
-	for (int i = 0; i <= LEN_MANUFACTURER + 3; i++)
+	for (int i = 0; i <= LEN_MANUFACTURER + 2; i++)
 		new_good.manufacturer[i] = '\0';
 	if (!fgets(new_good.manufacturer, LEN_MANUFACTURER + 3, stdin))
 		return INCORRECT_INPUT;
