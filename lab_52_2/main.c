@@ -9,8 +9,8 @@
 #define LEN_STRUCT 100
 typedef struct
 {
-	char name[LEN_NAME];
-	char manufacturer[LEN_MANUFACTURER];
+	char name[LEN_NAME + 1];
+	char manufacturer[LEN_MANUFACTURER + 1];
 	uint32_t cost;
 	uint32_t amount;
 } information;
@@ -67,14 +67,14 @@ int sorting_goods(char *input_path, char *output_path, information goods[LEN_STR
 		flag = 0;
 		for (int i = 1; i < *n; i++)
 		{
-			if (goods[i].cost > goods[i - 1].cost)
+			if (goods[i].cost >= goods[i - 1].cost)
 			{
 				temp = goods[i];
 				goods[i] = goods[i - 1];
 				goods[i - 1] = temp;
 				flag = 1;
 			}
-			if (goods[i].cost == goods[i - 1].cost && goods[i].amount > goods[i - 1].amount)
+			if (goods[i].cost == goods[i - 1].cost && goods[i].amount >= goods[i - 1].amount)
 			{
 				temp = goods[i];
 				goods[i] = goods[i - 1];
