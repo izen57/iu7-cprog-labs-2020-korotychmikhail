@@ -168,7 +168,7 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 		fclose(inout_file);
 		return SUCCESS;
 	}
-	else if ((new_good.cost > goods[0].cost) || (new_good.cost == goods[0].cost && new_good.amount >= goods[0].amount))
+	else if ((new_good.cost > goods[0].cost) || (new_good.cost == goods[0].cost && new_good.amount > goods[0].amount))
 	{
 		shift(goods, 0, n);
 		goods[0] = new_good;
