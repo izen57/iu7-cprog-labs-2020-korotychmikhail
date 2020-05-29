@@ -25,8 +25,6 @@ int read_goods(FILE *file, information goods[LEN_STRUCT], int *n, int k)
 	}
 	for (int i = 0; !feof(file); i++)
 	{
-		/*if (!k)
-		{*/
 		if (!fgets(goods[i].name, LEN_NAME + 3, file))
 			return INCORRECT_INPUT;
 		if (goods[i].name[LEN_NAME + 2] != '\0')
@@ -44,21 +42,6 @@ int read_goods(FILE *file, information goods[LEN_STRUCT], int *n, int k)
 			return INCORRECT_INPUT;
 		(*n)++;
 	}
-	/*else
-	{
-		fgets(goods[i].name, LEN_NAME + 3, file);
-		if (goods[i].name[LEN_NAME + 2] != '\0')
-			return INCORRECT_INPUT;
-		(*n)++;
-		fgets(goods[i].manufacturer, LEN_MANUFACTURER + 3, file);
-		if (goods[i].manufacturer[LEN_MANUFACTURER + 2] != '\0')
-			return INCORRECT_INPUT;
-		(*n)++;
-		fscanf(file, "%u\n", &goods[i].cost);
-		(*n)++;
-		fscanf(file, "%u\n", &goods[i].amount);
-		(*n)++;
-	}*/
 	if (*n % 4)
 		return INCORRECT_INPUT;
 	*n /= 4;
@@ -163,7 +146,7 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 	if (fscanf(stdin, "%u\n", &new_good.cost) != 1)
 		return INCORRECT_INPUT;
 	count++;
-	if (fscanf(stdin, "%u", &new_good.amount) != 1)
+	if (fscanf(stdin, "%u\n", &new_good.amount) != 1)
 		return INCORRECT_INPUT;
 	count++;
 	if (count / 4 != 1)
