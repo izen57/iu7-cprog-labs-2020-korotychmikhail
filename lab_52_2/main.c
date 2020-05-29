@@ -170,17 +170,23 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 	{
 		shift(goods, 0, n);
 		goods[0] = new_good;
+		for (int i = 0; i < *n; i++)
+		fprintf(inout_file, "%s%s%u\n%u\n", goods[i].name, goods[i].manufacturer, goods[i].cost, goods[i].amount);
+		fclose(inout_file);
+		return SUCCESS;
 	}
 	else if ((new_good.cost < goods[*n - 1].cost) || (new_good.cost == goods[*n - 1].cost && new_good.amount <= goods[*n - 1].amount))
+	{
 		goods[(*n)++] = new_good;
 	/*else if (new_good.cost == goods[*n - 1].cost && new_good.amount >= goods[*n - 1].amount)
 	{
 		shift(goods, *n - 1, n);
 		goods[*n - 2] = new_good;
 	}*/
-	for (int i = 0; i < *n; i++)
-		fprintf(inout_file, "%s%s%u\n%u\n", goods[i].name, goods[i].manufacturer, goods[i].cost, goods[i].amount);
-	fclose(inout_file);
+		for (int i = 0; i < *n; i++)
+			fprintf(inout_file, "%s%s%u\n%u\n", goods[i].name, goods[i].manufacturer, goods[i].cost, goods[i].amount);
+		fclose(inout_file);
+	}
 	return SUCCESS;
 }
 int main(int argc, char **argv)
