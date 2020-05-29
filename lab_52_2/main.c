@@ -67,14 +67,14 @@ int sorting_goods(char *input_path, char *output_path, information goods[LEN_STR
 		flag = 0;
 		for (int i = 1; i < *n; i++)
 		{
-			if (goods[i].cost >= goods[i - 1].cost)
+			if (goods[i].cost > goods[i - 1].cost)
 			{
 				temp = goods[i];
 				goods[i] = goods[i - 1];
 				goods[i - 1] = temp;
 				flag = 1;
 			}
-			if (goods[i].cost == goods[i - 1].cost && goods[i].amount >= goods[i - 1].amount)
+			if (goods[i].cost == goods[i - 1].cost && goods[i].amount > goods[i - 1].amount)
 			{
 				temp = goods[i];
 				goods[i] = goods[i - 1];
