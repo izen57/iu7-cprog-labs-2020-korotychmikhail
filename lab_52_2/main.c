@@ -27,7 +27,7 @@ int read_goods(FILE *file, information goods[LEN_STRUCT], int *n)
 	{
 		if (!fgets(goods[i].name, LEN_NAME + 3, file))
 			return INCORRECT_INPUT;
-		if (goods[i].name[LEN_NAME] + 2 != '\0')
+		if (goods[i].name[LEN_NAME + 2] != '\0')
 			return INCORRECT_INPUT;
 		(*n)++;
 		if (!fgets(goods[i].manufacturer, LEN_MANUFACTURER + 3, file))
