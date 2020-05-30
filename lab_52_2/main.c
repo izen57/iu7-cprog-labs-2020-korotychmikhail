@@ -124,7 +124,6 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 	fclose(inout_file);
 	inout_file = fopen(input_output_file, "w");
 	information new_good;
-	int count = 0;
 	for (int i = 0; i <= LEN_NAME + 2; i++)
 		new_good.name[i] = '\0';
 	fgets(new_good.name, LEN_NAME + 2, stdin);
