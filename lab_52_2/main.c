@@ -121,6 +121,8 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 		return INCORRECT_INPUT;
 	if (read_goods(inout_file, goods, n) && *n)
 		return INCORRECT_INPUT;
+	if (*n == LEN_STRUCT)
+		return INCORRECT_INPUT;
 	fclose(inout_file);
 	inout_file = fopen(input_output_file, "w");
 	information new_good;
