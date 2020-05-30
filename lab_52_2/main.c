@@ -141,28 +141,31 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 	if (fscanf(stdin, "%u", &new_good.amount) != 1)
 		return INCORRECT_INPUT;
 	int flag = 0;
-	for (int i = 0; i < *n - 1; i++)
-		if ((new_good.cost < goods[i].cost && new_good.cost > goods[i + 1].cost) || (new_good.cost == goods[i].cost && new_good.amount <= goods[i].amount) || (new_good.cost == goods[i + 1].cost && new_good.amount >= goods[i + 1].amount))
+	for (int i = 0; i < *n; i++)
+		if (goods[i].cost < new_good.cost || (goods[i].cost == new_good.cost && goods[i].amount <= new_good.amount))
 		{
-			shift(goods, i + 1, n);
-			goods[i + 1] = new_good;
+			shift(goods, i, n);
+			goods[i] = new_good;
 			flag = 1;
 			break;
 		}
-	if (flag)
+	if (!flag)
 	{
-		for (int i = 0; i < *n; i++)
-			fprintf(inout_file, "%s%s%u\n%u\n", goods[i].name, goods[i].manufacturer, goods[i].cost, goods[i].amount);
-		fclose(inout_file);
-		return SUCCESS;
+		if (*n != 1)
+			goods[(*n)++] = new_good;
+		else
+		{
+			shift(goods, 1, n);
+			goods[1] = new_good;
+		}
 	}
-	else if ((new_good.cost > goods[0].cost) || (new_good.cost == goods[0].cost && new_good.amount > goods[0].amount))
+	/*else if ((new_good.cost > goods[0].cost) || (new_good.cost == goods[0].cost && new_good.amount > goods[0].amount))
 	{
 		shift(goods, 0, n);
 		goods[0] = new_good;
 	}
 	else if ((new_good.cost < goods[*n - 1].cost) || (new_good.cost == goods[*n - 1].cost && new_good.amount <= goods[*n - 1].amount))
-		goods[(*n)++] = new_good;
+		goods[(*n)++] = new_good;*/
 	/*else if (new_good.cost == goods[*n - 1].cost && new_good.amount >= goods[*n - 1].amount)
 	{
 		shift(goods, *n - 1, n);
