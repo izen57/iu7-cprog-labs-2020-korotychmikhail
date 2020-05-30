@@ -27,13 +27,13 @@ int read_goods(FILE *file, information goods[LEN_STRUCT], int *n)
 	{
 		if (!fgets(goods[i].name, LEN_NAME + 2, file))
 			return INCORRECT_INPUT;
-		/*if (goods[i].name[strlen(goods[i].name)] >= LEN_NAME + 1)
-			return INCORRECT_INPUT;*/
+		if (goods[i].name[strlen(goods[i].name)] >= LEN_NAME + 1)
+			return INCORRECT_INPUT;
 		(*n)++;
 		if (!fgets(goods[i].manufacturer, LEN_MANUFACTURER + 2, file))
 			return INCORRECT_INPUT;
-		/*if (goods[i].manufacturer[strlen(goods[i].manufacturer)] >= LEN_MANUFACTURER + 1)
-			return INCORRECT_INPUT;*/
+		if (goods[i].manufacturer[strlen(goods[i].manufacturer)] >= LEN_MANUFACTURER + 1)
+			return INCORRECT_INPUT;
 		(*n)++;
 		if (fscanf(file, "%u\n", &goods[i].cost) != 1)
 			return INCORRECT_INPUT;
@@ -46,7 +46,7 @@ int read_goods(FILE *file, information goods[LEN_STRUCT], int *n)
 	rewind(file);
 	return SUCCESS;
 }
-/*int sorting_goods(char *input_path, char *output_path, information goods[LEN_STRUCT], int *n)
+int sorting_goods(char *input_path, char *output_path, information goods[LEN_STRUCT], int *n)
 {
 	FILE *input_file = fopen(input_path, "r");
 	if (!input_file)
@@ -107,7 +107,7 @@ int find_goods(char *input_path, char *substr, information goods[LEN_STRUCT], in
 	if (!count)
 		return INCORRECT_INPUT;
 	return SUCCESS;
-}*/
+}
 void shift(information goods[LEN_STRUCT], int pos, int *n)
 {
 	(*n)++;
@@ -127,13 +127,13 @@ int add_good(char *input_output_file, information goods[LEN_STRUCT], int *n)
 	for (int i = 0; i <= LEN_NAME + 2; i++)
 		new_good.name[i] = '\0';
 	fgets(new_good.name, LEN_NAME + 2, stdin);
-	/*if (new_good.name[strlen(new_good.name)] >= LEN_NAME + 1)
-		return INCORRECT_INPUT;*/
+	if (new_good.name[strlen(new_good.name)] >= LEN_NAME + 1)
+		return INCORRECT_INPUT;
 	for (int i = 0; i <= LEN_MANUFACTURER + 2; i++)
 		new_good.manufacturer[i] = '\0';
 	fgets(new_good.manufacturer, LEN_MANUFACTURER + 2, stdin);
-	/*if (new_good.manufacturer[strlen(new_good.manufacturer)] >= LEN_MANUFACTURER + 1)
-		return INCORRECT_INPUT;*/
+	if (new_good.manufacturer[strlen(new_good.manufacturer)] >= LEN_MANUFACTURER + 1)
+		return INCORRECT_INPUT;
 	if (fscanf(stdin, "%u\n", &new_good.cost) != 1)
 		return INCORRECT_INPUT;
 	if (fscanf(stdin, "%u", &new_good.amount) != 1)
@@ -175,13 +175,13 @@ int main(int argc, char **argv)
 {
 	information goods[LEN_STRUCT];
 	int n = 0;
-	/*if (!argv[1])
+	if (!argv[1])
 		return UNKNOWN_PARAMETERS;
 	if (!strcmp(argv[1], "st") && argc == 4)
 		return sorting_goods(argv[2], argv[3], goods, &n);
 	if (!strcmp(argv[1], "ft") && argc == 4)
 		return find_goods(argv[2], argv[3], goods, &n);
-	if (!strcmp(argv[1], "at") && argc == 3)*/
+	if (!strcmp(argv[1], "at") && argc == 3)
 		return add_good(argv[2], goods, &n);
 	return UNKNOWN_PARAMETERS;
 }
