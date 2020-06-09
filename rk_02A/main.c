@@ -1,4 +1,4 @@
-//прочитать список структур в массив, вывести на экран. Самый молодой город
+//прочитать список структур в массив, вывести на экран. Самый старый город
 #include <stdio.h>
 #include <string.h>
 typedef struct
@@ -39,17 +39,17 @@ int read_file(FILE *file, information *cities, int *count)
 		*count /= 3;
 	return 0;
 }
-information young_city(information *cities, int count)
+information old_city(information *cities, int count)
 {
-	information young_city = cities[0];
-	int minyear = cities[0].year;
+	information old_city = cities[0];
+	int maxyear = cities[0].year;
 	for (int i = 1; i < count; i++)
-		if (cities[i].year < minyear)
+		if (cities[i].year > maxyear)
 		{
-			minyear = cities[i].year;
-			young_city = cities[i];
+			maxyear = cities[i].year;
+			old_city = cities[i];
 		}
-	return young_city;
+	return old_city;
 }
 void print_res(FILE *file, information result)
 {
@@ -63,7 +63,7 @@ int process(FILE *fin, FILE *fout)
 	zeroing(cities);
 	if (read_file(fin, cities, &count))
 		return 1;
-	information result = young_city(cities, count);
+	information result = old_city(cities, count);
 	print_res(fout, result);
 	return 0;
 }
