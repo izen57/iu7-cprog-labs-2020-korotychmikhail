@@ -7,7 +7,7 @@
 #define LEN_NAME 25
 typedef struct
 {
-	char name[LEN_NAME + 2];
+	char name[LEN_NAME + 1];
 	float weight;
 	float volume;
 } information;
@@ -36,10 +36,10 @@ unsigned short int find_stuff(FILE *file, char *string, information *stuff, unsi
 {
 	if (!strcmp(string, "ALL"))
 		for (unsigned short int i = 0; i < n; i++)
-			printf("%s%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
+			printf("%s%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 	for (unsigned short int i = 0; i < n; i++)
 		if (strstr(stuff[i].name, string))
-			printf("%s%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
+			printf("%s%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 	fclose(file);
 	return SUCCESS;
 }
@@ -61,7 +61,7 @@ unsigned short int sort_stuff(FILE *file, information *stuff, unsigned short int
 	}
 	while (flag);
 	for (unsigned short int i = 0; i < n; i++)
-		printf("%s%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
+		printf("%s%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 	fclose(file);
 	return SUCCESS;
 }
