@@ -69,7 +69,7 @@ int main(int argc, char **argv)
 {
 	if (argc != 2 || argc != 3 || !argv[1])
 		return ARGS_ERROR;
-	FILE *file = fopen("test.txt", "r");
+	FILE *file = fopen(argv[1], "r");
 	if (!file)
 		return INCORRECT_INPUT;
 	information stuff[LEN_STRUCT];
