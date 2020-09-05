@@ -13,7 +13,7 @@ typedef struct
 } information;
 unsigned short int read_stuff(FILE *file, information *stuff, unsigned short int *n)
 {
-	for (unsigned short int i = 0; i <= LEN_STRUCT + 2; i++)
+	for (unsigned short int i = 0; i < LEN_STRUCT; i++)
 		for (unsigned short int j = 0; j <= LEN_NAME + 2; j++)
 			stuff[i].name[j] = '\0';
 	for (unsigned short int i =0; !feof(file); i++)
