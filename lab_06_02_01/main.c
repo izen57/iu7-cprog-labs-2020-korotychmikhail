@@ -37,9 +37,10 @@ unsigned short int find_stuff(FILE *file, char *string, information *stuff, unsi
 	if (!strcmp(string, "ALL"))
 		for (unsigned short int i = 0; i < n; i++)
 			printf("%s%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
-	for (unsigned short int i = 0; i < n; i++)
-		if (strstr(stuff[i].name, string))
-			printf("%s%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
+	else
+		for (unsigned short int i = 0; i < n; i++)
+			if (strstr(stuff[i].name, string))
+				printf("%s%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 	fclose(file);
 	return SUCCESS;
 }
@@ -67,17 +68,32 @@ unsigned short int sort_stuff(FILE *file, information *stuff, unsigned short int
 }
 int main(int argc, char **argv)
 {
-	if (argc != 2 || argc != 3 || !argv[1])
+	if ((argc != 2 && argc != 3) || !argv[1])
+	{
+		//printf("1\n");
 		return ARGS_ERROR;
+	}
 	FILE *file = fopen(argv[1], "r");
 	if (!file)
+	{
+		//printf("2\n");
 		return INCORRECT_INPUT;
+	}
 	information stuff[LEN_STRUCT];
 	unsigned short int n;
 	if (read_stuff(file, stuff, &n))
+	{
+		//printf("3\n");
 		return INCORRECT_INPUT;
+	}
 	if (argc == 2)
+	{
+		//printf("4\n");
 		return sort_stuff(file, stuff, n);
+	}
 	if (argc == 3)
+	{
+		//printf("5\n");
 		return find_stuff(file, argv[2], stuff, n);
+	}
 }
