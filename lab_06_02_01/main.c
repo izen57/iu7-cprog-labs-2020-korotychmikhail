@@ -20,6 +20,8 @@ unsigned short int read_stuff(FILE *file, information *stuff, unsigned short int
 	{
 		if (!fgets(stuff[i].name, LEN_NAME + 2, file))
 			return INCORRECT_INPUT;
+		if (stuff[i].name[strlen(stuff[i].name)] >= LEN_NAME + 1)
+			return INCORRECT_INPUT;
 		(*n)++;
 		if (fscanf(file, "%f\n", &stuff[i].weight) != 1)
 			return INCORRECT_INPUT;
