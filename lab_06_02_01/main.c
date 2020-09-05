@@ -70,30 +70,30 @@ int main(int argc, char **argv)
 {
 	if ((argc != 2 && argc != 3) || !argv[1])
 	{
-		//printf("1\n");
+		printf("1\n");
 		return ARGS_ERROR;
 	}
 	FILE *file = fopen(argv[1], "r");
 	if (!file)
 	{
-		//printf("2\n");
+		printf("2\n");
 		return INCORRECT_INPUT;
 	}
 	information stuff[LEN_STRUCT];
 	unsigned short int n;
 	if (read_stuff(file, stuff, &n))
 	{
-		//printf("3\n");
+		printf("3\n");
 		return INCORRECT_INPUT;
 	}
 	if (argc == 2)
 	{
-		//printf("4\n");
+		printf("4\n");
 		return sort_stuff(file, stuff, n);
 	}
 	if (argc == 3)
 	{
-		//printf("5\n");
+		printf("5\n");
 		return find_stuff(file, argv[2], stuff, n);
 	}
 }
