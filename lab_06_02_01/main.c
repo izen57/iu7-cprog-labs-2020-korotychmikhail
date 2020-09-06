@@ -11,12 +11,12 @@ typedef struct
 	float weight;
 	float volume;
 } information;
-unsigned short int read_stuff(FILE *file, information *stuff, unsigned short int *n)
+int read_stuff(FILE *file, information *stuff, int *n)
 {
-	for (unsigned short int i = 0; i < LEN_STRUCT; i++)
-		for (unsigned short int j = 0; j < LEN_NAME + 2; j++)
+	for (int i = 0; i < LEN_STRUCT; i++)
+		for (int j = 0; j < LEN_NAME + 2; j++)
 			stuff[i].name[j] = '\0';
-	for (unsigned short int i = 0; !feof(file); i++)
+	for (int i = 0; !feof(file); i++)
 	{
 		if (!fgets(stuff[i].name, LEN_NAME + 2, file))
 			return INCORRECT_INPUT;
@@ -37,26 +37,26 @@ unsigned short int read_stuff(FILE *file, information *stuff, unsigned short int
 	rewind(file);
 	return SUCCESS;
 }
-unsigned short int find_stuff(FILE *file, char *string, information *stuff, unsigned short int n)
+int find_stuff(FILE *file, char *string, information *stuff, int n)
 {
 	if (!strcmp(string, "ALL"))
-		for (unsigned short int i = 0; i < n; i++)
+		for (int i = 0; i < n; i++)
 			printf("%s%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 	else
-		for (unsigned short int i = 0; i < n; i++)
+		for (int i = 0; i < n; i++)
 			if (!memcmp(stuff[i].name, string, sizeof(*string)))
 				printf("%s%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 	fclose(file);
 	return SUCCESS;
 }
-unsigned short int sort_stuff(FILE *file, information *stuff, unsigned short int n)
+int sort_stuff(FILE *file, information *stuff, int n)
 {
 	int flag;
 	information temp;
 	do
 	{
 		flag = 0;
-		for (unsigned short int i = 1; i < n; i++)
+		for (int i = 1; i < n; i++)
 			if (stuff[i].weight / stuff[i].volume < stuff[i - 1].weight / stuff[i - 1].volume)
 			{
 				temp = stuff[i];
@@ -66,7 +66,7 @@ unsigned short int sort_stuff(FILE *file, information *stuff, unsigned short int
 			}
 	}
 	while (flag);
-	for (unsigned short int i = 0; i < n; i++)
+	for (int i = 0; i < n; i++)
 		printf("%s%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 	fclose(file);
 	return SUCCESS;
@@ -85,7 +85,7 @@ int main(int argc, char **argv)
 		return INCORRECT_INPUT;
 	}
 	information stuff[LEN_STRUCT];
-	unsigned short int n;
+	int n;
 	if (read_stuff(file, stuff, &n))
 	{
 		//printf("3\n");
