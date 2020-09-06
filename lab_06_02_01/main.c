@@ -20,8 +20,9 @@ int read_stuff(FILE *file, information *stuff, int *n)
 	{
 		if (!fgets(stuff[i].name, LEN_NAME + 1, file))
 			return INCORRECT_INPUT;
-		/*if (stuff[i].name[strlen(stuff[i].name)] >= LEN_NAME + 1)
-			return INCORRECT_INPUT;*/
+		for (int j = 0; j < strlen(stuff[i].name); j++)
+			if (stuff[i].name[j] == '\n')
+				stuff[i].name[j] = '\0';
 		(*n)++;
 		if (fscanf(file, "%f\n", &stuff[i].weight) != 1)
 			return INCORRECT_INPUT;
@@ -39,7 +40,7 @@ int read_stuff(FILE *file, information *stuff, int *n)
 }
 int find_stuff(FILE *file, char *string, information *stuff, int n)
 {
-	if (!memcmp(string, "ALL", sizeof("ALL")))
+	if (!strcmp(string, "ALL"))
 		for (int i = 0; i < n; i++)
 			printf("%s%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 	else
