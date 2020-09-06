@@ -42,11 +42,19 @@ int find_stuff(FILE *file, char *string, information *stuff, int n)
 {
 	if (!strcmp(string, "ALL"))
 		for (int i = 0; i < n; i++)
+		{
+			if (i == n - 1)
+				printf("%s\n%.6f\n%.6f\n\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 			printf("%s\n%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
+		}
 	else
 		for (int i = 0; i < n; i++)
 			if (!memcmp(stuff[i].name, string, sizeof(*string)))
+			{
+				if (i == n - 1)
+					printf("%s\n%.6f\n%.6f\n\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 				printf("%s\n%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
+			}
 	fclose(file);
 	return SUCCESS;
 }
@@ -68,7 +76,11 @@ int sort_stuff(FILE *file, information *stuff, int n)
 	}
 	while (flag);
 	for (int i = 0; i < n; i++)
+	{
+		if (i == n - 1)
+			printf("%s\n%.6f\n%.6f\n\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 		printf("%s\n%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
+	}
 	fclose(file);
 	return SUCCESS;
 }
