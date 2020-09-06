@@ -31,10 +31,12 @@ int read_stuff(FILE *file, information *stuff, int *n)
 			return INCORRECT_INPUT;
 		(*n)++;
 	}
-	if (*n % 3 || !*n)
+	if (*n % 3)
 		return INCORRECT_INPUT;
 	else
 		*n /= 3;
+	if (!*n)
+		printf("\n");
 	rewind(file);
 	return SUCCESS;
 }
