@@ -30,7 +30,7 @@ unsigned short int read_stuff(FILE *file, information *stuff, unsigned short int
 			return INCORRECT_INPUT;
 		(*n)++;
 	}
-	if (*n / 3)
+	if (*n % 3)
 		return INCORRECT_INPUT;
 	else
 		*n /= 3;
