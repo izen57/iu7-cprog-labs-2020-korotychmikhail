@@ -57,7 +57,7 @@ unsigned short int sort_stuff(FILE *file, information *stuff, unsigned short int
 	{
 		flag = 0;
 		for (unsigned short int i = 1; i < n; i++)
-			if (stuff[i].weight / stuff[i].volume > stuff[i - 1].weight / stuff[i - 1].volume)
+			if (stuff[i].weight / stuff[i].volume < stuff[i - 1].weight / stuff[i - 1].volume)
 			{
 				temp = stuff[i];
 				stuff[i] = stuff[i - 1];
