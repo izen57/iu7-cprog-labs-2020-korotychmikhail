@@ -41,7 +41,7 @@ unsigned short int find_stuff(FILE *file, char *string, information *stuff, unsi
 			printf("%s%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 	else
 		for (unsigned short int i = 0; i < n; i++)
-			if (strstr(stuff[i].name, string))
+			if (!memcmp(stuff[i].name, string, sizeof(*string)))
 				printf("%s%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 	fclose(file);
 	return SUCCESS;
