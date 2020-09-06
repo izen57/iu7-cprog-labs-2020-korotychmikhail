@@ -39,7 +39,7 @@ int read_stuff(FILE *file, information *stuff, int *n)
 }
 int find_stuff(FILE *file, char *string, information *stuff, int n)
 {
-	if (!strcmp(string, "ALL"))
+	if (!memcmp(string, "ALL", sizeof("ALL")))
 		for (int i = 0; i < n; i++)
 			printf("%s%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 	else
