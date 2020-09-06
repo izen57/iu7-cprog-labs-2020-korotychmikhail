@@ -7,7 +7,7 @@
 #define LEN_NAME 25
 typedef struct
 {
-	char name[LEN_NAME + 2];
+	char name[LEN_NAME + 1];
 	float weight;
 	float volume;
 } information;
@@ -18,10 +18,10 @@ int read_stuff(FILE *file, information *stuff, int *n)
 			stuff[i].name[j] = '\0';
 	for (int i = 0; !feof(file); i++)
 	{
-		if (!fgets(stuff[i].name, LEN_NAME + 2, file))
+		if (!fgets(stuff[i].name, LEN_NAME + 1, file))
 			return INCORRECT_INPUT;
-		if (stuff[i].name[strlen(stuff[i].name)] >= LEN_NAME + 1)
-			return INCORRECT_INPUT;
+		/*if (stuff[i].name[strlen(stuff[i].name)] >= LEN_NAME + 1)
+			return INCORRECT_INPUT;*/
 		(*n)++;
 		if (fscanf(file, "%f\n", &stuff[i].weight) != 1)
 			return INCORRECT_INPUT;
