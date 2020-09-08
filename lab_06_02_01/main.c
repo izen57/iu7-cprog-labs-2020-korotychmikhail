@@ -35,8 +35,8 @@ int read_stuff(FILE *file, information *stuff, int *n)
 		return INCORRECT_INPUT;
 	else
 		*n /= 3;
-	/*if (!*n)
-		printf("\n");*/
+	if (!*n)
+		return INCORRECT_INPUT;
 	rewind(file);
 	return SUCCESS;
 }
@@ -46,17 +46,9 @@ int find_stuff(FILE *file, char *string, information *stuff, int n)
 		for (int i = 0; i < n; i++)
 			printf("%s\n%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 	else
-	{
-		int flag = 0;
 		for (int i = 0; i < n; i++)
 			if (!memcmp(stuff[i].name, string, sizeof(*string)))
-			{
-				flag = 1;
 				printf("%s\n%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
-			}
-		if (!flag)
-			printf("\n");
-	}
 	fclose(file);
 	return SUCCESS;
 }
@@ -86,30 +78,30 @@ int main(int argc, char **argv)
 {
 	if ((argc != 2 && argc != 3) || !argv[1])
 	{
-		//printf("1\n");
+		printf("1\n");
 		return ARGS_ERROR;
 	}
 	FILE *file = fopen(argv[1], "r");
 	if (!file)
 	{
-		//printf("2\n");
+		printf("2\n");
 		return INCORRECT_INPUT;
 	}
 	information stuff[LEN_STRUCT];
 	int n = 0;
 	if (read_stuff(file, stuff, &n))
 	{
-		//printf("3\n");
+		printf("3\n");
 		return INCORRECT_INPUT;
 	}
 	if (argc == 2)
 	{
-		//printf("4\n");
+		printf("4\n");
 		return sort_stuff(file, stuff, n);
 	}
 	if (argc == 3)
 	{
-		//printf("5\n");
+		printf("5\n");
 		return find_stuff(file, argv[2], stuff, n);
 	}
 }
