@@ -31,12 +31,10 @@ int read_stuff(FILE *file, information *stuff, int *n)
 			return INCORRECT_INPUT;
 		(*n)++;
 	}
-	if (*n % 3)
+	if (*n % 3 || !*n)
 		return INCORRECT_INPUT;
 	else
 		*n /= 3;
-	if (!*n)
-		return INCORRECT_INPUT;
 	rewind(file);
 	return SUCCESS;
 }
@@ -81,6 +79,12 @@ int main(int argc, char **argv)
 		//printf("1\n");
 		return ARGS_ERROR;
 	}
+	for (int i = 0; i < strlen(argv[1]); i++)
+		if (argv[1][i] != '.')
+		{
+			strcat(argv[1], ".txt");
+			break;
+		}
 	FILE *file = fopen(argv[1], "r");
 	if (!file)
 	{
