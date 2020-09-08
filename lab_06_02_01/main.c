@@ -31,9 +31,9 @@ int read_stuff(FILE *file, information *stuff, int *n)
 			return INCORRECT_INPUT;
 		(*n)++;
 	}
-	/*if (*n % 3)
+	if (*n % 3)
 		return INCORRECT_INPUT;
-	else*/
+	else
 		*n /= 3;
 	if (!*n)
 		return INCORRECT_INPUT;
