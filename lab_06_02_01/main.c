@@ -42,13 +42,19 @@ int read_stuff(FILE *file, information *stuff, int *n)
 }
 int find_stuff(FILE *file, char *string, information *stuff, int n)
 {
+	int flag = 0;
 	if (!strcmp(string, "ALL"))
 		for (int i = 0; i < n; i++)
 			printf("%s\n%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 	else
 		for (int i = 0; i < n; i++)
 			if (!memcmp(stuff[i].name, string, sizeof(*string)))
+			{
+				flag = 1;
 				printf("%s\n%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
+			}
+	if (!flag)
+		return INCORRECT_INPUT;
 	fclose(file);
 	return SUCCESS;
 }
