@@ -35,8 +35,8 @@ int read_stuff(FILE *file, information *stuff, int *n)
 		return INCORRECT_INPUT;
 	else
 		*n /= 3;
-	if (!*n)
-		return INCORRECT_INPUT;
+	/*if (!*n)
+		return INCORRECT_INPUT;*/
 	rewind(file);
 	return SUCCESS;
 }
