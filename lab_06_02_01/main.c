@@ -35,8 +35,8 @@ int read_stuff(FILE *file, information *stuff, int *n)
 		return INCORRECT_INPUT;
 	else*/
 		*n /= 3;
-	/*if (!*n)
-		return INCORRECT_INPUT;*/
+	if (!*n)
+		return INCORRECT_INPUT;
 	rewind(file);
 	return SUCCESS;
 }
@@ -76,11 +76,11 @@ int sort_stuff(FILE *file, information *stuff, int n)
 }
 int main(int argc, char **argv)
 {
-	/*if ((argc != 2 && argc != 3) || !argv[1])
+	if ((argc != 2 && argc != 3) || !argv[1])
 	{
 		//printf("1\n");
 		return ARGS_ERROR;
-	}*/
+	}
 	FILE *file = fopen(argv[1], "r");
 	if (!file)
 	{
