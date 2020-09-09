@@ -13,9 +13,9 @@ typedef struct
 } information;
 int read_stuff(FILE *file, information *stuff, int *n)
 {
-	for (int i = 0; i < LEN_STRUCT; i++)
+	/*for (int i = 0; i < LEN_STRUCT; i++)
 		for (int j = 0; j < LEN_NAME + 2; j++)
-			stuff[i].name[j] = '\0';
+			stuff[i].name[j] = '\0';*/
 	for (int i = 0; !feof(file); i++)
 	{
 		if (!fgets(stuff[i].name, LEN_NAME + 1, file))
@@ -40,11 +40,9 @@ int read_stuff(FILE *file, information *stuff, int *n)
 }
 int find_stuff(FILE *file, char *string, information *stuff, int n)
 {
-	if (!strchr(string, '\0'))
-		return INCORRECT_INPUT;
 	if (!strcmp(string, "ALL"))
 		for (int i = 0; i < n; i++)
-			printf("%s\n%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
+			printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 	else
 	{
 		int flag = 0;
@@ -52,7 +50,7 @@ int find_stuff(FILE *file, char *string, information *stuff, int n)
 			if (!memcmp(stuff[i].name, string, sizeof(*string)))
 			{
 				flag = 1;
-				printf("%s\n%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
+				printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 			}
 		if (!flag)
 			return INCORRECT_INPUT;
@@ -78,7 +76,7 @@ int sort_stuff(FILE *file, information *stuff, int n)
 	}
 	while (flag);
 	for (int i = 0; i < n; i++)
-		printf("%s\n%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
+		printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 	fclose(file);
 	return SUCCESS;
 }
