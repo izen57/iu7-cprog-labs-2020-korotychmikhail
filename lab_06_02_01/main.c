@@ -32,7 +32,10 @@ int read_stuff(FILE *file, information *stuff, int *n)
 		(*n)++;
 	}
 	if (*n % 3 || !*n)
+	{
+		printf("\n");
 		return INCORRECT_INPUT;
+	}
 	else
 		*n /= 3;
 	rewind(file);
@@ -54,7 +57,7 @@ int find_stuff(FILE *file, char *string, information *stuff, int n)
 			}
 		if (!flag)
 		{
-			printf("\n");
+			//printf("\n");
 			return INCORRECT_INPUT;
 		}
 	}
