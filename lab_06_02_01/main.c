@@ -57,7 +57,7 @@ int find_stuff(FILE *file, char *string, information *stuff, int n)
 			}
 		if (!flag)
 		{
-			//printf("\n");
+			printf("\n");
 			return INCORRECT_INPUT;
 		}
 	}
