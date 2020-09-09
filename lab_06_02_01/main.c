@@ -44,9 +44,20 @@ int find_stuff(FILE *file, char *string, information *stuff, int n)
 		for (int i = 0; i < n; i++)
 			printf("%s\n%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 	else
+	{
+		int flag = 0;
 		for (int i = 0; i < n; i++)
 			if (!memcmp(stuff[i].name, string, sizeof(*string)))
+			{
+				flag = 1;
 				printf("%s\n%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
+			}
+		if (!flag)
+		{
+			printf("\n");
+			return INCORRECT_INPUT;
+		}
+	}
 	fclose(file);
 	return SUCCESS;
 }
@@ -79,12 +90,6 @@ int main(int argc, char **argv)
 		//printf("1\n");
 		return ARGS_ERROR;
 	}
-	for (int i = 0; i < strlen(argv[1]); i++)
-		if (argv[1][i] != '.')
-		{
-			strcat(argv[1], ".txt");
-			break;
-		}
 	FILE *file = fopen(argv[1], "r");
 	if (!file)
 	{
