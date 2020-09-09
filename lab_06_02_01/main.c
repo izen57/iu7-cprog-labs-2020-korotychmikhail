@@ -32,10 +32,7 @@ int read_stuff(FILE *file, information *stuff, int *n)
 		(*n)++;
 	}
 	if (*n % 3 || !*n)
-	{
-		printf("\n");
 		return INCORRECT_INPUT;
-	}
 	else
 		*n /= 3;
 	rewind(file);
@@ -45,22 +42,11 @@ int find_stuff(FILE *file, char *string, information *stuff, int n)
 {
 	if (!strcmp(string, "ALL"))
 		for (int i = 0; i < n; i++)
-			printf("%s\n%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
+			printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 	else
-	{
-		int flag = 0;
 		for (int i = 0; i < n; i++)
 			if (!memcmp(stuff[i].name, string, sizeof(*string)))
-			{
-				flag = 1;
-				printf("%s\n%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
-			}
-		if (!flag)
-		{
-			printf("\n");
-			return INCORRECT_INPUT;
-		}
-	}
+				printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 	fclose(file);
 	return SUCCESS;
 }
