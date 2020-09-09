@@ -25,10 +25,10 @@ int read_stuff(FILE *file, information *stuff, int *n)
 			return 1;
 		stuff[i].name[strcspn(stuff[i].name, "\n")] = '\0';
 		(*n)++;
-		if (fscanf(file, "%f\n", &stuff[i].weight) != 1)
+		if (fscanf(file, "%f\n", &stuff[i].weight) != 1 || stuff[i].weight <= 0)
 			return INCORRECT_INPUT;
 		(*n)++;
-		if (fscanf(file, "%f\n", &stuff[i].volume) != 1)
+		if (fscanf(file, "%f\n", &stuff[i].volume) != 1 || stuff[i].volume <= 0)
 			return INCORRECT_INPUT;
 		(*n)++;
 	}
