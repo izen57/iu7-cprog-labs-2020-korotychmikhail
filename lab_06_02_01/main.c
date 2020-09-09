@@ -48,7 +48,7 @@ int find_stuff(FILE *file, char *string, information *stuff, int n)
 	{
 		int flag = 0;
 		for (int i = 0; i < n; i++)
-			if (strstr(stuff[i].name, string))
+			if (strstr(stuff[i].name, string) == stuff[i].name)
 			{
 				flag = 1;
 				printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
