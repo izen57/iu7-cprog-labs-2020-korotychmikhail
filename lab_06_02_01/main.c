@@ -21,9 +21,9 @@ int read_stuff(FILE *file, information *stuff, int *n)
 	{
 		if (!fgets(stuff[i].name, LEN_NAME + 2, file))
 			return INCORRECT_INPUT;
+		stuff[i].name[strcspn(stuff[i].name, "\n")] = '\0';
 		if (strlen(stuff[i].name) >= LEN_NAME + 1)
 			return 1;
-		stuff[i].name[strcspn(stuff[i].name, "\n")] = '\0';
 		(*n)++;
 		if (fscanf(file, "%f\n", &stuff[i].weight) != 1 || stuff[i].weight <= 0)
 			return INCORRECT_INPUT;
