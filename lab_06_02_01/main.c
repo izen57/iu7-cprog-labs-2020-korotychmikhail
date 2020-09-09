@@ -40,6 +40,8 @@ int read_stuff(FILE *file, information *stuff, int *n)
 }
 int find_stuff(FILE *file, char *string, information *stuff, int n)
 {
+	if (!strchr(string, '\0'))
+		return INCORRECT_INPUT;
 	if (!strcmp(string, "ALL"))
 		for (int i = 0; i < n; i++)
 			printf("%s\n%.6f\n%.6f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
