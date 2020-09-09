@@ -20,6 +20,8 @@ int read_stuff(FILE *file, information *stuff, int *n)
 	{
 		if (!fgets(stuff[i].name, LEN_NAME + 1, file))
 			return INCORRECT_INPUT;
+		if (stuff[i].name[strlen(stuff[i].name)] >= LEN_NAME + 1)
+			return INCORRECT_INPUT;
 		for (int j = 0; j < strlen(stuff[i].name); j++)
 			if (stuff[i].name[j] == '\n')
 				stuff[i].name[j] = '\0';
