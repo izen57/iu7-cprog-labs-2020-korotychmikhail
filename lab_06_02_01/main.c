@@ -18,10 +18,10 @@ int read_stuff(FILE *file, information *stuff, int *n)
 			stuff[i].name[j] = '\0';*/
 	for (int i = 0; !feof(file); i++)
 	{
-		if (!fgets(stuff[i].name, LEN_NAME + 1, file))
+		if (!fgets(stuff[i].name, LEN_NAME + 2, file))
 			return INCORRECT_INPUT;
-		if (stuff[i].name[strlen(stuff[i].name)] >= LEN_NAME + 1)
-			return INCORRECT_INPUT;
+		if (strlen(stuff[i].name) >= LEN_NAME + 1)
+			return 1;
 		for (int j = 0; j < strlen(stuff[i].name); j++)
 			if (stuff[i].name[j] == '\n')
 				stuff[i].name[j] = '\0';
@@ -49,7 +49,7 @@ int find_stuff(FILE *file, char *string, information *stuff, int n)
 	{
 		int flag = 0;
 		for (int i = 0; i < n; i++)
-			if (!memcmp(stuff[i].name, string, sizeof(*string)))
+			if (strstr(stuff[i].name, string))
 			{
 				flag = 1;
 				printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
