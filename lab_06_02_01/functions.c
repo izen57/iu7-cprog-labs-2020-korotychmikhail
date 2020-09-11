@@ -1,6 +1,6 @@
-#include "functions.h"
 #include <stdio.h>
 #include <string.h>
+#include "functions.h"
 int read_stuff(FILE *file, information *stuff, int *n)
 {
 	for (int i = 0; !feof(file); i++)
