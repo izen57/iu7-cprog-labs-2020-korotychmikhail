@@ -20,7 +20,7 @@ int main(int argc, char **argv)
 				else if (argc == 3)
 				{
 					error = find_and_print_stuff(argv[2], stuff, n);
-					if (error == 1)
+					if (error == 2)
 					{
 						for (int i = 0; i < n; i++)
 							printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].volume, stuff[i].weight);
