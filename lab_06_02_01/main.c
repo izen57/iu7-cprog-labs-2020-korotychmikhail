@@ -23,6 +23,7 @@ int main(int argc, char **argv)
 					if (error == 1)
 						for (int i = 0; i < n; i++)
 							printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].volume, stuff[i].weight);
+					error = 0;
 				}
 			}
 		}
