@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "functions.h"
-int sort_stuff(FILE *file, information *stuff, int n)
+void sort_stuff(information *stuff, int n)
 {
 	int flag;
 	information temp;
@@ -17,8 +17,4 @@ int sort_stuff(FILE *file, information *stuff, int n)
 			}
 	}
 	while (flag);
-	for (int i = 0; i < n; i++)
-		printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
-	fclose(file);
-	return SUCCESS;
 }

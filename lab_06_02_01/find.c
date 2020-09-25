@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 #include "functions.h"
-int find_stuff(FILE *file, char *string, information *stuff, int n)
+int find_and_print_stuff(char *string, information *stuff, int n)
 {
+	int key = 0;
 	if (!strcmp(string, "ALL"))
-		for (int i = 0; i < n; i++)
-			printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
+		key++;
 	else
 	{
 		int flag = 0;
@@ -16,8 +16,7 @@ int find_stuff(FILE *file, char *string, information *stuff, int n)
 				printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 			}
 		if (!flag)
-			return INCORRECT_INPUT;
+			key = 2;
 	}
-	fclose(file);
-	return SUCCESS;
+	return key;
 }
