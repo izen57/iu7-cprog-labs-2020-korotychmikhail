@@ -5,7 +5,7 @@ int find_and_print_stuff(char *string, information *stuff, int n)
 {
 	int key = 0;
 	if (!strcmp(string, "ALL"))
-		key++;
+		key = 1;
 	else
 	{
 		int flag = 0;

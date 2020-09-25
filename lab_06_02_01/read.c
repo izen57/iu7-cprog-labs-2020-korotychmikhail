@@ -23,7 +23,7 @@ int read_stuff(FILE *file, information *stuff, int *n)
 		if (!error)
 			(*n)++;
 	}
-	if (*n % 3 || !*n || *n > LEN_STRUCT * 3)
+	if (*n % 3 || !*n || *n > LEN_STRUCT * 3 || error)
 		error++;
 	else
 		*n /= 3;
