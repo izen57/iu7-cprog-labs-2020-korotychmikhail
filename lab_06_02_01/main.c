@@ -26,6 +26,8 @@ int main(int argc, char **argv)
 					error = 0;
 				}
 			}
+			else
+				error = 1;
 		}
 		else
 			error = 1;
