@@ -1,5 +1,10 @@
 #include <stdio.h>
 #include "functions.h"
+void print(information *stuff, int n)
+{
+	for (int i = 0; i < n; i++)
+		printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
+}
 int main(int argc, char **argv)
 {
 	int error = 0;
@@ -19,8 +24,7 @@ int main(int argc, char **argv)
 				{
 					//printf("20");
 					sort_stuff(stuff, n);
-					for (int i = 0; i < n; i++)
-						printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
+					print(stuff, n);
 					fclose(file);
 				}
 				else if (argc == 3)
@@ -30,8 +34,7 @@ int main(int argc, char **argv)
 					if (error == 1)
 					{
 						//printf("30");
-						for (int i = 0; i < n; i++)
-							printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
+						print(stuff, n);
 						error = 0;
 					}
 					fclose(file);
