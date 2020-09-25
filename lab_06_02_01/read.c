@@ -12,15 +12,15 @@ int read_stuff(FILE *file, information *stuff, int *n)
 			stuff[i].name[strcspn(stuff[i].name, "\n")] = '\0';
 		if (strlen(stuff[i].name) >= LEN_NAME + 1 || error)
 			error++;
-		if (error)
+		if (!error)
 			(*n)++;
 		if (fscanf(file, "%f\n", &stuff[i].weight) != 1 || stuff[i].weight <= 0 || error)
 			error++;
-		if (error)
+		if (!error)
 			(*n)++;
 		if (fscanf(file, "%f\n", &stuff[i].volume) != 1 || stuff[i].volume <= 0 || error)
 			error++;
-		if (error)
+		if (!error)
 			(*n)++;
 	}
 	if (*n % 3 || !*n || *n > LEN_STRUCT * 3)
