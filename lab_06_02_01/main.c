@@ -17,15 +17,19 @@ int main(int argc, char **argv)
 					sort_stuff(stuff, n);
 					fclose(file);
 				}
-				else if (argc == 3 && find_and_print_stuff(argv[2], stuff, n) == 1)
-					for (int i = 0; i < n; i++)
-						printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].volume, stuff[i].weight);
+				else if (argc == 3)
+				{
+					error = find_and_print_stuff(argv[2], stuff, n);
+					if (error == 1)
+						for (int i = 0; i < n; i++)
+							printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].volume, stuff[i].weight);
+				}
 			}
 		}
 		else
-			error++;
+			error = 1;
 	}
 	else
-		error++;
+		error = 1;
 	return error;
 }
