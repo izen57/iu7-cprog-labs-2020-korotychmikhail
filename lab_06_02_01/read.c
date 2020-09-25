@@ -6,7 +6,7 @@ int read_stuff(FILE *file, information *stuff, int *n)
 	int error = 0;
 	for (int i = 0; !feof(file); i++)
 	{
-		if (!fgets(stuff[i].name, LEN_NAME + 2, file))
+		if (!fgets(stuff[i].name, LEN_NAME + 2, file) || error)
 			error++;
 		if (!error)
 			stuff[i].name[strcspn(stuff[i].name, "\n")] = '\0';
@@ -26,9 +26,7 @@ int read_stuff(FILE *file, information *stuff, int *n)
 	if (*n % 3 || !*n || *n > LEN_STRUCT * 3)
 		error++;
 	else
-	{
 		*n /= 3;
-		rewind(file);
-	}
+	rewind(file);
 	return error;
 }
