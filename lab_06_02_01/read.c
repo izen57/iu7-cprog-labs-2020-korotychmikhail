@@ -10,8 +10,6 @@ int read_stuff(FILE *file, information *stuff, int *n)
 			error = 1;
 		if (!error)
 			stuff[i].name[strcspn(stuff[i].name, "\n")] = '\0';
-		if (stuff[i].name[LEN_NAME] != '\0' || error)
-			error = 1;
 		if (strlen(stuff[i].name) >= LEN_NAME + 1 && !error)
 			error = 1;
 		if (!error)
