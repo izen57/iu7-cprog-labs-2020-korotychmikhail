@@ -26,7 +26,9 @@ int read_stuff(FILE *file, information *stuff, int *n)
 	if (*n % 3 || !*n || *n > LEN_STRUCT * 3 || error)
 		error = 1;
 	else
+	{
 		*n /= 3;
-	rewind(file);
+		rewind(file);
+	}
 	return error;
 }
