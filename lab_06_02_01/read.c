@@ -8,10 +8,8 @@ int read_stuff(FILE *file, information *stuff, int *n)
 	{
 		if (!fgets(stuff[i].name, LEN_NAME + 2, file) || error)
 			error = 1;
-		if (!error && strlen(stuff[i].name) < LEN_NAME + 1)
+		if (!error)
 			stuff[i].name[strcspn(stuff[i].name, "\n")] = '\0';
-		else
-			error = 1;
 		if (strlen(stuff[i].name) >= LEN_NAME + 1 && !error)
 			error = 1;
 		if (!error)
