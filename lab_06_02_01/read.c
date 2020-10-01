@@ -6,6 +6,7 @@ int read_stuff(FILE *file, information *stuff, int *n)
 	int error = 0;
 	for (int i = 0; !feof(file); i++)
 	{
+		memset(stuff[i].name, '\0', LEN_NAME + 2);
 		if (!fgets(stuff[i].name, LEN_NAME + 2, file) || error)
 			error = 1;
 		if (!error)
