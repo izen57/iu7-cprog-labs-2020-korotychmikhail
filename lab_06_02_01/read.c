@@ -6,11 +6,12 @@ int read_stuff(FILE *file, information *stuff, int *n)
 	int error = 0;
 	for (int i = 0; !feof(file); i++)
 	{
+		memset(stuff[i].name, '\0', LEN_NAME + 1);
 		if (!fgets(stuff[i].name, LEN_NAME + 2, file) || error)
 			error = 1;
 		if (!error)
 			stuff[i].name[strcspn(stuff[i].name, "\n")] = '\0';
-		if (strlen(stuff[i].name) >= LEN_NAME + 1 && !error)
+		if (strlen(stuff[i].name) >= LEN_NAME + 1 || !strlen(stuff[i].name))
 			error = 1;
 		if (!error)
 			(*n)++;
