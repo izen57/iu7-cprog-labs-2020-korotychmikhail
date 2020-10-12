@@ -78,7 +78,7 @@ void mysort(void *base, size_t num, size_t size, int (*compare)(const void *, co
 	for (int *i = base; i < end; i++)
 	{
 		for (int *j = base; j < end - *i - 1; j++)
-			if ((*compare)(i, j) > 0)
+			if ((*compare)(i, j))
 			{
 				*temp = *j;
 				*j = *i;
