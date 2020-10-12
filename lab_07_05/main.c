@@ -72,13 +72,13 @@ int compare(const void *i, const void *j)
 	const int *a = i, *b = j;
 	return *a - *b;
 }
-void mysort(void *base, size_t num, size_t size, int (*compare)(const void *, const void *))
+void mysort(void *base, size_t num, size_t size, int compare(const void *, const void *))
 {
 	int *temp = NULL, *end = (int *)base + num * size, k = 0;
 	for (int *i = base; i < end; i++)
 	{
 		for (int *j = base; j < end - *i - 1; j++)
-			if ((*compare)(i, j) < 0)
+			if (compare(i, j) < 0)
 			{
 				*temp = *j;
 				*j = *i;
@@ -124,7 +124,7 @@ int main(int argc, char **argv)
 					}
 					if (!error)
 					{
-						mysort(newarr, count, sizeof(int), &compare);
+						mysort(newarr, count, sizeof(int), compare);
 						FILE *out_file = fopen(argv[2], "w");
 						if (out_file)
 							output(out_file, newarr, endnewarr);
