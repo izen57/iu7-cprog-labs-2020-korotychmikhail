@@ -23,7 +23,7 @@ int read_array(FILE *file, int **begin, int **end)
 		fscanf(file, "%d", *end);
 		(*end)++;
 	}
-	if (*begin != *end)
+	if (*begin == *end)
 		error = 1;
 	return error;
 }
