@@ -74,15 +74,20 @@ int compare(const void *i, const void *j)
 }
 void mysort(void *base, size_t num, size_t size, int (*compare)(const void *, const void *))
 {
-	int *temp = NULL, *end = (int *)base + num * size;
-	for (int *i = base; i < end - 1; i++)
-		for (int *j = i + 1; j < end; j++)
+	int *temp = NULL, *end = (int *)base + num * size, k = 0;
+	for (int *i = base; i < end; i++)
+	{
+		for (int *j = base; j < end - *i - 1; j++)
 			if ((*compare)(i, j) > 0)
 			{
 				*temp = *j;
 				*j = *i;
 				*i = *temp;
+				k = 1;
 			}
+		if (!k)
+			break;
+	}
 }
 void output(FILE *file, int *begin, int *end)
 {
