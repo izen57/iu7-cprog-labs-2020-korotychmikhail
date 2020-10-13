@@ -17,13 +17,13 @@ int mysort(void *base, size_t num, size_t size, int (*compare)(const void *, con
 	else
 	{
 		//printf("32\n");
-		int *temp = base, *end = (int *)base + num, *i = base, *j = base;
-		for (i = base; i < end; i++)
+		int *end = (int *)base + num, *j = base, temp;
+		for (int *i = base; i < end; i++)
 		{
-			*temp = *i;
-			for (j = i - 1; j >= (int *)base && *j  > *temp; j--)
+			temp = *i;
+			for (j = i - 1; j >= (int *)base && (*compare)(j, &temp) > 0; j--)
 				*(j + 1) = *j;
-			*(j + 1) = *temp;
+			*(j + 1) = temp;
 		}
 	}
 	return error;
