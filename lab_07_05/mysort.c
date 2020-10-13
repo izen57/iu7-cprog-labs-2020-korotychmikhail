@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "mysort.h"
+//#include "mysort.h"
 int compare(const void *i, const void *j)
 {
 	//printf("30\n");
