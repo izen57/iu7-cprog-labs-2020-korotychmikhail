@@ -20,11 +20,11 @@ int mysort(void *base, size_t num, size_t size, int (*compare)(const void *, con
 	else
 	{
 		//printf("32\n");
-		for (size_t i = 1; i < num; i++)
+		for (size_t i = 1; i < num; ++i)
 		{
 			pos = current_pos;
 			memcpy(current, current_pos, size);
-			for (int j = i; j > 0 && (*compare)(pos - size, current) > 0; j--)
+			for (int j = i; j > 0 && (*compare)(pos - size, current) > 0; --j)
 			{
 				memcpy(pos, pos - size, size);
 				pos -= size;
