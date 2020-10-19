@@ -24,7 +24,7 @@ int mysort(void *base, size_t num, size_t size, int (*compare)(const void *, con
 		{
 			pos = current_pos;
 			memcpy(current, current_pos, size);
-			for (int j = i; j > 0 && (*compare)(pos - size, current) > 0; --j)
+			for (int j = i; j > 0 && compare(pos - size, current) > 0; --j)
 			{
 				memcpy(pos, pos - size, size);
 				pos -= size;
