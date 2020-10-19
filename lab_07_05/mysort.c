@@ -1,7 +1,7 @@
-#include <stdio.h>
+//#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include "mysort.h"
+#include "mysort.h"
 int compare(const void *i, const void *j)
 {
 	//printf("30\n");
