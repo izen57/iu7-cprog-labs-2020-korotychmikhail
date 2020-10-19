@@ -12,7 +12,7 @@ int mysort(void *base, size_t num, size_t size, int (*compare)(const void *, con
 {
 	int error = 0;
 	char *current_pos = (char *)base + size, *current = malloc(size), *pos;
-	if (!base || !num || size != sizeof(int))
+	if (!base || num <= 0 || size != sizeof(int))
 	{
 		printf("31\n");
 		error = 1;
