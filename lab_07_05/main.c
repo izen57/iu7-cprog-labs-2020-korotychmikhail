@@ -64,7 +64,7 @@ int main(int argc, char **argv)
 				{
 					//printf("4\n");
 					rewind(in_file);
-					int *newarr, *pointer = arr, count = n, *endnewarr = newarr + count;
+					int *newarr, *pointer = arr, count = n, *endpointer = end, *endnewarr = newarr + count;
 					if (argc == 4)
 					{
 						//printf("5\n");
@@ -72,8 +72,9 @@ int main(int argc, char **argv)
 						{
 							//printf("6\n");
 							pointer = newarr;
+							endpointer = endpointer;
 							count = 0;
-							for (int *i = newarr; i < endnewarr; i++)
+							for (int *i = newarr; i < endnewarr; ++i)
 								count++;
 						}
 						else

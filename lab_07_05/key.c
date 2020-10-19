@@ -41,7 +41,6 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 		if (!count)
 		{
 			//printf("27\n");
-			free(pb_dst);
 			error = 1;
 		}
 		if (!error)
