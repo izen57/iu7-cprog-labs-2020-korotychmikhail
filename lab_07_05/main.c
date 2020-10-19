@@ -4,7 +4,7 @@
 #include "key.h"
 int counting_numbers(FILE *file, int *n)
 {
-	//printf("18\n");
+	printf("18\n");
 	int number, error = 0;
 	for (int i = 0; !feof(file); i++)
 	{
@@ -12,7 +12,7 @@ int counting_numbers(FILE *file, int *n)
 			(*n)++;
 		else
 		{
-			//printf("19\n");
+			printf("19\n");
 			error = 1;
 			break;
 		}
@@ -21,7 +21,7 @@ int counting_numbers(FILE *file, int *n)
 }
 int read_array(FILE *file, int **begin, int **end)
 {
-	//printf("20\n");
+	printf("20\n");
 	int error = 0;
 	while (!feof(file))
 	{
@@ -30,7 +30,7 @@ int read_array(FILE *file, int **begin, int **end)
 	}
 	if (*begin == *end)
 	{
-		//printf("21\n");
+		printf("21\n");
 		free(begin);
 		error = 1;
 	}
@@ -38,72 +38,78 @@ int read_array(FILE *file, int **begin, int **end)
 }
 void output(FILE *file, int *begin, int *end)
 {
-	//printf("33\n");
+	printf("33\n");
 	for (int *i = begin; i < end; i++)
 		fprintf(file, "%d ", *i);
 }
 int main(int argc, char **argv)
 {
-	//printf("0\n");
+	printf("0\n");
 	int error = 0;
 	if ((argc == 3 || argc == 4) && argv[1] && argv[2])
 	{
-		//printf("1\n");
+		printf("1\n");
 		FILE *in_file = fopen(argv[1], "r");
 		if (in_file)
 		{
-			//printf("2\n");
+			printf("2\n");
 			int n = 0;
 			if (!counting_numbers(in_file, &n))
 			{
-				//printf("3\n");
+				printf("3\n");
 				rewind(in_file);
 				int *arr = calloc(n, sizeof(int));
 				int *end = arr;
 				if (!read_array(in_file, &arr, &end))
 				{
-					//printf("4\n");
+					printf("4\n");
 					rewind(in_file);
 					int *newarr, *pointer = arr, count = n, *endpointer = end, *endnewarr = newarr + count;
 					if (argc == 4)
 					{
-						//printf("5\n");
+						printf("5\n");
 						if (!key(arr, end, &newarr, &endnewarr))
 						{
-							//printf("6\n");
+							printf("6\n");
 							pointer = newarr;
-							endpointer = endpointer;
+							endpointer = endnewarr;
 							count = 0;
-							for (int *i = newarr; i < endnewarr; ++i)
+							for (int *i = pointer; i < endpointer; i++)
 								count++;
 						}
 						else
 						{
-							//printf("7\n");
+							printf("7\n");
 							free(arr);
 							error = 1;
 						}
 					}
 					if (!error)
 					{
-						//printf("8\n");
+						printf("8\n");
 						if (mysort(pointer, count, sizeof(int), &compare))
 						{
-							//printf("9\n");
+							printf("9\n");
+							free(arr);
+							if (argc == 4)
+								free(newarr);
 							error = 1;
 						}
 						else
 						{
-							//printf("10\n");
+							printf("10\n");
 							FILE *out_file = fopen(argv[2], "w");
 							if (out_file)
 							{
-								//printf("11\n");
-								output(out_file, newarr, endnewarr);
+								printf("11\n");
+								output(out_file, pointer, endpointer);
+								free(arr);
+								free(newarr);
 							}
 							else
 							{
-								//printf("12\n");
+								printf("12\n");
+								free(arr);
 								error = 1;
 							}
 						}
@@ -111,28 +117,28 @@ int main(int argc, char **argv)
 				}
 				else
 				{
-					//printf("13\n");
+					printf("13\n");
 					free(arr);
 					error = 1;
 				}
 			}
 			else
 			{
-				//printf("14\n");
+				printf("14\n");
 				error = 1;
 			}
 		}
 		else
 		{
-			//printf("15\n");
+			printf("15\n");
 			error = 1;
 		}
 	}
 	else
 	{
-		//printf("16\n");
+		printf("16\n");
 		error = 1;
 	}
-	//printf("17\n");
+	printf("17\n");
 	return error;
 }
