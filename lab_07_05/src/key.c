@@ -11,7 +11,7 @@ int create_arr(int **begin, int count)
 int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 {
 	int error = 0, count = 0;
-	if (!pb_src || !pe_src || !pb_dst || !pe_dst || pb_src == pe_src)
+	if (!pb_src || !pe_src || !pb_dst || !pe_dst || pb_src >= pe_src)
 		error = 1;
 	if (!error)
 	{
