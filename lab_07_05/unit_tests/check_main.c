@@ -39,8 +39,8 @@ START_TEST(test_key_all_pointers)
 {
 	int arr[] = {89, 5, 7, 9, 7};
 	int *end = arr + 5;
-	int *newarr;
-	int rc = key(arr, end, &newarr, &newarr);
+	int *newarr, *endnewarr = newarr;
+	int rc = key(arr, end, &newarr, &endnewarr);
 	free(newarr);
 	ck_assert_int_eq(rc, 0);
 }
