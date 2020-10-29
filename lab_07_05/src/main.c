@@ -40,7 +40,7 @@ void output(FILE *file, int *begin, int *end)
 int main(int argc, char **argv)
 {
 	int error = 0;
-	if ((argc == 3 || argc == 4) && argv[1] && argv[2])
+	if ((argc == 3 || argc == 4) /*&& argv[1] && argv[2]*/)
 	{
 		FILE *in_file = fopen(argv[1], "r");
 		if (in_file)
