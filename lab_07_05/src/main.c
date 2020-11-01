@@ -54,9 +54,10 @@ int main(int argc, char **argv)
 				if (!read_array(in_file, &arr, &end))
 				{
 					fclose(in_file);
-					int *newarr, *pointer = arr, count = n, *endpointer = end, *endnewarr = newarr;
+					int *pointer = arr, count = n, *endpointer = end;
 					if (argc == 4)
 					{
+						int *newarr, *endnewarr = newarr;
 						if (!key(arr, end, &newarr, &endnewarr))
 						{
 							pointer = newarr;
@@ -77,7 +78,7 @@ int main(int argc, char **argv)
 						{
 							free(arr);
 							if (argc == 4)
-								free(newarr);
+								free(pointer);
 							error = 1;
 						}
 						else
@@ -89,7 +90,7 @@ int main(int argc, char **argv)
 								fclose(out_file);
 								free(arr);
 								if (argc == 4)
-									free(newarr);
+									free(pointer);
 							}
 							else
 							{
