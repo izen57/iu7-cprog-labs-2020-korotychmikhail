@@ -1,4 +1,3 @@
-<<<<<<< HEAD:lab_07_05/Makefile
 # Переменные
 CFLAGS = -std=c99 -Wall -Werror -pedantic -c
 S = ./src/
