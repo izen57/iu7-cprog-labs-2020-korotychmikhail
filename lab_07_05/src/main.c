@@ -40,7 +40,7 @@ void output(FILE *file, int *begin, int *end)
 int main(int argc, char **argv)
 {
 	int error = 0;
-	if ((argc == 3 || argc == 4) /*&& argv[1] && argv[2]*/)
+	if (argc == 3 || argc == 4)
 	{
 		FILE *in_file = fopen(argv[1], "r");
 		if (in_file)
@@ -53,7 +53,7 @@ int main(int argc, char **argv)
 				int *end = arr;
 				if (!read_array(in_file, &arr, &end))
 				{
-					rewind(in_file);
+					fclose(in_file);
 					int *newarr, *pointer = arr, count = n, *endpointer = end, *endnewarr = newarr;
 					if (argc == 4)
 					{
@@ -86,6 +86,7 @@ int main(int argc, char **argv)
 							if (out_file)
 							{
 								output(out_file, pointer, endpointer);
+								fclose(out_file);
 								free(arr);
 								free(newarr);
 							}

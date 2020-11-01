@@ -13,7 +13,6 @@ int mysort(void *base, size_t num, size_t size, int (*compare)(const void *, con
 	if (!base || num < 2 || size != sizeof(int))
 		error = 1;
 	else
-	{
 		for (size_t i = 1; i < num; ++i)
 		{
 			pos = current_pos;
@@ -26,7 +25,6 @@ int mysort(void *base, size_t num, size_t size, int (*compare)(const void *, con
 			memcpy(pos, current, size);
 			current_pos += size;
 		}
-	}
 	free(current);
 	return error;
 }
