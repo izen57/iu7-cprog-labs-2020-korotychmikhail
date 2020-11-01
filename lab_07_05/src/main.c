@@ -88,7 +88,8 @@ int main(int argc, char **argv)
 								output(out_file, pointer, endpointer);
 								fclose(out_file);
 								free(arr);
-								free(newarr);
+								if (argc == 4)
+									free(newarr);
 							}
 							else
 							{
