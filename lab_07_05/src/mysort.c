@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../inc/mysort.h"
+#define SUCCESS 0
+#define EMPTY_RESULT 5
 int compare(const void *i, const void *j)
 {
 	const int *a = i, *b = j;
@@ -8,10 +10,10 @@ int compare(const void *i, const void *j)
 }
 int mysort(void *base, size_t num, size_t size, int (*compare)(const void *, const void *))
 {
-	int error = 0;
+	int error = SUCCESS;
 	char *current_pos = (char *)base + size, *current = malloc(size), *pos;
 	if (!base || num < 2)
-		error = 1;
+		error = EMPTY_RESULT;
 	else
 		for (size_t i = 1; i < num; ++i)
 		{

@@ -14,7 +14,7 @@ int compare_arrs(int *arr1, int len1, int *arr2, int len2)
 START_TEST(test_key_four_null_pointers)
 {
 	int rc = key(NULL, NULL, NULL, NULL);
-	ck_assert_int_eq(rc, 1);
+	ck_assert_int_eq(rc, 4);
 }
 END_TEST
 START_TEST(test_key_three_null_pointers)
@@ -22,7 +22,7 @@ START_TEST(test_key_three_null_pointers)
 	int *arr = calloc(5, sizeof(int));
 	int rc = key(arr, NULL, NULL, NULL);
 	free(arr);
-	ck_assert_int_eq(rc, 1);
+	ck_assert_int_eq(rc, 4);
 }
 END_TEST
 START_TEST(test_key_two_null_pointers)
@@ -31,7 +31,7 @@ START_TEST(test_key_two_null_pointers)
 	int *end = arr + 5;
 	int rc = key(arr, end, NULL, NULL);
 	free(arr);
-	ck_assert_int_eq(rc, 1);
+	ck_assert_int_eq(rc, 4);
 }
 END_TEST
 START_TEST(test_key_one_null_pointer)
@@ -41,7 +41,7 @@ START_TEST(test_key_one_null_pointer)
 	int *newarr;
 	int rc = key(arr, end, &newarr, NULL);
 	free(arr);
-	ck_assert_int_eq(rc, 1);
+	ck_assert_int_eq(rc, 4);
 }
 END_TEST
 START_TEST(test_key_all_pointers)
@@ -64,7 +64,7 @@ START_TEST(test_key_old_equal_pointers)
 	int *newarr;
 	int rc = key(arr, end, &newarr, &newarr);
 	free(arr);
-	ck_assert_int_eq(rc, 1);
+	ck_assert_int_eq(rc, 4);
 }
 END_TEST
 START_TEST(test_key_empty_result)
@@ -73,13 +73,13 @@ START_TEST(test_key_empty_result)
 	int *end = arr + 6;
 	int *newarr;
 	int rc = key(arr, end, &newarr, &newarr);
-	ck_assert_int_eq(rc, 1);
+	ck_assert_int_eq(rc, 5);
 }
 END_TEST
 START_TEST(test_sort_void_base)
 {
 	int rc = mysort(NULL, 7, sizeof(int), &compare);
-	ck_assert_int_eq(rc, 1);
+	ck_assert_int_eq(rc, 5);
 }
 END_TEST
 START_TEST(test_sort_void_num)
@@ -87,7 +87,7 @@ START_TEST(test_sort_void_num)
 	int *arr = calloc(4, sizeof(int));
 	int rc = mysort(arr, 0, sizeof(int), &compare);
 	free(arr);
-	ck_assert_int_eq(rc, 1);
+	ck_assert_int_eq(rc, 5);
 }
 END_TEST
 START_TEST(test_sort_ok)

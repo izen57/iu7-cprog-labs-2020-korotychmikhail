@@ -1,18 +1,21 @@
 #include <stdlib.h>
 #include "../inc/key.h"
+#define SUCCESS 0
+#define MEMORY_ERROR 4
+#define EMPTY_RESULT 5
 int create_arr(int **begin, int count)
 {
 	*begin = calloc(count, sizeof(int));
 	if (!*begin)
-		return 1;
+		return MEMORY_ERROR;
 	else
-		return 0;
+		return SUCCESS;
 }
 int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 {
-	int error = 0, count = 0;
+	int error = SUCCESS, count = 0;
 	if (!pb_src || !pe_src || !pb_dst || !pe_dst || pb_src >= pe_src)
-		error = 1;
+		error = MEMORY_ERROR;
 	if (!error)
 	{
 		int summ = 0;
@@ -25,11 +28,11 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 				count++;
 		}
 		if (!count)
-			error = 1;
+			error = EMPTY_RESULT;
 		if (!error)
 		{
 			if (create_arr(pb_dst, count))
-				error = 1;
+				error = MEMORY_ERROR;
 			else
 			{
 				int *j = *pb_dst, summ;
