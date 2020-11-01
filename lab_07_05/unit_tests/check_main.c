@@ -93,7 +93,9 @@ END_TEST
 START_TEST(test_sort_ok)
 {
 	int arr[] = {3, 58, 1098, 32, 1, 11, 90};
-	int rc = mysort(arr, 7, sizeof(int), &compare);
+	mysort(arr, 7, sizeof(int), &compare);
+	int newarr[] = {1, 3, 11, 32, 58, 90, 1098};
+	int rc = compare_arrs(arr, 7, newarr, 7);
 	ck_assert_int_eq(rc, 0);
 }
 END_TEST
