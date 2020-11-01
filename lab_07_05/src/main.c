@@ -2,16 +2,20 @@
 #include <stdlib.h>
 #include "../inc/key.h"
 #include "../inc/mysort.h"
+#define SUCCESS 0
+#define ARGS_ERROR 1
+#define FILE_ERROR 2
+#define READ_ERROR 3
 int counting_numbers(FILE *file, int *n)
 {
-	int number, error = 0;
+	int number, error = SUCCESS;
 	for (int i = 0; !feof(file); i++)
 	{
 		if (fscanf(file, "%d", &number) == 1)
 			(*n)++;
 		else
 		{
-			error = 1;
+			error = READ_ERROR;
 			break;
 		}
 	}
@@ -19,7 +23,7 @@ int counting_numbers(FILE *file, int *n)
 }
 int read_array(FILE *file, int **begin, int **end)
 {
-	int error = 0;
+	int error = SUCCESS;
 	while (!feof(file))
 	{
 		fscanf(file, "%d", *end);
@@ -28,7 +32,7 @@ int read_array(FILE *file, int **begin, int **end)
 	if (*begin == *end)
 	{
 		free(begin);
-		error = 1;
+		error = READ_ERROR;
 	}
 	return error;
 }
@@ -39,7 +43,7 @@ void output(FILE *file, int *begin, int *end)
 }
 int main(int argc, char **argv)
 {
-	int error = 0;
+	int error = SUCCESS;
 	if (argc == 3 || argc == 4)
 	{
 		FILE *in_file = fopen(argv[1], "r");
@@ -95,7 +99,7 @@ int main(int argc, char **argv)
 							else
 							{
 								free(arr);
-								error = 1;
+								error = FILE_ERROR;
 							}
 						}
 					}
@@ -103,16 +107,16 @@ int main(int argc, char **argv)
 				else
 				{
 					free(arr);
-					error = 1;
+					error = READ_ERROR;
 				}
 			}
 			else
-				error = 1;
+				error = READ_ERROR;
 		}
 		else
-			error = 1;
+			error = FILE_ERROR;
 	}
 	else
-		error = 1;
+		error = ARGS_ERROR;
 	return error;
 }
