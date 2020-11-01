@@ -10,7 +10,7 @@ int mysort(void *base, size_t num, size_t size, int (*compare)(const void *, con
 {
 	int error = 0;
 	char *current_pos = (char *)base + size, *current = malloc(size), *pos;
-	if (!base || num < 2 || size != sizeof(int))
+	if (!base || num < 2)
 		error = 1;
 	else
 		for (size_t i = 1; i < num; ++i)

@@ -78,13 +78,6 @@ START_TEST(test_sort_void_num)
 	ck_assert_int_eq(rc, 1);
 }
 END_TEST
-START_TEST(test_sort_wrong_size)
-{
-	int arr[] = {43, 78, 92, 10};
-	int rc = mysort(arr, 4, sizeof(char), &compare);
-	ck_assert_int_eq(rc, 1);
-}
-END_TEST
 START_TEST(test_sort_ok)
 {
 	int arr[] = {3, 58, 1098, 32, 1, 11, 90};
@@ -107,7 +100,6 @@ Suite *test_func_suite(void)
 	TCase *tc_sort = tcase_create("sort");
 	tcase_add_test(tc_sort, test_sort_void_base);
 	tcase_add_test(tc_sort, test_sort_void_num);
-	tcase_add_test(tc_sort, test_sort_wrong_size);
 	tcase_add_test(tc_sort, test_sort_ok);
 	suite_add_tcase(s, tc_sort);
 	return s;
