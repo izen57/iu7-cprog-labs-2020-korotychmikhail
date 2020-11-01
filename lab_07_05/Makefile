@@ -5,6 +5,9 @@ O = ./out/
 # $@ - цель
 # $^ - список зависимостей
 # $< - первая зависимость
+.PHONY: clean run
+unit: unit_tests.exe
+	./$^
 unit_tests.exe: $(O)check_main.o $(O)key.o $(O)mysort.o
 	gcc -o $@ $^ -lcheck
 app.exe: $(O)main.o $(O)key.o $(O)mysort.o
@@ -17,6 +20,5 @@ $(O)key.o: $(S)key.c
 	gcc $(CFLAGS) $^ -o $@
 $(O)mysort.o: $(S)mysort.c
 	gcc $(CFLAGS) $^ -o $@
-.PHONY: clean
 clean:
 	rm -f $(O)*.o *.exe
