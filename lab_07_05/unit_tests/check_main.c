@@ -2,6 +2,15 @@
 #include <stdlib.h>
 #include "../inc/key.h"
 #include "../inc/mysort.h"
+int compare_arrs(int *arr1, int len1, int *arr2, int len2)
+{
+	if (len1 != len2)
+		return 1;
+	for (int i = 0; i < len1; i++)
+		if (arr1[i] != arr2[i])
+			return 1;
+	return 0;
+}
 START_TEST(test_key_four_null_pointers)
 {
 	int rc = key(NULL, NULL, NULL, NULL);
@@ -40,7 +49,10 @@ START_TEST(test_key_all_pointers)
 	int arr[] = {89, 5, 7, 9, 7};
 	int *end = arr + 5;
 	int *newarr = end + 1, *endnewarr = newarr;
-	int rc = key(arr, end, &newarr, &endnewarr);
+	key(arr, end, &newarr, &endnewarr);
+	int len = endnewarr - newarr;
+	int arr1[] = {89, 9};
+	int rc = compare_arrs(newarr, len, arr1, 2);
 	free(newarr);
 	ck_assert_int_eq(rc, 0);
 }
