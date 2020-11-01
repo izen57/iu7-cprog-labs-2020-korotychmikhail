@@ -5,7 +5,7 @@ O = ./out/
 # $@ - цель
 # $^ - список зависимостей
 # $< - первая зависимость
-.PHONY: clean run
+.PHONY: clean unit
 unit: unit_tests.exe
 	./$^
 unit_tests.exe: $(O)check_main.o $(O)key.o $(O)mysort.o
