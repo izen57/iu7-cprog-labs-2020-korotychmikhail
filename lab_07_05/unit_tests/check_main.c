@@ -94,8 +94,8 @@ Suite *test_func_suite(void)
 	tcase_add_test(tc_key, test_key_two_null_pointers);
 	tcase_add_test(tc_key, test_key_one_null_pointer);
 	tcase_add_test(tc_key, test_key_all_pointers);
-	tcase_add_test(tc_key, test_key_old_equal_pointers);
 	tcase_add_test(tc_key, test_key_empty_result);
+	tcase_add_test(tc_key, test_key_old_equal_pointers);
 	suite_add_tcase(s, tc_key);
 	TCase *tc_sort = tcase_create("sort");
 	tcase_add_test(tc_sort, test_sort_void_base);
