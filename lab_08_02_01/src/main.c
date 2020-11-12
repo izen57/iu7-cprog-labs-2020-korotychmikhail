@@ -140,6 +140,7 @@ int main(void)
 				return ALLOCATE_ERROR;
 			}
 		}
+		free_matrix(temp, n);
 	}
 	if (!gamma && p == q)
 	{
@@ -172,6 +173,7 @@ int main(void)
 				return ALLOCATE_ERROR;
 			}
 		}
+		free_matrix(temp, p);
 	}
 	int **result = multiplication(a, n, m, b, p, q);
 	//printf("--multiplication--\n");
