@@ -1,8 +1,6 @@
 #include <stdlib.h>
 #include "../inc/key.h"
-#define SUCCESS 0
-#define MEMORY_ERROR 4
-#define EMPTY_RESULT 5
+#include "../inc/error_codes.h"
 int create_arr(int **begin, int count)
 {
 	*begin = calloc(count, sizeof(int));

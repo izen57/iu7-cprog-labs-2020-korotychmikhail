@@ -1,8 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../inc/mysort.h"
-#define SUCCESS 0
-#define EMPTY_RESULT 5
+#include "../inc/error_codes.h"
 int compare(const void *i, const void *j)
 {
 	const int *a = i, *b = j;

@@ -2,45 +2,8 @@
 #include <stdlib.h>
 #include "../inc/key.h"
 #include "../inc/mysort.h"
-#define SUCCESS 0
-#define ARGS_ERROR 1
-#define FILE_ERROR 2
-#define READ_ERROR 3
-int counting_numbers(FILE *file, int *n)
-{
-	int number, error = SUCCESS;
-	for (int i = 0; !feof(file); i++)
-	{
-		if (fscanf(file, "%d", &number) == 1)
-			(*n)++;
-		else
-		{
-			error = READ_ERROR;
-			break;
-		}
-	}
-	return error;
-}
-int read_array(FILE *file, int **begin, int **end)
-{
-	int error = SUCCESS;
-	while (!feof(file))
-	{
-		fscanf(file, "%d", *end);
-		(*end)++;
-	}
-	if (*begin == *end)
-	{
-		free(begin);
-		error = READ_ERROR;
-	}
-	return error;
-}
-void output(FILE *file, int *begin, int *end)
-{
-	for (int *i = begin; i < end; i++)
-		fprintf(file, "%d ", *i);
-}
+#include "../inc/inout.h"
+#include "../inc/error_codes.h"
 int main(int argc, char **argv)
 {
 	int error = SUCCESS;
