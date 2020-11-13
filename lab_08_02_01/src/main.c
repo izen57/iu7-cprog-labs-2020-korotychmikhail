@@ -120,7 +120,7 @@ int main(void)
 					a[i][j] = 0;
 			}
 	}
-	else if (rho != 1)
+	else
 	{
 		int **temp = allocate_matrix(n, m);
 		if (!temp)
@@ -130,7 +130,7 @@ int main(void)
 			return ALLOCATE_ERROR;
 		}
 		memcpy(temp, a, n * m * sizeof(int));
-		for (int i = 0; i < rho; i++)
+		for (int i = 0; i < rho - 1; i++)
 		{
 			a = multiplication(a, n, m, temp, n, m);
 			if (!a)
@@ -153,7 +153,7 @@ int main(void)
 					b[i][j] = 0;
 			}
 	}
-	else if (gamma != 1)
+	else
 	{
 		int **temp = allocate_matrix(p, q);
 		if (!temp)
@@ -163,7 +163,7 @@ int main(void)
 			return ALLOCATE_ERROR;
 		}
 		memcpy(temp, b, p * q * sizeof(int));
-		for (int i = 0; i < gamma; i++)
+		for (int i = 0; i < gamma - 1; i++)
 		{
 			b = multiplication(b, p, q, temp, p, q);
 			if (!b)
