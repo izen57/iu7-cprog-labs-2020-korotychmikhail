@@ -23,8 +23,8 @@ int main(void)
 	}
 	/*output(b, p, q);
 	printf("----\n");*/
-	int k = m < n? m : n;
-	int s = p < q? p : q;
+	int k = m < n ? m : n;
+	int s = p < q ? p : q;
 	if (n > m)
 		while (n > k)
 		{
@@ -83,7 +83,7 @@ int main(void)
 		free_matrix(b, p);
 		return INPUT_ERROR;
 	}
-	int z = k > s? k : s;
+	int z = k > s ? k : s;
 	while (n < z && m < z)
 	{
 		a = add_str_and_stb(a, &n, &m);
