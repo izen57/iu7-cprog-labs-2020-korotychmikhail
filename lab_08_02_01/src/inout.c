@@ -5,7 +5,7 @@
 #include "../inc/error_codes.h"
 int **input(int *str, int *stb)
 {
-	if (scanf("%d", str) == 1 && *str > 1 && scanf("%d", stb) == 1 && *stb > 1)
+	if (scanf("%d", str) == 1 && *str > 0 && scanf("%d", stb) == 1 && *stb > 0)
 	{
 		int **matrix = allocate_matrix(*str, *stb);
 		if (!matrix)

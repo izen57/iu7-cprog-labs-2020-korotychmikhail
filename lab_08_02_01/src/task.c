@@ -99,6 +99,8 @@ int **add_str_and_stb(int **matrix, int *str, int *stb)
 	if (!matrix)
 		return NULL;
 	matrix[*str - 1] = calloc(*stb, sizeof(int));
+	if (!matrix[*str - 1])
+		return NULL;
 	for (int i = 0; i < *stb; i++)
 		matrix[*str - 1][i] = counting_low_average(matrix, *str, i);
 	(*stb)++;
