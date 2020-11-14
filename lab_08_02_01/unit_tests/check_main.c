@@ -1,6 +1,7 @@
 #include <check.h>
 #include <math.h>
 #include "../inc/task.h"
+#include "../inc/inout.h"
 void fill(int **matrix, int rows, int cols)
 {
 	for (int i = 0; i < rows; i++)
@@ -69,6 +70,42 @@ START_TEST(test_mult_single_matrix)
 	ck_assert_int_eq(error, 0);
 }
 END_TEST
+START_TEST(test_remove_columns)
+{
+	int n = 2, m = 3;
+	int **a = allocate_matrix(n, m);
+	a[0][0] = 4; a[0][1] = 7; a[0][2] = 1;
+	a[1][0] = 3; a[1][1] = 2; a[1][2] = 7;
+	a = remove_by_number(a, &n, &m, 2);
+	int **true_result = allocate_matrix(2, 2);
+	true_result[0][0] = 4; true_result[0][1] = 7;
+	true_result[1][0] = 3; true_result[1][1] = 2;
+	int error = compare_matrix(a, n, m, true_result, 2, 2);
+	free_matrix(a, n);
+	free_matrix(true_result, 2);
+	ck_assert_int_eq(error, 0);
+}
+END_TEST
+START_TEST(test_remove_strings)
+{
+	int n = 5, m = 3;
+	int **a = allocate_matrix(n, m);
+	a[0][0] = 0; a[0][1] = 2; a[0][2] = 9;
+	a[1][0] = 1; a[1][1] = 2; a[1][2] = 2;
+	a[2][0] = 3; a[2][1] = 3; a[2][2] = 3;
+	a[3][0] = 8; a[3][1] = 8; a[3][2] = 2;
+	a[4][0] = 1; a[4][1] = 8; a[4][2] = 3;
+	a = remove_by_number(a, &n, &m, 3);
+	int **true_result = allocate_matrix(3, 3);
+	true_result[0][0] = 1; true_result[0][1] = 2; true_result[0][2] = 2;
+	true_result[1][0] = 3; true_result[1][1] = 3; true_result[1][2] = 3;
+	true_result[2][0] = 8; true_result[2][1] = 8; true_result[2][2] = 2;
+	int error = compare_matrix(a, n, m, true_result, 3, 3);
+	free_matrix(a, n);
+	free_matrix(true_result, 3);
+	ck_assert_int_eq(error, 0);
+}
+END_TEST
 Suite *test_func_suite(void)
 {
 	Suite *s = suite_create("test_func");
@@ -77,9 +114,10 @@ Suite *test_func_suite(void)
 	tcase_add_test(tc_mult, test_mult_ok);
 	tcase_add_test(tc_mult, test_mult_single_matrix);
 	suite_add_tcase(s, tc_mult);
-	/*TCase *tc_sort = tcase_create("sort");
-	tcase_add_test(tc_sort, test_sort_void_base);
-	suite_add_tcase(s, tc_sort);*/
+	TCase *tc_remove = tcase_create("remove");
+	tcase_add_test(tc_remove, test_remove_strings);
+	tcase_add_test(tc_remove, test_remove_columns);
+	suite_add_tcase(s, tc_remove);
 	return s;
 }
 int main(void)
