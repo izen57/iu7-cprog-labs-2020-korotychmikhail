@@ -132,7 +132,7 @@ int **remove_by_number(int **matrix, int *rows, int *cols, int number)
 			if (!matrix)
 			{
 				//free_matrix(b, p);
-				return ALLOCATE_ERROR;
+				return NULL;
 			}
 			/*output(a, n, m);
 			printf("----\n");*/
@@ -144,11 +144,12 @@ int **remove_by_number(int **matrix, int *rows, int *cols, int number)
 			if (!matrix)
 			{
 				//free_matrix(b, p);
-				return ALLOCATE_ERROR;
+				return NULL;
 			}
 			/*output(a, n, m);
 			printf("----\n");*/
 		}
+	return matrix;
 }
 /*{
 	if (p > q)
