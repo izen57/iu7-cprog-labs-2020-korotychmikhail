@@ -99,7 +99,7 @@ int main(void)
 	{
 		free_matrix(a, n);
 		free_matrix(b, p);
-		error = INPUT_ERROR;
+		return INPUT_ERROR;
 	}
 	if (!gamma && p == q)
 	{
@@ -138,7 +138,7 @@ int main(void)
 	{
 		free_matrix(a, n);
 		free_matrix(b, p);
-		error = INPUT_ERROR;
+		return INPUT_ERROR;
 	}
 	int **result = multiplication(a, n, m, b, p, q);
 	//printf("--multiplication--\n");
