@@ -1,5 +1,6 @@
 #include <check.h>
 #include <math.h>
+#include <stdlib.h>
 #include "../inc/task.h"
 #include "../inc/inout.h"
 void fill(int **matrix, int rows, int cols)
@@ -86,6 +87,18 @@ START_TEST(test_remove_columns)
 	ck_assert_int_eq(error, 0);
 }
 END_TEST
+/*int **allocate_matrix_dop(int str, int stb)
+{
+	int **matrix = calloc(str, sizeof(int *));
+	if (!matrix)
+		return NULL;
+	matrix[0] = calloc(stb, sizeof(int));
+	matrix[1] = calloc(stb, sizeof(int));
+	matrix[2] = calloc(stb, sizeof(int));
+	matrix[3] = calloc(stb, sizeof(int));
+	matrix[4] = calloc(stb, sizeof(int));
+	return matrix;
+}*/
 START_TEST(test_remove_strings)
 {
 	int n = 5, m = 3;
@@ -96,6 +109,7 @@ START_TEST(test_remove_strings)
 	a[3][0] = 8; a[3][1] = 8; a[3][2] = 2;
 	a[4][0] = 1; a[4][1] = 8; a[4][2] = 3;
 	a = remove_by_number(a, &n, &m, 3);
+	//output(a, n, m);
 	int **true_result = allocate_matrix(3, 3);
 	true_result[0][0] = 1; true_result[0][1] = 2; true_result[0][2] = 2;
 	true_result[1][0] = 3; true_result[1][1] = 3; true_result[1][2] = 3;

@@ -2,7 +2,7 @@
 #define __TASK_H__
 void free_matrix(int **matrix, int str);
 int **allocate_matrix(int str, int stb);
-void remove_str_shift(int **matrix, int str, int point);
+void remove_str_shift(int **matrix, int str, int stb, int point);
 int **remove_str(int **matrix, int *str, int stb);
 void remove_stb_shift(int **matrix, int str, int stb, int point);
 int **remove_stb(int **matrix, int str, int *stb);

@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 #include "../inc/error_codes.h"
 void free_matrix(int **matrix, int str)
 {
@@ -23,10 +24,11 @@ int **allocate_matrix(int str, int stb)
 	}
 	return matrix;
 }
-void remove_str_shift(int **matrix, int str, int point)
+void remove_str_shift(int **matrix, int str, int stb, int point)
 {
 	for (int i = point; i < str - 1; i++)
-		matrix[i] = matrix[i + 1];
+		//matrix[i] = matrix[i + 1];
+		memcpy(matrix[i], matrix[i + 1], stb * sizeof(int));
 }
 int **remove_str(int **matrix, int *str, int stb)
 {
@@ -38,10 +40,14 @@ int **remove_str(int **matrix, int *str, int stb)
 				max = matrix[i][j];
 				index = i;
 			}
-	remove_str_shift(matrix, *str, index);
+	remove_str_shift(matrix, *str, stb, index);
+	free(matrix[*str - 1]);
 	matrix = realloc(matrix, --(*str) * sizeof(int *));
 	if (!matrix)
+	{
+		free_matrix(matrix, *str);
 		return NULL;
+	}
 	return matrix;
 }
 void remove_stb_shift(int **matrix, int str, int stb, int point)
