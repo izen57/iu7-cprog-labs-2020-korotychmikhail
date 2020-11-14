@@ -130,10 +130,7 @@ int **remove_by_number(int **matrix, int *rows, int *cols, int number)
 		{
 			matrix = remove_str(matrix, rows, *cols);
 			if (!matrix)
-			{
-				//free_matrix(b, p);
 				return NULL;
-			}
 			/*output(a, n, m);
 			printf("----\n");*/
 		}
@@ -142,38 +139,9 @@ int **remove_by_number(int **matrix, int *rows, int *cols, int number)
 		{
 			matrix = remove_stb(matrix, *rows, cols);
 			if (!matrix)
-			{
-				//free_matrix(b, p);
 				return NULL;
-			}
 			/*output(a, n, m);
 			printf("----\n");*/
 		}
 	return matrix;
 }
-/*{
-	if (p > q)
-		while (p > s)
-		{
-			b = remove_str(b, &p, q);
-			if (!b)
-			{
-				free_matrix(a, n);
-				return ALLOCATE_ERROR;
-			}
-			output(b, p, q);
-			printf("----\n");
-		}
-	else if (q > p)
-		while (q > s)
-		{
-			b = remove_stb(b, p, &q);
-			if (!b)
-			{
-				free_matrix(a, n);
-				return ALLOCATE_ERROR;
-			}
-			output(b, p, q);
-			printf("----\n");
-		}
-}*/
