@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 #include "../inc/inout.h"
 #include "../inc/error_codes.h"
 #include "../inc/task.h"
@@ -28,7 +27,6 @@ int main(void)
 	a = remove_by_number(a, &n, &m, k);
 	if (!a)
 	{
-		free_matrix(a, n);
 		free_matrix(b, p);
 		return ALLOCATE_ERROR;
 	}
@@ -36,7 +34,6 @@ int main(void)
 	if (!b)
 	{
 		free_matrix(a, n);
-		free_matrix(b, p);
 		return ALLOCATE_ERROR;
 	}
 	/*output(a, n, m);
@@ -55,7 +52,6 @@ int main(void)
 		a = add_str_and_stb(a, &n, &m);
 		if (!a)
 		{
-			free_matrix(a, n);
 			free_matrix(b, p);
 			return ALLOCATE_ERROR;
 		}
@@ -68,7 +64,6 @@ int main(void)
 		if (!b)
 		{
 			free_matrix(a, n);
-			free_matrix(b, p);
 			return ALLOCATE_ERROR;
 		}
 		/*output(b, p, q);
@@ -105,7 +100,6 @@ int main(void)
 			{
 				free_matrix(temp, n);
 				free_matrix(b, p);
-				free_matrix(a, n);
 				return ALLOCATE_ERROR;
 			}
 		}
@@ -139,7 +133,6 @@ int main(void)
 			{
 				free_matrix(temp, p);
 				free_matrix(a, n);
-				free_matrix(b, p);
 				return ALLOCATE_ERROR;
 			}
 		}
