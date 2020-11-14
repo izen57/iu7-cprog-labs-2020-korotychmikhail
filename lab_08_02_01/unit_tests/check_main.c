@@ -109,11 +109,70 @@ START_TEST(test_remove_strings)
 	a[3][0] = 8; a[3][1] = 8; a[3][2] = 2;
 	a[4][0] = 1; a[4][1] = 8; a[4][2] = 3;
 	a = remove_by_number(a, &n, &m, 3);
-	//output(a, n, m);
 	int **true_result = allocate_matrix(3, 3);
 	true_result[0][0] = 1; true_result[0][1] = 2; true_result[0][2] = 2;
 	true_result[1][0] = 3; true_result[1][1] = 3; true_result[1][2] = 3;
 	true_result[2][0] = 8; true_result[2][1] = 8; true_result[2][2] = 2;
+	int error = compare_matrix(a, n, m, true_result, 3, 3);
+	free_matrix(a, n);
+	free_matrix(true_result, 3);
+	ck_assert_int_eq(error, 0);
+}
+END_TEST
+START_TEST(test_low_average_ok)
+{
+	int **a = allocate_matrix(3, 2);
+	a[0][0] = 2; a[0][1] = -3;
+	a[1][0] = 5; a[1][1] = 4;
+	int result1 = counting_low_average(a, 3, 0);
+	if (result1 != 3)
+	{
+		free_matrix(a, 3);
+		ck_assert_int_eq(3, result1);
+	}
+	int result2 = counting_low_average(a, 3, 1);
+	if (result2)
+	{
+		free_matrix(a, 3);
+		ck_assert_int_eq(3, result2);
+	}
+	free_matrix(a, 3);
+	return;
+}
+END_TEST
+START_TEST(test_low_average_zeroes_and_negatives)
+{
+	int **a = allocate_matrix(3, 2);
+	a[0][0] = 0; a[0][1] = -3;
+	a[1][0] = 0; a[1][1] = -4;
+	int result1 = counting_low_average(a, 3, 0);
+	if (result1)
+	{
+		free_matrix(a, 3);
+		ck_assert_int_eq(0, result1);
+	}
+	int result2 = counting_low_average(a, 3, 1);
+	if (result2 != -3)
+	{
+		free_matrix(a, 3);
+		ck_assert_int_eq(-3, result2);
+	}
+	free_matrix(a, 3);
+	return;
+}
+END_TEST
+START_TEST(test_add_str_stb)
+{
+	int n = 2, m = 2;
+	int **a = allocate_matrix(n, m);
+	a[0][0] = 4; a[0][1] = 1;
+	a[1][0] = 3; a[1][1] = 7;
+	a = add_by_number(a, &n, &m, 3);
+	output(a, n, m);
+	int **true_result = allocate_matrix(3, 3);
+	true_result[0][0] = 4; true_result[0][1] = 1; true_result[0][2] = 1;
+	true_result[1][0] = 3; true_result[1][1] = 7; true_result[1][2] = 3;
+	true_result[2][0] = 3; true_result[2][1] = 4; true_result[2][2] = 3;
 	int error = compare_matrix(a, n, m, true_result, 3, 3);
 	free_matrix(a, n);
 	free_matrix(true_result, 3);
@@ -128,10 +187,15 @@ Suite *test_func_suite(void)
 	tcase_add_test(tc_mult, test_mult_ok);
 	tcase_add_test(tc_mult, test_mult_single_matrix);
 	suite_add_tcase(s, tc_mult);
-	TCase *tc_remove = tcase_create("remove");
-	tcase_add_test(tc_remove, test_remove_strings);
-	tcase_add_test(tc_remove, test_remove_columns);
-	suite_add_tcase(s, tc_remove);
+	TCase *tc_dynamic = tcase_create("dynamic");
+	tcase_add_test(tc_dynamic, test_remove_strings);
+	tcase_add_test(tc_dynamic, test_remove_columns);
+	tcase_add_test(tc_dynamic, test_add_str_stb);
+	suite_add_tcase(s, tc_dynamic);
+	TCase *tc_math = tcase_create("math");
+	tcase_add_test(tc_math, test_low_average_ok);
+	tcase_add_test(tc_math, test_low_average_zeroes_and_negatives);
+	suite_add_tcase(s, tc_math);
 	return s;
 }
 int main(void)

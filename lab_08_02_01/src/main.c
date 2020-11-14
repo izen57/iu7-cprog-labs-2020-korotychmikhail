@@ -47,27 +47,17 @@ int main(void)
 		return INPUT_ERROR;
 	}
 	int z = k > s ? k : s;
-	while (n < z && m < z)
+	a = add_by_number(a, &n, &m, z);
+	if (!a)
 	{
-		a = add_str_and_stb(a, &n, &m);
-		if (!a)
-		{
-			free_matrix(b, p);
-			return ALLOCATE_ERROR;
-		}
-		/*output(a, n, m);
-		printf("----\n");*/
+		free_matrix(b, p);
+		return ALLOCATE_ERROR;
 	}
-	while (p < z && q < z)
+	b = add_by_number(b, &p, &q, z);
+	if (!b)
 	{
-		b = add_str_and_stb(b, &p, &q);
-		if (!b)
-		{
-			free_matrix(a, n);
-			return ALLOCATE_ERROR;
-		}
-		/*output(b, p, q);
-		printf("----\n");*/
+		free_matrix(a, n);
+		return ALLOCATE_ERROR;
 	}
 	/*output(a, n, m);
 	printf("----\n");

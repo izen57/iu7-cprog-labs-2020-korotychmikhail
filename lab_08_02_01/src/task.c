@@ -27,7 +27,6 @@ int **allocate_matrix(int str, int stb)
 void remove_str_shift(int **matrix, int str, int stb, int point)
 {
 	for (int i = point; i < str - 1; i++)
-		//matrix[i] = matrix[i + 1];
 		memcpy(matrix[i], matrix[i + 1], stb * sizeof(int));
 }
 int **remove_str(int **matrix, int *str, int stb)
@@ -96,16 +95,15 @@ int counting_minimum(int **matrix, int str, int stb)
 }
 int **add_str_and_stb(int **matrix, int *str, int *stb)
 {
-	// matrix[*str - 1] = (int *)((char *)matrix + *str * sizeof(int *) + (*str - 1) * *stb * sizeof(int));
-	matrix[(*str)++] = calloc(*stb, sizeof(int));
-	if (!matrix[*str - 1])
+	matrix = realloc(matrix, ++(*str) * sizeof(int *));
+	if (!matrix)
 		return NULL;
+	matrix[*str - 1] = calloc(*stb, sizeof(int));
 	for (int i = 0; i < *stb; i++)
 		matrix[*str - 1][i] = counting_low_average(matrix, *str, i);
 	(*stb)++;
 	for (int i = 0; i < *str; i++)
 	{
-		// matrix[i] = (int *)((char *)matrix + *str * sizeof(int *) + i * *stb * sizeof(int));
 		matrix[i] = realloc(matrix[i], *stb * sizeof(int));
 		if (!matrix[i])
 			return NULL;
@@ -149,5 +147,17 @@ int **remove_by_number(int **matrix, int *rows, int *cols, int number)
 			/*output(a, n, m);
 			printf("----\n");*/
 		}
+	return matrix;
+}
+int **add_by_number(int **matrix, int *rows, int *cols, int number)
+{
+	while (*rows < number && *cols < number)
+	{
+		matrix = add_str_and_stb(matrix, rows, cols);
+		if (!matrix)
+			return NULL;
+		/*output(a, n, m);
+		printf("----\n");*/
+	}
 	return matrix;
 }
