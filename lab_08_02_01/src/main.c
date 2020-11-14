@@ -73,7 +73,7 @@ int main(void)
 					a[i][j] = 0;
 			}
 	}
-	else
+	else if (rho)
 	{
 		int **temp = allocate_matrix(n, m);
 		if (!temp)
@@ -95,6 +95,12 @@ int main(void)
 		}
 		free_matrix(temp, n);
 	}
+	else if (!rho)
+	{
+		free_matrix(a, n);
+		free_matrix(b, p);
+		error = INPUT_ERROR;
+	}
 	if (!gamma && p == q)
 	{
 		for (int i = 0; i < p; i++)
@@ -106,7 +112,7 @@ int main(void)
 					b[i][j] = 0;
 			}
 	}
-	else
+	else if (gamma)
 	{
 		int **temp = allocate_matrix(p, q);
 		if (!temp)
@@ -127,6 +133,12 @@ int main(void)
 			}
 		}
 		free_matrix(temp, p);
+	}
+	else if (!gamma)
+	{
+		free_matrix(a, n);
+		free_matrix(b, p);
+		error = INPUT_ERROR;
 	}
 	int **result = multiplication(a, n, m, b, p, q);
 	//printf("--multiplication--\n");
