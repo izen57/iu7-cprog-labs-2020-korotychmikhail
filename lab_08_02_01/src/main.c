@@ -25,54 +25,18 @@ int main(void)
 	printf("----\n");*/
 	int k = m < n ? m : n;
 	int s = p < q ? p : q;
-	if (n > m)
-		while (n > k)
-		{
-			a = remove_str(a, &n, m);
-			if (!a)
-			{
-				free_matrix(b, p);
-				return ALLOCATE_ERROR;
-			}
-			/*output(a, n, m);
-			printf("----\n");*/
-		}
-	else if (m > n)
-		while (m > k)
-		{
-			a = remove_stb(a, n, &m);
-			if (!a)
-			{
-				free_matrix(b, p);
-				return ALLOCATE_ERROR;
-			}
-			/*output(a, n, m);
-			printf("----\n");*/
-		}
-	if (p > q)
-		while (p > s)
-		{
-			b = remove_str(b, &p, q);
-			if (!b)
-			{
-				free_matrix(a, n);
-				return ALLOCATE_ERROR;
-			}
-			/*output(b, p, q);
-			printf("----\n");*/
-		}
-	else if (q > p)
-		while (q > s)
-		{
-			b = remove_stb(b, p, &q);
-			if (!b)
-			{
-				free_matrix(a, n);
-				return ALLOCATE_ERROR;
-			}
-			/*output(b, p, q);
-			printf("----\n");*/
-		}
+	a = remove_by_number(a, &n, &m, k);
+	if (!a)
+	{
+		free_matrix(b, p);
+		return ALLOCATE_ERROR;
+	}
+	b = remove_by_number(b, &p, &q, s);
+	if (!b)
+	{
+		free_matrix(a, n);
+		return ALLOCATE_ERROR;
+	}
 	/*output(a, n, m);
 	printf("----\n");
 	output(b, p, q);*/

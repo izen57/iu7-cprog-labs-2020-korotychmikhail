@@ -41,10 +41,7 @@ int **remove_str(int **matrix, int *str, int stb)
 	remove_str_shift(matrix, *str, index);
 	matrix = realloc(matrix, --(*str) * sizeof(int *));
 	if (!matrix)
-	{
-		free_matrix(matrix, *str);
 		return NULL;
-	}
 	return matrix;
 }
 void remove_stb_shift(int **matrix, int str, int stb, int point)
@@ -126,3 +123,56 @@ int **multiplication(int **matrix1, int str1, int stb1, int **matrix2, int str2,
 		}
 	return result;
 }
+int **remove_by_number(int **matrix, int *rows, int *cols, int number)
+{
+	if (*rows > *cols)
+		while (*rows > number)
+		{
+			matrix = remove_str(matrix, rows, *cols);
+			if (!matrix)
+			{
+				//free_matrix(b, p);
+				return ALLOCATE_ERROR;
+			}
+			/*output(a, n, m);
+			printf("----\n");*/
+		}
+	else if (*cols > *rows)
+		while (*cols > number)
+		{
+			matrix = remove_stb(matrix, *rows, cols);
+			if (!matrix)
+			{
+				//free_matrix(b, p);
+				return ALLOCATE_ERROR;
+			}
+			/*output(a, n, m);
+			printf("----\n");*/
+		}
+}
+/*{
+	if (p > q)
+		while (p > s)
+		{
+			b = remove_str(b, &p, q);
+			if (!b)
+			{
+				free_matrix(a, n);
+				return ALLOCATE_ERROR;
+			}
+			output(b, p, q);
+			printf("----\n");
+		}
+	else if (q > p)
+		while (q > s)
+		{
+			b = remove_stb(b, p, &q);
+			if (!b)
+			{
+				free_matrix(a, n);
+				return ALLOCATE_ERROR;
+			}
+			output(b, p, q);
+			printf("----\n");
+		}
+}*/
