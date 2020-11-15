@@ -82,7 +82,9 @@ int main(void)
 			free_matrix(b, q);
 			return ALLOCATE_ERROR;
 		}
-		memcpy(temp, a, n * m * sizeof(int));
+		for (int i = 0; i < n; i++)
+			for (int j = 0; j < m; j++)
+				temp[i][j] = a[i][j];
 		for (int i = 0; i < rho - 1; i++)
 		{
 			a = multiplication(a, n, m, temp, n, m);
@@ -121,7 +123,9 @@ int main(void)
 			free_matrix(b, q);
 			return ALLOCATE_ERROR;
 		}
-		memcpy(temp, b, p * q * sizeof(int));
+		for (int i = 0; i < n; i++)
+			for (int j = 0; j < m; j++)
+				temp[i][j] = b[i][j];
 		for (int i = 0; i < gamma - 1; i++)
 		{
 			b = multiplication(b, p, q, temp, p, q);

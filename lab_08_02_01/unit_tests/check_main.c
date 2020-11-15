@@ -170,7 +170,6 @@ START_TEST(test_add_str_stb)
 	a[0][0] = 4; a[0][1] = 1;
 	a[1][0] = 3; a[1][1] = 7;
 	a = add_by_number(a, &n, &m, 3);
-	output(a, n, m);
 	int **true_result = allocate_matrix(3, 3);
 	true_result[0][0] = 4; true_result[0][1] = 1; true_result[0][2] = 1;
 	true_result[1][0] = 3; true_result[1][1] = 7; true_result[1][2] = 3;
