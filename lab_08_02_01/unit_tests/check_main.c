@@ -26,8 +26,6 @@ START_TEST(test_mult_not_compatible)
 	int **b = allocate_matrix(2, 4);
 	fill(b, 2, 4);
 	int **result = multiplication(a, 2, 3, b, 2, 4);
-	free_matrix(a, 2);
-	free_matrix(b, 2);
 	ck_assert_ptr_null(result);
 }
 END_TEST
