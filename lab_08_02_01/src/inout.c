@@ -12,11 +12,11 @@ int **input(int *str, int *stb)
 			return NULL;
 		for (int i = 0; i < *str; i++)
 		{
-			for (int j = 0; j < *stb /*- 1*/; j++)
+			for (int j = 0; j < *stb - 1; j++)
 				if (scanf("%d", &matrix[i][j]) != 1)
 					return NULL;
-			/*if (scanf("%d\n", &matrix[i][*stb - 1]) != 1)
-				return NULL;*/
+			if (scanf("%d\n", &matrix[i][*stb - 1]) != 1)
+				return NULL;
 		}
 		return matrix;
 	}
