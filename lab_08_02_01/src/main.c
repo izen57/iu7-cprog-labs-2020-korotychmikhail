@@ -7,7 +7,7 @@ int main(void)
 {
 	int error = SUCCESS;
 	int n, m;
-	int **a = input(&n, &m);
+	int **a = input(&m, &n);
 	if (!a)
 		return INPUT_ERROR;
 	/*output(a, n, m);
@@ -16,14 +16,14 @@ int main(void)
 	int **b = input(&p, &q);
 	if (!b)
 	{
-		free_matrix(a, n);
+		free_matrix(a, m);
 		return INPUT_ERROR;
 	}
 	/*output(b, p, q);
 	printf("----\n");*/
 	int k = m < n ? m : n;
 	int s = p < q ? p : q;
-	a = remove_by_number(a, &n, &m, k);
+	a = remove_by_number(a, &m, &n, k);
 	if (!a)
 	{
 		free_matrix(b, p);
@@ -32,7 +32,7 @@ int main(void)
 	b = remove_by_number(b, &p, &q, s);
 	if (!b)
 	{
-		free_matrix(a, n);
+		free_matrix(a, m);
 		return ALLOCATE_ERROR;
 	}
 	/*output(a, n, m);
@@ -41,12 +41,12 @@ int main(void)
 	int rho, gamma;
 	if (input_rho_and_gamma(&rho, &gamma))
 	{
-		free_matrix(a, n);
+		free_matrix(a, m);
 		free_matrix(b, p);
 		return INPUT_ERROR;
 	}
 	int z = k > s ? k : s;
-	a = add_by_number(a, &n, &m, z);
+	a = add_by_number(a, &m, &n, z);
 	if (!a)
 	{
 		free_matrix(b, p);
@@ -55,7 +55,7 @@ int main(void)
 	b = add_by_number(b, &p, &q, z);
 	if (!b)
 	{
-		free_matrix(a, n);
+		free_matrix(a, m);
 		return ALLOCATE_ERROR;
 	}
 	/*output(a, n, m);
@@ -63,8 +63,8 @@ int main(void)
 	output(b, p, q);*/
 	if (!rho && n == m)
 	{
-		for (int i = 0; i < n; i++)
-			for (int j = 0; j < m; j++)
+		for (int i = 0; i < m; i++)
+			for (int j = 0; j < n; j++)
 			{
 				if (i == j)
 					a[i][j] = 1;
@@ -74,30 +74,30 @@ int main(void)
 	}
 	else if (rho)
 	{
-		int **temp = allocate_matrix(n, m);
+		int **temp = allocate_matrix(m, n);
 		if (!temp)
 		{
-			free_matrix(a, n);
+			free_matrix(a, m);
 			free_matrix(b, p);
 			return ALLOCATE_ERROR;
 		}
-		for (int i = 0; i < n; i++)
-			for (int j = 0; j < m; j++)
+		for (int i = 0; i < m; i++)
+			for (int j = 0; j < n; j++)
 				temp[i][j] = a[i][j];
 		for (int i = 0; i < rho - 1; i++)
 		{
-			a = multiplication(a, n, m, temp, n, m);
+			a = multiplication(a, m, n, temp, m, n);
 			if (!a)
 			{
 				free_matrix(b, p);
 				return ALLOCATE_ERROR;
 			}
 		}
-		free_matrix(temp, n);
+		free_matrix(temp, m);
 	}
 	else if (!rho)
 	{
-		free_matrix(a, n);
+		free_matrix(a, m);
 		free_matrix(b, p);
 		return INPUT_ERROR;
 	}
@@ -117,7 +117,7 @@ int main(void)
 		int **temp = allocate_matrix(p, q);
 		if (!temp)
 		{
-			free_matrix(a, n);
+			free_matrix(a, m);
 			free_matrix(b, p);
 			return ALLOCATE_ERROR;
 		}
@@ -129,7 +129,7 @@ int main(void)
 			b = multiplication(b, p, q, temp, p, q);
 			if (!b)
 			{
-				free_matrix(a, n);
+				free_matrix(a, m);
 				return ALLOCATE_ERROR;
 			}
 		}
@@ -137,15 +137,15 @@ int main(void)
 	}
 	else if (!gamma)
 	{
-		free_matrix(a, n);
+		free_matrix(a, m);
 		free_matrix(b, p);
 		return INPUT_ERROR;
 	}
-	int **result = multiplication(a, n, m, b, p, q);
+	int **result = multiplication(a, m, n, b, p, q);
 	//printf("--multiplication--\n");
-	output(result, n, q);
-	free_matrix(a, n);
+	output(result, m, q);
+	free_matrix(a, m);
 	free_matrix(b, p);
-	free_matrix(result, n);
+	free_matrix(result, m);
 	return error;
 }
