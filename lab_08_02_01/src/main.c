@@ -140,7 +140,6 @@ int main(void)
 		free_matrix(b, p);
 		return INPUT_ERROR;
 	}
-	//int **result = allocate_matrix(n, q);
 	int **result = multiplication(a, n, m, b, p, q);
 	//printf("--multiplication--\n");
 	output(result, n, q);

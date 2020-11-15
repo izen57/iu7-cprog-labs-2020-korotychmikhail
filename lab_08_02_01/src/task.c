@@ -115,7 +115,7 @@ int **add_str_and_stb(int **matrix, int *str, int *stb)
 }
 int **multiplication(int **matrix1, int str1, int stb1, int **matrix2, int str2, int stb2)
 {
-	if (stb1 != str2)
+	if (str1 != stb2)
 		return NULL;
 	int **result = allocate_matrix(str1, stb2);
 	if (!result)
