@@ -89,7 +89,6 @@ int main(void)
 			a = multiplication(a, n, m, temp, n, m);
 			if (!a)
 			{
-				free_matrix(temp, n);
 				free_matrix(b, p);
 				return ALLOCATE_ERROR;
 			}
@@ -130,7 +129,6 @@ int main(void)
 			b = multiplication(b, p, q, temp, p, q);
 			if (!b)
 			{
-				free_matrix(temp, p);
 				free_matrix(a, n);
 				return ALLOCATE_ERROR;
 			}
