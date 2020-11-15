@@ -11,8 +11,8 @@ int main(void)
 	int **a = input(&n, &m);
 	if (!a)
 		return INPUT_ERROR;
-	output(a, n, m);
-	printf("----\n");
+	/*output(a, n, m);
+	printf("----\n");*/
 	int p, q;
 	int **b = input(&p, &q);
 	if (!b)
@@ -20,8 +20,8 @@ int main(void)
 		free_matrix(a, n);
 		return INPUT_ERROR;
 	}
-	output(b, p, q);
-	printf("----\n");
+	/*output(b, p, q);
+	printf("----\n");*/
 	int k = m < n ? m : n;
 	int s = p < q ? p : q;
 	a = remove_by_number(a, &n, &m, k);
@@ -36,9 +36,9 @@ int main(void)
 		free_matrix(a, n);
 		return ALLOCATE_ERROR;
 	}
-	output(a, n, m);
+	/*output(a, n, m);
 	printf("----\n");
-	output(b, p, q);
+	output(b, p, q);*/
 	int rho, gamma;
 	if (input_rho_and_gamma(&rho, &gamma))
 	{
@@ -59,9 +59,9 @@ int main(void)
 		free_matrix(a, n);
 		return ALLOCATE_ERROR;
 	}
-	output(a, n, m);
+	/*output(a, n, m);
 	printf("----\n");
-	output(b, p, q);
+	output(b, p, q);*/
 	if (!rho && n == m)
 	{
 		for (int i = 0; i < n; i++)
@@ -141,7 +141,7 @@ int main(void)
 		return INPUT_ERROR;
 	}
 	int **result = multiplication(a, n, m, b, p, q);
-	printf("--multiplication--\n");
+	//printf("--multiplication--\n");
 	output(result, n, q);
 	free_matrix(a, n);
 	free_matrix(b, p);

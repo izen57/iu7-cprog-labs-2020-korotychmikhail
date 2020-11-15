@@ -5,14 +5,14 @@
 #include "../inc/error_codes.h"
 int **input(int *str, int *stb)
 {
-	if (scanf("%d", str) == 1 && *str > 0 && scanf("%d", stb) == 1 && *stb > 0)
+	if (scanf("%d", str) == 1 && *str > 1 && scanf("%d", stb) == 1 && *stb > 1)
 	{
 		int **matrix = allocate_matrix(*str, *stb);
 		if (!matrix)
 			return NULL;
 		for (int i = 0; i < *str; i++)
 		{
-			for (int j = 0; j < *stb/* - 1*/; j++)
+			for (int j = 0; j < *stb /*- 1*/; j++)
 				if (scanf("%d", &matrix[i][j]) != 1)
 					return NULL;
 			/*if (scanf("%d\n", &matrix[i][*stb - 1]) != 1)
