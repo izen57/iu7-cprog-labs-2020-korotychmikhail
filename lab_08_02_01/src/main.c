@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "../inc/inout.h"
 #include "../inc/error_codes.h"
 #include "../inc/task.h"

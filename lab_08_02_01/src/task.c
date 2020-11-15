@@ -125,10 +125,18 @@ int **add_str_and_stb(int **matrix, int *str, int *stb)
 int **multiplication(int **matrix1, int str1, int stb1, int **matrix2, int str2, int stb2)
 {
 	if (str1 != stb2)
+	{
+		free_matrix(matrix1, str1);
+		free_matrix(matrix2, str2);
 		return NULL;
+	}
 	int **result = allocate_matrix(str1, stb2);
 	if (!result)
+	{
+		free_matrix(matrix1, str1);
+		free_matrix(matrix2, str2);
 		return NULL;
+	}
 	for (int i = 0; i < str1; i++)
 		for (int j = 0; j < stb2; j++)
 		{
@@ -146,8 +154,6 @@ int **remove_by_number(int **matrix, int *rows, int *cols, int number)
 			matrix = remove_str(matrix, rows, *cols);
 			if (!matrix)
 				return NULL;
-			/*output(a, n, m);
-			printf("----\n");*/
 		}
 	else if (*cols > *rows)
 		while (*cols > number)
@@ -155,8 +161,6 @@ int **remove_by_number(int **matrix, int *rows, int *cols, int number)
 			matrix = remove_stb(matrix, *rows, cols);
 			if (!matrix)
 				return NULL;
-			/*output(a, n, m);
-			printf("----\n");*/
 		}
 	return matrix;
 }
@@ -167,8 +171,6 @@ int **add_by_number(int **matrix, int *rows, int *cols, int number)
 		matrix = add_str_and_stb(matrix, rows, cols);
 		if (!matrix)
 			return NULL;
-		/*output(a, n, m);
-		printf("----\n");*/
 	}
 	return matrix;
 }
