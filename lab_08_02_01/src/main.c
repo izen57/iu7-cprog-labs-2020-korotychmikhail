@@ -123,8 +123,8 @@ int main(void)
 			free_matrix(b, q);
 			return ALLOCATE_ERROR;
 		}
-		for (int i = 0; i < n; i++)
-			for (int j = 0; j < m; j++)
+		for (int i = 0; i < p; i++)
+			for (int j = 0; j < q; j++)
 				temp[i][j] = b[i][j];
 		for (int i = 0; i < gamma - 1; i++)
 		{
