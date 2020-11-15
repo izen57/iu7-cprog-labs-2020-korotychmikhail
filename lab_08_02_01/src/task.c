@@ -97,10 +97,16 @@ int **add_str_and_stb(int **matrix, int *str, int *stb)
 {
 	matrix = realloc(matrix, ++(*str) * sizeof(int *));
 	if (!matrix)
+	{
+		free_matrix(matrix, *str);
 		return NULL;
+	}
 	matrix[*str - 1] = calloc(*stb, sizeof(int));
 	if (!matrix[*str - 1])
+	{
+		free_matrix(matrix, *str);
 		return NULL;
+	}
 	for (int i = 0; i < *stb; i++)
 		matrix[*str - 1][i] = counting_low_average(matrix, *str, i);
 	(*stb)++;
@@ -108,7 +114,10 @@ int **add_str_and_stb(int **matrix, int *str, int *stb)
 	{
 		matrix[i] = realloc(matrix[i], *stb * sizeof(int));
 		if (!matrix[i])
+		{
+			free_matrix(matrix, *str);
 			return NULL;
+		}
 		matrix[i][*stb - 1] = counting_minimum(matrix, i, *stb);
 	}
 	return matrix;
