@@ -79,7 +79,7 @@ int main(void)
 		if (!temp)
 		{
 			free_matrix(a, n);
-			free_matrix(b, q);
+			free_matrix(b, p);
 			return ALLOCATE_ERROR;
 		}
 		for (int i = 0; i < n; i++)
