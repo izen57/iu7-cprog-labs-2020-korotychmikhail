@@ -14,9 +14,15 @@ int **input(int *str, int *stb)
 		{
 			for (int j = 0; j < *stb - 1; j++)
 				if (scanf("%d", &matrix[i][j]) != 1)
+				{
+					free_matrix(matrix, *str);
 					return NULL;
+				}
 			if (scanf("%d\n", &matrix[i][*stb - 1]) != 1)
+			{
+				free_matrix(matrix, *str);
 				return NULL;
+			}
 		}
 		return matrix;
 	}
