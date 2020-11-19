@@ -142,7 +142,6 @@ int main(void)
 		return INPUT_ERROR;
 	}
 	int **result = multiplication(a, n, m, b, p, q);
-	//printf("--multiplication--\n");
 	output(result, n, q);
 	free_matrix(a, n);
 	free_matrix(b, p);
