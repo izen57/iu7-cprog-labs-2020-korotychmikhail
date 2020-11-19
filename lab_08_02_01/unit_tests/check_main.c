@@ -152,7 +152,7 @@ START_TEST(test_low_average_zeroes_and_negatives)
 		ck_assert_int_eq(0, result1);
 	}
 	int result2 = counting_low_average(a, 3, 1);
-	if (result2 != -3)
+	if (result2 != -4)
 	{
 		free_matrix(a, 3);
 		ck_assert_int_eq(-3, result2);

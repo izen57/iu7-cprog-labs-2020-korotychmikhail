@@ -27,7 +27,7 @@ int **allocate_matrix(int str, int stb)
 void remove_str_shift(int **matrix, int str, int stb, int point)
 {
 	for (int i = point; i < str - 1; i++)
-		memcpy(matrix[i], matrix[i + 1], stb * sizeof(int));
+		memmove(matrix[i], matrix[i + 1], stb * sizeof(int));
 }
 int **remove_str(int **matrix, int *str, int stb)
 {
