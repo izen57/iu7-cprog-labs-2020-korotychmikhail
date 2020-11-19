@@ -80,10 +80,10 @@ int **remove_stb(int **matrix, int str, int *stb)
 }
 int counting_low_average(int **matrix, int str, int stb)
 {
-	int summ = 0;
+	float summ = 0;
 	for (int i = 0; i < str - 1; i++)
 		summ += matrix[i][stb];
-	return 1 + (int)floor(summ / (str - 1));
+	return (int)floor(summ / (str - 1));
 }
 int counting_minimum(int **matrix, int str, int stb)
 {
