@@ -32,9 +32,16 @@ void remove_str_shift(int **matrix, int str, int stb, int point)
 int **remove_str(int **matrix, int *str, int stb)
 {
 	int max = NEG_INF, index;
-	for (int i = *str - 1; i >= 0; i--)
+	/*for (int i = *str - 1; i >= 0; i--)
 		for (int j = stb - 1; j >= 0; j--)
 			if (matrix[i][j] > max)
+			{
+				max = matrix[i][j];
+				index = i;
+			}*/
+	for (int i = 0; i < *str; i++)
+		for (int j = 0; j < stb; j++)
+			if (matrix[i][j] >= max)
 			{
 				max = matrix[i][j];
 				index = i;
@@ -58,9 +65,16 @@ void remove_stb_shift(int **matrix, int str, int stb, int point)
 int **remove_stb(int **matrix, int str, int *stb)
 {
 	int max = NEG_INF, index;
-	for (int i = str - 1; i >= 0; i--)
+	/*for (int i = str - 1; i >= 0; i--)
 		for (int j = *stb - 1; j >= 0; j--)
 			if (matrix[i][j] > max)
+			{
+				max = matrix[i][j];
+				index = j;
+			}*/
+	for (int i = 0; i < str; i++)
+		for (int j = 0; j < *stb; j++)
+			if (matrix[i][j] >= max)
 			{
 				max = matrix[i][j];
 				index = j;
