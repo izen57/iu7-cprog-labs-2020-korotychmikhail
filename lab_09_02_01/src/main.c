@@ -18,7 +18,10 @@ int main(int argc, char **argv)
 			}
 			struct information *stuff = malloc(n * sizeof(struct information));
 			if (!stuff)
+			{
+				fclose(file);
 				return ALLOCATION_ERROR;
+			}
 			if (!read_stuff(file, stuff))
 			{
 				if (argc == 2)
