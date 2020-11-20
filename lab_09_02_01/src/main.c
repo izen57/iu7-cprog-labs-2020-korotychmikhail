@@ -42,6 +42,7 @@ int main(int argc, char **argv)
 			}
 			else
 			{
+				fclose(file);
 				free_information(stuff, n);
 				error = ALLOCATION_ERROR;
 			}
