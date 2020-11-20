@@ -38,7 +38,7 @@ int counting_structures(FILE *file)
 	while (!feof(file))
 		if (fgetc(file) == '\n')
 			n++;
-	n++;
+	//n++;
 	rewind(file);
 	if (n % 3)
 		return -1;
