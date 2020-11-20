@@ -17,6 +17,8 @@ int main(int argc, char **argv)
 				return INCORRECT_INPUT;
 			}
 			struct information *stuff = malloc(n * sizeof(struct information));
+			if (!stuff)
+				return ALLOCATION_ERROR;
 			if (!read_stuff(file, stuff))
 			{
 				if (argc == 2)
