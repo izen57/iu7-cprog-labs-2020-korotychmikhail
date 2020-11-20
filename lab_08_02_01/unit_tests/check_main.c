@@ -134,7 +134,7 @@ START_TEST(test_low_average_ok)
 	if (result2)
 	{
 		free_matrix(a, 3);
-		ck_assert_int_eq(3, result2);
+		ck_assert_int_eq(0, result2);
 	}
 	free_matrix(a, 3);
 	return;
@@ -155,7 +155,7 @@ START_TEST(test_low_average_zeroes_and_negatives)
 	if (result2 != -4)
 	{
 		free_matrix(a, 3);
-		ck_assert_int_eq(-3, result2);
+		ck_assert_int_eq(-4, result2);
 	}
 	free_matrix(a, 3);
 	return;
