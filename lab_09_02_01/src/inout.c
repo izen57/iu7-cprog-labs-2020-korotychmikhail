@@ -35,10 +35,15 @@ char *input(FILE *file)
 int counting_structures(FILE *file)
 {
 	int n = 0;
-	while (!feof(file))
+	/*while (!feof(file))
 		if (fgetc(file) == '\n')
 			n++;
-	n++;
+	n++;*/
+	do
+	{
+		if (fgetc(file) == '\n')
+			n++;
+	} while (!feof(file));
 	rewind(file);
 	if (n % 3)
 		return -1;
