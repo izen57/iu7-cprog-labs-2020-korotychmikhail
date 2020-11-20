@@ -1,5 +1,6 @@
 #ifndef __FUNCTIONS_H__
 #define __FUNCTIONS_H__
+#include <stdio.h>
 struct information
 {
 	char *name;
