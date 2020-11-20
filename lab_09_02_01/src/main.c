@@ -41,8 +41,11 @@ int main(int argc, char **argv)
 						free_information(stuff, n);
 						fclose(file);
 					}
-					fclose(file);
-					free_information(stuff, n);
+					else
+					{
+						fclose(file);
+						free_information(stuff, n);
+					}
 				}
 			}
 			else
