@@ -54,7 +54,6 @@ int read_stuff(FILE *file, struct information *stuff)
 			stuff[i].name = input(file);
 		if (error || !stuff[i].name)
 			error = INCORRECT_INPUT;
-		printf("%s\n", stuff[i].name);
 		if (error || fscanf(file, "%f\n", &stuff[i].weight) != 1 || stuff[i].weight <= 0)
 			error = INCORRECT_INPUT;
 		if (error || fscanf(file, "%f\n", &stuff[i].volume) != 1 || stuff[i].volume <= 0)
