@@ -6,7 +6,6 @@
 #include "../inc/inout.h"
 int find_stuff(char *string, struct information *stuff, int n, int start)
 {
-
 	//struct information *result = NULL;
 	int index = -1;
 	for (int i = start; i < n; i++)

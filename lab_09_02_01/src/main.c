@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 		{
 			struct information *stuff = NULL;
 			int n = counting_structures(file);
-			if (n == -1 || !n)
+			if (n == -1)
 			{
 				fclose(file);
 				error = INCORRECT_INPUT;
