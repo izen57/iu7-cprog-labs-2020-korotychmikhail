@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../inc/functions.h"
+#include "../inc/inout.h"
 #include "../inc/error_codes.h"
+#include "../inc/structure.h"
 void print(struct information *stuff, int n)
 {
 	for (int i = 0; i < n; i++)
@@ -41,9 +42,10 @@ int counting_structures(FILE *file)
 	n++;
 	rewind(file);
 	if (n % 3)
-		return -1;
+		n = -1;
 	else
-		return n / 3;
+		n /= 3;
+	return n;
 }
 int read_stuff(FILE *file, struct information *stuff)
 {

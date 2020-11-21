@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include "../inc/functions.h"
+#include "../inc/sort.h"
+#include "../inc/structure.h"
 void sort_stuff(struct information *stuff, int n)
 {
 	int flag;

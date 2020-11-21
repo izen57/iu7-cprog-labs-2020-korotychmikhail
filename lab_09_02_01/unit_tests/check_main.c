@@ -1,7 +1,7 @@
 #include <check.h>
 #include <string.h>
-#include "../inc/error_codes.h"
-#include "../inc/functions.h"
+#include "../inc/structure.h"
+#include "../inc/sort.h"
 START_TEST(test_sort_ok)
 {
 	struct information stuff[] =

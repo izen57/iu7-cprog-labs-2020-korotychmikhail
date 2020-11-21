@@ -1,7 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../inc/functions.h"
+#include <string.h>
+#include "../inc/structure.h"
 #include "../inc/error_codes.h"
+#include "../inc/inout.h"
+#include "../inc/sort.h"
+#include "../inc/find.h"
 int main(int argc, char **argv)
 {
 	int error = 0;
@@ -10,19 +14,23 @@ int main(int argc, char **argv)
 		FILE *file = fopen(argv[1], "r");
 		if (file)
 		{
+			struct information *stuff;
 			int n = counting_structures(file);
 			if (n == -1)
 			{
 				fclose(file);
-				return INCORRECT_INPUT;
+				error = INCORRECT_INPUT;
 			}
-			struct information *stuff = malloc(n * sizeof(struct information));
-			if (!stuff)
+			if (error)
+				stuff = NULL;
+			else
+				stuff = malloc(n * sizeof(struct information));
+			if (error && !stuff)
 			{
 				fclose(file);
-				return ALLOCATION_ERROR;
+				error = ALLOCATION_ERROR;
 			}
-			if (!read_stuff(file, stuff))
+			if (stuff && !read_stuff(file, stuff))
 			{
 				if (argc == 2)
 				{
@@ -33,16 +41,24 @@ int main(int argc, char **argv)
 				}
 				else if (argc == 3)
 				{
-					error = find_and_print_stuff(argv[2], stuff, n);
-					if (error == 1)
+					if (!strcmp(argv[2], "ALL"))
 					{
 						print(stuff, n);
-						error = SUCCESS;
 						free_information(stuff, n);
+						fclose(file);
+					}
+					int m = 0;
+					struct information *result = find_stuff(argv[2], stuff, n, &m);
+					if (result)
+					{
+						print(result, m);
+						free_information(stuff, n);
+						free_information(result, m);
 						fclose(file);
 					}
 					else
 					{
+						error = INCORRECT_INPUT;
 						fclose(file);
 						free_information(stuff, n);
 					}
