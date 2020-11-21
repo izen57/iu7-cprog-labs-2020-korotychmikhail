@@ -43,16 +43,17 @@ int main(int argc, char **argv)
 						}
 						else
 						{
-							int start = 0, index = 0;
+							int start = 0, index = 0, flag = 0;
 							while (index != -1 && start < n)
 							{
 								index = find_stuff(argv[2], stuff, n, start);
 								if (index != -1)
 								{
+									flag = 1;
 									printf("%s\n%f\n%f\n", stuff[index].name, stuff[index].weight, stuff[index].volume);
 									start = index + 1;
 								}
-								else
+								else if (index == -1 && !flag)
 								{
 									error = INCORRECT_INPUT;
 									fclose(file);
