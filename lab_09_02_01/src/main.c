@@ -56,11 +56,13 @@ int main(int argc, char **argv)
 								else if (index == -1 && !flag)
 								{
 									error = INCORRECT_INPUT;
-									fclose(file);
-									free_information(stuff, n);
+									/*fclose(file);
+									free_information(stuff, n);*/
 									break;
 								}
 							}
+							fclose(file);
+							free_information(stuff, n);
 						}
 					}
 				}
