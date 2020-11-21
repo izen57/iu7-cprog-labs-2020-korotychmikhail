@@ -18,7 +18,10 @@ struct information *find_stuff(char *string, struct information *stuff, int n, i
 				result = NULL;
 				break;
 			}
-			result[*m - 1] = stuff[i];
+			//result[*m - 1] = stuff[i];
+			result[*m - 1].name = stuff[i].name;
+			result[*m - 1].weight = stuff[i].weight;
+			result[*m - 1].volume = stuff[i].volume;
 		}
 	return result;
 }

@@ -47,8 +47,8 @@ int main(int argc, char **argv)
 						if (result)
 						{
 							print(result, m);
-							free_information(stuff, n);
 							free_information(result, m);
+							free_information(stuff, n);
 							fclose(file);
 						}
 						else
