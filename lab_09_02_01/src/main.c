@@ -14,22 +14,15 @@ int main(int argc, char **argv)
 		FILE *file = fopen(argv[1], "r");
 		if (file)
 		{
-			struct information *stuff;
+			struct information *stuff = NULL;
 			int n = counting_structures(file);
-			if (n == -1)
+			if (n == -1 || !n)
 			{
 				fclose(file);
 				error = INCORRECT_INPUT;
 			}
-			if (error)
-				stuff = NULL;
 			else
 				stuff = malloc(n * sizeof(struct information));
-			if (error)
-			{
-				fclose(file);
-				error = ALLOCATION_ERROR;
-			}
 			if (!error && !read_stuff(file, stuff))
 			{
 				if (argc == 2)
@@ -47,20 +40,23 @@ int main(int argc, char **argv)
 						free_information(stuff, n);
 						fclose(file);
 					}
-					int m = 0;
-					struct information *result = find_stuff(argv[2], stuff, n, &m);
-					if (result)
-					{
-						print(result, m);
-						free_information(stuff, n);
-						free_information(result, m);
-						fclose(file);
-					}
 					else
 					{
-						error = INCORRECT_INPUT;
-						fclose(file);
-						free_information(stuff, n);
+						int m = 0;
+						struct information *result = find_stuff(argv[2], stuff, n, &m);
+						if (result)
+						{
+							print(result, m);
+							free_information(stuff, n);
+							free_information(result, m);
+							fclose(file);
+						}
+						else
+						{
+							error = INCORRECT_INPUT;
+							fclose(file);
+							free_information(stuff, n);
+						}
 					}
 				}
 			}
