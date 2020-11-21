@@ -42,20 +42,22 @@ int main(int argc, char **argv)
 					}
 					else
 					{
-						int m = 0;
-						struct information *result = find_stuff(argv[2], stuff, n, &m);
-						if (result)
+						int start = 0, index = 0;
+						while (index != -1 && start < n)
 						{
-							print(result, m);
-							free_information(result, m);
-							free_information(stuff, n);
-							fclose(file);
-						}
-						else
-						{
-							error = INCORRECT_INPUT;
-							fclose(file);
-							free_information(stuff, n);
+							index = find_stuff(argv[2], stuff, n, start);
+							if (index != -1)
+							{
+								printf("%s\n%f\n%f\n", stuff[index].name, stuff[index].weight, stuff[index].volume);
+								start = index + 1;
+							}
+							else
+							{
+								error = INCORRECT_INPUT;
+								fclose(file);
+								free_information(stuff, n);
+								break;
+							}
 						}
 					}
 				}
