@@ -25,12 +25,12 @@ int main(int argc, char **argv)
 				stuff = NULL;
 			else
 				stuff = malloc(n * sizeof(struct information));
-			if (error && !stuff)
+			if (error)
 			{
 				fclose(file);
 				error = ALLOCATION_ERROR;
 			}
-			if (stuff && !read_stuff(file, stuff))
+			if (!error && !read_stuff(file, stuff))
 			{
 				if (argc == 2)
 				{
