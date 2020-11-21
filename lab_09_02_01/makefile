@@ -17,7 +17,7 @@ $(O)inout.o: $(S)inout.c $(I)inout.h $(I)error_codes.h $(I)structure.h
 	gcc $(CFLAGS) $< -o $@
 $(O)sort.o: $(S)sort.c $(I)structure.h $(I)sort.h $(I)structure.h
 	gcc $(CFLAGS) $< -o $@
-$(O)check_main.o: ./unit_tests/check_main.c $(I)structure.h $(S)sort.h
+$(O)check_main.o: ./unit_tests/check_main.c $(I)structure.h $(I)sort.h
 	gcc $(CFLAGS) $< -o $@
 clean:
 	rm -f $(O)*.o *.exe

@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "../inc/find.h"
 #include "../inc/structure.h"
+#include "../inc/inout.h"
 struct information *find_stuff(char *string, struct information *stuff, int n, int *m)
 {
 	struct information *result = NULL;
@@ -11,6 +12,12 @@ struct information *find_stuff(char *string, struct information *stuff, int n, i
 		{
 			//printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 			result = realloc(result, ++(*m) * sizeof(struct information));
+			if (!result)
+			{
+				free_information(result, *m - 1);
+				result = NULL;
+				break;
+			}
 			result[*m - 1] = stuff[i];
 		}
 	return result;
