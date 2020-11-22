@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include "sort.h"
-void swap(information *first_elem, information *second_elem)
+void swap(information *stuff, int index1, int index2)
 {
-	information *temp;
-	temp = first_elem;
-	first_elem = second_elem;
-	second_elem = temp;
+	information temp;
+	temp = stuff[index1];
+	stuff[index1] = stuff[index2];
+	stuff[index2] = temp;
 }
 void sort_stuff(information *stuff, int n)
 {
@@ -16,7 +16,7 @@ void sort_stuff(information *stuff, int n)
 		for (int i = 1; i < n; i++)
 			if (stuff[i].weight / stuff[i].volume < stuff[i - 1].weight / stuff[i - 1].volume)
 			{
-				swap(&stuff[i], &stuff[i - 1]);
+				swap(stuff, i, i - 1);
 				flag = 1;
 			}
 	}
