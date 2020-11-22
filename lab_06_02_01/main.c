@@ -1,5 +1,5 @@
 #include <stdio.h>
-//#include "structures.h"
+#include "structures.h"
 #include "read.h"
 #include "sort.h"
 #include "find.h"
