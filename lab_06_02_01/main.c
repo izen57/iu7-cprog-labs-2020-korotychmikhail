@@ -1,10 +1,8 @@
 #include <stdio.h>
-#include "functions.h"
-void print(information *stuff, int n)
-{
-	for (int i = 0; i < n; i++)
-		printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
-}
+#include "read.h"
+#include "sort.h"
+#include "find.h"
+void print(information *stuff, int n);
 int main(int argc, char **argv)
 {
 	int error = 0;
@@ -43,4 +41,9 @@ int main(int argc, char **argv)
 	else
 		error = 1;
 	return error;
+}
+void print(information *stuff, int n)
+{
+	for (int i = 0; i < n; i++)
+		printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 }

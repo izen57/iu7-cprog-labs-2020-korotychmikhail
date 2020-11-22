@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "functions.h"
+#include "find.h"
 int find_and_print_stuff(char *string, information *stuff, int n)
 {
 	int key = 0;

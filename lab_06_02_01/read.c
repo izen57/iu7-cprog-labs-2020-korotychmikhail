@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "functions.h"
+#include "read.h"
 int read_stuff(FILE *file, information *stuff, int *n)
 {
 	int error = 0;
