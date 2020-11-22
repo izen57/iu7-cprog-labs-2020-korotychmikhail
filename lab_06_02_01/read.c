@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <string.h>
 #include "read.h"
 int read_stuff(FILE *file, information *stuff, int *n)
