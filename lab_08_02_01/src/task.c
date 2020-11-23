@@ -96,11 +96,11 @@ int counting_minimum(int **matrix, int str, int stb)
 int **add_str_and_stb(int **matrix, int *str, int *stb)
 {
 	matrix = realloc(matrix, ++(*str) * sizeof(int *));
-	//if (!matrix)
-	//{
-		//free_matrix(matrix, *str /*- 1*/);
+	if (!matrix)
+	{
+		free_matrix(matrix, *str /*- 1*/);
 		return NULL;
-	//}
+	}
 	matrix[*str - 1] = calloc(*stb, sizeof(int));
 	if (!matrix[*str - 1])
 	{
