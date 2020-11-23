@@ -44,7 +44,7 @@ int **remove_str(int **matrix, int *str, int stb)
 	matrix = realloc(matrix, --(*str) * sizeof(int *));
 	if (!matrix)
 	{
-		free_matrix(matrix, *str);
+		//free_matrix(matrix, *str);
 		return NULL;
 	}
 	return matrix;
@@ -72,7 +72,7 @@ int **remove_stb(int **matrix, int str, int *stb)
 		matrix[i] = realloc(matrix[i], *stb * sizeof(int));
 		if (!matrix[i])
 		{
-			free_matrix(matrix, str);
+			//free_matrix(matrix, str);
 			return NULL;
 		}
 	}
