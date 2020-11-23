@@ -3,10 +3,10 @@
 #include "../inc/structure.h"
 void swap(struct information *stuff, int index1, int index2)
 {
-        struct information temp;
-        temp = stuff[index1];
-        stuff[index1] = stuff[index2];
-        stuff[index2] = temp;
+	struct information temp;
+	temp = stuff[index1];
+	stuff[index1] = stuff[index2];
+	stuff[index2] = temp;
 }
 void sort_stuff(struct information *stuff, int n)
 {
