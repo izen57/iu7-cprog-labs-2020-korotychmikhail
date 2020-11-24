@@ -49,6 +49,7 @@ int main(void)
 	a = add_by_number(a, &n, &m, z);
 	if (!a)
 	{
+		free_matrix(a, n);
 		free_matrix(b, p);
 		return ALLOCATE_ERROR;
 	}
@@ -56,6 +57,7 @@ int main(void)
 	if (!b)
 	{
 		free_matrix(a, n);
+		free_matrix(b, p);
 		return ALLOCATE_ERROR;
 	}
 	/*output(a, n, m);
