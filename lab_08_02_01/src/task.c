@@ -110,7 +110,7 @@ int **add_str_and_stb(int **matrix, int *str, int *stb, int amount)
 	for (int i = *str; i < amount; i++)
 		matrix[i] = calloc(*stb, sizeof(int));
 	for (int i = *str; i < amount; i++)
-		for (int j = 0; j < *stb; i++)
+		for (int j = 0; j < *stb; j++)
 			matrix[i][j] = counting_low_average(matrix, i, j);
 	*str += amount - *str;
 	//(*stb)++;
@@ -124,7 +124,7 @@ int **add_str_and_stb(int **matrix, int *str, int *stb, int amount)
 		}
 		//matrix[i][*stb - 1] = counting_minimum(matrix, i, *stb);
 		for (int j = *stb; j < amount; j++)
-			matrix[i][j] = counting_low_average(matrix, i, j);
+			matrix[i][j] = counting_minimum(matrix, i, j);
 	}
 	*stb += amount - *stb;
 	return matrix;
@@ -173,11 +173,11 @@ int **remove_by_number(int **matrix, int *rows, int *cols, int number)
 }
 int **add_by_number(int **matrix, int *rows, int *cols, int number)
 {
-	//while (*rows < number && *cols < number)
-	//{
+	/*while (*rows < number && *cols < number)*/if (number > *rows)
+	{
 		matrix = add_str_and_stb(matrix, rows, cols, number);
 		if (!matrix)
 			return NULL;
-	//}
+	}
 	return matrix;
 }

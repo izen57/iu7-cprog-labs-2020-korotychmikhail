@@ -124,13 +124,13 @@ START_TEST(test_low_average_ok)
 	int **a = allocate_matrix(3, 2);
 	a[0][0] = 2; a[0][1] = -3;
 	a[1][0] = 5; a[1][1] = 4;
-	int result1 = counting_low_average(a, 3, 0);
+	int result1 = counting_low_average(a, 2, 0);
 	if (result1 != 3)
 	{
 		free_matrix(a, 3);
 		ck_assert_int_eq(3, result1);
 	}
-	int result2 = counting_low_average(a, 3, 1);
+	int result2 = counting_low_average(a, 2, 1);
 	if (result2)
 	{
 		free_matrix(a, 3);
@@ -145,13 +145,13 @@ START_TEST(test_low_average_zeroes_and_negatives)
 	int **a = allocate_matrix(3, 2);
 	a[0][0] = 0; a[0][1] = -3;
 	a[1][0] = 0; a[1][1] = -4;
-	int result1 = counting_low_average(a, 3, 0);
+	int result1 = counting_low_average(a, 2, 0);
 	if (result1)
 	{
 		free_matrix(a, 3);
 		ck_assert_int_eq(0, result1);
 	}
-	int result2 = counting_low_average(a, 3, 1);
+	int result2 = counting_low_average(a, 2, 1);
 	if (result2 != -4)
 	{
 		free_matrix(a, 3);
