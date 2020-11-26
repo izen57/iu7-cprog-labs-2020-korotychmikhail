@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../inc/inout.h"
 #include "../inc/error_codes.h"
 #include "../inc/task.h"
@@ -86,12 +87,14 @@ int main(void)
 				temp[i][j] = a[i][j];
 		for (int i = 0; i < rho - 1; i++)
 		{
-			a = multiplication(a, n, m, temp, n, m, 1);
-			if (!a)
+			int **result = multiplication(a, n, m, temp, n, m);
+			if (!result)
 			{
 				free_matrix(b, p);
 				return ALLOCATE_ERROR;
 			}
+			memmove(a, result, n * sizeof(int *));
+			free_matrix(result, n);
 		}
 		free_matrix(temp, n);
 	}
@@ -126,7 +129,7 @@ int main(void)
 				temp[i][j] = b[i][j];
 		for (int i = 0; i < gamma - 1; i++)
 		{
-			b = multiplication(b, p, q, temp, p, q, 1);
+			b = multiplication(b, p, q, temp, p, q);
 			if (!b)
 			{
 				free_matrix(a, n);
@@ -141,7 +144,7 @@ int main(void)
 		free_matrix(b, p);
 		return INPUT_ERROR;
 	}
-	int **result = multiplication(a, n, m, b, p, q, 0);
+	int **result = multiplication(a, n, m, b, p, q);
 	if (!result)
 		return ALLOCATE_ERROR;
 	output(result, n, q);

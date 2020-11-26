@@ -25,7 +25,7 @@ START_TEST(test_mult_not_compatible)
 	fill(a, 2, 3);
 	int **b = allocate_matrix(2, 4);
 	fill(b, 2, 4);
-	int **result = multiplication(a, 2, 3, b, 2, 4, 0);
+	int **result = multiplication(a, 2, 3, b, 2, 4);
 	ck_assert_ptr_null(result);
 }
 END_TEST
@@ -39,7 +39,7 @@ START_TEST(test_mult_ok)
 	b[0][0] = 4; b[0][1] = 7; b[0][2] = 4;
 	b[1][0] = 3; b[1][1] = 5; b[1][2] = 0;
 	b[2][0] = 1; b[2][1] = 1; b[2][2] = 1;
-	int **result = multiplication(a, 3, 3, b, 3, 3, 0);
+	int **result = multiplication(a, 3, 3, b, 3, 3);
 	int **true_result = allocate_matrix(3, 3);
 	true_result[0][0] = -20; true_result[0][1] = -32; true_result[0][2] = -20;
 	true_result[1][0] = 40; true_result[1][1] = 67; true_result[1][2] = 31;
@@ -59,7 +59,7 @@ START_TEST(test_mult_single_matrix)
 	int **b = allocate_matrix(2, 2);
 	b[0][0] = 1; b[0][1] = 0;
 	b[1][0] = 0; b[1][1] = 1;
-	int **result = multiplication(a, 2, 2, b, 2, 2, 0);
+	int **result = multiplication(a, 2, 2, b, 2, 2);
 	int **true_result = allocate_matrix(2, 2);
 	true_result[0][0] = 2; true_result[0][1] = -3;
 	true_result[1][0] = 5; true_result[1][1] = 4;

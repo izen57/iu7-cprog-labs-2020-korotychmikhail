@@ -139,7 +139,7 @@ int **add_str_and_stb(int **matrix, int *str, int *stb, int amount)
 	*stb += amount - *stb;
 	return matrix;
 }
-int **multiplication(int **matrix1, int str1, int stb1, int **matrix2, int str2, int stb2, int flag)
+int **multiplication(int **matrix1, int str1, int stb1, int **matrix2, int str2, int stb2)
 {
 	if (str1 != stb2)
 	{
@@ -147,11 +147,7 @@ int **multiplication(int **matrix1, int str1, int stb1, int **matrix2, int str2,
 		free_matrix(matrix2, str2);
 		return NULL;
 	}
-	int **result;
-	if (!flag)
-		result = allocate_matrix(str1, stb2);
-	else
-		result = matrix1;
+	int **result = allocate_matrix(str1, stb2);
 	if (!result)
 	{
 		free_matrix(matrix1, str1);

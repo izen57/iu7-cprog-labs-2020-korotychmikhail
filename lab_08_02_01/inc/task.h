@@ -11,5 +11,5 @@ int counting_low_average(int **matrix, int str, int stb);
 int counting_minimum(int **matrix, int str, int stb);
 int **add_by_number(int **matrix, int *rows, int *cols, int number);
 int **add_str_and_stb(int **matrix, int *str, int *stb);
-int **multiplication(int **matrix1, int str1, int stb1, int **matrix2, int str2, int stb2, int flag);
+int **multiplication(int **matrix1, int str1, int stb1, int **matrix2, int str2, int stb2);
 #endif
