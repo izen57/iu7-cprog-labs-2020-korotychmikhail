@@ -23,7 +23,7 @@ int **allocate_matrix(int str, int stb)
 		}
 		matrix[i] = calloc(stb, sizeof(int));
 		//matrix[i] = temp;
-		memmove(matrix[i], temp, stb * sizeof(int));
+		//memmove(matrix[i], temp, stb * sizeof(int));
 		free(temp);
 	}
 	return matrix;
@@ -118,7 +118,6 @@ int **add_str_and_stb(int **matrix, int *str, int *stb, int amount)
 			return NULL;
 		}
 		matrix[i] = calloc(*stb, sizeof(int));
-		memmove(matrix[i], temp, *stb * sizeof(int));
 		free(temp);
 	}
 	for (int i = *str; i < amount; i++)
