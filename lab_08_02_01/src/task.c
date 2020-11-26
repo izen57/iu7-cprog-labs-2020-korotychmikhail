@@ -21,9 +21,10 @@ int **allocate_matrix(int str, int stb)
 			free_matrix(matrix, str);
 			return NULL;
 		}
-		matrix[i] = temp;
-		//memmove(matrix[i], temp, stb * sizeof(int));
-		//free(temp);
+		matrix[i] = calloc(stb, sizeof(int));
+		//matrix[i] = temp;
+		memmove(matrix[i], temp, stb * sizeof(int));
+		free(temp);
 	}
 	return matrix;
 }
