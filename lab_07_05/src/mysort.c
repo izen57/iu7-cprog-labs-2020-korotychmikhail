@@ -2,11 +2,13 @@
 #include <string.h>
 #include "../inc/mysort.h"
 #include "../inc/error_codes.h"
+
 int compare(const void *i, const void *j)
 {
 	const int *a = i, *b = j;
 	return *a - *b;
 }
+
 int mysort(void *base, size_t num, size_t size, int (*compare)(const void *, const void *))
 {
 	int error = SUCCESS;
