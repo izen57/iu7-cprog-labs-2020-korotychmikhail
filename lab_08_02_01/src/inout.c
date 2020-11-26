@@ -3,6 +3,7 @@
 #include "../inc/inout.h"
 #include "../inc/task.h"
 #include "../inc/error_codes.h"
+
 int **input(int *str, int *stb)
 {
 	if (scanf("%d", str) == 1 && *str > 1 && scanf("%d", stb) == 1 && *stb > 1)
@@ -29,6 +30,7 @@ int **input(int *str, int *stb)
 	else
 		return NULL;
 }
+
 void output(int **matrix, int str, int stb)
 {
 	for (int i = 0; i < str; i++)
@@ -38,6 +40,7 @@ void output(int **matrix, int str, int stb)
 		printf("%d\n", matrix[i][stb - 1]);
 	}
 }
+
 int input_rho_and_gamma(int *rho, int *gamma)
 {
 	if (scanf("%d", rho) != 1 || *rho < 0 || scanf("%d", gamma) != 1 || *gamma < 0)

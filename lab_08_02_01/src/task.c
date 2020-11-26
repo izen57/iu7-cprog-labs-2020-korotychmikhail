@@ -2,12 +2,14 @@
 #include <math.h>
 #include <string.h>
 #include "../inc/error_codes.h"
+
 void free_matrix(int **matrix, int str)
 {
 	for (int i = 0; i < str; i++)
 		free(matrix[i]);
 	free(matrix);
 }
+
 int **allocate_matrix(int str, int stb)
 {
 	int **matrix = calloc(str, sizeof(int *));
@@ -22,17 +24,17 @@ int **allocate_matrix(int str, int stb)
 			return NULL;
 		}
 		matrix[i] = calloc(stb, sizeof(int));
-		//matrix[i] = temp;
-		//memmove(matrix[i], temp, stb * sizeof(int));
 		free(temp);
 	}
 	return matrix;
 }
+
 void remove_str_shift(int **matrix, int str, int stb, int point)
 {
 	for (int i = point; i < str - 1; i++)
 		memmove(matrix[i], matrix[i + 1], stb * sizeof(int));
 }
+
 int **remove_str(int **matrix, int *str, int stb)
 {
 	int max = NEG_INF, index;
@@ -52,15 +54,16 @@ int **remove_str(int **matrix, int *str, int stb)
 		return NULL;
 	}
 	matrix = temp;
-	//memmove(matrix, temp, *str * sizeof(int));
 	return matrix;
 }
+
 void remove_stb_shift(int **matrix, int str, int stb, int point)
 {
 	for (int i = 0; i < str; i++)
 		for (int j = point; j < stb - 1; j++)
 			matrix[i][j] = matrix[i][j + 1];
 }
+
 int **remove_stb(int **matrix, int str, int *stb)
 {
 	int max = NEG_INF, index;
@@ -85,6 +88,7 @@ int **remove_stb(int **matrix, int str, int *stb)
 	}
 	return matrix;
 }
+
 int counting_low_average(int **matrix, int point, int stb)
 {
 	float summ = 0;
@@ -92,6 +96,7 @@ int counting_low_average(int **matrix, int point, int stb)
 		summ += matrix[i][stb];
 	return (int) floor(summ / point);
 }
+
 int counting_minimum(int **matrix, int str, int point)
 {
 	int min = POS_INF;
@@ -100,6 +105,7 @@ int counting_minimum(int **matrix, int str, int point)
 			min = matrix[str][i];
 	return min;
 }
+
 int **add_str_and_stb(int **matrix, int *str, int *stb, int amount)
 {
 	int **temp = realloc(matrix, amount * sizeof(int *));
@@ -139,6 +145,7 @@ int **add_str_and_stb(int **matrix, int *str, int *stb, int amount)
 	*stb += amount - *stb;
 	return matrix;
 }
+
 int **multiplication(int **matrix1, int str1, int stb1, int **matrix2, int str2, int stb2)
 {
 	if (str1 != stb2)
@@ -163,6 +170,7 @@ int **multiplication(int **matrix1, int str1, int stb1, int **matrix2, int str2,
 		}
 	return result;
 }
+
 int **remove_by_number(int **matrix, int *rows, int *cols, int number)
 {
 	if (*rows > *cols)
@@ -181,9 +189,10 @@ int **remove_by_number(int **matrix, int *rows, int *cols, int number)
 		}
 	return matrix;
 }
+
 int **add_by_number(int **matrix, int *rows, int *cols, int number)
 {
-	/*while (*rows < number && *cols < number)*/if (number > *rows)
+	if (number > *rows)
 	{
 		matrix = add_str_and_stb(matrix, rows, cols, number);
 		if (!matrix)

@@ -3,12 +3,14 @@
 #include <stdlib.h>
 #include "../inc/task.h"
 #include "../inc/inout.h"
+
 void fill(int **matrix, int rows, int cols)
 {
 	for (int i = 0; i < rows; i++)
 		for (int j = 0; j < cols; j++)
 			matrix[i][j] = i + j;
 }
+
 int compare_matrix(int **matrix1, int rows1, int cols1, int **matrix2, int rows2, int cols2)
 {
 	if (rows1 != rows2 || cols1 != cols2)
@@ -19,6 +21,7 @@ int compare_matrix(int **matrix1, int rows1, int cols1, int **matrix2, int rows2
 				return 1;
 	return 0;
 }
+
 START_TEST(test_mult_not_compatible)
 {
 	int **a = allocate_matrix(2, 3);
@@ -29,6 +32,7 @@ START_TEST(test_mult_not_compatible)
 	ck_assert_ptr_null(result);
 }
 END_TEST
+
 START_TEST(test_mult_ok)
 {
 	int **a = allocate_matrix(3, 3);
@@ -51,6 +55,7 @@ START_TEST(test_mult_ok)
 	free_matrix(true_result, 3);
 	ck_assert_int_eq(error, 0);
 }
+
 START_TEST(test_mult_single_matrix)
 {
 	int **a = allocate_matrix(2, 2);
@@ -71,6 +76,7 @@ START_TEST(test_mult_single_matrix)
 	ck_assert_int_eq(error, 0);
 }
 END_TEST
+
 START_TEST(test_remove_columns)
 {
 	int n = 2, m = 3;
@@ -87,6 +93,7 @@ START_TEST(test_remove_columns)
 	ck_assert_int_eq(error, 0);
 }
 END_TEST
+
 START_TEST(test_remove_strings)
 {
 	int n = 5, m = 3;
@@ -107,6 +114,7 @@ START_TEST(test_remove_strings)
 	ck_assert_int_eq(error, 0);
 }
 END_TEST
+
 START_TEST(test_low_average_ok)
 {
 	int **a = allocate_matrix(3, 2);
@@ -128,6 +136,7 @@ START_TEST(test_low_average_ok)
 	return;
 }
 END_TEST
+
 START_TEST(test_low_average_zeroes_and_negatives)
 {
 	int **a = allocate_matrix(3, 2);
@@ -149,6 +158,7 @@ START_TEST(test_low_average_zeroes_and_negatives)
 	return;
 }
 END_TEST
+
 START_TEST(test_add_str_stb)
 {
 	int n = 2, m = 2;
@@ -166,6 +176,7 @@ START_TEST(test_add_str_stb)
 	ck_assert_int_eq(error, 0);
 }
 END_TEST
+
 Suite *test_func_suite(void)
 {
 	Suite *s = suite_create("test_func");
@@ -185,6 +196,7 @@ Suite *test_func_suite(void)
 	suite_add_tcase(s, tc_math);
 	return s;
 }
+
 int main(void)
 {
 	int no_failed = 0;

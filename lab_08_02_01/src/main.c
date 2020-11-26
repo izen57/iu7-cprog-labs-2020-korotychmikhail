@@ -4,6 +4,7 @@
 #include "../inc/inout.h"
 #include "../inc/error_codes.h"
 #include "../inc/task.h"
+
 int main(void)
 {
 	int error = SUCCESS;
