@@ -102,19 +102,13 @@ int counting_minimum(int **matrix, int str, int point)
 }
 int **add_str_and_stb(int **matrix, int *str, int *stb, int amount)
 {
-	int **temp = realloc(matrix, /*++(*str)*/amount * sizeof(int *));
+	int **temp = realloc(matrix, amount * sizeof(int *));
 	if (!temp)
 	{
 		free_matrix(matrix, *str);
 		return NULL;
 	}
 	matrix = temp;
-	/*matrix[*str - 1] = calloc(*stb, sizeof(int));
-	if (!matrix[*str - 1])
-	{
-		free_matrix(matrix, *str);
-		return NULL;
-	}*/
 	for (int i = *str; i < amount; i++)
 	{
 		int *temp = calloc(*stb, sizeof(int));
@@ -129,7 +123,6 @@ int **add_str_and_stb(int **matrix, int *str, int *stb, int amount)
 		for (int j = 0; j < *stb; j++)
 			matrix[i][j] = counting_low_average(matrix, i, j);
 	*str += amount - *str;
-	//(*stb)++;
 	for (int i = 0; i < amount; i++)
 	{
 		int *temp_elem = realloc(matrix[i], amount * sizeof(int));
@@ -139,7 +132,6 @@ int **add_str_and_stb(int **matrix, int *str, int *stb, int amount)
 			return NULL;
 		}
 		matrix[i] = temp_elem;
-		//matrix[i][*stb - 1] = counting_minimum(matrix, i, *stb);
 		for (int j = *stb; j < amount; j++)
 			matrix[i][j] = counting_minimum(matrix, i, j);
 	}
