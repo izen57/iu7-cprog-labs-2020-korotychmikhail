@@ -5,13 +5,7 @@
 #include "../inc/inout.h"
 #include "../inc/error_codes.h"
 
-int counting(int *begin, int *end)
-{
-	int count = 0;
-	for (int *i = begin; i < end; i++)
-		count++;
-	return count;
-}
+int counting(int *begin, int *end);
 
 int main(int argc, char **argv)
 {
@@ -88,4 +82,12 @@ int main(int argc, char **argv)
 	else
 		error = ARGS_ERROR;
 	return error;
+}
+
+int counting(int *begin, int *end)
+{
+	int count = 0;
+	for (int *i = begin; i < end; i++)
+		count++;
+	return count;
 }
