@@ -47,11 +47,11 @@ int **remove_str(int **matrix, int *str, int stb)
 	int **temp = realloc(matrix, --(*str) * sizeof(int *));
 	if (!temp)
 	{
-		//free_matrix(matrix, *str);
+		free_matrix(matrix, *str);
 		return NULL;
 	}
-	//matrix = temp;
-	memmove(matrix, temp, *str * stb * sizeof(int));
+	matrix = temp;
+	//memmove(matrix, temp, *str * stb * sizeof(int));
 	return matrix;
 }
 void remove_stb_shift(int **matrix, int str, int stb, int point)
@@ -77,7 +77,7 @@ int **remove_stb(int **matrix, int str, int *stb)
 		int *temp = realloc(matrix[i], *stb * sizeof(int));
 		if (!temp)
 		{
-			//free_matrix(matrix, str);
+			free_matrix(matrix, str);
 			return NULL;
 		}
 		matrix[i] = temp;
@@ -104,7 +104,7 @@ int **add_str_and_stb(int **matrix, int *str, int *stb, int amount)
 	int **temp = realloc(matrix, /*++(*str)*/amount * sizeof(int *));
 	if (!temp)
 	{
-		//free_matrix(matrix, *str /*- 1*/);
+		free_matrix(matrix, *str);
 		return NULL;
 	}
 	matrix = temp;
