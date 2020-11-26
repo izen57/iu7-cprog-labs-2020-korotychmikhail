@@ -3,7 +3,9 @@
 #include "read.h"
 #include "sort.h"
 #include "find.h"
+
 void print(information *stuff, int n);
+
 int main(int argc, char **argv)
 {
 	int error = 0;
@@ -43,6 +45,7 @@ int main(int argc, char **argv)
 		error = 1;
 	return error;
 }
+
 void print(information *stuff, int n)
 {
 	for (int i = 0; i < n; i++)

@@ -1,5 +1,6 @@
 #include <string.h>
 #include "read.h"
+
 int read_stuff(FILE *file, information *stuff, int *n)
 {
 	int error = 0;
@@ -9,8 +10,6 @@ int read_stuff(FILE *file, information *stuff, int *n)
 			error = 1;
 		if (!error)
 			stuff[i].name[strcspn(stuff[i].name, "\n")] = '\0';
-		//if ((strlen(stuff[i].name) >= LEN_NAME + 1 || !strlen(stuff[i].name)) && !error)
-			//error = 1;
 		if (!error)
 			(*n)++;
 		if (fscanf(file, "%f\n", &stuff[i].weight) != 1 || stuff[i].weight <= 0 || error)
