@@ -6,6 +6,7 @@
 #include "../inc/inout.h"
 #include "../inc/sort.h"
 #include "../inc/find.h"
+
 int main(int argc, char **argv)
 {
 	int error = 0;
@@ -56,8 +57,6 @@ int main(int argc, char **argv)
 								else if (index == -1 && !flag)
 								{
 									error = INCORRECT_INPUT;
-									/*fclose(file);
-									free_information(stuff, n);*/
 									break;
 								}
 							}

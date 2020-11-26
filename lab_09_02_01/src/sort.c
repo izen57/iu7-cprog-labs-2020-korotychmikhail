@@ -8,9 +8,6 @@ void swap(struct information *elem1, struct information *elem2)
 	temp = *elem1;
 	*elem1 = *elem2;
 	*elem2 = temp;
-	/*temp = stuff[index1];
-	stuff[index1] = stuff[index2];
-	stuff[index2] = temp;*/
 }
 
 void sort_stuff(struct information *stuff, int n)

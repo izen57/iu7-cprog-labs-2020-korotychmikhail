@@ -4,17 +4,20 @@
 #include "../inc/inout.h"
 #include "../inc/error_codes.h"
 #include "../inc/structure.h"
+
 void print(struct information *stuff, int n)
 {
 	for (int i = 0; i < n; i++)
 		printf("%s\n%f\n%f\n", stuff[i].name, stuff[i].weight, stuff[i].volume);
 }
+
 void free_information(struct information *stuff, int n)
 {
 	for (int i = 0; i < n; i++)
 		free(stuff[i].name);
 	free(stuff);
 }
+
 char *input(FILE *file)
 {
 	int capacity = 1, size = 0;
@@ -33,6 +36,7 @@ char *input(FILE *file)
 	s[size] = '\0';
 	return s;
 }
+
 int counting_structures(FILE *file)
 {
 	int n = 0;
@@ -47,6 +51,7 @@ int counting_structures(FILE *file)
 		n /= 3;
 	return n;
 }
+
 int read_stuff(FILE *file, struct information *stuff)
 {
 	int error = 0;

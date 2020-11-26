@@ -2,6 +2,7 @@
 #include <string.h>
 #include "../inc/structure.h"
 #include "../inc/sort.h"
+
 START_TEST(test_sort_ok)
 {
 	struct information stuff[] =
@@ -17,6 +18,8 @@ START_TEST(test_sort_ok)
 	};
 	ck_assert_mem_eq(stuff, result, 2 * sizeof(struct information));
 }
+END_TEST
+
 START_TEST(test_sort_single_structure)
 {
 	struct information stuff =
@@ -35,6 +38,7 @@ START_TEST(test_sort_single_structure)
 	ck_assert_mem_eq(&stuff, &result, sizeof(struct information));
 }
 END_TEST
+
 START_TEST(test_sort_equal_records)
 {
 	struct information stuff[] =
@@ -53,6 +57,7 @@ START_TEST(test_sort_equal_records)
 	ck_assert_mem_eq(stuff, result, sizeof(struct information));
 }
 END_TEST
+
 Suite *test_func_suite(void)
 {
 	Suite *s = suite_create("test_func");
@@ -72,6 +77,7 @@ Suite *test_func_suite(void)
 	suite_add_tcase(s, tc_math);*/
 	return s;
 }
+
 int main(void)
 {
 	int no_failed = 0;
