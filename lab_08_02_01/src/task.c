@@ -21,7 +21,8 @@ int **allocate_matrix(int str, int stb)
 			free_matrix(matrix, str);
 			return NULL;
 		}
-		memmove(matrix[i], temp, sizeof(int));
+		matrix[i] = temp;
+		//memmove(matrix[i], temp, stb * sizeof(int));
 		//free(temp);
 	}
 	return matrix;
@@ -49,7 +50,8 @@ int **remove_str(int **matrix, int *str, int stb)
 		//free_matrix(matrix, *str);
 		return NULL;
 	}
-	matrix = temp;
+	//matrix = temp;
+	memmove(matrix, temp, *str * stb * sizeof(int));
 	return matrix;
 }
 void remove_stb_shift(int **matrix, int str, int stb, int point)
