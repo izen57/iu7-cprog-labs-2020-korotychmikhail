@@ -49,7 +49,7 @@ int main(void)
 	a = add_by_number(a, &n, &m, z);
 	if (!a)
 	{
-\		free_matrix(b, p);
+		free_matrix(b, p);
 		return ALLOCATE_ERROR;
 	}
 	b = add_by_number(b, &p, &q, z);
