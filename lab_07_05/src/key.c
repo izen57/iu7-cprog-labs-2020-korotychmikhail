@@ -58,19 +58,7 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 			else
 			{
 				int *j = *pb_dst;
-				j = filling_array(pb_src, pe_src, j);
-				// for (const int *i = pb_src; i < pe_src - 1; i++)
-				// {
-				// 	summ = 0;
-				// 	for (const int *k = i + 1; k < pe_src; k++)
-				// 		summ += *k;
-				// 	if (*i > summ)
-				// 	{
-				// 		*j = *i;
-				// 		j++;
-				// 	}
-				// }
-				*pe_dst = j;
+				*pe_dst = filling_array(pb_src, pe_src, j);
 			}
 		}
 	}
