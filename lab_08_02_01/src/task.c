@@ -15,12 +15,13 @@ int **allocate_matrix(int str, int stb)
 		return NULL;
 	for (int i = 0; i < str; i++)
 	{
-		matrix[i] = calloc(stb, sizeof(int));
-		if (!matrix[i])
+		int *temp = calloc(stb, sizeof(int));
+		if (!temp)
 		{
 			free_matrix(matrix, str);
 			return NULL;
 		}
+		matrix[i] = temp;
 	}
 	return matrix;
 }
@@ -41,12 +42,13 @@ int **remove_str(int **matrix, int *str, int stb)
 			}
 	remove_str_shift(matrix, *str, stb, index);
 	free(matrix[*str - 1]);
-	matrix = realloc(matrix, --(*str) * sizeof(int *));
-	if (!matrix)
+	int **temp = realloc(matrix, --(*str) * sizeof(int *));
+	if (!temp)
 	{
 		//free_matrix(matrix, *str);
 		return NULL;
 	}
+	matrix = temp;
 	return matrix;
 }
 void remove_stb_shift(int **matrix, int str, int stb, int point)
@@ -69,12 +71,13 @@ int **remove_stb(int **matrix, int str, int *stb)
 	(*stb)--;
 	for (int i = 0; i < str; i++)
 	{
-		matrix[i] = realloc(matrix[i], *stb * sizeof(int));
-		if (!matrix[i])
+		int *temp = realloc(matrix[i], *stb * sizeof(int));
+		if (!temp)
 		{
 			//free_matrix(matrix, str);
 			return NULL;
 		}
+		matrix[i] = temp;
 	}
 	return matrix;
 }
@@ -83,7 +86,7 @@ int counting_low_average(int **matrix, int point, int stb)
 	float summ = 0;
 	for (int i = 0; i < point; i++)
 		summ += matrix[i][stb];
-	return (int)floor(summ / point);
+	return (int) floor(summ / point);
 }
 int counting_minimum(int **matrix, int str, int point)
 {
@@ -95,12 +98,13 @@ int counting_minimum(int **matrix, int str, int point)
 }
 int **add_str_and_stb(int **matrix, int *str, int *stb, int amount)
 {
-	matrix = realloc(matrix, /*++(*str)*/amount * sizeof(int *));
-	if (!matrix)
+	int **temp = realloc(matrix, /*++(*str)*/amount * sizeof(int *));
+	if (!temp)
 	{
 		//free_matrix(matrix, *str /*- 1*/);
 		return NULL;
 	}
+	matrix = temp;
 	/*matrix[*str - 1] = calloc(*stb, sizeof(int));
 	if (!matrix[*str - 1])
 	{
@@ -108,7 +112,15 @@ int **add_str_and_stb(int **matrix, int *str, int *stb, int amount)
 		return NULL;
 	}*/
 	for (int i = *str; i < amount; i++)
-		matrix[i] = calloc(*stb, sizeof(int));
+	{
+		int *temp = calloc(*stb, sizeof(int));
+		if (!temp)
+		{
+			free_matrix(matrix, *str);
+			return NULL;
+		}
+		matrix[i] = temp;
+	}
 	for (int i = *str; i < amount; i++)
 		for (int j = 0; j < *stb; j++)
 			matrix[i][j] = counting_low_average(matrix, i, j);
@@ -116,12 +128,13 @@ int **add_str_and_stb(int **matrix, int *str, int *stb, int amount)
 	//(*stb)++;
 	for (int i = 0; i < amount; i++)
 	{
-		matrix[i] = realloc(matrix[i], amount * sizeof(int));
-		if (!matrix[i])
+		int *temp_elem = realloc(matrix[i], amount * sizeof(int));
+		if (!temp_elem)
 		{
 			free_matrix(matrix, *str);
 			return NULL;
 		}
+		matrix[i] = temp_elem;
 		//matrix[i][*stb - 1] = counting_minimum(matrix, i, *stb);
 		for (int j = *stb; j < amount; j++)
 			matrix[i][j] = counting_minimum(matrix, i, j);
