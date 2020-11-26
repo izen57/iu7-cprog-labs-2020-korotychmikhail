@@ -22,6 +22,7 @@ int **allocate_matrix(int str, int stb)
 			return NULL;
 		}
 		matrix[i] = temp;
+		free(temp);
 	}
 	return matrix;
 }
