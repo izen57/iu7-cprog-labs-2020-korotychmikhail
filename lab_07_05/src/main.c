@@ -4,6 +4,15 @@
 #include "../inc/mysort.h"
 #include "../inc/inout.h"
 #include "../inc/error_codes.h"
+
+int counting(int *begin, int *end)
+{
+	int count = 0;
+	for (int *i = begin; i < end; i++)
+		count++;
+	return count;
+}
+
 int main(int argc, char **argv)
 {
 	int error = SUCCESS;
@@ -27,11 +36,8 @@ int main(int argc, char **argv)
 						int *newarr, *endnewarr = newarr;
 						if (!key(arr, end, &newarr, &endnewarr))
 						{
-							pointer = newarr;
-							endpointer = endnewarr;
-							count = 0;
-							for (int *i = pointer; i < endpointer; i++)
-								count++;
+							pointer = newarr; endpointer = endnewarr;
+							count = counting(pointer, endpointer);
 						}
 						else
 						{
