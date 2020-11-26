@@ -93,7 +93,9 @@ int main(void)
 				free_matrix(b, p);
 				return ALLOCATE_ERROR;
 			}
-			memmove(a, result, n * sizeof(int *));
+			for (int i = 0; i < n; i++)
+				for (int j = 0; j < m; j++)
+					a[i][j] = result[i][j];
 			free_matrix(result, n);
 		}
 		free_matrix(temp, n);
