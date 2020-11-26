@@ -48,11 +48,11 @@ int **remove_str(int **matrix, int *str, int stb)
 	int **temp = realloc(matrix, --(*str) * sizeof(int *));
 	if (!temp)
 	{
-		free_matrix(matrix, *str);
+		free_matrix(matrix, *str + 1);
 		return NULL;
 	}
 	matrix = temp;
-	//memmove(matrix, temp, *str * stb * sizeof(int));
+	//memmove(matrix, temp, *str * sizeof(int));
 	return matrix;
 }
 void remove_stb_shift(int **matrix, int str, int stb, int point)
