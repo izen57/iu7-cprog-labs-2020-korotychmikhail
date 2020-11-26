@@ -1,5 +1,4 @@
 CFLAGS = -std=c99 -Wall -Werror -pedantic -ggdb -c
-
 I = ./inc/
 O = ./out/
 S = ./src/
