@@ -117,7 +117,9 @@ int **add_str_and_stb(int **matrix, int *str, int *stb, int amount)
 			free_matrix(matrix, *str);
 			return NULL;
 		}
-		matrix[i] = temp;
+		matrix[i] = calloc(*stb, sizeof(int));
+		memmove(matrix[i], temp, *stb * sizeof(int));
+		free(temp);
 	}
 	for (int i = *str; i < amount; i++)
 		for (int j = 0; j < *stb; j++)
