@@ -131,12 +131,16 @@ int main(void)
 				temp[i][j] = b[i][j];
 		for (int i = 0; i < gamma - 1; i++)
 		{
-			b = multiplication(b, p, q, temp, p, q);
-			if (!b)
+			int **result = multiplication(b, p, q, temp, p, q);
+			if (!result)
 			{
 				free_matrix(a, n);
 				return ALLOCATE_ERROR;
 			}
+			for (int i = 0; i < p; i++)
+				for (int j = 0; j < q; j++)
+					b[i][j] = result[i][j];
+			free_matrix(result, p);
 		}
 		free_matrix(temp, p);
 	}
