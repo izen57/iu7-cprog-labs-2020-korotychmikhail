@@ -93,7 +93,7 @@ void *pop_front(node_t **head)
 	node_t *after_head = *head;
 	void *data = after_head->data;
 	*head = (*head)->next;
-	free(*head);
+	free(head);
 	after_head = NULL;
 	return data;
 }
@@ -108,10 +108,17 @@ int comparator(const void *data1, const void *data2)
 
 node_t *find(node_t *head, const void *data, int (*comparator)(const void *, const void *))
 {
-	node_t *current = NULL;
+	bool flag = false;
+	node_t *current;
 	for (current = head->next; current->next; current = current->next)
 		if (comparator(data, current->data))
+		{
+			flag = true;
+			current = current;
 			break;
+		}
+	if (!flag)
+		current = NULL;
 	return current;
 }
 
