@@ -91,7 +91,7 @@ void *pop_front(node_t **head)
 	if (!*head || !head)
 		return NULL;
 	node_t *after_head = *head;
-	void *data = (*head)->data;
+	void *data =after_head->data;
 	*head = (*head)->next;
 	free(after_head);
 	after_head = NULL;
@@ -129,6 +129,7 @@ int main(int argc, char **argv)
 		else
 			printf("%s", (char *) result->data);
 		list_free_all(head);
+		fclose(file);
 	}
 	else
 		error = INPUT_ERROR;
