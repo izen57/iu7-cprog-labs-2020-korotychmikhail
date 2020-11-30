@@ -126,6 +126,7 @@ int main(int argc, char **argv)
 			error = NO_RESULT;
 		else
 			printf("%s", (char *) result->data);
+		list_free_all(head);
 	}
 	else
 		error = INPUT_ERROR;
