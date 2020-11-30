@@ -109,17 +109,20 @@ int comparator(const void *data1, const void *data2)
 node_t *find(node_t *head, const void *data, int (*comparator)(const void *, const void *))
 {
 	bool flag = false;
-	node_t *current;
-	for (current = head->next; current->next; current = current->next)
+	node_t *result;
+	for (node_t *current = head->next; current->next; current = current->next)
 		if (comparator(data, current->data))
 		{
 			flag = true;
-			current = current;
+			result = current;
 			break;
 		}
 	if (!flag)
-		current = NULL;
-	return current;
+	{
+		list_free_all(head);
+		result = NULL;
+	}
+	return result;
 }
 
 int main(int argc, char **argv)
@@ -133,8 +136,6 @@ int main(int argc, char **argv)
 		node_t *result = NULL;
 		if (!error)
 			result = find(head, head->data, comparator);
-		else
-			list_free_all(head);
 		if (!result)
 			error = NO_RESULT;
 		else
