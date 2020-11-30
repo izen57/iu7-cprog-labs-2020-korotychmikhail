@@ -88,12 +88,12 @@ int read_file(FILE *file, node_t *head)
 
 void *pop_front(node_t **head)
 {
-	if (!(*head) || !head)
+	if (!*head || !head)
 		return NULL;
 	node_t *after_head = *head;
 	void *data = after_head->data;
 	*head = (*head)->next;
-	free(after_head);
+	free(head);
 	after_head = NULL;
 	return data;
 }
@@ -123,9 +123,11 @@ int main(int argc, char **argv)
 	if (file)
 	{
 		error = error || read_file(file, head);
-		node_t *result;
+		node_t *result = NULL;
 		if (!error)
 			result = find(head, head->data, comparator);
+		else
+			list_free_all(head);
 		if (!result)
 			error = NO_RESULT;
 		else
