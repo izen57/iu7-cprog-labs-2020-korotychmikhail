@@ -48,12 +48,12 @@ void list_free_all(node_t *head)
 	}
 }
 
-node_t *city_create(char **name)
+node_t *city_create(char *name)
 {
 	node_t *city = malloc(sizeof(node_t));
 	if (city)
 	{
-		city->data = *name;
+		city->data = name;
 		city->next = NULL;
 	}
 	return city;
@@ -79,7 +79,7 @@ int read_file(FILE *file, node_t *head)
 			error = INPUT_ERROR;
 		if (!error)
 		{
-			node_t *node = city_create(&name);
+			node_t *node = city_create(name);
 			head = city_add_end(head, node);
 		}
 	}
@@ -88,10 +88,10 @@ int read_file(FILE *file, node_t *head)
 
 void *pop_front(node_t **head)
 {
-	if (!*head || !head)
+	if (!(*head) || !head)
 		return NULL;
 	node_t *after_head = *head;
-	void *data =after_head->data;
+	void *data = after_head->data;
 	*head = (*head)->next;
 	free(after_head);
 	after_head = NULL;
@@ -123,11 +123,16 @@ int main(int argc, char **argv)
 	if (file)
 	{
 		error = error || read_file(file, head);
-		node_t *result = find(head, head->data, comparator);
+		node_t *result;
+		if (!error)
+			result = find(head, head->data, comparator);
 		if (!result)
 			error = NO_RESULT;
 		else
+		{
+			result = pop_front(&head);
 			printf("%s", (char *) result->data);
+		}
 		list_free_all(head);
 		fclose(file);
 	}
