@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #define SUCCESS 0
 #define INPUT_ERROR 1
 #define ALLOCATE_ERROR 2
+#define NO_RESULT 3
 
 typedef struct node node_t;
 struct node
@@ -51,13 +53,13 @@ node_t *city_create(char **name)
 	node_t *city = malloc(sizeof(node_t));
 	if (city)
 	{
-		city->data = **name;
+		city->data = *name;
 		city->next = NULL;
 	}
 	return city;
 }
 
-node_t *list_add_end(node_t *head, node_t *pers)
+node_t *city_add_end(node_t *head, node_t *pers)
 {
 	if (!head)
 		return pers;
@@ -67,16 +69,14 @@ node_t *list_add_end(node_t *head, node_t *pers)
 	return head;
 }
 
-int read_file(FILE *file, node_t *head, char *first_name)
+int read_file(FILE *file, node_t *head)
 {
 	int error = SUCCESS;
-	for (int i = 0; !feof(file); i++)
+	while(!feof(file))
 	{
 		char *name = input(file);
 		if (!name)
 			error = INPUT_ERROR;
-		if (!i && !error)
-			strncpy(first_name, name, strlen(name));
 		if (!error)
 		{
 			node_t *node = city_create(&name);
@@ -96,6 +96,23 @@ void *pop_front(node_t **head)
 	return data;
 }
 
+int comparator(const void *data1, const void *data2)
+{
+	bool flag = false;
+	if (!strcmp(data1, data2))
+		flag = true;
+	return flag;
+}
+
+node_t *find(node_t *head, const void *data, int (*comparator)(const void *, const void *))
+{
+	node_t *current = NULL;
+	for (current = head->next; current->next; current = current->next)
+		if (comparator(data, current->data))
+			break;
+	return current;
+}
+
 int main(int argc, char **argv)
 {
 	node_t *head = NULL;
@@ -103,10 +120,14 @@ int main(int argc, char **argv)
 	FILE *file = fopen(argv[1], "r");
 	if (file)
 	{
-		char *first_name;
-		error = error || read_file(file, head, first_name);
-		
+		error = error || read_file(file, head);
+		node_t *result = find(head, head->data, comparator);
+		if (!result)
+			error = NO_RESULT;
+		else
+			printf("%s", (char *) result->data);
 	}
 	else
 		error = INPUT_ERROR;
+	return error;
 }
