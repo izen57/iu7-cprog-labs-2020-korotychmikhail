@@ -72,7 +72,7 @@ node_t *city_add_end(node_t *head, node_t *pers)
 int read_file(FILE *file, node_t *head)
 {
 	int error = SUCCESS;
-	while(!feof(file))
+	while (!feof(file))
 	{
 		char *name = input(file);
 		if (!name)
@@ -94,6 +94,7 @@ void *pop_front(node_t **head)
 	void *data = (*head)->data;
 	*head = (*head)->next;
 	free(after_head);
+	after_head = NULL;
 	return data;
 }
 
