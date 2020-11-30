@@ -108,12 +108,12 @@ int comparator(const void *data1, const void *data2)
 
 node_t *find(node_t *head, const void *data, int (*comparator)(const void *, const void *))
 {
-	bool flag = false;
+	int flag = 0;
 	node_t *result;
 	for (node_t *current = head->next; current->next; current = current->next)
 		if (comparator(data, current->data))
 		{
-			flag = true;
+			flag = 1;
 			result = current;
 			break;
 		}
