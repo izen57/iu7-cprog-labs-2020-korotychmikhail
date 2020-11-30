@@ -100,9 +100,9 @@ void *pop_front(node_t **head)
 
 int comparator(const void *data1, const void *data2)
 {
-	bool flag = false;
+	int flag = 0;
 	if (!strcmp(data1, data2))
-		flag = true;
+		flag = 1;
 	return flag;
 }
 
