@@ -18,14 +18,14 @@ struct node
 char *input(FILE *file)
 {
 	int capacity = 1, size = 0;
-	char *s = (char *) malloc(capacity * sizeof(char));
+	char *s = malloc(capacity * sizeof(char));
 	for (char c = fgetc(file); c != '\n' && c != EOF; c = fgetc(file))
 	{
 		s[size++] = c;
 		if (size >= capacity)
 		{
 			capacity *= 2;
-			s = (char *) realloc(s, capacity * sizeof(char));
+			s = realloc(s, capacity * sizeof(char));
 			if (!s)
 				return NULL;
 		}
@@ -34,17 +34,13 @@ char *input(FILE *file)
 	return s;
 }
 
-void cities_free(node_t *city)
-{
-	free(city);
-}
-
 void list_free_all(node_t *head)
 {
-	for (node_t *next; head; head = next)
+	node_t *next;
+	for (; head; head = next)
 	{
 		next = head->next;
-		cities_free(head);
+		free(head);
 	}
 }
 
@@ -69,26 +65,27 @@ node_t *city_add_end(node_t *head, node_t *cities)
 	return head;
 }
 
-void cities_print(node_t *head, void *arg)
+void cities_print(node_t *head)
 {
-	const char *fmt = arg;
-	for (node_t *curent = head; curent; curent = head->next)
-		printf(fmt, curent->data);
+	for (node_t *temp = head; temp; temp = temp->next)
+		printf("%s\n", (char *) temp->data);
 }
 
-int read_file(FILE *file, node_t *head)
+int read_file(FILE *file, node_t **head)
 {
 	int error = SUCCESS;
 	while (!feof(file))
 	{
 		char *name = input(file);
 		if (!name)
+		{
 			error = INPUT_ERROR;
+			break;
+		}
 		if (!error)
 		{
 			node_t *node = city_create(name);
-			head = city_add_end(head, node);
-			cities_print(head, "%s\n");
+			*head = city_add_end(*head, node);
 		}
 	}
 	return error;
@@ -98,7 +95,6 @@ void *pop_front(node_t **head)
 {
 	if (!*head || !head)
 		return NULL;
-	//node_t *after_head = *head;
 	void *data = (*head)->data;
 	*head = (*head)->next;
 	return data;
@@ -116,7 +112,7 @@ node_t *find(node_t *head, const void *data, int (*comparator)(const void *, con
 {
 	int flag = 0;
 	node_t *result;
-	for (node_t *current = head->next; current->next; current = current->next)
+	for (node_t *current = head->next; current; current = current->next)
 		if (comparator(data, current->data))
 		{
 			flag = 1;
@@ -131,15 +127,19 @@ node_t *find(node_t *head, const void *data, int (*comparator)(const void *, con
 	return result;
 }
 
-int main(int argc, char **argv)
+int main(/*int argc, char **argv*/void)
 {
 	node_t *head = NULL;
 	int error = SUCCESS;
-	FILE *file = fopen(argv[1], "r");
+	FILE *file = fopen(/*argv[1]*/"D:\\c\\iu7-cprog-labs-2020-korotychmikhail\\lab_10_01_01\\in.txt", "r");
 	if (file)
 	{
-		error = error || read_file(file, head);
-		node_t *result = NULL;
+		if (read_file(file, &head))
+		{
+			list_free_all(head);
+			error = INPUT_ERROR;
+		}
+		node_t *result;
 		if (!error)
 			result = find(head, head->data, comparator);
 		if (!result)
@@ -148,9 +148,9 @@ int main(int argc, char **argv)
 		{
 			result = pop_front(&head);
 			printf("%s", (char *) result->data);
+			list_free_all(head);
+			fclose(file);
 		}
-		list_free_all(head);
-		fclose(file);
 	}
 	else
 		error = INPUT_ERROR;
