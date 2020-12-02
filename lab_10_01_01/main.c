@@ -112,7 +112,7 @@ node_t *find(node_t *head, const void *data, int (*comparator)(const void *, con
 {
 	int flag = 0;
 	node_t *result;
-	for (node_t *current = head->next; current; current = current->next)
+	for (node_t *current = head; current; current = current->next)
 		if (comparator(data, current->data))
 		{
 			flag = 1;
