@@ -59,14 +59,21 @@ node_t *city_create(char *name)
 	return city;
 }
 
-node_t *city_add_end(node_t *head, node_t *pers)
+node_t *city_add_end(node_t *head, node_t *cities)
 {
 	if (!head)
-		return pers;
+		return cities;
 	node_t *current = head;
 	for (; current->next; current = current->next);
-	current->next = pers;
+	current->next = cities;
 	return head;
+}
+
+void cities_print(node_t *head, void *arg)
+{
+	const char *fmt = arg;
+	for (node_t *curent = head; curent; curent = head->next)
+		printf(fmt, curent->data);
 }
 
 int read_file(FILE *file, node_t *head)
@@ -81,6 +88,7 @@ int read_file(FILE *file, node_t *head)
 		{
 			node_t *node = city_create(name);
 			head = city_add_end(head, node);
+			cities_print(head, "%s\n");
 		}
 	}
 	return error;
@@ -94,7 +102,7 @@ void *pop_front(node_t **head)
 	void *data = after_head->data;
 	*head = (*head)->next;
 	free(head);
-	after_head = NULL;
+	free(after_head);
 	return data;
 }
 
