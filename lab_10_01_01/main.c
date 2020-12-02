@@ -101,7 +101,7 @@ void *pop_front(node_t **head)
 	//node_t *after_head = *head;
 	void *data = (*head)->data;
 	*head = (*head)->next;
-	//free(head);
+	free(head);
 	return data;
 }
 
