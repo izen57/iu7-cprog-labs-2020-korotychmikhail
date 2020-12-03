@@ -96,7 +96,9 @@ void *pop_front(node_t **head)
 	if (!*head || !head)
 		return NULL;
 	void *data = (*head)->data;
+	node_t *before_head = *head;
 	*head = (*head)->next;
+	free(before_head);
 	return data;
 }
 
@@ -131,25 +133,35 @@ int main(/*int argc, char **argv*/void)
 {
 	node_t *head = NULL;
 	int error = SUCCESS;
-	FILE *file = fopen(/*argv[1]*/"D:\\c\\iu7-cprog-labs-2020-korotychmikhail\\lab_10_01_01\\in.txt", "r");
-	if (file)
+	FILE *file_in = fopen(/*argv[1]*/"D:\\c\\iu7-cprog-labs-2020-korotychmikhail\\lab_10_01_01\\in.txt", "r");
+	if (file_in)
 	{
-		if (read_file(file, &head))
+		if (read_file(file_in, &head))
 		{
 			list_free_all(head);
 			error = INPUT_ERROR;
 		}
+		char *string = input(stdin);
+		if (!string)
+			error = INPUT_ERROR;
 		node_t *result;
 		if (!error)
-			result = find(head, head->data, comparator);
+			result = find(head->next, string, comparator);
 		if (!result)
 			error = NO_RESULT;
 		else
 		{
-			result = pop_front(&head);
-			printf("%s", (char *) result->data);
-			list_free_all(head);
-			fclose(file);
+			void *data = pop_front(&head);
+			FILE *file_out = fopen("D:\\c\\iu7-cprog-labs-2020-korotychmikhail\\lab_10_01_01\\out.txt", "w");
+			if (file_out)
+			{
+				fprintf(file_out, "%s", (char *) data);
+				list_free_all(head);
+				fclose(file_out);
+			}
+			else
+				error = INPUT_ERROR;
+			fclose(file_in);
 		}
 	}
 	else
