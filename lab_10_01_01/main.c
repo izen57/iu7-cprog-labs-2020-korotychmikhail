@@ -146,12 +146,12 @@ int main(/*int argc, char **argv*/void)
 		char *string = input(stdin);
 		if (!string)
 			error = INPUT_ERROR;
-		node_t *result;
+		node_t *result = NULL;
 		if (!error)
 			result = find(head->next, string, comparator);
 		if (!result)
 			error = NO_RESULT;
-		else
+		else if (!error)
 		{
 			void *data = pop_front(&head);
 			FILE *file_out = fopen("D:\\c\\iu7-cprog-labs-2020-korotychmikhail\\lab_10_01_01\\out.txt", "w");
@@ -163,8 +163,9 @@ int main(/*int argc, char **argv*/void)
 			}
 			else
 				error = INPUT_ERROR;
-			fclose(file_in);
 		}
+		free(string);
+		fclose(file_in);
 	}
 	else
 		error = INPUT_ERROR;
