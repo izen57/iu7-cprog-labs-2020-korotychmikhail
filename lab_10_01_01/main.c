@@ -55,13 +55,13 @@ node_t *city_create(char *name)
 	return city;
 }
 
-node_t *city_add_end(node_t *head, node_t *cities)
+node_t *city_add_end(node_t *head, node_t *city)
 {
 	if (!head)
-		return cities;
+		return city;
 	node_t *current = head;
 	for (; current->next; current = current->next);
-	current->next = cities;
+	current->next = city;
 	return head;
 }
 
@@ -145,20 +145,14 @@ node_t *find(node_t *head, const void *data, int (*comparator)(const void *, con
 int copy(node_t *head, node_t **new_head)
 {
 	int error = 0;
-	if (!head || !new_head || !*new_head)
+	if (!head)
 		error = 1;
 	else
 	{
-		for (node_t *current = head, **new_current = new_head; current; current = current->next, *new_current = (*new_current)->next)
+		for (node_t *current = head; current; current = current->next)
 		{
-			new_current = malloc(sizeof(node_t));
-			if (!new_current)
-			{
-				error = 1;
-				break;
-			}
-			(*new_current)->data = current->data;
-			(*new_current)->next = NULL;
+			node_t *new_node = city_create(head->data);
+			*new_head = city_add_end(*new_head, new_node);
 		}
 	}
 	return error;
