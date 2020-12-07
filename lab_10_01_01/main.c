@@ -111,8 +111,13 @@ int comparator(const void *data1, const void *data2)
 	int flag = 0;
 	if (!data1 || !data2)
 		flag = 0;
-	else if (!memcmp(data1, data2, sizeof(void *)))
-		flag = 1;
+	else
+	{
+		data1 = (char *) data1;
+		data2 = (char *) data2;
+		if (!strcmp(data1, data2))
+			flag = 1;
+	}
 	return flag;
 }
 
