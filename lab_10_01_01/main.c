@@ -93,38 +93,46 @@ int read_file(FILE *file, node_t **head)
 
 void *pop_front(node_t **head)
 {
+	void *data;
 	if (!head || !*head)
-		return NULL;
-	void *data = (*head)->data;
-	node_t *before_head = *head;
-	*head = (*head)->next;
-	free(before_head);
+		data = NULL;
+	else
+	{
+		data = (*head)->data;
+		node_t *before_head = *head;
+		*head = (*head)->next;
+		free(before_head);
+	}
 	return data;
 }
 
 int comparator(const void *data1, const void *data2)
 {
 	int flag = 0;
-	if (!memcmp(data1, data2, sizeof(void *)))
+	if (!data1 || !data2)
+		flag = 0;
+	else if (!memcmp(data1, data2, sizeof(void *)))
 		flag = 1;
 	return flag;
 }
 
 node_t *find(node_t *head, const void *data, int (*comparator)(const void *, const void *))
 {
-	int flag = 0;
 	node_t *result;
-	for (node_t *current = head; current; current = current->next)
-		if (comparator(data, current->data))
-		{
-			flag = 1;
-			result = current;
-			break;
-		}
-	if (!flag)
-	{
-		list_free_all(head);
+	if (!head)
 		result = NULL;
+	else
+	{
+		int flag = 0;
+		for (node_t *current = head; current; current = current->next)
+			if (comparator(data, current->data))
+			{
+				flag = 1;
+				result = current;
+				break;
+			}
+		if (!flag)
+			result = NULL;
 	}
 	return result;
 }
@@ -148,7 +156,10 @@ int main(/*int argc, char **argv*/void)
 		if (!error)
 			result = find(head->next, string, comparator);
 		if (!result)
+		{
+			list_free_all(head);
 			error = NO_RESULT;
+		}
 		else if (!error)
 		{
 			void *data = pop_front(&head);
