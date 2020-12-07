@@ -152,6 +152,11 @@ int copy(node_t *head, node_t **new_head)
 		for (node_t *current = head; current; current = current->next)
 		{
 			node_t *new_node = city_create(head->data);
+			if (!new_node)
+			{
+				error = 1;
+				break;
+			}
 			*new_head = city_add_end(*new_head, new_node);
 		}
 	}
