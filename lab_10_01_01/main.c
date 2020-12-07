@@ -113,8 +113,8 @@ int comparator(const void *data1, const void *data2)
 		flag = 0;
 	else
 	{
-		data1 = (char *) data1;
-		data2 = (char *) data2;
+		data1 = (const char *) data1;
+		data2 = (const char *) data2;
 		if (!strcmp(data1, data2))
 			flag = 1;
 	}
