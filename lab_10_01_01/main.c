@@ -165,7 +165,7 @@ int copy(node_t *head, node_t **new_head)
 				*new_head = new_current;
 			else
 			{
-				node_t *temp = new_head;
+				node_t *temp = *new_head;
 				for (; temp->next; temp = temp->next);
 				temp->next = new_current;
 			}
