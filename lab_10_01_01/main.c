@@ -93,10 +93,8 @@ int read_file(FILE *file, node_t **head)
 
 void *pop_front(node_t **head)
 {
-	if (!head)
+	if (!head || !*head)
 		return NULL;
-	if (!*head)
-		list_free_all(*head);
 	void *data = (*head)->data;
 	node_t *before_head = *head;
 	*head = (*head)->next;
