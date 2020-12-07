@@ -148,18 +148,28 @@ int copy(node_t *head, node_t **new_head)
 	if (!head)
 		error = 1;
 	else
-	{
 		for (node_t *current = head; current; current = current->next)
 		{
-			node_t *new_node = city_create(head->data);
-			if (!new_node)
+			node_t *new_current = malloc(sizeof(node_t));
+			if (new_current)
+			{
+				new_current->data = current->data;
+				new_current->next = NULL;
+			}
+			else
 			{
 				error = 1;
 				break;
 			}
-			*new_head = city_add_end(*new_head, new_node);
+			if (!*new_head)
+				*new_head = new_current;
+			else
+			{
+				node_t *temp = new_head;
+				for (; temp->next; temp = temp->next);
+				temp->next = new_current;
+			}
 		}
-	}
 	return error;
 }
 
