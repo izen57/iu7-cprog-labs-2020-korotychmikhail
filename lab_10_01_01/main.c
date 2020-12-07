@@ -142,6 +142,28 @@ node_t *find(node_t *head, const void *data, int (*comparator)(const void *, con
 	return result;
 }
 
+int copy(node_t *head, node_t **new_head)
+{
+	int error = 0;
+	if (!head || !new_head || !*new_head)
+		error = 1;
+	else
+	{
+		for (node_t *current = head, **new_current = new_head; current; current = current->next, *new_current = (*new_current)->next)
+		{
+			new_current = malloc(sizeof(node_t));
+			if (!new_current)
+			{
+				error = 1;
+				break;
+			}
+			(*new_current)->data = current->data;
+			(*new_current)->next = NULL;
+		}
+	}
+	return error;
+}
+
 int main(/*int argc, char **argv*/void)
 {
 	node_t *head = NULL;
@@ -156,7 +178,10 @@ int main(/*int argc, char **argv*/void)
 		}
 		char *string = input(stdin);
 		if (!string)
+		{
+			list_free_all(head);
 			error = INPUT_ERROR;
+		}
 		node_t *result = NULL;
 		if (!error)
 			result = find(head->next, string, comparator);
@@ -171,6 +196,8 @@ int main(/*int argc, char **argv*/void)
 			FILE *file_out = fopen("D:\\c\\iu7-cprog-labs-2020-korotychmikhail\\lab_10_01_01\\out.txt", "w");
 			if (file_out)
 			{
+				node_t *new_head = NULL;
+				error = copy(head, &new_head);
 				fprintf(file_out, "%s", (char *) data);
 				list_free_all(head);
 				fclose(file_out);
