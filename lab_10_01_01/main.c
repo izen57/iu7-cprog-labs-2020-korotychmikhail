@@ -113,9 +113,9 @@ int comparator(const void *data1, const void *data2)
 		res = 0;
 	else
 	{
-		data1 = (const char *) data1;
-		data2 = (const char *) data2;
-		res = strcmp(data1, data2);
+		/*data1 = (const char *) data1;
+		data2 = (const char *) data2;*/
+		res = /*strcmp(data1, data2)*/memcmp(data1, data2, sizeof(void *));
 	}
 	return res;
 }
