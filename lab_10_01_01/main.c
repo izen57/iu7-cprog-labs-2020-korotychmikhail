@@ -106,7 +106,7 @@ void *pop_front(node_t **head)
 	return data;
 }
 
-int comparator(const void *data1, const void *data2)
+/*int comparator(const void *data1, const void *data2)
 {
 	int flag = 0;
 	if (!data1 || !data2)
@@ -119,7 +119,7 @@ int comparator(const void *data1, const void *data2)
 			flag = 1;
 	}
 	return flag;
-}
+}*/
 
 node_t *find(node_t *head, const void *data, int (*comparator)(const void *, const void *))
 {
