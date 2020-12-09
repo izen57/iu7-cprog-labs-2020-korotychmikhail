@@ -106,20 +106,19 @@ void *pop_front(node_t **head)
 	return data;
 }
 
-/*int comparator(const void *data1, const void *data2)
+int comparator(const void *data1, const void *data2)
 {
-	int flag = 0;
+	int res;
 	if (!data1 || !data2)
-		flag = 0;
+		res = 0;
 	else
 	{
 		data1 = (const char *) data1;
 		data2 = (const char *) data2;
-		if (!strcmp(data1, data2))
-			flag = 1;
+		res = strcmp(data1, data2);
 	}
-	return flag;
-}*/
+	return res;
+}
 
 node_t *find(node_t *head, const void *data, int (*comparator)(const void *, const void *))
 {
@@ -130,7 +129,7 @@ node_t *find(node_t *head, const void *data, int (*comparator)(const void *, con
 	{
 		int flag = 0;
 		for (node_t *current = head; current; current = current->next)
-			if (comparator(data, current->data))
+			if (!comparator(data, current->data))
 			{
 				flag = 1;
 				result = current;
@@ -172,6 +171,15 @@ int copy(node_t *head, node_t **new_head)
 		}
 	return error;
 }
+
+/*void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void *, const void *))
+{
+	int error = 0;
+	for (node_t *current = *head; current; current = current->next)
+	{
+		
+	}
+}*/
 
 int main(/*int argc, char **argv*/void)
 {
