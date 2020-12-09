@@ -170,7 +170,7 @@ int copy(node_t *head, node_t **new_head)
 
 void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void *, const void *))
 {
-	if (head && *head && element)
+	if (head && *head && element && element->data)
 	{
 		int flag = 0;
 		for (node_t *current = *head; current->next; current = current->next)
@@ -194,6 +194,7 @@ void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void 
 		}
 		if (!flag)
 		{
+			flag = 1;
 			node_t *current = *head;
 			for (; current->next; current = current->next);
 			if (comparator(element->data, current->data) > 0)
