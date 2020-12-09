@@ -112,11 +112,7 @@ int comparator(const void *data1, const void *data2)
 	if (!data1 || !data2)
 		res = 0;
 	else
-	{
-		/*data1 = (const char *) data1;
-		data2 = (const char *) data2;*/
-		res = /*strcmp(data1, data2)*/memcmp(data1, data2, sizeof(void *));
-	}
+		res = memcmp(data1, data2, sizeof(void *));
 	return res;
 }
 
@@ -172,14 +168,26 @@ int copy(node_t *head, node_t **new_head)
 	return error;
 }
 
-/*void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void *, const void *))
+void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void *, const void *))
 {
-	int error = 0;
 	for (node_t *current = *head; current; current = current->next)
 	{
-		
+		if (comparator(element->data, current->data) < 0 && current == *head)
+		{
+			element->next = current;
+			*head = element;
+		}
+		else if (comparator(element->data, current->data) > 0 && comparator(element->data, current->next->data) < 0)
+		{
+			node_t *temp_next = current->next;
+			current->next = element;
+			element->next = temp_next;
+		}
+		else if (comparator(element->data, current->data) > 0 && !current->next)
+			current->next = element;
+		break;
 	}
-}*/
+}
 
 int main(/*int argc, char **argv*/void)
 {
