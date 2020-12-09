@@ -177,14 +177,14 @@ void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void 
 			element->next = current;
 			*head = element;
 		}
+		else if (comparator(element->data, current->data) > 0 && !current->next)
+			current->next = element;
 		else if (comparator(element->data, current->data) > 0 && comparator(element->data, current->next->data) < 0)
 		{
 			node_t *temp_next = current->next;
 			current->next = element;
 			element->next = temp_next;
 		}
-		else if (comparator(element->data, current->data) > 0 && !current->next)
-			current->next = element;
 		break;
 	}
 }
