@@ -170,25 +170,26 @@ int copy(node_t *head, node_t **new_head)
 
 void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void *, const void *))
 {
-	for (node_t *current = *head; current; current = current->next)
-	{
-		if (comparator(element->data, current->data) < 0 && current == *head)
+	if (head && *head && element)
+		for (node_t *current = *head; current; current = current->next)
 		{
-			element->next = current;
-			node_t *before_head = *head;
-			*head = element;
-			free(before_head);
+			if (comparator(element->data, current->data) < 0 && current == *head)
+			{
+				element->next = current;
+				node_t *before_head = *head;
+				*head = element;
+				free(before_head);
+			}
+			else if (comparator(element->data, current->data) > 0 && !current->next)
+				current->next = element;
+			else if (comparator(element->data, current->data) > 0 && comparator(element->data, current->next->data) < 0)
+			{
+				node_t *temp_next = current->next;
+				current->next = element;
+				element->next = temp_next;
+			}
+			break;
 		}
-		else if (comparator(element->data, current->data) > 0 && !current->next)
-			current->next = element;
-		else if (comparator(element->data, current->data) > 0 && comparator(element->data, current->next->data) < 0)
-		{
-			node_t *temp_next = current->next;
-			current->next = element;
-			element->next = temp_next;
-		}
-		break;
-	}
 }
 
 int main(/*int argc, char **argv*/void)
