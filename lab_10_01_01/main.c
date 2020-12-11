@@ -175,15 +175,7 @@ void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void 
 		int flag = 0;
 		for (node_t *current = *head; current->next; current = current->next)
 		{
-			/*if (comparator(element->data, current->data) < 0 && current == *head)
-			{
-				flag = 1;
-				element->next = current;
-				node_t *before_head = *head;
-				*head = element;
-				free(before_head);
-			}
-			else*/ if (comparator(element->data, current->data) > 0 && comparator(element->data, current->next->data) < 0)
+			if (comparator(element->data, current->data) > 0 && comparator(element->data, current->next->data) < 0)
 			{
 				flag = 1;
 				node_t *temp_next = current->next;
