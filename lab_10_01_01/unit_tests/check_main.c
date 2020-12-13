@@ -29,6 +29,8 @@ START_TEST(test_pop_front)
 	error = compare_lists(head1, head2);
 	list_free_all(head1);
 	list_free_all(head2);
+	fclose(in_file);
+	fclose(out_file);
 	ck_assert_mem_eq(data, (void *) "Moscow", strlen("Moscow"));
 	ck_assert_int_eq(error, SUCCESS);
 }
@@ -42,6 +44,7 @@ START_TEST(test_find_null)
 	void *data = "Rostov";
 	node_t *result = find(head, data, comparator);
 	list_free_all(head);
+	fclose(in_file);
 	ck_assert_int_eq(error, SUCCESS);
 	ck_assert_ptr_null(result);
 }
@@ -54,6 +57,7 @@ START_TEST(test_find_ok)
 	int error = read_file(in_file, &head);
 	node_t *result = find(head, "Moscow", comparator);
 	list_free_all(head);
+	fclose(in_file);
 	ck_assert_int_eq(error, SUCCESS);
 	ck_assert_mem_eq(result, "Moscow", strlen("Moscow"));
 }
@@ -68,6 +72,7 @@ START_TEST(test_copy_ok)
 	error = compare_lists(head1, head2);
 	list_free_all(head1);
 	list_free_all(head2);
+	fclose(in_file);
 	ck_assert_int_eq(error, SUCCESS);
 }
 END_TEST
