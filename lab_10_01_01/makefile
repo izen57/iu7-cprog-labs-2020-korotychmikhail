@@ -11,9 +11,9 @@ unit_tests.exe: $(O)check_main.o $(O)inout.o $(O)list.o
 	gcc -o $@ $^ -lcheck
 $(O)check_main.o: ./unit_tests/check_main.c $(I)structure.h $(I)error_codes.h $(I)list.h $(I)structure.h
 	gcc $(CFLAGS) $< -o $@
-$(O)inout.o: $(S)inout.c $(I)inout.h $(I)structure.h
+$(O)inout.o: $(S)inout.c $(I)inout.h $(I)structure.h $(I)error_codes.h
 	gcc $(CFLAGS) $< -o $@
-$(O)list.o: $(S)list.c $(I)list.h $(I)structure.h
+$(O)list.o: $(S)list.c $(I)list.h $(I)structure.h $(I)error_codes.h
 	gcc $(CFLAGS) $< -o $@
 
 clean:
