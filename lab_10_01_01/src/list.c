@@ -144,8 +144,9 @@ void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void 
 					node_t *before_head = *head;
 					*head = element;
 					free(before_head);
-				}
-				else*/ if (comparator(element->data, current->data) > 0)
+				}*/
+				for (; current->next; current = current->next);
+				/*else*/ if (comparator(element->data, current->data) > 0)
 					current->next = element;
 			}
 		}
