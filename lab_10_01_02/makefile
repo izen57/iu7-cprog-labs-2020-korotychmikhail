@@ -16,7 +16,7 @@ app.exe: $(O)main.o $(O)inout.o $(O)list.o
 
 $(O)main.o: $(S)main.c $(I)inout.h $(I)list.h
 	gcc $(CFLAGS) $< -o $@
-$(O)inout.o: $(S)inout.c $(I)inout.h
+$(O)inout.o: $(S)inout.c $(I)inout.h $(I)list.h
 	gcc $(CFLAGS) $< -o $@
 $(O)list.o: $(S)list.c $(I)list.h
 	gcc $(CFLAGS) $< -o $@

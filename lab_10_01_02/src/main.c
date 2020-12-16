@@ -6,7 +6,8 @@
 int main(void)
 {
 	int error = 0;
-	char *word = read(stdin);
+	char word[3];
+	scanf("%3s", word);
 	if (!error)
 	{
 		struct node *head1 = NULL, *head2 = NULL;
@@ -19,7 +20,7 @@ int main(void)
 			else if (!strcmp(word, "ddx"))
 			{
 				struct node *head_derivative = NULL;
-				dPdx(head1, &head_derivative);
+				dpdx(head1, &head_derivative);
 				struct_print(head_derivative);
 				list_free_all(head_derivative);
 			}
@@ -29,16 +30,22 @@ int main(void)
 				head_result = sum(head1, head2, &head_result);
 				struct_print(head_result);
 				list_free_all(head_result);
+				list_free_all(head2);
 			}
 			else if (!strcmp(word, "dvd"))
 			{
 				struct node *odd_head = NULL, *even_head = NULL;
 				dvd(head1, &even_head, &odd_head);
-				struct_print(even_head);
-				printf("\n");
-				struct_print(odd_head);
-				list_free_all(odd_head);
-				list_free_all(even_head);
+				if (!odd_head || !even_head)
+					error = 1;
+				if (!error)
+				{
+					struct_print(even_head);
+					printf("\n");
+					struct_print(odd_head);
+					list_free_all(odd_head);
+					list_free_all(even_head);
+				}
 			}
 			list_free_all(head1);
 		}

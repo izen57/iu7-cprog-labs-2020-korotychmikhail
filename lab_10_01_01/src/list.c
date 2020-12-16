@@ -123,7 +123,6 @@ void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void 
 			element->next = current->next;
 			current->next = element;
 		}
-		
 	}
 	else if (!*head)
 	{

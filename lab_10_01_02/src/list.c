@@ -40,7 +40,7 @@ float val(struct node *head, int a)
 	return val;
 }
 
-void dPdx(struct node *main_head, struct node **derivative_head)
+void dpdx(struct node *main_head, struct node **derivative_head)
 {
 	for (struct node *current = main_head; current; current = current->next)
 	{

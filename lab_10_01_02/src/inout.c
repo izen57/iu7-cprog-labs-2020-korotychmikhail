@@ -8,25 +8,6 @@ void struct_print(struct node *head)
 	printf("L");
 }
 
-char *read(FILE *file)
-{
-	int capacity = 1, size = 0;
-	char *s = malloc(capacity * sizeof(char));
-	for (char c = fgetc(file); c != '\n' && c != ' ' && c != EOF; c = fgetc(file))
-	{
-		s[size++] = c;
-		if (size >= capacity)
-		{
-			capacity *= 2;
-			s = realloc(s, capacity * sizeof(char));
-			if (!s)
-				return NULL;
-		}
-	}
-	s[size] = '\0';
-	return s;
-}
-
 int input(struct node **head1, struct node **head2, char *word, float *a)
 {
 	int error = 0;
@@ -34,21 +15,20 @@ int input(struct node **head1, struct node **head2, char *word, float *a)
 	{
 		int coefficient, degree;
 		int n = 0;
-		char *c;
 		while (1)
 		{
-			c = read(stdin);
-			if (!strlen(c))
+			if (scanf("%d", &coefficient) != 1)
 				break;
-			coefficient = atoi(c);
 			n++;
-			c = read(stdin);
-			if (!strlen(c))
+			if (getchar() == '\n')
 				break;
-			degree = atoi(c);
+			if (scanf("%d", &degree) != 1)
+				break;
 			n++;
 			struct node *member = node_create(coefficient, degree);
 			*head1 = node_add_end(*head1, member);
+			if (getchar() == '\n')
+				break;
 		}
 		if (!n || n % 2)
 			error = 1;
@@ -60,16 +40,18 @@ int input(struct node **head1, struct node **head2, char *word, float *a)
 		else if (!error && !strcmp(word, "sum"))
 			while (1)
 			{
-				c = read(stdin);
-				if (!strlen(c))
+				if (scanf("%d", &coefficient) != 1)
+				break;
+				n++;
+				if (getchar() == '\n')
 					break;
-				coefficient = atoi(c);
-				c = read(stdin);
-				if (!strlen(c))
+				if (scanf("%d", &degree) != 1)
 					break;
-				degree = atoi(c);
+				n++;
 				struct node *member = node_create(coefficient, degree);
 				*head1 = node_add_end(*head1, member);
+				if (getchar() == '\n')
+					break;
 			}
 	}
 	else
