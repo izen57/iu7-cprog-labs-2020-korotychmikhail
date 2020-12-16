@@ -2,8 +2,7 @@
 
 void list_free_all(node_t *head)
 {
-	node_t *next;
-	for (; head; head = next)
+	for (node_t *next; head; head = next)
 	{
 		next = head->next;
 		free(head);
