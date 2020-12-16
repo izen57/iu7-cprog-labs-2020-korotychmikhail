@@ -18,12 +18,21 @@ int input(struct node **head1, struct node **head2, char *word, float *a)
 		while (1)
 		{
 			if (scanf("%d", &coefficient) != 1)
+			{
+				error = 1;
 				break;
+			}
 			n++;
 			if (getchar() == '\n')
+			{
+				error = 1;
 				break;
+			}
 			if (scanf("%d", &degree) != 1)
+			{
+				error = 1;
 				break;
+			}
 			n++;
 			struct node *member = node_create(coefficient, degree);
 			*head1 = node_add_end(*head1, member);
@@ -38,21 +47,37 @@ int input(struct node **head1, struct node **head2, char *word, float *a)
 				error = 1;
 		}
 		else if (!error && !strcmp(word, "sum"))
+		{
 			while (1)
 			{
 				if (scanf("%d", &coefficient) != 1)
-				break;
+				{
+					error = 1;
+					break;
+				}
 				n++;
 				if (getchar() == '\n')
+				{
+					error = 1;
 					break;
+				}
 				if (scanf("%d", &degree) != 1)
+				{
+					error = 1;
 					break;
+				}
 				n++;
 				struct node *member = node_create(coefficient, degree);
 				*head1 = node_add_end(*head1, member);
 				if (getchar() == '\n')
+				{
+					error = 1;
 					break;
+				}
 			}
+			if (!n || n % 2)
+				error = 1;
+		}
 	}
 	else
 		error = 1;

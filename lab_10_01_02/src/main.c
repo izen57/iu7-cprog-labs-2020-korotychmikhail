@@ -47,8 +47,9 @@ int main(void)
 					list_free_all(even_head);
 				}
 			}
-			list_free_all(head1);
 		}
+		list_free_all(head1);
+		list_free_all(head2);
 	}
 	return error;
 }
