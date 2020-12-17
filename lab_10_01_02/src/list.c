@@ -34,7 +34,7 @@ struct node *node_add_end(struct node *head, struct node *node)
 
 float val(struct node *head, int a)
 {
-	float val = 0.0;
+	float val = 0;
 	for (struct node *current = head; current; current = current->next)
 		val += current->coefficient * pow(a, current->degree);
 	return val;
@@ -51,18 +51,35 @@ void dpdx(struct node *main_head, struct node **derivative_head)
 
 struct node *sum(struct node *head1, struct node *head2, struct node **result_head)
 {
-	for (struct node *current1 = head1; current1; current1 = current1->next)
+	struct node *current1, *current2;
+	if (head1->degree >= head2->degree)
+	{
+		current1 = head1;
+		current2 = head2;
+	}
+	else
+	{
+		current1 = head2;
+		current2 = head1;
+	}
+	for (; current1; current1 = current1->next)
 	{
 		bool flag = false;
-		struct node *current2 = head2;
 		for (; current2; current2 = current2->next)
+		{
 			if (current1->degree == current2->degree)
 			{
 				flag = true;
-				break;
+				struct node *result_current = node_create(current1->coefficient + current2->coefficient, current1->degree);
+				*result_head = node_add_end(*result_head, result_current);
+			break;
 			}
-		struct node *result_current = node_create(flag ? current1->coefficient + current2->coefficient : current1->coefficient, current1->degree);
-		*result_head = node_add_end(*result_head, result_current);
+		}
+		if (!flag)
+		{
+			struct node *result_current = node_create(current1->coefficient, current1->degree);
+			*result_head = node_add_end(*result_head, result_current);
+		}
 	}
 	return *result_head;
 }
