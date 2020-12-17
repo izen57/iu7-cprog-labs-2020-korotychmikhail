@@ -46,7 +46,7 @@ struct Student *marks_add_end(struct Marks *head, struct Marks *node)
 {
 	if (!head)
 		return node;
-	struct Student *current = head, *temp = NULL;
+	struct Marks *current = head, *temp = NULL;
 	for (; current->next; current = current->next)
 		temp = current;
 	current->previous = temp;
