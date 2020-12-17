@@ -34,8 +34,10 @@ struct Student *student_add_end(struct Student *head, struct Student *student)
 {
 	if (!head)
 		return student;
-	struct Student *current = head;
-	for (; current->next; current = current->next);
+	struct Student *current = head, *temp = NULL;
+	for (; current->next; current = current->next)
+		temp = current;
+	current->previous = temp;
 	current->next = student;
 	return head;
 }
@@ -44,12 +46,10 @@ struct Student *marks_add_end(struct Marks *head, struct Marks *node)
 {
 	if (!head)
 		return node;
-	struct Student *current = head;
+	struct Student *current = head, *temp = NULL;
 	for (; current->next; current = current->next)
-	{
-		current->previous = current;
-		struct Marks *peviuos = current;
-	}
+		temp = current;
+	current->previous = temp;
 	current->next = node;
 	return head;
 }
