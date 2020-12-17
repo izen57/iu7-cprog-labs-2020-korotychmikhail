@@ -50,34 +50,48 @@ void dpdx(struct node *main_head, struct node **derivative_head)
 
 struct node *sum(struct node *head1, struct node *head2, struct node **result_head)
 {
-	struct node *current1, *current2;
 	if (head1->degree >= head2->degree)
 	{
-		current1 = head1;
-		current2 = head2;
+		for (struct node *current1 = head1; current1; current1 = current1->next)
+		{
+			bool flag = false;
+			for (struct node *current2 = head2; current2; current2 = current2->next)
+			{
+				if (current1->degree == current2->degree)
+				{
+					flag = true;
+					struct node *result_current = node_create(current1->coefficient + current2->coefficient, current1->degree);
+					*result_head = node_add_end(*result_head, result_current);
+					break;
+				}
+			}
+			if (!flag)
+			{
+				struct node *result_current = node_create(current1->coefficient, current1->degree);
+				*result_head = node_add_end(*result_head, result_current);
+			}
+		}
 	}
 	else
 	{
-		current1 = head2;
-		current2 = head1;
-	}
-	for (; current1; current1 = current1->next)
-	{
-		bool flag = false;
-		for (; current2; current2 = current2->next)
+		for (struct node *current1 = head2; current1; current1 = current1->next)
 		{
-			if (current1->degree == current2->degree)
+			bool flag = false;
+			for (struct node *current2 = head1; current2; current2 = current2->next)
 			{
-				flag = true;
-				struct node *result_current = node_create(current1->coefficient + current2->coefficient, current1->degree);
-				*result_head = node_add_end(*result_head, result_current);
-				break;
+				if (current1->degree == current2->degree)
+				{
+					flag = true;
+					struct node *result_current = node_create(current1->coefficient + current2->coefficient, current1->degree);
+					*result_head = node_add_end(*result_head, result_current);
+					break;
+				}
 			}
-		}
-		if (!flag)
-		{
-			struct node *result_current = node_create(current1->coefficient, current1->degree);
-			*result_head = node_add_end(*result_head, result_current);
+			if (!flag)
+			{
+				struct node *result_current = node_create(current1->coefficient, current1->degree);
+				*result_head = node_add_end(*result_head, result_current);
+			}
 		}
 	}
 	return *result_head;
