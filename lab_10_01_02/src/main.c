@@ -11,7 +11,7 @@ int main(void)
 	if (!error)
 	{
 		struct node *head1 = NULL, *head2 = NULL;
-		float a = 0;
+		int a = 0;
 		error = input(&head1, &head2, word, &a);
 		if (!error)
 		{

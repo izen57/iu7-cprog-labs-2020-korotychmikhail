@@ -9,7 +9,7 @@ void struct_print(struct node *head)
 	printf("L");
 }
 
-int input(struct node **head1, struct node **head2, char *word, float *a)
+int input(struct node **head1, struct node **head2, char *word, int *a)
 {
 	int error = 0;
 	if (!strcmp(word, "val") || !strcmp(word, "ddx") || !strcmp(word, "sum") || !strcmp(word, "dvd"))
@@ -44,7 +44,7 @@ int input(struct node **head1, struct node **head2, char *word, float *a)
 			error = 1;
 		if (!error && !strcmp(word, "val"))
 		{
-			if (scanf("%f", a) != 1)
+			if (scanf("%d", a) != 1)
 				error = 1;
 		}
 		else if (!error && !strcmp(word, "sum"))

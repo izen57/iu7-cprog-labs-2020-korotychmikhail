@@ -7,6 +7,6 @@
 #include "structure.h"
 
 void struct_print(struct node *head);
-int input(struct node **head1, struct node **head2, char *word, float *a);
+int input(struct node **head1, struct node **head2, char *word, int *a);
 
 #endif
