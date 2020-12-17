@@ -4,7 +4,8 @@
 void struct_print(struct node *head)
 {
 	for (struct node *current = head; current; current = current->next)
-		printf("%d %d ", current->coefficient, current->degree);
+		if (current->coefficient)
+			printf("%d %d ", current->coefficient, current->degree);
 	printf("L");
 }
 

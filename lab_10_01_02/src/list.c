@@ -2,8 +2,7 @@
 
 void list_free_all(struct node *head)
 {
-	struct node *next;
-	for (; head; head = next)
+	for (struct node *next; head; head = next)
 	{
 		next = head->next;
 		free(head);
@@ -72,7 +71,7 @@ struct node *sum(struct node *head1, struct node *head2, struct node **result_he
 				flag = true;
 				struct node *result_current = node_create(current1->coefficient + current2->coefficient, current1->degree);
 				*result_head = node_add_end(*result_head, result_current);
-			break;
+				break;
 			}
 		}
 		if (!flag)
