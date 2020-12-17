@@ -55,7 +55,6 @@ struct node *sum(struct node *head1, struct node *head2, struct node **result_he
 		{
 			bool flag = false;
 			for (struct node *current2 = head2; current2; current2 = current2->next)
-			{
 				if (current1->degree == current2->degree)
 				{
 					flag = true;
@@ -63,7 +62,6 @@ struct node *sum(struct node *head1, struct node *head2, struct node **result_he
 					*result_head = node_add_end(*result_head, result_current);
 					break;
 				}
-			}
 			if (!flag)
 			{
 				struct node *result_current = node_create(current1->coefficient, current1->degree);
@@ -75,7 +73,6 @@ struct node *sum(struct node *head1, struct node *head2, struct node **result_he
 		{
 			bool flag = false;
 			for (struct node *current2 = head1; current2; current2 = current2->next)
-			{
 				if (current1->degree == current2->degree)
 				{
 					flag = true;
@@ -83,7 +80,6 @@ struct node *sum(struct node *head1, struct node *head2, struct node **result_he
 					*result_head = node_add_end(*result_head, result_current);
 					break;
 				}
-			}
 			if (!flag)
 			{
 				struct node *result_current = node_create(current1->coefficient, current1->degree);
