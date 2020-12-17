@@ -71,10 +71,7 @@ int input(struct node **head1, struct node **head2, char *word, float *a)
 				struct node *member = node_create(coefficient, degree);
 				*head1 = node_add_end(*head1, member);
 				if (getchar() == '\n')
-				{
-					error = 1;
 					break;
-				}
 			}
 			if (!n || n % 2)
 				error = 1;
