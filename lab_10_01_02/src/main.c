@@ -35,15 +35,16 @@ int main(void)
 			{
 				struct node *odd_head = NULL, *even_head = NULL;
 				dvd(head1, &even_head, &odd_head);
-				if (even_head)
-					struct_print(even_head);
-				else if (odd_head)
+				if (!odd_head || !even_head)
+					error = 1;
+				if (!error)
 				{
+					struct_print(even_head);
 					printf("\n");
 					struct_print(odd_head);
+					list_free_all(odd_head);
+					list_free_all(even_head);
 				}
-				list_free_all(odd_head);
-				list_free_all(even_head);
 			}
 		}
 		list_free_all(head1);
