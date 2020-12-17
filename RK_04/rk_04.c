@@ -42,7 +42,7 @@ struct Student *student_add_end(struct Student *head, struct Student *student)
 	return head;
 }
 
-struct Student *marks_add_end(struct Marks *head, struct Marks *node)
+struct Marks *marks_add_end(struct Marks *head, struct Marks *node)
 {
 	if (!head)
 		return node;
