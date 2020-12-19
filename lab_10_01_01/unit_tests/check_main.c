@@ -20,37 +20,32 @@ int compare_lists(node_t *head1, node_t *head2)
 
 START_TEST(test_pop_front)
 {
-	node_t *head1 = NULL, *head2 = NULL;
-	FILE *in_file = fopen("func_tests\\in.txt", "r");
-	int error = read_file(in_file, &head1);
-	void *data1 = pop_front(&head1);
-	FILE *out_file = fopen("func_tests\\pop_front_out.txt", "r");
-	error = read_file(out_file, &head2);
-	error = compare_lists(head1, head2);
-	void *data2 = "Moscow";
-	list_free_all(head1);
-	list_free_all(head2);
-	fclose(in_file);
-	fclose(out_file);
-	ck_assert_str_eq(data1, data2);
-	ck_assert_int_eq(error, SUCCESS);
+	node_t *head = city_create("Moscow");
+	node_t *current = head;
+	current = current->next = city_create("Omsk");
+	current = current->next = city_create("Perm");
+	current = current->next = city_create("Kaliningrad");
+	current = current->next = city_create("Tomsk");
+	current = current->next = city_create("Kemerovo");
+	void *data1 = pop_front(&head);
+	ck_assert_str_eq(data1, "Moscow");
+	list_free_all(head);
 }
 END_TEST
 
 START_TEST(test_find_null)
 {
-	node_t *head = NULL;
-	FILE *in_file = fopen("func_tests\\in.txt", "r");
-	int error = read_file(in_file, &head);
+	node_t *head = city_create("Moscow");
+	node_t *current = head;
+	current = current->next = city_create("Omsk");
+	current = current->next = city_create("Perm");
+	current = current->next = city_create("Kaliningrad");
+	current = current->next = city_create("Tomsk");
+	current = current->next = city_create("Kemerovo");
 	void *data = "Rostov";
 	node_t *result = find(head, data, comparator);
-	if (result)
-		error = 1;
+	ck_assert_ptr_null(result);
 	list_free_all(head);
-	if (result)
-		free(result);
-	fclose(in_file);
-	ck_assert_int_eq(error, SUCCESS);
 }
 END_TEST
 
@@ -76,14 +71,17 @@ END_TEST*/
 
 START_TEST(test_copy_ok)
 {
-	node_t *head1 = NULL, *head2 = NULL;
-	FILE *in_file = fopen("func_tests\\in.txt", "r");
-	int error = read_file(in_file, &head1);
-	error = copy(head1, &head2);
+	node_t *head1 = city_create("Moscow"), *head2 = NULL;
+	node_t *current = head1;
+	current = current->next = city_create("Omsk");
+	current = current->next = city_create("Perm");
+	current = current->next = city_create("Kaliningrad");
+	current = current->next = city_create("Tomsk");
+	current = current->next = city_create("Kemerovo");
+	int error = copy(head1, &head2);
 	error = compare_lists(head1, head2);
 	list_free_all(head1);
 	list_free_all(head2);
-	fclose(in_file);
 	ck_assert_int_eq(error, SUCCESS);
 }
 END_TEST
