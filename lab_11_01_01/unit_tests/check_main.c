@@ -9,11 +9,19 @@ START_TEST(test_text)
 }
 END_TEST
 
+START_TEST(test_void_text)
+{
+	char buffer1[13], buffer2[13];
+	ck_assert_int_eq(my_snprintf(buffer1, 0, ""), snprintf(buffer2, 0, ""));
+}
+END_TEST
+
 Suite *test_func_suite(void)
 {
 	Suite *s = suite_create("test_func");
 	TCase *tc_text = tcase_create("text");
 	tcase_add_test(tc_text, test_text);
+	tcase_add_test(tc_text, test_void_text);
 	suite_add_tcase(s, tc_text);
 	/*TCase *tc_ddx = tcase_create("ddx");
 	tcase_add_test(tc_ddx, test_ddx);
