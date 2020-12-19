@@ -173,7 +173,7 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 	va_list args;
 	va_start(args, format);
 	int lenght = 0;
-	int spaces, l_count;
+	int /*spaces,*/ l_count;
 	bool specifier = false;
 	const char *current = format;
 	for (int i = 0; current[i] != '\0'; i++)
@@ -273,7 +273,7 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 			if (current[i] == '%')
 			{
 				specifier = true;
-				spaces = 0;
+				//spaces = 0;
 				l_count = 0;
 			}
 			else
