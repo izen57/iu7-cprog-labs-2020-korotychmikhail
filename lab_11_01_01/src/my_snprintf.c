@@ -3,9 +3,10 @@
 void char_specifier(char *stream, size_t n, int *lenght, char symbol)
 {
 	if (*lenght < n - 1)
-		stream[(*lenght)++] = symbol;
+		stream[*lenght] = symbol;
 	else if (*lenght < n)
-		stream[(*lenght)++] = '\0';
+		stream[*lenght] = '\0';
+	(*lenght)++;
 }
 void integer_specifier(char *stream, size_t n, int *lenght, int symbol)
 {
@@ -286,5 +287,5 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 /*int main(void)
 {
 	char buffer[13];
-	return my_snprintf(buffer, 13, "I'm coding now...");
+	return my_snprintf(buffer, 10, "I'm coding now...");
 }*/
