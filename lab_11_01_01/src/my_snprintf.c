@@ -109,7 +109,7 @@ void long_long_integer_specifier(char *stream, size_t n, int *lenght, long long 
 // 		long long c = (val >> offset) & 0xfull;
 // 		if (c < 10)
 // 			write_char(s, n, len, '0' + c);
-// 		else
+// 		elsej
 // 			write_char(s, n, len, 'a' + c - 10);
 
 // 		offset -= 4;
@@ -170,7 +170,7 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 	int /*spaces, */l_count;
 	bool specifier = false;
 	const char *current = format;
-	while (*current++)
+	while (*current)
 	{
 		if (specifier)
 			switch (*current)
@@ -273,6 +273,7 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 			else
 				char_specifier(stream, n, &lenght, *current);
 		}
+		current++;
 	}
 	va_end(args);
 	if (lenght < n) 
