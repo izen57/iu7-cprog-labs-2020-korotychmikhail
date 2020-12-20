@@ -170,10 +170,10 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 	int /*spaces, */l_count;
 	bool specifier = false;
 	const char *current = format;
-	for (int i = 0; current[i] != '\0'; i++)
+	while (*current++)
 	{
 		if (specifier)
-			switch (current[i])
+			switch (*current)
 			{
 				case 'c':
 					char_specifier(stream, n, &lenght, va_arg(args, int));
@@ -264,14 +264,14 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 			}
 		else
 		{
-			if (current[i] == '%')
+			if (*current == '%')
 			{
 				specifier = true;
 				//spaces = 0;
 				l_count = 0;
 			}
 			else
-				char_specifier(stream, n, &lenght, current[i]);
+				char_specifier(stream, n, &lenght, *current);
 		}
 	}
 	va_end(args);
