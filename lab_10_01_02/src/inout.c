@@ -24,7 +24,7 @@ int input(struct node **head1, struct node **head2, char *word, int *a)
 				break;
 			}
 			n++;
-			if (getchar() != ' ' || getchar() == '\n')
+			if (getchar() == '\n')
 			{
 				error = 1;
 				break;
