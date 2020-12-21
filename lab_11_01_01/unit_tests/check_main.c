@@ -76,6 +76,13 @@ START_TEST(test_c)
 }
 END_TEST
 
+START_TEST(test_s)
+{
+	char buffer1[4], buffer2[4];
+	ck_assert_int_eq(my_snprintf(buffer1, 4, "%s", "test"), snprintf(buffer2, 4, "%s", "test"));
+}
+END_TEST
+
 Suite *test_func_suite(void)
 {
 	Suite *s = suite_create("test_func");
@@ -96,6 +103,9 @@ Suite *test_func_suite(void)
 	TCase *tc_c = tcase_create("c");
 	tcase_add_test(tc_c, test_c);
 	suite_add_tcase(s, tc_c);
+	TCase *tc_s = tcase_create("s");
+	tcase_add_test(tc_s, test_s);
+	suite_add_tcase(s, tc_s);
 	return s;
 }
 
