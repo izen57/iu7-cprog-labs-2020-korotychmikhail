@@ -12,8 +12,8 @@ END_TEST
 
 START_TEST(test_void_text)
 {
-	char buffer1[13], buffer2[13];
-	ck_assert_int_eq(my_snprintf(buffer1, 0, ""), snprintf(buffer2, 0, ""));
+	char buffer1[13], buffer2[13],  *string1 = "", *string2 = "";
+	ck_assert_int_eq(my_snprintf(buffer1, 0, string1), snprintf(buffer2, 0, string2));
 }
 END_TEST
 
