@@ -168,7 +168,7 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 	va_list args;
 	va_start(args, format);
 	int lenght = 0;
-	int /*spaces, */l_count;
+	int spaces, l_count;
 	bool specifier = false;
 	const char *current = format;
 	for (int i = 0; current[i] != '\0'; i++)
@@ -246,14 +246,14 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 					string_specifier(stream, n, &lenght, va_arg(args, const char *));
 					specifier = false;
 					break;
-				/*case '%':
-					write_char(s, n, &len, '%');
-					in_spec = 0;
-					break;*/
-				/*case ' ':
+				case '%':
+					char_specifier(stream, n, &lenght, '%');
+					specifier = false;
+					break;
+				case ' ':
 					spaces++;
 					//write_char(s, n, &len, ' ');
-					break;*/
+					break;
 				case 'l':
 					l_count++;
 					//write_char(s, n, &len, ' ');
@@ -268,7 +268,7 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 			if (current[i] == '%')
 			{
 				specifier = true;
-				//spaces = 0;
+				spaces = 0;
 				l_count = 0;
 			}
 			else

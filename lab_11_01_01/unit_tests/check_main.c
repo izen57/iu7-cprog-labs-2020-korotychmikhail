@@ -23,6 +23,13 @@ START_TEST(test_text_buffer_less_n)
 }
 END_TEST
 
+START_TEST(test_text_with_percent)
+{
+	char buffer1[14], buffer2[14];
+	ck_assert_int_eq(my_snprintf(buffer1, 14, "I'm coding%%..."), snprintf(buffer2, 14, "I'm coding%%..."));
+}
+END_TEST
+
 Suite *test_func_suite(void)
 {
 	Suite *s = suite_create("test_func");
@@ -30,16 +37,9 @@ Suite *test_func_suite(void)
 	tcase_add_test(tc_text, test_text_buffer_less_n);
 	tcase_add_test(tc_text, test_text_buffer_more_n);
 	tcase_add_test(tc_text, test_void_text);
+	tcase_add_test(tc_text, test_text_with_percent);
 	suite_add_tcase(s, tc_text);
-	/*TCase *tc_ddx = tcase_create("ddx");
-	tcase_add_test(tc_ddx, test_ddx);
-	suite_add_tcase(s, tc_ddx);
-	TCase *tc_sum = tcase_create("sum");
-	tcase_add_test(tc_sum, test_sum);
-	suite_add_tcase(s, tc_sum);
-	TCase *tc_dvd = tcase_create("dvd");
-	tcase_add_test(tc_dvd, test_dvd);
-	suite_add_tcase(s, tc_dvd);*/
+	
 	return s;
 }
 
