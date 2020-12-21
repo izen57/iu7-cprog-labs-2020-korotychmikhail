@@ -65,96 +65,7 @@ void long_long_integer_specifier(char *stream, size_t n, int *lenght, long long 
 		numeral /= 10;
 	}
 }
-// void perform_x(char *s, size_t n, int *len, unsigned int val)
-// {
-// 	int offset = sizeof(val) * 8 - 4;
-// 	while ((val & (0xfu << offset)) == 0 && offset > 0)
-// 		offset -= 4;
 
-// 	while (offset >= 0)
-// 	{
-// 		int c = (val >> offset) & 0xf;
-// 		if (c < 10)
-// 			write_char(s, n, len, '0' + c);
-// 		else
-// 			write_char(s, n, len, 'a' + c - 10);
-
-// 		offset -= 4;
-// 	}
-// }
-// void perform_lx(char *s, size_t n, int *len, unsigned long val)
-// {
-// 	int offset = sizeof(val) * 8 - 4;
-// 	while ((val & (0xful << offset)) == 0 && offset > 0)
-// 		offset -= 4;
-
-// 	while (offset >= 0)
-// 	{
-// 		long c = (val >> offset) & 0xful;
-// 		if (c < 10)
-// 			write_char(s, n, len, '0' + c);
-// 		else
-// 			write_char(s, n, len, 'a' + c - 10);
-
-// 		offset -= 4;
-// 	}
-// }
-// void perform_llx(char *s, size_t n, int *len, unsigned long long val)
-// {
-// 	int offset = sizeof(val) * 8 - 4;
-// 	while ((val & (0xfull << offset)) == 0 && offset > 0)
-// 		offset -= 4;
-
-// 	while (offset >= 0)
-// 	{
-// 		long long c = (val >> offset) & 0xfull;
-// 		if (c < 10)
-// 			write_char(s, n, len, '0' + c);
-// 		else
-// 			write_char(s, n, len, 'a' + c - 10);
-
-// 		offset -= 4;
-// 	}
-// }
-// void perform_o(char *s, size_t n, int *len, unsigned int val)
-// {
-// 	int offset = sizeof(val) * 8 - sizeof(val) * 8 % 3;
-// 	while ((val & (0x7u << offset)) == 0 && offset > 0)
-// 		offset -= 3;
-
-// 	while (offset >= 0)
-// 	{
-// 		write_char(s, n, len, '0' + ((val >> offset) & 0x7u));
-
-// 		offset -= 3;
-// 	}
-// }
-// void perform_lo(char *s, size_t n, int *len, unsigned long val)
-// {
-// 	int offset = sizeof(val) * 8 - sizeof(val) * 8 % 3;
-// 	while ((val & (0x7ul << offset)) == 0 && offset > 0)
-// 		offset -= 3;
-
-// 	while (offset >= 0)
-// 	{
-// 		write_char(s, n, len, '0' + ((val >> offset) & 0x7ul));
-
-// 		offset -= 3;
-// 	}
-// }
-// void perform_llo(char *s, size_t n, int *len, unsigned long long val)
-// {
-// 	int offset = sizeof(val) * 8 - sizeof(val) * 8 % 3;
-// 	while ((val & (0x7ull << offset)) == 0 && offset > 0)
-// 		offset -= 3;
-
-// 	while (offset >= 0)
-// 	{
-// 		write_char(s, n, len, '0' + ((val >> offset) & 0x7ull));
-
-// 		offset -= 3;
-// 	}
-// }
 void string_specifier(char *stream, size_t n, int *lenght, const char *symbol)
 {
 	while (*symbol)
@@ -180,68 +91,21 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 					char_specifier(stream, n, &lenght, va_arg(args, int));
 					specifier = false;
 					break;
-				/*case 'd':
-					if (l_count > 2) 
-					{
-						if (lenght < n) 
-							stream[lenght] = '\0';
-						return -1;
-					}
-					while (spaces--)
-						write_char(stream, n, &lenght, ' ');
-					if (l_count == 0)
-						perform_d(s, n, &len, va_arg(args, int));
-					else if (l_count == 1)
-						perform_ld(s, n, &len, va_arg(args, long));
-					else if (l_count == 2)
-						perform_lld(s, n, &len, va_arg(args, long long));
-					in_spec = 0;
-					break;*/
 				case 'i':
-					if (l_count > 2) 
+					/*if (l_count > 2) 
 					{
 						if (lenght < n) 
 							stream[lenght] = '\0';
 						return -1;
-					}
+					}*/
 					if (!l_count)
 						integer_specifier(stream, n, &lenght, va_arg(args, int));
 					else if (l_count == 1)
 						long_integer_specifier(stream, n, &lenght, va_arg(args, long int));
-					else if (l_count == 2)
-						long_long_integer_specifier(stream, n, &lenght, va_arg(args, long long int));
+					/*else if (l_count == 2)
+						long_long_integer_specifier(stream, n, &lenght, va_arg(args, long long int));*/
 					specifier = false;
 					break;
-				/*case 'x':
-					if (l_count > 2) 
-					{
-						if (len < n) 
-							s[len] = '\0';
-						return -1;
-					}
-					if (l_count == 0)
-						perform_x(s, n, &len, va_arg(args, unsigned int));
-					else if (l_count == 1)
-						perform_lx(s, n, &len, va_arg(args, unsigned long));
-					else if (l_count == 2)
-						perform_llx(s, n, &len, va_arg(args, unsigned long long));
-					in_spec = 0;
-					break;*/
-				/*case 'o':
-					if (l_count > 2) 
-					{
-						if (len < n) 
-							s[len] = '\0';
-						return -1;
-					}
-					if (l_count == 0)
-						perform_o(s, n, &len, va_arg(args, unsigned int));
-					else if (l_count == 1)
-						perform_lo(s, n, &len, va_arg(args, unsigned long));
-					else if (l_count == 2)
-						perform_llo(s, n, &len, va_arg(args, unsigned long long));
-					in_spec = 0;
-					break;*/
 				case 's':
 					string_specifier(stream, n, &lenght, va_arg(args, const char *));
 					specifier = false;
