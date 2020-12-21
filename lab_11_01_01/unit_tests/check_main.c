@@ -12,7 +12,7 @@ END_TEST
 
 START_TEST(test_void_text)
 {
-	char buffer1[13], buffer2[13],  string1[2] = "", string2[2] = "";
+	char buffer1[13], buffer2[13], string1[2] = "", string2[2] = "";
 	ck_assert_int_eq(my_snprintf(buffer1, 0, string1), snprintf(buffer2, 0, string2));
 }
 END_TEST
@@ -69,6 +69,12 @@ START_TEST(test_li_max)
 }
 END_TEST
 
+START_TEST(test_c)
+{
+	char buffer1[4], buffer2[4];
+	ck_assert_int_eq(my_snprintf(buffer1, 4, "%c%c%c%c", 't', 'e', 's', 't'), snprintf(buffer2, 4, "%c%c%c%c", 't', 'e', 's', 't'));
+}
+END_TEST
 
 Suite *test_func_suite(void)
 {
@@ -87,7 +93,9 @@ Suite *test_func_suite(void)
 	tcase_add_test(tc_li, test_li_min);
 	tcase_add_test(tc_li, test_li_max);
 	suite_add_tcase(s, tc_li);
-	
+	TCase *tc_c = tcase_create("c");
+	tcase_add_test(tc_c, test_c);
+	suite_add_tcase(s, tc_c);
 	return s;
 }
 
