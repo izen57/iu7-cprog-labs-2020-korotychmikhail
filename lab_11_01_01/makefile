@@ -1,4 +1,4 @@
-CFLAGS = -std=c99 -Wall -Werror -pedantic -ggdb -c
+CFLAGS = -std=c99 -Wall -pedantic -ggdb -c
 S = ./src/
 O = ./out/
 I = ./inc/
