@@ -1,5 +1,6 @@
 #include <check.h>
 #include <stdio.h>
+#include <stdint.h>
 #include "../inc/my_snprintf.h"
 
 START_TEST(test_text_buffer_more_n)
@@ -54,6 +55,14 @@ START_TEST(test_i_with_spaces)
 }
 END_TEST
 
+START_TEST(test_li_max_and_min)
+{
+	char buffer1[2], buffer2[2];
+	ck_assert_int_eq(my_snprintf(buffer1, 2, "%i%i", INTMAX_MIN, INTMAX_MAX), snprintf(buffer2, 2, "%i%i", INTMAX_MIN, INTMAX_MAX));
+}
+END_TEST
+
+
 Suite *test_func_suite(void)
 {
 	Suite *s = suite_create("test_func");
@@ -67,7 +76,9 @@ Suite *test_func_suite(void)
 	tcase_add_test(tc_i, test_i_specfiers_without_spaces);
 	tcase_add_test(tc_i, test_i_wrong_specifiers);
 	tcase_add_test(tc_i, test_i_with_spaces);
-	suite_add_tcase(s, tc_i);
+	TCase *tc_li = tcase_create("li");
+	tcase_add_test(tc_li, test_li_max_and_min);
+	suite_add_tcase(s, tc_li);
 	
 	return s;
 }
