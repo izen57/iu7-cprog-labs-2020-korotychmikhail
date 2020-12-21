@@ -252,7 +252,7 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 					break;
 				case ' ':
 					spaces++;
-					//write_char(s, n, &len, ' ');
+					char_specifier(stream, n, &lenght, ' ');
 					break;
 				case 'l':
 					l_count++;

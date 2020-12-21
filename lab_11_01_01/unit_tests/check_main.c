@@ -30,6 +30,30 @@ START_TEST(test_text_with_percent)
 }
 END_TEST
 
+START_TEST(test_i_specfiers_without_spaces)
+{
+	int a = 3, b = 56, c = -8, d = 3, e = 56, f = -8;
+	char buffer1[3], buffer2[3];
+	ck_assert_int_eq(my_snprintf(buffer1, 3, "%i%i%i", a, b, c), snprintf(buffer2, 3, "%i%i%i", d, e, f));
+}
+END_TEST
+
+START_TEST(test_i_wrong_specifiers)
+{
+	int a = 3, b = 56.2, c = -8, d = 3, e = 56.2, f = -8;
+	char buffer1[3], buffer2[3];
+	ck_assert_int_eq(my_snprintf(buffer1, 3, "%i%i%i", a, b, c), snprintf(buffer2, 3, "%i%i%i", d, e, f));
+}
+END_TEST
+
+START_TEST(test_i_with_spaces)
+{
+	int a = 3, b = 6, c = 8, d = 3, e = 5, f = 8;
+	char buffer1[3], buffer2[3];
+	ck_assert_int_eq(my_snprintf(buffer1, 3, "% i% i% i", a, b, c), snprintf(buffer2, 3, "% i% i% i", d, e, f));
+}
+END_TEST
+
 Suite *test_func_suite(void)
 {
 	Suite *s = suite_create("test_func");
@@ -39,6 +63,11 @@ Suite *test_func_suite(void)
 	tcase_add_test(tc_text, test_void_text);
 	tcase_add_test(tc_text, test_text_with_percent);
 	suite_add_tcase(s, tc_text);
+	TCase *tc_i = tcase_create("i");
+	tcase_add_test(tc_i, test_i_specfiers_without_spaces);
+	tcase_add_test(tc_i, test_i_wrong_specifiers);
+	tcase_add_test(tc_i, test_i_with_spaces);
+	suite_add_tcase(s, tc_i);
 	
 	return s;
 }
