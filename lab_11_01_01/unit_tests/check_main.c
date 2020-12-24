@@ -58,14 +58,14 @@ END_TEST
 START_TEST(test_li_min)
 {
 	char buffer1[2], buffer2[2];
-	ck_assert_int_eq(my_snprintf(buffer1, 2, "%lli", INTMAX_MIN), snprintf(buffer2, 2, "%lli", INTMAX_MIN));
+	ck_assert_int_eq(my_snprintf(buffer1, 2, "%li", INTMAX_MIN), snprintf(buffer2, 2, "%li", INTMAX_MIN));
 }
 END_TEST
 
 START_TEST(test_li_max)
 {
 	char buffer1[2], buffer2[2];
-	ck_assert_int_eq(my_snprintf(buffer1, 2, "%lli", INTMAX_MAX), snprintf(buffer2, 2, "%lli", INTMAX_MAX));
+	ck_assert_int_eq(my_snprintf(buffer1, 2, "%li", INTMAX_MAX), snprintf(buffer2, 2, "%li", INTMAX_MAX));
 }
 END_TEST
 
