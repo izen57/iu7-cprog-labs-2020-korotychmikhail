@@ -48,44 +48,80 @@ void dpdx(struct node *main_head, struct node **derivative_head)
 	}
 }
 
+struct node *search(struct node *head1, struct node *head2)
+{
+	for (struct node *current1 = head1; current1; current1 = current1->next)
+		for (struct node *current2 = head2; current2; current2 = current2->next)
+			if (current1->degree == current2->degree)
+				return current1;
+	return NULL;
+}
+
 struct node *sum(struct node *head1, struct node *head2, struct node **result_head)
 {
-	if (head1->degree > head2->degree)
-		for (struct node *current1 = head1; current1; current1 = current1->next)
+	// if (head1->degree >= head2->degree)
+	// 	for (struct node *current1 = head1; current1; current1 = current1->next)
+	// 	{
+	// 		bool flag = false;
+	// 		for (struct node *current2 = head2; current2; current2 = current2->next)
+	// 			if (current1->degree == current2->degree)
+	// 			{
+	// 				flag = true;
+	// 				struct node *result_current = node_create(current1->coefficient + current2->coefficient, current1->degree);
+	// 				*result_head = node_add_end(*result_head, result_current);
+	// 				break;
+	// 			}
+	// 		if (!flag)
+	// 		{
+	// 			struct node *result_current = node_create(current1->coefficient, current1->degree);
+	// 			*result_head = node_add_end(*result_head, result_current);
+	// 		}
+	// 	}
+	// else
+	// 	for (struct node *current1 = head2; current1; current1 = current1->next)
+	// 	{
+	// 		bool flag = false;
+	// 		for (struct node *current2 = head1; current2; current2 = current2->next)
+	// 			if (current1->degree == current2->degree)
+	// 			{
+	// 				flag = true;
+	// 				struct node *result_current = node_create(current1->coefficient + current2->coefficient, current1->degree);
+	// 				*result_head = node_add_end(*result_head, result_current);
+	// 				break;
+	// 			}
+	// 		if (!flag)
+	// 		{
+	// 			struct node *result_current = node_create(current1->coefficient, current1->degree);
+	// 			*result_head = node_add_end(*result_head, result_current);
+	// 		}
+	// 	}
+	for (struct node *current1 = head1, *current2 = head2; current1 || current2; current1 = current1->next, current2 = current2->next)
+	{
+		if (current1 && current2)
 		{
-			bool flag = false;
-			for (struct node *current2 = head2; current2; current2 = current2->next)
-				if (current1->degree == current2->degree)
-				{
-					flag = true;
-					struct node *result_current = node_create(current1->coefficient + current2->coefficient, current1->degree);
-					*result_head = node_add_end(*result_head, result_current);
-					//break;
-				}
-			if (!flag)
+			if (current1->degree == current2->degree)
 			{
-				struct node *result_current = node_create(current1->coefficient, current1->degree);
+				struct node *result_current = node_create(current1->coefficient + current2->coefficient, current1->degree);
 				*result_head = node_add_end(*result_head, result_current);
 			}
-		}
-	else
-		for (struct node *current1 = head2; current1; current1 = current1->next)
-		{
-			bool flag = false;
-			for (struct node *current2 = head1; current2; current2 = current2->next)
-				if (current1->degree == current2->degree)
-				{
-					flag = true;
-					struct node *result_current = node_create(current1->coefficient + current2->coefficient, current1->degree);
-					*result_head = node_add_end(*result_head, result_current);
-					//break;
-				}
-			if (!flag)
+			else
 			{
-				struct node *result_current = node_create(current1->coefficient, current1->degree);
-				*result_head = node_add_end(*result_head, result_current);
+				struct node *result_search = NULL;
+				if (current1->degree > current2->degree)
+				{
+					result_search = search(current1, current2);
+					struct node *result_current = node_create(result_search ? result_search->coefficient : current1->coefficient, result_search ? result_search->degree : current1->degree);
+					*result_head = node_add_end(*result_head, result_current);
+				}
+				else
+				{
+					result_search = search(current2, current1);
+					struct node *result_current = node_create(result_search ? result_search->coefficient : current2->coefficient, result_search ? result_search->degree : current2->degree);
+					*result_head = node_add_end(*result_head, result_current);
+				}
 			}
 		}
+	}
 	return *result_head;
 }
 
@@ -104,4 +140,9 @@ void dvd(struct node *head, struct node **even_head, struct node **odd_head)
 			*even_head = node_add_end(*even_head, even_current);
 		}
 	}
+}
+
+int main(void)
+{
+
 }
