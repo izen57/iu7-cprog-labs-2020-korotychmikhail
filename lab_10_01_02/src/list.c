@@ -50,7 +50,7 @@ void dpdx(struct node *main_head, struct node **derivative_head)
 
 struct node *sum(struct node *head1, struct node *head2, struct node **result_head)
 {
-	if (head1->degree >= head2->degree)
+	if (head1->degree > head2->degree)
 		for (struct node *current1 = head1; current1; current1 = current1->next)
 		{
 			bool flag = false;
