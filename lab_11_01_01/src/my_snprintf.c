@@ -120,8 +120,6 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 					break;
 				case 'l':
 					l_count++;
-					//write_char(s, n, &len, ' ');
-					char_specifier(stream, n, &lenght, ' ');
 					break;
 				default:
 					if (lenght < n) 
