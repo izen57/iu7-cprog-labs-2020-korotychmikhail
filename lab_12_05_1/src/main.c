@@ -34,16 +34,19 @@ int main(int argc, char **argv)
 							free(arr);
 							error = 1;
 						}
-						create_arr(&newarr, another_count);
-						if (!key(arr, end, &newarr, &endnewarr))
-						{
-							pointer = newarr; endpointer = endnewarr;
-							count = counting(pointer, endpointer);
-						}
 						else
 						{
-							free(arr);
-							error = 1;
+							create_arr(&newarr, another_count);
+							if (!key(arr, end, &newarr, &endnewarr))
+							{
+								pointer = newarr; endpointer = endnewarr;
+								count = counting(pointer, endpointer);
+							}
+							else
+							{
+								free(arr);
+								error = 1;
+							}
 						}
 					}
 					if (!error)

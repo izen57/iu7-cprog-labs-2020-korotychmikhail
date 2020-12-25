@@ -81,10 +81,15 @@ START_TEST(test_key_empty_result)
 {
 	int arr[] = {1, 5, 7, 9, 11, 457};
 	int *end = arr + 6;
-	int *newarr;
+	int *newarr, rc;
 	int count = counting_elems(arr, end);
-	create_arr(&newarr, count);
-	int rc = key(arr, end, &newarr, &newarr);
+	if (count)
+	{
+		create_arr(&newarr, count);
+		rc = key(arr, end, &newarr, &newarr);
+	}
+	else
+		rc = 5;
 	ck_assert_int_eq(rc, 5);
 }
 END_TEST
