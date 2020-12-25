@@ -13,7 +13,7 @@ END_TEST
 START_TEST(test_void_text)
 {
 	char buffer1[13], buffer2[13], string1[2] = "", string2[2] = "";
-	ck_assert_int_eq(my_snprintf(buffer1, 0, string1), snprintf(buffer2, 0, string2));
+	ck_assert_int_eq(my_snprintf(NULL, 0, string1), snprintf(NULL, 0, string2));
 }
 END_TEST
 

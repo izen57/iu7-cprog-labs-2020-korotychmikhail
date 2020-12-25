@@ -87,8 +87,8 @@ void string_specifier(char *stream, size_t n, int *lenght, const char *symbol)
 
 int my_snprintf(char *stream, size_t n, const char *format, ...)
 {
-	if (!format || !stream || n <= 0)
-		return -1;
+	if (!format || !stream)
+		return 0;
 	va_list args;
 	va_start(args, format);
 	int lenght = 0;
