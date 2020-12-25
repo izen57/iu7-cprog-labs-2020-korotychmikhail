@@ -154,10 +154,7 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 	va_end(args);
 	if (lenght < n) 
 		stream[lenght] = '\0';
-	if (specifier)
-		return -1;
-	else
-		return lenght;
+	return lenght;
 }
 
 /*int main(void)
