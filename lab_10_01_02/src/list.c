@@ -59,42 +59,6 @@ struct node *search(struct node *head1, struct node *head2)
 
 struct node *sum(struct node *head1, struct node *head2, struct node **result_head)
 {
-	// if (head1->degree >= head2->degree)
-	// 	for (struct node *current1 = head1; current1; current1 = current1->next)
-	// 	{
-	// 		bool flag = false;
-	// 		for (struct node *current2 = head2; current2; current2 = current2->next)
-	// 			if (current1->degree == current2->degree)
-	// 			{
-	// 				flag = true;
-	// 				struct node *result_current = node_create(current1->coefficient + current2->coefficient, current1->degree);
-	// 				*result_head = node_add_end(*result_head, result_current);
-	// 				break;
-	// 			}
-	// 		if (!flag)
-	// 		{
-	// 			struct node *result_current = node_create(current1->coefficient, current1->degree);
-	// 			*result_head = node_add_end(*result_head, result_current);
-	// 		}
-	// 	}
-	// else
-	// 	for (struct node *current1 = head2; current1; current1 = current1->next)
-	// 	{
-	// 		bool flag = false;
-	// 		for (struct node *current2 = head1; current2; current2 = current2->next)
-	// 			if (current1->degree == current2->degree)
-	// 			{
-	// 				flag = true;
-	// 				struct node *result_current = node_create(current1->coefficient + current2->coefficient, current1->degree);
-	// 				*result_head = node_add_end(*result_head, result_current);
-	// 				break;
-	// 			}
-	// 		if (!flag)
-	// 		{
-	// 			struct node *result_current = node_create(current1->coefficient, current1->degree);
-	// 			*result_head = node_add_end(*result_head, result_current);
-	// 		}
-	// 	}
 	if (!head1 && head2)
 		*result_head = NULL;
 	else
