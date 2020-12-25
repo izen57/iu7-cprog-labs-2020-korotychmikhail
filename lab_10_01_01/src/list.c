@@ -133,12 +133,8 @@ void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void 
 
 node_t *sort(node_t *head, int (*comparator)(const void *, const void *))
 {
-	node_t *node = head;
-	head = NULL;
-	while (node)
-	{
-		sorted_insert(&head, node, comparator);
-		node = node->next;
-	}
-	return head;
+	node_t *new_head = NULL;
+	for (node_t *current = head; current; current = current->next)
+		sorted_insert(&new_head, current, comparator);
+	return new_head;
 }
