@@ -69,6 +69,13 @@ START_TEST(test_li_max)
 }
 END_TEST
 
+START_TEST(test_llli)
+{
+	char buffer1[4], buffer2[4];
+	ck_assert_int_eq(my_snprintf(buffer1, 4, "te%llli", INTMAX_MAX), snprintf(buffer2, 4, "te%llli", INTMAX_MAX));
+}
+END_TEST
+
 START_TEST(test_c)
 {
 	char buffer1[4], buffer2[4];
@@ -109,6 +116,7 @@ Suite *test_func_suite(void)
 	TCase *tc_li = tcase_create("li");
 	tcase_add_test(tc_li, test_li_min);
 	tcase_add_test(tc_li, test_li_max);
+	tcase_add_test(tc_li, test_llli);
 	suite_add_tcase(s, tc_li);
 	TCase *tc_c = tcase_create("c");
 	tcase_add_test(tc_c, test_c);

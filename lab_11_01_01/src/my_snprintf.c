@@ -157,8 +157,10 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 	return lenght;
 }
 
-/*int main(void)
-{
-	char buffer[13];
-	return my_snprintf(buffer, 10, "I'm coding now...");
-*/
+// int main(void)
+// {
+// 	char buffer[13];
+// 	int res = snprintf(buffer, 4, "te%llli", 5);
+// 	printf("%s", buffer);
+// 	return res;
+// }
