@@ -156,8 +156,3 @@ void dvd(struct node *head, struct node **even_head, struct node **odd_head)
 		}
 	}
 }
-
-int main(void)
-{
-
-}
