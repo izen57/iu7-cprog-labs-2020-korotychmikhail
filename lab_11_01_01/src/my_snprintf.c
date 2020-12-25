@@ -2,74 +2,87 @@
 
 void char_specifier(char *stream, size_t n, int *lenght, char symbol)
 {
-	if (*lenght < n - 1)
-		stream[*lenght] = symbol;
-	else if (*lenght < n)
-		stream[*lenght] = '\0';
-	(*lenght)++;
+	if (stream && n > 0)
+	{
+		if (*lenght < n - 1)
+			stream[*lenght] = symbol;
+		else if (*lenght < n)
+			stream[*lenght] = '\0';
+		(*lenght)++;
+	}
 }
 void integer_specifier(char *stream, size_t n, int *lenght, int symbol)
 {
-	unsigned int buffer;
-	if (symbol < 0)
+	if (stream && n > 0)
 	{
-		char_specifier(stream, n, lenght, '-');
-		buffer = -(unsigned int) symbol;
-	}
-	else 
-		buffer = symbol;
-	int numerals = 1;
-	while (buffer / numerals > 9)
-		numerals *= 10;
-	while (numerals > 0)
-	{
-		char_specifier(stream, n, lenght, '0' + buffer / numerals % 10);
-		numerals /= 10;
+		unsigned int buffer;
+		if (symbol < 0)
+		{
+			char_specifier(stream, n, lenght, '-');
+			buffer = -(unsigned int) symbol;
+		}
+		else 
+			buffer = symbol;
+		int numerals = 1;
+		while (buffer / numerals > 9)
+			numerals *= 10;
+		while (numerals > 0)
+		{
+			char_specifier(stream, n, lenght, '0' + buffer / numerals % 10);
+			numerals /= 10;
+		}
 	}
 }
 void long_integer_specifier(char *stream, size_t n, int *lenght, long int symbol)
 {
-	unsigned long int buffer;
-	if (symbol < 0)
+	if (stream && n > 0)
 	{
-		char_specifier(stream, n, lenght, '-');
-		buffer = -(unsigned long int) symbol;
-	}
-	else 
-		buffer = symbol;
-	long int numeral = 1;
-	while (buffer / numeral > 9)
-		numeral *= 10;
-	while (numeral > 0)
-	{
-		char_specifier(stream, n, lenght, '0' + buffer / numeral % 10);
-		numeral /= 10;
+		unsigned long int buffer;
+		if (symbol < 0)
+		{
+			char_specifier(stream, n, lenght, '-');
+			buffer = -(unsigned long int) symbol;
+		}
+		else 
+			buffer = symbol;
+		long int numeral = 1;
+		while (buffer / numeral > 9)
+			numeral *= 10;
+		while (numeral > 0)
+		{
+			char_specifier(stream, n, lenght, '0' + buffer / numeral % 10);
+			numeral /= 10;
+		}
 	}
 }
 void long_long_integer_specifier(char *stream, size_t n, int *lenght, long long int symbol)
 {
-	unsigned long long int buffer;
-	if (symbol < 0)
+	if (stream && n > 0)
 	{
-		char_specifier(stream, n, lenght, '-');
-		buffer = -(unsigned long long int) symbol;
-	}
-	else 
-		buffer = symbol;
-	long long int numeral = 1;
-	while (buffer / numeral > 9)
-		numeral *= 10;
-	while (numeral > 0)
-	{
-		char_specifier(stream, n, lenght, '0' + buffer / numeral % 10);
-		numeral /= 10;
+		unsigned long long int buffer;
+		if (symbol < 0)
+		{
+			char_specifier(stream, n, lenght, '-');
+			buffer = -(unsigned long long int) symbol;
+		}
+		else 
+			buffer = symbol;
+		long long int numeral = 1;
+		while (buffer / numeral > 9)
+			numeral *= 10;
+		while (numeral > 0)
+		{
+			char_specifier(stream, n, lenght, '0' + buffer / numeral % 10);
+			numeral /= 10;
+		}
 	}
 }
 
 void string_specifier(char *stream, size_t n, int *lenght, const char *symbol)
 {
-	while (*symbol)
-		char_specifier(stream, n, lenght, *symbol++);
+	if (stream && n > 0)
+		while (*symbol)
+			char_specifier(stream, n, lenght, *symbol++);
 }
 
 int my_snprintf(char *stream, size_t n, const char *format, ...)
