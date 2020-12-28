@@ -55,20 +55,6 @@ START_TEST(test_i_with_spaces)
 }
 END_TEST
 
-START_TEST(test_li_min)
-{
-	char buffer1[2], buffer2[2];
-	ck_assert_int_eq(my_snprintf(buffer1, 2, "%lli", INTMAX_MIN), snprintf(buffer2, 2, "%lli", INTMAX_MIN));
-}
-END_TEST
-
-START_TEST(test_li_max)
-{
-	char buffer1[2], buffer2[2];
-	ck_assert_int_eq(my_snprintf(buffer1, 2, "%lli", INTMAX_MAX), snprintf(buffer2, 2, "%lli", INTMAX_MAX));
-}
-END_TEST
-
 START_TEST(test_c)
 {
 	char buffer1[4], buffer2[4];
@@ -106,10 +92,6 @@ Suite *test_func_suite(void)
 	tcase_add_test(tc_i, test_i_wrong_specifiers);
 	tcase_add_test(tc_i, test_i_with_spaces);
 	suite_add_tcase(s, tc_i);
-	TCase *tc_li = tcase_create("li");
-	tcase_add_test(tc_li, test_li_min);
-	tcase_add_test(tc_li, test_li_max);
-	suite_add_tcase(s, tc_li);
 	TCase *tc_c = tcase_create("c");
 	tcase_add_test(tc_c, test_c);
 	suite_add_tcase(s, tc_c);
