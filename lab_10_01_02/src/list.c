@@ -48,15 +48,6 @@ void dpdx(struct node *main_head, struct node **derivative_head)
 	}
 }
 
-struct node *search(struct node *head1, struct node *head2)
-{
-	for (struct node *current1 = head1; current1; current1 = current1->next)
-		for (struct node *current2 = head2; current2; current2 = current2->next)
-			if (current1->degree == current2->degree)
-				return current1;
-	return NULL;
-}
-
 struct node *sum(struct node *head1, struct node *head2, struct node **result_head)
 {
 	if (!head1 && head2)
