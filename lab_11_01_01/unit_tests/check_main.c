@@ -51,7 +51,7 @@ START_TEST(test_i_with_spaces)
 {
 	int a = 3, b = 6, c = 8, d = 3, e = 5, f = 8;
 	char buffer1[3], buffer2[3];
-	ck_assert_int_eq(my_snprintf(buffer1, 3, "% i% i% i", a, b, c), snprintf(buffer2, 3, "% i% i% i", d, e, f));
+	ck_assert_int_eq(my_snprintf(buffer1, 3, "%i%i%i", a, b, c), snprintf(buffer2, 3, "%i%i%i", d, e, f));
 }
 END_TEST
 
