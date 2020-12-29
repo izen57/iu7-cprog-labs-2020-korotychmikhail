@@ -92,12 +92,12 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 					specifier = false;
 					break;
 				case 'i':
-					if (l_count > 2) 
+					/*if (l_count > 2) 
 					{
 						if (lenght < n) 
 							stream[lenght] = '\0';
 						return -1;
-					}
+					}*/
 					if (!l_count)
 						integer_specifier(stream, n, &lenght, va_arg(args, int));
 					else if (l_count == 1)
