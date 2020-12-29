@@ -124,7 +124,7 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 				default:
 					if (lenght < n) 
 						stream[lenght] = '\0';
-					return -1;
+					//return -1;
 			}
 		else
 		{
