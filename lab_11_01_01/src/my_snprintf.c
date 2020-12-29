@@ -110,10 +110,10 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 					string_specifier(stream, n, &lenght, va_arg(args, const char *));
 					specifier = false;
 					break;
-				case '%':
+				/*case '%':
 					char_specifier(stream, n, &lenght, '%');
 					specifier = false;
-					break;
+					break;*/
 				/*case ' ':
 					spaces++;
 					char_specifier(stream, n, &lenght, ' ');
