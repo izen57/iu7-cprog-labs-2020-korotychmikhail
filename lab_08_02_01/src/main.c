@@ -17,8 +17,6 @@ int main(void)
 		error = INPUT_ERROR;
 	else
 	{
-		/*output(a, n, m);
-		printf("----\n");*/
 		int p, q;
 		int **b = input(&p, &q);
 		if (!b)
@@ -28,8 +26,6 @@ int main(void)
 		}
 		else
 		{
-			/*output(b, p, q);
-			printf("----\n");*/
 			int k = m < n ? m : n;
 			int s = p < q ? p : q;
 			a = remove_by_number(a, &n, &m, k);
@@ -48,9 +44,6 @@ int main(void)
 				}
 				else
 				{
-					/*output(a, n, m);
-					printf("----\n");
-					output(b, p, q);*/
 					int rho, gamma;
 					if (input_rho_and_gamma(&rho, &gamma))
 					{
@@ -77,9 +70,6 @@ int main(void)
 							}
 							else
 							{
-								/*output(a, n, m);
-								printf("----\n");
-								output(b, p, q);*/
 								if (!rho && n == m)
 									identity_matrix(a, n, m);
 								else if (rho)
