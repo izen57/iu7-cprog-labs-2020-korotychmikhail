@@ -12,13 +12,13 @@ int main(void)
 {
 	int error = SUCCESS;
 	int n, m;
-	int **a = input(&n, &m);
+	int **a = input(stdin, &n, &m);
 	if (!a)
 		error = INPUT_ERROR;
 	else
 	{
 		int p, q;
-		int **b = input(&p, &q);
+		int **b = input(stdin, &p, &q);
 		if (!b)
 		{
 			free_matrix(a, n);
