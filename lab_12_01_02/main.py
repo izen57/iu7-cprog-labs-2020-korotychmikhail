@@ -25,11 +25,8 @@ def search():
 	square_numbers.restypes = None
 	square_numbers(arr1, n, arr2)
 	arr2 = list(arr2)
-	for i in range(len(arr2)):
-		if not arr2[i]:
-			arr2.remove(arr2[i])
-	square_result_entry.insert(0, list(arr2))
-
+	arr2 = list(filter(None, arr2))
+	square_result_entry.insert(0, arr2)
 
 main_window = Tk()
 main_window.title('ЛР 12')
@@ -65,8 +62,8 @@ array2 = StringVar()
 square_array_entry = Entry(textvariable = array2)
 square_array_entry.place(x = 290, y = 90)
 
-arrow_label = Button(text = '-->', command = search)
-arrow_label.place(x = 430, y = 90)
+arrow_label1 = Button(text = '-->', command = search)
+arrow_label1.place(x = 430, y = 90)
 
 square_result_entry = Entry()
 square_result_entry.place(x = 465, y = 90)
