@@ -17,7 +17,7 @@ int compare_matrix(int **matrix1, int rows1, int cols1, int **matrix2, int rows2
 
 START_TEST(test_mult_not_compatible)
 {
-	FILE *file1 = fopen("func_tests\\in_1.txt", "r"), *file2 = fopen("func_tests\\in_2.txt", "r");
+	FILE *file1 = fopen("./func_tests/in_1.txt", "r"), *file2 = fopen("./func_tests/in_2.txt", "r");
 	int n, m, p, q;
 	int **a = input(file1, &n, &m);
 	int **b = input(file2, &p, &q);
@@ -30,7 +30,7 @@ END_TEST
 
 START_TEST(test_mult_ok)
 {
-	FILE *file1 = fopen("func_tests\\in_3.txt", "r"), *file2 = fopen("func_tests/in_4.txt", "r"), *file3 = fopen("func_tests\\in_5.txt", "r");
+	FILE *file1 = fopen("./func_tests/in_3.txt", "r"), *file2 = fopen("./func_tests/in_4.txt", "r"), *file3 = fopen("./func_tests/in_5.txt", "r");
 	int n, m, p, q, x, y;
 	int **a = input(file1, &n, &m);
 	int **b = input(file2, &p, &q);
@@ -49,7 +49,7 @@ START_TEST(test_mult_ok)
 
 START_TEST(test_mult_single_matrix)
 {
-	FILE *file1 = fopen("func_tests\\in_6.txt", "r"), *file2 = fopen("func_tests\\in_7.txt", "r"), *file3 = fopen("func_tests\\in_8.txt", "r");
+	FILE *file1 = fopen("./func_tests/in_6.txt", "r"), *file2 = fopen("./func_tests/in_7.txt", "r"), *file3 = fopen("./func_tests/in_8.txt", "r");
 	int n, m, p, q, x, y;
 	int **a = input(file1, &n, &m);
 	int **b = input(file2, &p, &q);
@@ -69,7 +69,7 @@ END_TEST
 
 START_TEST(test_remove_columns)
 {
-	FILE *file1 = fopen("func_tests\\in_9.txt", "r"), *file2 = fopen("func_tests\\in_10.txt", "r");
+	FILE *file1 = fopen("./func_tests/in_9.txt", "r"), *file2 = fopen("./func_tests/in_10.txt", "r");
 	int n, m, p, q;
 	int **a = input(file1, &n, &m);
 	a = remove_by_number(a, &n, &m, 2);
@@ -85,7 +85,7 @@ END_TEST
 
 START_TEST(test_remove_strings)
 {
-	FILE *file1 = fopen("func_tests\\in_11.txt", "r"), *file2 = fopen("func_tests\\in_12.txt", "r");
+	FILE *file1 = fopen("./func_tests/in_11.txt", "r"), *file2 = fopen("./func_tests/in_12.txt", "r");
 	int n, m, p, q;
 	int **a = input(file1, &n, &m);
 	a = remove_by_number(a, &n, &m, 3);
@@ -101,7 +101,7 @@ END_TEST
 
 START_TEST(test_low_average_ok)
 {
-	FILE *file = fopen("func_tests\\in_6.txt", "r");
+	FILE *file = fopen("./func_tests/in_6.txt", "r");
 	int n, m;
 	int **a = input(file, &n, &m);
 	int result1 = counting_low_average(a, 2, 0);
@@ -124,7 +124,7 @@ END_TEST
 
 START_TEST(test_low_average_zeroes_and_negatives)
 {
-	FILE *file = fopen("func_tests\\in_13.txt", "r");
+	FILE *file = fopen("./func_tests/in_13.txt", "r");
 	int n, m;
 	int **a = input(file, &n, &m);
 	int result1 = counting_low_average(a, 2, 0);
@@ -147,7 +147,7 @@ END_TEST
 
 START_TEST(test_add_str_stb)
 {
-	FILE *file1 = fopen("func_tests\\in_14.txt", "r"), *file2 = fopen("func_tests\\in_15.txt", "r");
+	FILE *file1 = fopen("./func_tests/in_14.txt", "r"), *file2 = fopen("./func_tests/in_15.txt", "r");
 	int n, m, p, q;
 	int **a = input(file1, &n, &m);
 	a = add_by_number(a, &n, &m, 3);
