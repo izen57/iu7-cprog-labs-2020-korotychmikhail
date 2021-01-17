@@ -210,10 +210,6 @@ int **remove_by_number(int **matrix, int *rows, int *cols, int number)
 int **add_by_number(int **matrix, int *rows, int *cols, int number)
 {
 	if (number > *rows)
-	{
 		matrix = add_str_and_stb(matrix, rows, cols, number);
-		/*if (!matrix)
-			return NULL;*/
-	}
 	return matrix;
 }
