@@ -14,18 +14,20 @@ int **allocate_matrix(int str, int stb)
 {
 	int **matrix = calloc(str, sizeof(int *));
 	if (!matrix)
-		return NULL;
-	for (int i = 0; i < str; i++)
-	{
-		int *temp = calloc(stb, sizeof(int));
-		if (!temp)
+		matrix = NULL;
+	else
+		for (int i = 0; i < str; i++)
 		{
-			free_matrix(matrix, str);
-			return NULL;
+			int *temp = calloc(stb, sizeof(int));
+			if (!temp)
+			{
+				free_matrix(matrix, str);
+				matrix = NULL;
+				break;
+			}
+			matrix[i] = calloc(stb, sizeof(int));
+			free(temp);
 		}
-		matrix[i] = calloc(stb, sizeof(int));
-		free(temp);
-	}
 	return matrix;
 }
 
@@ -51,9 +53,10 @@ int **remove_str(int **matrix, int *str, int stb)
 	if (!temp)
 	{
 		free_matrix(matrix, *str + 1);
-		return NULL;
+		matrix = NULL;
 	}
-	matrix = temp;
+	else
+		matrix = temp;
 	return matrix;
 }
 
@@ -82,7 +85,8 @@ int **remove_stb(int **matrix, int str, int *stb)
 		if (!temp)
 		{
 			free_matrix(matrix, str);
-			return NULL;
+			matrix = NULL;
+			break;
 		}
 		matrix[i] = temp;
 	}
@@ -112,62 +116,75 @@ int **add_str_and_stb(int **matrix, int *str, int *stb, int amount)
 	if (!temp)
 	{
 		free_matrix(matrix, *str);
-		return NULL;
+		matrix = NULL;
 	}
-	matrix = temp;
-	for (int i = *str; i < amount; i++)
+	else
 	{
-		int *temp = calloc(*stb, sizeof(int));
-		if (!temp)
+		matrix = temp;
+		for (int i = *str; i < amount; i++)
 		{
-			free_matrix(matrix, *str);
-			return NULL;
+			int *temp = calloc(*stb, sizeof(int));
+			if (!temp)
+			{
+				free_matrix(matrix, *str);
+				matrix = NULL;
+				break;
+			}
+			matrix[i] = calloc(*stb, sizeof(int));
+			free(temp);
 		}
-		matrix[i] = calloc(*stb, sizeof(int));
-		free(temp);
-	}
-	for (int i = *str; i < amount; i++)
-		for (int j = 0; j < *stb; j++)
-			matrix[i][j] = counting_low_average(matrix, i, j);
-	*str += amount - *str;
-	for (int i = 0; i < amount; i++)
-	{
-		int *temp_elem = realloc(matrix[i], amount * sizeof(int));
-		if (!temp_elem)
+		if (matrix)
 		{
-			free_matrix(matrix, *str);
-			return NULL;
+			for (int i = *str; i < amount; i++)
+				for (int j = 0; j < *stb; j++)
+					matrix[i][j] = counting_low_average(matrix, i, j);
+			*str += amount - *str;
+			for (int i = 0; i < amount; i++)
+			{
+				int *temp_elem = realloc(matrix[i], amount * sizeof(int));
+				if (!temp_elem)
+				{
+					free_matrix(matrix, *str);
+					matrix = NULL;
+					break;
+				}
+				matrix[i] = temp_elem;
+				for (int j = *stb; j < amount; j++)
+					matrix[i][j] = counting_minimum(matrix, i, j);
+			}
+			if (matrix)
+				*stb += amount - *stb;
 		}
-		matrix[i] = temp_elem;
-		for (int j = *stb; j < amount; j++)
-			matrix[i][j] = counting_minimum(matrix, i, j);
 	}
-	*stb += amount - *stb;
 	return matrix;
 }
 
 int **multiplication(int **matrix1, int str1, int stb1, int **matrix2, int str2, int stb2)
 {
+	int **result;
 	if (str1 != stb2)
 	{
 		free_matrix(matrix1, str1);
 		free_matrix(matrix2, str2);
-		return NULL;
+		result = NULL;
 	}
-	int **result = allocate_matrix(str1, stb2);
-	if (!result)
+	else
 	{
-		free_matrix(matrix1, str1);
-		free_matrix(matrix2, str2);
-		return NULL;
-	}
-	for (int i = 0; i < str1; i++)
-		for (int j = 0; j < stb2; j++)
+		result = allocate_matrix(str1, stb2);
+		if (!result)
 		{
-			result[i][j] = 0;
-			for (int k = 0; k < stb1; k++)
-				result[i][j] += matrix1[i][k] * matrix2[k][j];
+			free_matrix(matrix1, str1);
+			free_matrix(matrix2, str2);
 		}
+		else
+			for (int i = 0; i < str1; i++)
+				for (int j = 0; j < stb2; j++)
+				{
+					result[i][j] = 0;
+					for (int k = 0; k < stb1; k++)
+						result[i][j] += matrix1[i][k] * matrix2[k][j];
+				}
+	}
 	return result;
 }
 
@@ -178,14 +195,14 @@ int **remove_by_number(int **matrix, int *rows, int *cols, int number)
 		{
 			matrix = remove_str(matrix, rows, *cols);
 			if (!matrix)
-				return NULL;
+				break;
 		}
 	else if (*cols > *rows)
 		while (*cols > number)
 		{
 			matrix = remove_stb(matrix, *rows, cols);
 			if (!matrix)
-				return NULL;
+				break;
 		}
 	return matrix;
 }
@@ -195,8 +212,8 @@ int **add_by_number(int **matrix, int *rows, int *cols, int number)
 	if (number > *rows)
 	{
 		matrix = add_str_and_stb(matrix, rows, cols, number);
-		if (!matrix)
-			return NULL;
+		/*if (!matrix)
+			return NULL;*/
 	}
 	return matrix;
 }
