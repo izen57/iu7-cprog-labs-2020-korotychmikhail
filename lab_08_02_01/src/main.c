@@ -118,8 +118,6 @@ int main(void)
 									free_matrix(b, p);
 									error = INPUT_ERROR;
 								}
-								else
-								{
 									if (!gamma && p == q)
 										identity_matrix(b, p, q);
 									else if (gamma)
@@ -168,7 +166,6 @@ int main(void)
 											free_matrix(result, n);
 										}
 									}
-								}
 							}
 						}
 					}
