@@ -20,7 +20,7 @@ int **input(int *str, int *stb)
 						matrix = NULL;
 						break;
 					}
-				if (scanf("%d\n", &matrix[i][*stb - 1]) != 1)
+				if (matrix && scanf("%d\n", &matrix[i][*stb - 1]) != 1)
 				{
 					free_matrix(matrix, *str);
 					matrix = NULL;
