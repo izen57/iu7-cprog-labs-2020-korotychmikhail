@@ -1,0 +1,1 @@
+./main.exe func_tests/neg/neg_08_in.txt ALL
