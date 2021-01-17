@@ -103,7 +103,7 @@ START_TEST(test_low_average_ok)
 {
 	FILE *file = fopen("func_tests\\in_6.txt", "r");
 	int n, m;
-	int **a = input(file1, &n, &m);
+	int **a = input(file, &n, &m);
 	int result1 = counting_low_average(a, 2, 0);
 	if (result1 != 3)
 	{
@@ -126,7 +126,7 @@ START_TEST(test_low_average_zeroes_and_negatives)
 {
 	FILE *file = fopen("func_tests\\in_13.txt", "r");
 	int n, m;
-	int **a = input(file1, &n, &m);
+	int **a = input(file, &n, &m);
 	int result1 = counting_low_average(a, 2, 0);
 	if (result1)
 	{
