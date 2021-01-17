@@ -101,7 +101,7 @@ END_TEST
 
 START_TEST(test_low_average_ok)
 {
-	FILE *file1 = fopen("func_tests\\in_6.txt", "r");
+	FILE *file = fopen("func_tests\\in_6.txt", "r");
 	int n, m;
 	int **a = input(file1, &n, &m);
 	int result1 = counting_low_average(a, 2, 0);
@@ -117,13 +117,14 @@ START_TEST(test_low_average_ok)
 		ck_assert_int_eq(0, result2);
 	}
 	free_matrix(a, n);
+	fclose(file);
 	return;
 }
 END_TEST
 
 START_TEST(test_low_average_zeroes_and_negatives)
 {
-	FILE *file1 = fopen("func_tests\\in_13.txt", "r");
+	FILE *file = fopen("func_tests\\in_13.txt", "r");
 	int n, m;
 	int **a = input(file1, &n, &m);
 	int result1 = counting_low_average(a, 2, 0);
@@ -139,6 +140,7 @@ START_TEST(test_low_average_zeroes_and_negatives)
 		ck_assert_int_eq(-4, result2);
 	}
 	free_matrix(a, n);
+	fclose(file);
 	return;
 }
 END_TEST
@@ -153,6 +155,8 @@ START_TEST(test_add_str_stb)
 	int error = compare_matrix(a, n, m, true_result, p, q);
 	free_matrix(a, n);
 	free_matrix(true_result, p);
+	fclose(file1);
+	fclose(file2);
 	ck_assert_int_eq(error, 0);
 }
 END_TEST
