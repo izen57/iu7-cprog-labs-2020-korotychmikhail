@@ -118,54 +118,54 @@ int main(void)
 									free_matrix(b, p);
 									error = INPUT_ERROR;
 								}
-									if (!gamma && p == q)
-										identity_matrix(b, p, q);
-									else if (gamma)
-									{
-										int **temp = allocate_matrix(p, q);
-										if (!temp)
-										{
-											free_matrix(a, n);
-											free_matrix(b, p);
-											error = ALLOCATE_ERROR;
-										}
-										else
-										{
-											copying(b, temp, p, q);
-											for (int i = 0; i < gamma - 1; i++)
-											{
-												int **result = multiplication(b, p, q, temp, p, q);
-												if (!result)
-												{
-													free_matrix(a, n);
-													error = ALLOCATE_ERROR;
-													break;
-												}
-												copying(result, b, p, q);
-												free_matrix(result, p);
-											}
-										}
-										free_matrix(temp, p);
-									}
-									else if (!gamma)
+								if (!gamma && p == q)
+									identity_matrix(b, p, q);
+								else if (gamma)
+								{
+									int **temp = allocate_matrix(p, q);
+									if (!temp)
 									{
 										free_matrix(a, n);
 										free_matrix(b, p);
-										error = INPUT_ERROR;
+										error = ALLOCATE_ERROR;
 									}
-									if (a && b)
+									else
 									{
-										int **result = multiplication(a, n, m, b, p, q);
-										if (!result)
-											error = ALLOCATE_ERROR;
-										else
+										copying(b, temp, p, q);
+										for (int i = 0; i < gamma - 1; i++)
 										{
-											output(result, n, q);
-											free_matrix(a, n);
-											free_matrix(b, p);
-											free_matrix(result, n);
+											int **result = multiplication(b, p, q, temp, p, q);
+											if (!result)
+											{
+												free_matrix(a, n);
+												error = ALLOCATE_ERROR;
+												break;
+											}
+											copying(result, b, p, q);
+											free_matrix(result, p);
 										}
 									}
+									free_matrix(temp, p);
+								}
+								else if (!gamma)
+								{
+									free_matrix(a, n);
+									free_matrix(b, p);
+									error = INPUT_ERROR;
+								}
+								if (a && b)
+								{
+									int **result = multiplication(a, n, m, b, p, q);
+									if (!result)
+										error = ALLOCATE_ERROR;
+									else
+									{
+										output(result, n, q);
+										free_matrix(a, n);
+										free_matrix(b, p);
+										free_matrix(result, n);
+									}
+								}
 							}
 						}
 					}

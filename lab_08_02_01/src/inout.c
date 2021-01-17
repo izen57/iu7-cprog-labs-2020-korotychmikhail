@@ -6,29 +6,31 @@
 
 int **input(int *str, int *stb)
 {
+	int **matrix = NULL;
 	if (scanf("%d", str) == 1 && *str > 1 && scanf("%d", stb) == 1 && *stb > 1)
 	{
-		int **matrix = allocate_matrix(*str, *stb);
-		if (!matrix)
-			return NULL;
-		for (int i = 0; i < *str; i++)
-		{
-			for (int j = 0; j < *stb - 1; j++)
-				if (scanf("%d", &matrix[i][j]) != 1)
+		matrix = allocate_matrix(*str, *stb);
+		if (matrix)
+			for (int i = 0; i < *str; i++)
+			{
+				for (int j = 0; j < *stb - 1; j++)
+					if (scanf("%d", &matrix[i][j]) != 1)
+					{
+						free_matrix(matrix, *str);
+						matrix = NULL;
+						break;
+					}
+				if (scanf("%d\n", &matrix[i][*stb - 1]) != 1)
 				{
 					free_matrix(matrix, *str);
-					return NULL;
+					matrix = NULL;
+					break;
 				}
-			if (scanf("%d\n", &matrix[i][*stb - 1]) != 1)
-			{
-				free_matrix(matrix, *str);
-				return NULL;
 			}
-		}
-		return matrix;
 	}
 	else
 		return NULL;
+	return matrix;
 }
 
 void output(int **matrix, int str, int stb)
@@ -43,7 +45,8 @@ void output(int **matrix, int str, int stb)
 
 int input_rho_and_gamma(int *rho, int *gamma)
 {
+	int error = SUCCESS;
 	if (scanf("%d", rho) != 1 || *rho < 0 || scanf("%d", gamma) != 1 || *gamma < 0)
-		return INPUT_ERROR;
-	return SUCCESS;
+		error = INPUT_ERROR;
+	return error;
 }
