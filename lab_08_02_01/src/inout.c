@@ -28,8 +28,6 @@ int **input(int *str, int *stb)
 				}
 			}
 	}
-	else
-		return NULL;
 	return matrix;
 }
 
