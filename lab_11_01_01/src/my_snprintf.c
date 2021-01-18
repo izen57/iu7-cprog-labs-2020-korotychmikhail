@@ -74,11 +74,11 @@ void string_specifier(char *stream, size_t n, int *lenght, const char *symbol)
 
 int my_snprintf(char *stream, size_t n, const char *format, ...)
 {
-	if (!format || !stream)
-		return 0;
+	int lenght = 0;
+	if (!format)
+		return lenght;
 	va_list args;
 	va_start(args, format);
-	int lenght = 0;
 	int l_count;
 	bool specifier = false;
 	const char *current = format;
@@ -100,10 +100,6 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 					break;
 				case 's':
 					string_specifier(stream, n, &lenght, va_arg(args, const char *));
-					specifier = false;
-					break;
-				case '%':
-					char_specifier(stream, n, &lenght, '%');
 					specifier = false;
 					break;
 				case 'l':
