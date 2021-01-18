@@ -76,7 +76,7 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 {
 	int lenght = 0;
 	if (!stream)
-		for (int i = 0; i != '\0'; i++)
+		for (int i = 0; format[i] != '\0'; i++)
 			lenght++;
 	else
 	{
