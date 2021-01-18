@@ -76,52 +76,54 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 {
 	int lenght = 0;
 	if (!stream)
-		return strlen(format);
-	va_list args;
-	va_start(args, format);
-	int l_count;
-	bool specifier = false;
-	const char *current = format;
-	for (int i = 0; current[i] != '\0'; i++)
+		lenght = strlen(format);
+	else
 	{
-		if (specifier)
-			switch (current[i])
-			{
-				case 'c':
-					char_specifier(stream, n, &lenght, va_arg(args, int));
-					specifier = false;
-					break;
-				case 'i':
-					if (!l_count)
-						integer_specifier(stream, n, &lenght, va_arg(args, int));
-					else
-						long_integer_specifier(stream, n, &lenght, va_arg(args, long int));
-					specifier = false;
-					break;
-				case 's':
-					string_specifier(stream, n, &lenght, va_arg(args, const char *));
-					specifier = false;
-					break;
-				case 'l':
-					l_count++;
-					break;
-				default:
-					stream[lenght] = '\0';
-			}
-		else
+		va_list args;
+		va_start(args, format);
+		bool specifier = false, l_count = false;
+		const char *current = format;
+		for (int i = 0; current[i] != '\0'; i++)
 		{
-			if (current[i] == '%')
-			{
-				specifier = true;
-				l_count = 0;
-			}
+			if (specifier)
+				switch (current[i])
+				{
+					case 'c':
+						char_specifier(stream, n, &lenght, va_arg(args, int));
+						specifier = false;
+						break;
+					case 'i':
+						if (!l_count)
+							integer_specifier(stream, n, &lenght, va_arg(args, int));
+						else
+							long_integer_specifier(stream, n, &lenght, va_arg(args, long int));
+						specifier = false;
+						break;
+					case 's':
+						string_specifier(stream, n, &lenght, va_arg(args, const char *));
+						specifier = false;
+						break;
+					case 'l':
+						l_count = true;
+						break;
+					default:
+						stream[lenght] = '\0';
+				}
 			else
-				char_specifier(stream, n, &lenght, current[i]);
+			{
+				if (current[i] == '%')
+				{
+					specifier = true;
+					l_count = false;
+				}
+				else
+					char_specifier(stream, n, &lenght, current[i]);
+			}
 		}
+		va_end(args);
+		if (lenght < n) 
+			stream[lenght] = '\0';
 	}
-	va_end(args);
-	if (lenght < n) 
-		stream[lenght] = '\0';
 	return lenght;
 }
 
