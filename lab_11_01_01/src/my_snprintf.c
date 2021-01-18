@@ -120,7 +120,7 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 		}
 	}
 	va_end(args);
-	//if (lenght < n) 
+	if (lenght < n) 
 		stream[lenght] = '\0';
 	return lenght;
 }
