@@ -24,13 +24,6 @@ START_TEST(test_text_buffer_less_n)
 }
 END_TEST
 
-START_TEST(test_text_with_percent)
-{
-	char buffer1[14], buffer2[14];
-	ck_assert_int_eq(my_snprintf(buffer1, 14, "I'm coding%%..."), snprintf(buffer2, 14, "I'm coding%%..."));
-}
-END_TEST
-
 START_TEST(test_i_specfiers_without_spaces)
 {
 	int a = 3, b = 56, c = -8, d = 3, e = 56, f = -8;
@@ -85,7 +78,6 @@ Suite *test_func_suite(void)
 	tcase_add_test(tc_text, test_text_buffer_less_n);
 	tcase_add_test(tc_text, test_text_buffer_more_n);
 	tcase_add_test(tc_text, test_void_text);
-	//tcase_add_test(tc_text, test_text_with_percent);
 	suite_add_tcase(s, tc_text);
 	TCase *tc_i = tcase_create("i");
 	tcase_add_test(tc_i, test_i_specfiers_without_spaces);
