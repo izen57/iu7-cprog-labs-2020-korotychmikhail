@@ -75,8 +75,8 @@ void string_specifier(char *stream, size_t n, int *lenght, const char *symbol)
 int my_snprintf(char *stream, size_t n, const char *format, ...)
 {
 	int lenght = 0;
-	if (!format)
-		return lenght;
+	if (!format || (!stream && n))
+		return -1;
 	va_list args;
 	va_start(args, format);
 	int l_count;
@@ -120,7 +120,7 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 		}
 	}
 	va_end(args);
-	if (lenght < n) 
+	//if (lenght < n) 
 		stream[lenght] = '\0';
 	return lenght;
 }
