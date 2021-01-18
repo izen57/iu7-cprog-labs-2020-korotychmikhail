@@ -86,6 +86,7 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 		for (int i = 0; current[i] != '\0'; i++)
 		{
 			if (specifier)
+			{
 				switch (current[i])
 				{
 					case 'c':
@@ -109,6 +110,7 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 					default:
 						stream[lenght] = '\0';
 				}
+			}
 			else
 			{
 				if (current[i] == '%')
