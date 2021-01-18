@@ -20,7 +20,7 @@ END_TEST
 START_TEST(test_text_buffer_less_n)
 {
 	char buffer1[10], buffer2[10];
-	ck_assert_int_eq(my_snprintf(buffer1, 13, "I'm coding..."), snprintf(buffer2, 13, "I'm coding..."));
+	ck_assert_int_eq(my_snprintf(buffer1, 14, "I'm coding..."), snprintf(buffer2, 14, "I'm coding..."));
 }
 END_TEST
 
@@ -28,7 +28,7 @@ START_TEST(test_i_specfiers_without_spaces)
 {
 	int a = 3, b = 56, c = -8, d = 3, e = 56, f = -8;
 	char buffer1[3], buffer2[3];
-	ck_assert_int_eq(my_snprintf(buffer1, 3, "%i%i%i", a, b, c), snprintf(buffer2, 3, "%i%i%i", d, e, f));
+	ck_assert_int_eq(my_snprintf(buffer1, 4, "%i%i%i", a, b, c), snprintf(buffer2, 4, "%i%i%i", d, e, f));
 }
 END_TEST
 
@@ -36,7 +36,7 @@ START_TEST(test_i_wrong_specifiers)
 {
 	int a = 3, b = 56.2, c = -8, d = 3, e = 56.2, f = -8;
 	char buffer1[3], buffer2[3];
-	ck_assert_int_eq(my_snprintf(buffer1, 3, "%i%i%i", a, b, c), snprintf(buffer2, 3, "%i%i%i", d, e, f));
+	ck_assert_int_eq(my_snprintf(buffer1, 4, "%i%i%i", a, b, c), snprintf(buffer2, 4, "%i%i%i", d, e, f));
 }
 END_TEST
 
@@ -44,21 +44,21 @@ START_TEST(test_i_with_spaces)
 {
 	int a = 3, b = 6, c = 8, d = 3, e = 5, f = 8;
 	char buffer1[3], buffer2[3];
-	ck_assert_int_eq(my_snprintf(buffer1, 3, "%i%i%i", a, b, c), snprintf(buffer2, 3, "%i%i%i", d, e, f));
+	ck_assert_int_eq(my_snprintf(buffer1, 4, "%i%i%i", a, b, c), snprintf(buffer2, 4, "%i%i%i", d, e, f));
 }
 END_TEST
 
 START_TEST(test_c)
 {
 	char buffer1[4], buffer2[4];
-	ck_assert_int_eq(my_snprintf(buffer1, 4, "%c%c%c%c", 't', 'e', 's', 't'), snprintf(buffer2, 4, "%c%c%c%c", 't', 'e', 's', 't'));
+	ck_assert_int_eq(my_snprintf(buffer1, 5, "%c%c%c%c", 't', 'e', 's', 't'), snprintf(buffer2, 5, "%c%c%c%c", 't', 'e', 's', 't'));
 }
 END_TEST
 
 START_TEST(test_s)
 {
 	char buffer1[4], buffer2[4];
-	ck_assert_int_eq(my_snprintf(buffer1, 4, "%s", "test"), snprintf(buffer2, 4, "%s", "test"));
+	ck_assert_int_eq(my_snprintf(buffer1, 5, "%s", "test"), snprintf(buffer2, 5, "%s", "test"));
 }
 END_TEST
 
@@ -67,7 +67,7 @@ START_TEST(test_all)
 	int a = 3;
 	long int b = 2147483644; 
 	char buffer1[12], buffer2[12];
-	ck_assert_int_eq(my_snprintf(buffer1, 15, "%i%li%c%s", a, b, '!', "Hi"), snprintf(buffer2, 15, "%i%li%c%s", a, b, '!', "Hi"));
+	ck_assert_int_eq(my_snprintf(buffer1, 16, "%i%li%c%s", a, b, '!', "Hi"), snprintf(buffer2, 16, "%i%li%c%s", a, b, '!', "Hi"));
 }
 END_TEST
 
