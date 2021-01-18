@@ -76,7 +76,8 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 {
 	int lenght = 0;
 	if (!stream)
-		lenght = strlen(format);
+		for (int i = 0; i != '\0'; i++)
+			lenght++;
 	else
 	{
 		va_list args;
