@@ -4,6 +4,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 
 void char_specifier(char *stream, size_t n, int *lenght, char symbol);
 void integer_specifier(char *stream, size_t n, int *lenght, int symbol);
