@@ -2,7 +2,7 @@
 
 void char_specifier(char *stream, size_t n, int *lenght, char symbol)
 {
-	if (*lenght + 1< n)
+	if (*lenght + 1 < n)
 		stream[*lenght] = symbol;
 	else if (*lenght < n)
 		stream[*lenght] = '\0';
