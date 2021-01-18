@@ -79,7 +79,7 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 	va_list args;
 	va_start(args, format);
 	int lenght = 0;
-	int /*spaces, */l_count;
+	int l_count;
 	bool specifier = false;
 	const char *current = format;
 	for (int i = 0; current[i] != '\0'; i++)
@@ -92,46 +92,31 @@ int my_snprintf(char *stream, size_t n, const char *format, ...)
 					specifier = false;
 					break;
 				case 'i':
-					/*if (l_count > 2) 
-					{
-						if (lenght < n) 
-							stream[lenght] = '\0';
-						return -1;
-					}*/
 					if (!l_count)
 						integer_specifier(stream, n, &lenght, va_arg(args, int));
-					else if (l_count == 1)
+					else
 						long_integer_specifier(stream, n, &lenght, va_arg(args, long int));
-					/*else if (l_count == 2)
-						long_long_integer_specifier(stream, n, &lenght, va_arg(args, long long int));*/
 					specifier = false;
 					break;
 				case 's':
 					string_specifier(stream, n, &lenght, va_arg(args, const char *));
 					specifier = false;
 					break;
-				/*case '%':
+				case '%':
 					char_specifier(stream, n, &lenght, '%');
 					specifier = false;
-					break;*/
-				/*case ' ':
-					spaces++;
-					char_specifier(stream, n, &lenght, ' ');
-					break;*/
+					break;
 				case 'l':
 					l_count++;
 					break;
 				default:
-					//if (lenght < n) 
-						stream[lenght] = '\0';
-					//return -1;
+					stream[lenght] = '\0';
 			}
 		else
 		{
 			if (current[i] == '%')
 			{
 				specifier = true;
-				//spaces = 0;
 				l_count = 0;
 			}
 			else
